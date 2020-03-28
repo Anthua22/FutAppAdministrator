@@ -1,10 +1,13 @@
 ﻿using Newtonsoft.Json;
+using NombramientoPartidos.Utilidades;
 using NombramientoPartidos.Utilidades.ClasesPojos;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,6 +30,29 @@ namespace NombramientoPartidos.Services
             var json = new WebClient().DownloadString(url);
             ObservableCollection<Arbitro> arbitros = new ObservableCollection<Arbitro>(JsonConvert.DeserializeObject<List<Arbitro>>(json));
             return arbitros;
+        }
+
+        public static bool UpdateArbitro(Arbitro arbitro)
+        {
+            var json = JsonConvert.SerializeObject(arbitro);
+            var bytes = Encoding.UTF8.GetBytes(json);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://localhost/liga/arbitros/" + arbitro.Dni);
+            request.Method = "PUT";
+            request.ContentType = "application/json";
+            using(var requestStream = request.GetRequestStream())
+            {
+                requestStream.Write(bytes, 0, bytes.Length);
+            }
+            var response = (HttpWebResponse)request.GetResponse();
+            
+            if(response.StatusCode.Equals(HttpStatusCode.OK))
+            {
+                return true;
+            }
+            else
+            {
+                throw new UpdateException("Error al modificar el dato");
+            }
         }
     }
 }

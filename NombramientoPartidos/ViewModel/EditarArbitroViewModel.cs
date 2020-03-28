@@ -7,16 +7,19 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace NombramientoPartidos.ViewModel
 {
     class EditarArbitroViewModel:INotifyPropertyChanged
     {
         public ObservableCollection<string> Categorias { get; }
-
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public ObservableCollection<Arbitro> ArbitrosFilter { get; set; }
+        public CollectionViewSource Vista { get; set; }
+        private ObservableCollection<Arbitro> ArbitrosFilter { get; set; }
+        string filtro;
+        private Arbitro ArbitroUpdate { get; set; } 
 
         public string Categoria { get; set; }
         public EditarArbitroViewModel()
@@ -30,10 +33,41 @@ namespace NombramientoPartidos.ViewModel
                 "Preferente",
                 "Fútbol Base"
             };
+            ArbitrosFilter = new ObservableCollection<Arbitro>();
+            Vista = new CollectionViewSource();
+            Vista.Filter += Vista_Filter;
+            Vista.Source = ArbitrosFilter;
+        }
+
+        public void RecuperandoInformacion(TextBox textBox)
+        {
+            filtro = textBox.Text;
+        }
+
+        private void Vista_Filter(object sender, FilterEventArgs e)
+        {
+            Arbitro item = (Arbitro)e.Item;
+            
+              if (string.IsNullOrWhiteSpace(filtro))
+              {
+                  e.Accepted = true;
+              }
+              else
+              {
+                  if (item.Nombre_Completo.Contains(filtro) || item.Dni.Contains(filtro))
+                  {
+                      e.Accepted = true;
+                  }
+                  else
+                  {
+                      e.Accepted = false;
+                  }
+              }
         }
 
         public void FiltroCategoria(string categoria)
         {
+
             switch (categoria)
             {
                 case "1º División":
@@ -55,6 +89,15 @@ namespace NombramientoPartidos.ViewModel
                     ArbitrosFilter = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("Fútbol Base")));
                     break;
             }
+            Vista.Source = ArbitrosFilter;
+
         }
+
+        public void Update(object e)
+        {
+            ArbitroUpdate = e as Arbitro;
+            ApiRest.UpdateArbitro(ArbitroUpdate);
+        }
+        
     }
 }

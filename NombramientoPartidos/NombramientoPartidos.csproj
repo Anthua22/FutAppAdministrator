@@ -90,6 +90,7 @@
     <Compile Include="Services\ApiRest.cs" />
     <Compile Include="Utilidades\ClasesPojos\Administrador.cs" />
     <Compile Include="Utilidades\ClasesPojos\Arbitro.cs" />
+    <Compile Include="Utilidades\UpdateException.cs" />
     <Compile Include="Utilidades\Utils.cs" />
     <Compile Include="ViewModel\ArbitroViewModel.cs" />
     <Compile Include="ViewModel\EditarArbitroViewModel.cs" />
@@ -160,6 +161,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\fef.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\yo.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.4.2.1\build\Fody.targets" Condition="Exists('..\packages\Fody.4.2.1\build\Fody.targets')" />

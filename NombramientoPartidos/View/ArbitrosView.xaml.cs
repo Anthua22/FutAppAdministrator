@@ -34,7 +34,10 @@ namespace NombramientoPartidos.View
 
         private void ModificarArbitroButton_Click(object sender, RoutedEventArgs e)
         {
-            (this.DataContext as ArbitroViewModel).EditarArbitroClick();
+            if((this.DataContext as ArbitroViewModel).EditarArbitroClick())
+            {
+                MessageBox.Show("Arbitro Actualizado", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void EliminarArbitroButton_Click(object sender, RoutedEventArgs e)

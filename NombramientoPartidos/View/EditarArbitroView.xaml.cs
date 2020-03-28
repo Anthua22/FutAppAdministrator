@@ -1,4 +1,5 @@
-﻿using NombramientoPartidos.ViewModel;
+﻿using NombramientoPartidos.Utilidades;
+using NombramientoPartidos.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,27 +21,54 @@ namespace NombramientoPartidos.View
     /// </summary>
     public partial class EditarArbitroView : Window
     {
+        
         public EditarArbitroView()
         {
             this.DataContext = new EditarArbitroViewModel();
             InitializeComponent();
+            ListaArbitrosDataGrid.DataContext = (DataContext as EditarArbitroViewModel).Vista;
         }
 
         private void AceptarButton_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                (DataContext as EditarArbitroViewModel).Update(ListaArbitrosDataGrid.SelectedItem);
+                DialogResult = true;
+            }catch(UpdateException exp)
+            {
+                MessageBox.Show("Error: " + exp.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
         }
 
         private void CategoriaComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            (this.DataContext as EditarArbitroViewModel).FiltroCategoria(CategoriaComboBox.SelectedItem as string);
-            ArbitroComboBox.IsEnabled = true;
-            ListaArbitrosDataGrid.IsEnabled = true;
+            try
+            {
+                (this.DataContext as EditarArbitroViewModel).FiltroCategoria(CategoriaComboBox.SelectedItem as string);
+                FiltroNombreTextBox.IsEnabled = true;
+                ListaArbitrosDataGrid.Visibility = Visibility.Visible;
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
         }
 
         private void SeleccionImagenElementoButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void FiltarButton_Click(object sender, RoutedEventArgs e)
+        {
+            (DataContext as EditarArbitroViewModel).RecuperandoInformacion(FiltroNombreTextBox);
+            (DataContext as EditarArbitroViewModel).Vista.View.Refresh();
         }
     }
 }
