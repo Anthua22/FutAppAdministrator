@@ -35,6 +35,7 @@ namespace NombramientoPartidos.View
         {
             (this.DataContext as EditarArbitroViewModel).FiltroCategoria(CategoriaComboBox.SelectedItem as string);
             ArbitroComboBox.IsEnabled = true;
+            ListaArbitrosDataGrid.IsEnabled = true;
         }
 
         private void SeleccionImagenElementoButton_Click(object sender, RoutedEventArgs e)

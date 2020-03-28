@@ -62,22 +62,21 @@
             <TextBlock Grid.Column="0" Grid.Row="1" Text="Elige el Árbitro"></TextBlock>
             <ComboBox Grid.Column="1" Grid.Row="1"  ItemsSource="{Binding ArbitrosFilter}" Height="50" ItemTemplate="{StaticResource Combo}" x:Name="ArbitroComboBox" SelectedValuePath="Name" IsEnabled="False"></ComboBox>
         </Grid>
-       
-        <DataGrid x:Name="ConsultarPedidosDataGrid" ItemsSource="{Binding Comandas, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding ComandaSeleccionada}" AutoGenerateColumns="False" CanUserAddRows="False">
+
+        <DataGrid x:Name="ListaArbitrosDataGrid" ItemsSource="{Binding ArbitrosFilter}" SelectedItem="{Binding ComandaSeleccionada}" IsEnabled="False" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="DNI" Binding="{Binding FechaComanda}" IsReadOnly="True"/>
-                <DataGridCheckBoxColumn Header="Nombre" Width="100" Binding="{Binding Servida, Mode=TwoWay}" />
-                <DataGridTextColumn Header="Teléfono"></DataGridTextColumn>
+                <DataGridTextColumn Header="Dni" Binding="{Binding Dni}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Contraseña" Binding="{Binding Pass}"/>
+                <DataGridTextColumn Header="Nombre" Width="100" Binding="{Binding Nombre_Completo}" />
+                <DataGridTextColumn Header="Teléfono" Binding="{Binding Telefono}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Fecha Nacimiento" Binding="{Binding Edad}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Provincia" Binding="{Binding Provincia}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Localidad" Binding="{Binding Localidad}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Código Postal" Binding="{Binding Cp}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Categoría" Binding="{Binding Categoria}"></DataGridTextColumn>
             </DataGrid.Columns>
-            <DataGrid.RowDetailsTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Vertical" Margin="20">
-                        <TextBlock Text="Elementos:" FontWeight="Bold"/>
-                        <ListBox x:Name="ElementosListBox" ItemsSource="{Binding FACTURAs}" ItemTemplate="{StaticResource Elementos}">
-                        </ListBox>
-                    </StackPanel>
-                </DataTemplate>
-            </DataGrid.RowDetailsTemplate>
+           
         </DataGrid>
 
        
