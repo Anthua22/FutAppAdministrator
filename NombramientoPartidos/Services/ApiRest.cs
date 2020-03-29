@@ -34,25 +34,28 @@ namespace NombramientoPartidos.Services
 
         public static bool UpdateArbitro(Arbitro arbitro)
         {
-            var json = JsonConvert.SerializeObject(arbitro);
-            var bytes = Encoding.UTF8.GetBytes(json);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://localhost/liga/arbitros/" + arbitro.Dni);
-            request.Method = "PUT";
-            request.ContentType = "application/json";
-            using(var requestStream = request.GetRequestStream())
+            if (Utils.ControlCamposUpdate(arbitro))
             {
-                requestStream.Write(bytes, 0, bytes.Length);
-            }
-            var response = (HttpWebResponse)request.GetResponse();
+                var json = JsonConvert.SerializeObject(arbitro);
+                var bytes = Encoding.UTF8.GetBytes(json);
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://localhost/liga/arbitros/" + arbitro.Id);
+                request.Method = "PUT";
+                request.ContentType = "application/json";
+                using(var requestStream = request.GetRequestStream())
+                {
+                    requestStream.Write(bytes, 0, bytes.Length);
+                }
+                var response = (HttpWebResponse)request.GetResponse();
             
-            if(response.StatusCode.Equals(HttpStatusCode.OK))
-            {
+                if(!response.StatusCode.Equals(HttpStatusCode.OK))
+                {
+                    throw new UpdateException("Error al modificar el dato");
+                }
                 return true;
             }
-            else
-            {
-                throw new UpdateException("Error al modificar el dato");
-            }
+            return false;
+          
+            
         }
     }
 }

@@ -33,9 +33,27 @@ namespace NombramientoPartidos.View
         {
             try
             {
-                (DataContext as EditarArbitroViewModel).Update(ListaArbitrosDataGrid.SelectedItem);
-                DialogResult = true;
-            }catch(UpdateException exp)
+                if((DataContext as EditarArbitroViewModel).Update(ListaArbitrosDataGrid.SelectedItem))
+                {
+                    DialogResult = true;
+                }
+                
+            }catch(PassException pas)
+            {
+                MessageBox.Show("Error: " + pas.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }catch(EmailException em)
+            {
+                MessageBox.Show("Error: " + em.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch(FechaException fe)
+            {
+                MessageBox.Show("Error: " + fe.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch(CategoriaException cat)
+            {
+                MessageBox.Show("Error: " + cat.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch(UpdateException exp)
             {
                 MessageBox.Show("Error: " + exp.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }

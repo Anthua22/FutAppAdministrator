@@ -93,10 +93,10 @@ namespace NombramientoPartidos.ViewModel
 
         }
 
-        public void Update(object e)
+        public bool Update(object e)
         {
             ArbitroUpdate = e as Arbitro;
-            ApiRest.UpdateArbitro(ArbitroUpdate);
+            return ApiRest.UpdateArbitro(ArbitroUpdate);
         }
         
     }

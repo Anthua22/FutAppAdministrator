@@ -90,8 +90,9 @@
     <Compile Include="Services\ApiRest.cs" />
     <Compile Include="Utilidades\ClasesPojos\Administrador.cs" />
     <Compile Include="Utilidades\ClasesPojos\Arbitro.cs" />
-    <Compile Include="Utilidades\UpdateException.cs" />
+    <Compile Include="Utilidades\Excepciones.cs" />
     <Compile Include="Utilidades\Utils.cs" />
+    <Compile Include="Utilidades\ValidacionesRegexp.cs" />
     <Compile Include="ViewModel\ArbitroViewModel.cs" />
     <Compile Include="ViewModel\EditarArbitroViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />

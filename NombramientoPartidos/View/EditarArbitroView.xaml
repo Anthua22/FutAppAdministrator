@@ -80,7 +80,7 @@
                 <DataGridTextColumn Header="Nombre Completo" Width="100" Binding="{Binding Nombre_Completo}"/>
                 <DataGridTextColumn Header="Teléfono" Binding="{Binding Telefono}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Email" Binding="{Binding Email}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Fecha Nacimiento" Binding="{Binding Edad}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Fecha Nacimiento" Binding="{Binding Fecha_Nacimiento}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Provincia" Binding="{Binding Provincia}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Localidad" Binding="{Binding Localidad}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Código Postal" Binding="{Binding Cp}"></DataGridTextColumn>
