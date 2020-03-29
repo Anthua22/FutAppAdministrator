@@ -15,7 +15,11 @@
     </Window.Resources>
     <Border Background="#2e3137" CornerRadius="20" Margin="20">
         <DockPanel Margin="20">
-            <TextBlock DockPanel.Dock="Top" Text="Login" Foreground="White" FontSize="25" HorizontalAlignment="Center"/>
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Center">
+                <TextBlock Text="Login" Foreground="White" FontSize="25" />
+                <Image Source="/Assets/fef.jpg" Width="70" Margin="10,0,0,0"/>
+            </StackPanel>
+            
             <Button DockPanel.Dock="Bottom" Content="Entrar" x:Name="EntrarButton" Width="90" Margin="0,20,0,0" Background="#545d6a" Click="EntrarButton_Click" Foreground="White" FontSize="18"/>
             <StackPanel Margin="0,20,0,0">
                 <Separator></Separator>

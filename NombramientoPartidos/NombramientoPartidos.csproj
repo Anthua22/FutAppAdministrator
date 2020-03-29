@@ -148,6 +148,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Assets\FontAwesome5Brands.otf" />
+    <Resource Include="Assets\FontAwesome5Regular.otf" />
+    <Resource Include="Assets\FontAwesome5Solid.otf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

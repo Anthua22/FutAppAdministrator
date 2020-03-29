@@ -60,11 +60,15 @@
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Elige la categoría"  VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
             <ComboBox Grid.Row="0" Grid.Column="1" x:Name="CategoriaComboBox" ItemsSource="{Binding Categorias}" SelectionChanged="CategoriaComboBox_SelectionChanged" ></ComboBox>
-            <Image Grid.Row="0" Grid.Column="2" Source="/Assets/yo.jpg"></Image>
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2">
+                <Image  Source="/Assets/yo.jpg" ></Image>
+                <Button Content="&#xf303;" Foreground="Green" FontFamily="{StaticResource FontAwesome}" Margin="15,0,0,0" Height="25"/>
+            </StackPanel>
+            
 
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Nombre o Dni" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Buscar por Nombre o Dni" VerticalAlignment="Center" HorizontalAlignment="Left"/>
             <TextBox Grid.Row="1" Grid.Column="1" x:Name="FiltroNombreTextBox" Width="250" Height="25" IsEnabled="False"/>
-            <Button Grid.Row="1" Grid.Column="2" Width="100" Height="25" x:Name="FiltarButton" HorizontalAlignment="Center" Click="FiltarButton_Click" Content="Filtrar"/>
+            <Button Grid.Row="1" Grid.Column="2" Width="100" Height="25" x:Name="FiltarButton" HorizontalAlignment="Left" Click="FiltarButton_Click" Content="Filtrar"/>
 
         </Grid>
 
@@ -77,7 +81,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Dni" Binding="{Binding Dni}"/>
                 <DataGridTextColumn Header="Contraseña" Binding="{Binding Pass}"/>
-                <DataGridTextColumn Header="Nombre Completo" Width="100" Binding="{Binding Nombre_Completo}"/>
+                <DataGridTextColumn Header="Nombre Completo" Width="150" Binding="{Binding Nombre_Completo}"/>
                 <DataGridTextColumn Header="Teléfono" Binding="{Binding Telefono}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Email" Binding="{Binding Email}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Fecha Nacimiento" Binding="{Binding Fecha_Nacimiento}"></DataGridTextColumn>
