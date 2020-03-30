@@ -1,4 +1,5 @@
 ﻿using NombramientoPartidos.Utilidades;
+using NombramientoPartidos.Utilidades.ClasesPojos;
 using NombramientoPartidos.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -87,6 +88,16 @@ namespace NombramientoPartidos.View
         {
             (DataContext as EditarArbitroViewModel).RecuperandoInformacion(FiltroNombreTextBox);
             (DataContext as EditarArbitroViewModel).Vista.View.Refresh();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            (DataContext as EditarArbitroViewModel).EditarImagen(FotoArbitroImage, (Arbitro)(ListaArbitrosDataGrid.SelectedItem));
+        }
+
+        private void ListaArbitrosDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

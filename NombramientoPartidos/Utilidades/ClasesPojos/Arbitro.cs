@@ -1,9 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NombramientoPartidos.Utilidades.ClasesPojos
 {
@@ -17,8 +12,11 @@ namespace NombramientoPartidos.Utilidades.ClasesPojos
         public string Dni { get; set; } 
 
         [JsonProperty(PropertyName = "pass")]
-        public string Pass { get; set; } 
-        
+        public string Pass { get; set; }
+
+        [JsonProperty(PropertyName = "foto")]
+        public byte[] Foto { get; set; }
+
         [JsonProperty(PropertyName = "nombre_completo")]
         public string Nombre_Completo { get; set; }
 
@@ -48,10 +46,11 @@ namespace NombramientoPartidos.Utilidades.ClasesPojos
 
         }
 
-        public Arbitro(string dni, string pass, string nombre_completo, string email, string fecha_nacimiento, string provincia, string localidad, int cp, string categoria, string telefono)
+        public Arbitro(string dni, string pass, byte[] foto, string nombre_completo, string email, string fecha_nacimiento, string provincia, string localidad, int cp, string categoria, string telefono)
         {
             Dni = dni;
             Pass = pass;
+            Foto = foto;
             Nombre_Completo = nombre_completo;
             Email = email;
             Fecha_Nacimiento = fecha_nacimiento;

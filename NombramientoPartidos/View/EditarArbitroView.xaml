@@ -61,8 +61,8 @@
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Elige la categoría"  VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
             <ComboBox Grid.Row="0" Grid.Column="1" x:Name="CategoriaComboBox" ItemsSource="{Binding Categorias}" SelectionChanged="CategoriaComboBox_SelectionChanged" ></ComboBox>
             <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2">
-                <Image  Source="/Assets/yo.jpg" ></Image>
-                <Button Content="&#xf303;" Foreground="Green" FontFamily="{StaticResource FontAwesome}" Margin="15,0,0,0" Height="25"/>
+                <Image x:Name="FotoArbitroImage" ></Image>
+                <Button Content="&#xf303;" Foreground="Green" FontFamily="{StaticResource FontAwesome}" Margin="15,0,0,0" Height="25" Width="50" Click="Button_Click" RenderTransformOrigin="0.502,0.504"/>
             </StackPanel>
             
 
@@ -77,7 +77,7 @@
             <Button x:Name="AceptarButton" Click="AceptarButton_Click">Aceptar</Button>
             <Button IsCancel="True">Cancelar</Button>
         </StackPanel>
-        <DataGrid x:Name="ListaArbitrosDataGrid" ItemsSource="{Binding}"  Visibility="Hidden" AutoGenerateColumns="False" CanUserAddRows="False">
+        <DataGrid x:Name="ListaArbitrosDataGrid" ItemsSource="{Binding}" Visibility="Hidden" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="ListaArbitrosDataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Dni" Binding="{Binding Dni}"/>
                 <DataGridTextColumn Header="Contraseña" Binding="{Binding Pass}"/>
