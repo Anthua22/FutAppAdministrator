@@ -1,10 +1,5 @@
 ﻿using NombramientoPartidos.View;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NombramientoPartidos.ViewModel
 {
@@ -12,10 +7,11 @@ namespace NombramientoPartidos.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void EditarArbitroClick()
+        public bool EditarArbitroClick()
         {
             EditarArbitroView editarArbitroView = new EditarArbitroView();
-            editarArbitroView.ShowDialog();
+            return (bool)editarArbitroView.ShowDialog();
+          
         }
     }
 }

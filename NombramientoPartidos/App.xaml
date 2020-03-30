@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:NombramientoPartidos"
              StartupUri="View/MainWindow.xaml">
     <Application.Resources>
-         
+        <FontFamily x:Key="FontAwesome">/Assets/FontAwesome5Solid.otf#Font Awesome 5 Free Solid</FontFamily>
     </Application.Resources>
 </Application>

@@ -5,23 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NombramientoPartidos.View"
         mc:Ignorable="d"
-        Title="Modificar Datos Árbitro" Height="800" Width="750" ResizeMode="NoResize" ShowInTaskbar="False">
+        Title="Modificar Datos Árbitro" Height="500" Width="800" ResizeMode="NoResize" ShowInTaskbar="False">
     <Window.Resources>
         <Style TargetType="{x:Type ComboBox}">
             <Setter Property="Width" Value="250"/>
             <Setter Property="Height" Value="30"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Margin" Value="0,0,0,20"/>
+            
         </Style>
         <Style TargetType="{x:Type TextBlock}">
             <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Margin" Value="5,0,0,20"/>
+           
         </Style>
         <Style TargetType="{x:Type Button}">
             <Setter Property="Width" Value="100"/>
             <Setter Property="Margin" Value="0,0,5,0"/>
         </Style>
-     
+
         <Style TargetType="{x:Type TextBox}">
             <Setter Property="Margin" Value="10"/>
         </Style>
@@ -45,44 +45,55 @@
 
 
     </Window.Resources>
-    <StackPanel>
-        <Grid Margin="0,20,0,0" x:Name="SettingGrid">
+
+    <DockPanel>
+
+        <Grid DockPanel.Dock="Top" Margin="20">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition ></ColumnDefinition>
-                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition Height="100"/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Elige la categoría"  VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+            <ComboBox Grid.Row="0" Grid.Column="1" x:Name="CategoriaComboBox" ItemsSource="{Binding Categorias}" SelectionChanged="CategoriaComboBox_SelectionChanged" ></ComboBox>
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2">
+                <Image x:Name="FotoArbitroImage" ></Image>
+                <Button Content="&#xf303;" Foreground="Green" FontFamily="{StaticResource FontAwesome}" Margin="15,0,0,0" Height="25" Width="50" Click="Button_Click" RenderTransformOrigin="0.502,0.504"/>
+            </StackPanel>
+            
 
-            <TextBlock Grid.Column="0" Grid.Row="0" Text="Elige la categoría"></TextBlock>
-            <ComboBox x:Name="CategoriaComboBox" Grid.Column="1" Grid.Row="0" ItemsSource="{Binding Categorias}" SelectionChanged="CategoriaComboBox_SelectionChanged"></ComboBox>
-            <TextBlock Grid.Column="0" Grid.Row="1" Text="Elige el Árbitro"></TextBlock>
-            <ComboBox Grid.Column="1" Grid.Row="1"  ItemsSource="{Binding ArbitrosFilter}" Height="50" ItemTemplate="{StaticResource Combo}" x:Name="ArbitroComboBox" SelectedValuePath="Name" IsEnabled="False"></ComboBox>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Buscar por Nombre o Dni" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBox Grid.Row="1" Grid.Column="1" x:Name="FiltroNombreTextBox" Width="250" Height="25" IsEnabled="False"/>
+            <Button Grid.Row="1" Grid.Column="2" Width="100" Height="25" x:Name="FiltarButton" HorizontalAlignment="Left" Click="FiltarButton_Click" Content="Filtrar"/>
+
         </Grid>
 
-        <DataGrid x:Name="ListaArbitrosDataGrid" ItemsSource="{Binding ArbitrosFilter}" SelectedItem="{Binding ComandaSeleccionada}" IsEnabled="False" AutoGenerateColumns="False" CanUserAddRows="False">
+
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,20">
+            <Button x:Name="AceptarButton" Click="AceptarButton_Click">Aceptar</Button>
+            <Button IsCancel="True">Cancelar</Button>
+        </StackPanel>
+        <DataGrid x:Name="ListaArbitrosDataGrid" ItemsSource="{Binding}" Visibility="Hidden" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="ListaArbitrosDataGrid_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Dni" Binding="{Binding Dni}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Dni" Binding="{Binding Dni}"/>
                 <DataGridTextColumn Header="Contraseña" Binding="{Binding Pass}"/>
-                <DataGridTextColumn Header="Nombre" Width="100" Binding="{Binding Nombre_Completo}" />
+                <DataGridTextColumn Header="Nombre Completo" Width="150" Binding="{Binding Nombre_Completo}"/>
                 <DataGridTextColumn Header="Teléfono" Binding="{Binding Telefono}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Email" Binding="{Binding Email}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Fecha Nacimiento" Binding="{Binding Edad}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Fecha Nacimiento" Binding="{Binding Fecha_Nacimiento}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Provincia" Binding="{Binding Provincia}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Localidad" Binding="{Binding Localidad}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Código Postal" Binding="{Binding Cp}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Categoría" Binding="{Binding Categoria}"></DataGridTextColumn>
             </DataGrid.Columns>
-           
+
         </DataGrid>
 
-       
-        <StackPanel VerticalAlignment="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,15,0">
-            <Button x:Name="AceptarButton" Click="AceptarButton_Click">Aceptar</Button>
-            <Button IsCancel="True">Cancelar</Button>
-        </StackPanel>
-    </StackPanel>
+    </DockPanel>
+
+
 </Window>
