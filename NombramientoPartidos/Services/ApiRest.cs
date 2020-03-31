@@ -14,7 +14,7 @@ namespace NombramientoPartidos.Services
         
         public static Administrador RescatarAdministrador(string dni)
         {
-            string url = "http://192.168.0.130/liga/administradores/" + dni;
+            string url = "http://192.168.0.132/liga/administradores/" + dni;
             var json = new WebClient().DownloadString(url);
             Administrador x = JsonConvert.DeserializeObject<List<Administrador>>(json).First();
             return x;
@@ -22,7 +22,7 @@ namespace NombramientoPartidos.Services
 
         public static ObservableCollection<Arbitro> RescatarArbitros()
         {
-            string url = "http://192.168.0.130/liga/arbitros/";
+            string url = "http://192.168.0.132/liga/arbitros/";
             var json = new WebClient().DownloadString(url);
             ObservableCollection<Arbitro> arbitros = new ObservableCollection<Arbitro>(JsonConvert.DeserializeObject<List<Arbitro>>(json));
             return arbitros;
@@ -34,7 +34,7 @@ namespace NombramientoPartidos.Services
             {
                 var json = JsonConvert.SerializeObject(arbitro);
                 var bytes = Encoding.UTF8.GetBytes(json);
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://localhost/liga/arbitros/" + arbitro.Id);
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://192.168.0.132/liga/arbitros/" + arbitro.Id);
                 request.Method = "PUT";
                 request.ContentType = "application/json";
                 using(var requestStream = request.GetRequestStream())

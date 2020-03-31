@@ -13,5 +13,11 @@ namespace NombramientoPartidos.ViewModel
             return (bool)editarArbitroView.ShowDialog();
           
         }
+
+        public bool InsertarArbitroClick()
+        {
+            InsertarArbitroView insertarArbitroView = new InsertarArbitroView();
+            return (bool)insertarArbitroView.ShowDialog();
+        }
     }
 }

@@ -97,7 +97,7 @@ namespace NombramientoPartidos.View
 
         private void ListaArbitrosDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            (DataContext as EditarArbitroViewModel).FiltroCategoria(sender as string);
         }
     }
 }

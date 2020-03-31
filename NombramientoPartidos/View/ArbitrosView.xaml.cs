@@ -29,7 +29,7 @@ namespace NombramientoPartidos.View
 
         private void AgregarArbitroButton_Click(object sender, RoutedEventArgs e)
         {
-
+            (DataContext as ArbitroViewModel).InsertarArbitroClick();
         }
 
         private void ModificarArbitroButton_Click(object sender, RoutedEventArgs e)

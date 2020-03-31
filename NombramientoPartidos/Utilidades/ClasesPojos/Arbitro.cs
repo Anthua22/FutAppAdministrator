@@ -15,7 +15,7 @@ namespace NombramientoPartidos.Utilidades.ClasesPojos
         public string Pass { get; set; }
 
         [JsonProperty(PropertyName = "foto")]
-        public byte[] Foto { get; set; }
+        public string Foto { get; set; }
 
         [JsonProperty(PropertyName = "nombre_completo")]
         public string Nombre_Completo { get; set; }
@@ -46,7 +46,7 @@ namespace NombramientoPartidos.Utilidades.ClasesPojos
 
         }
 
-        public Arbitro(string dni, string pass, byte[] foto, string nombre_completo, string email, string fecha_nacimiento, string provincia, string localidad, int cp, string categoria, string telefono)
+        public Arbitro(string dni, string pass, string foto, string nombre_completo, string email, string fecha_nacimiento, string provincia, string localidad, int cp, string categoria, string telefono)
         {
             Dni = dni;
             Pass = pass;

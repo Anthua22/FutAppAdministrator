@@ -55,7 +55,7 @@ namespace NombramientoPartidos.ViewModel
               }
               else
               {
-                  if (item.Nombre_Completo.Contains(filtro) || item.Dni.Contains(filtro))
+                  if (item.Nombre_Completo.Contains(filtro) || item.Dni.Equals(filtro))
                   {
                       e.Accepted = true;
                   }
@@ -116,14 +116,14 @@ namespace NombramientoPartidos.ViewModel
 
                 string ruta = dialogoImagen.FileName;
                 image.Source = new BitmapImage(new Uri(ruta));
-                e.Foto = Utils.ImagenABytes(ruta);
+             // e.Foto = Utils.ImagenABytes(ruta);
                 
             }
         }
 
         public void ColocarImagen(Arbitro arbitro, Image image)
         {
-            image = Utils.ObtenerBitmap(arbitro)
+            image.Source = Utils.ObtenerBitmap(arbitro);
         }
         
     }

@@ -3,6 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using System.Windows.Media.Imaging;
 
 namespace NombramientoPartidos.Utilidades
 {
@@ -47,16 +48,28 @@ namespace NombramientoPartidos.Utilidades
             fs.Close();
             return btyimagen;
 
+        }
+        public static BitmapImage ToWpfImage(System.Drawing.Image img)
+        {
+            MemoryStream ms = new MemoryStream();  // no using here! BitmapImage will dispose the stream after loading
+            img.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+
+            BitmapImage ix = new BitmapImage();
+            ix.BeginInit();
+            ix.CacheOption = BitmapCacheOption.OnLoad;
+            ix.StreamSource = ms;
+            ix.EndInit();
+            return ix;
 
         }
-
-        public static Image ObtenerBitmap(Arbitro e)
+        public static BitmapImage ObtenerBitmap(Arbitro e)
         {
-            byte[] arraybty = e.Foto;
-            MemoryStream ms = new MemoryStream(arraybty);
+            var bytes = Encoding.UTF8.GetBytes(e.Foto);
+           
+            MemoryStream ms = new MemoryStream(bytes);
             Image img = Image.FromStream(ms);
             ms.Close();
-            return img;
+            return ToWpfImage(img);
         }
     }
 }
