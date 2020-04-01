@@ -46,11 +46,10 @@ namespace NombramientoPartidos.Utilidades.ClasesPojos
 
         }
 
-        public Arbitro(string dni, string pass, string foto, string nombre_completo, string email, string fecha_nacimiento, string provincia, string localidad, int cp, string categoria, string telefono)
+        public Arbitro(string dni, string pass, string nombre_completo, string email, string fecha_nacimiento, string provincia, string localidad, int cp, string categoria, string telefono)
         {
             Dni = dni;
-            Pass = pass;
-            Foto = foto;
+            Pass = Utils.EncriptarEnSHA1(pass);
             Nombre_Completo = nombre_completo;
             Email = email;
             Fecha_Nacimiento = fecha_nacimiento;
@@ -63,7 +62,18 @@ namespace NombramientoPartidos.Utilidades.ClasesPojos
 
         public override string ToString()
         {
-            return base.ToString();
+            return "{" +
+                    "\"dni\": \""+Dni+"\"," +
+                    "\"pass\": \"" + Pass + "\"," +
+                    "\"foto\": \"" + Foto + "\"," +
+                    "\"nombre_completo\": \"" + Nombre_Completo + "\"," +
+                    "\"email\": \"" + Email + "\"," +
+                    "\"fecha_nacimiento\": \"" + Email + "\"," +
+                    "\"provincia\": \"" + Provincia + "\"," +
+                    "\"localidad\": \"" + Localidad + "\"," +
+                    "\"cp\": \"" + Cp + "\"," +
+                    "\"categoria\": \"" + Categoria + "\"," +
+                    "\"telefono\": \"" + Telefono + "\"}";
         }
 
     }

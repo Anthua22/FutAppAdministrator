@@ -11,6 +11,15 @@ namespace NombramientoPartidos.Utilidades
         }
     }
 
+    public class InsertException : Exception
+    {
+        string mensaje;
+        public InsertException(string mensaje) : base(mensaje)
+        {
+            this.mensaje = mensaje;
+        }
+    }
+
     public class PassException : Exception
     {
         string mensaje;

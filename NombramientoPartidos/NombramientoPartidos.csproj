@@ -66,6 +66,7 @@
     <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Management" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -96,6 +97,7 @@
     <Compile Include="Utilidades\ValidacionesRegexp.cs" />
     <Compile Include="ViewModel\ArbitroViewModel.cs" />
     <Compile Include="ViewModel\EditarArbitroViewModel.cs" />
+    <Compile Include="ViewModel\InsertarArbitroViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="View\ArbitrosView.xaml.cs">
       <DependentUpon>ArbitrosView.xaml</DependentUpon>

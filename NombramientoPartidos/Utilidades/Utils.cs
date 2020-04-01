@@ -20,7 +20,7 @@ namespace NombramientoPartidos.Utilidades
         }
        
 
-        public static bool ControlCamposUpdate(Arbitro arbitro)
+        public static bool ControlCampos(Arbitro arbitro)
         {
             if (arbitro.Pass.Length != 40 && ValidacionesRegexp.ValidarPass(arbitro.Pass))
             {
@@ -70,6 +70,23 @@ namespace NombramientoPartidos.Utilidades
             Image img = Image.FromStream(ms);
             ms.Close();
             return ToWpfImage(img);
+        }
+
+        public static Arbitro ComprobarCamposVacios(Arbitro e)
+        {
+            if (e.Nombre_Completo.Equals(""))
+            {
+                e.Nombre_Completo = null;
+            }else if (e.Telefono.Equals(""))
+            {
+                e.Telefono = null;
+            }else if (e.Localidad.Equals(""))
+            {
+                e.Localidad = null;
+            }
+           
+
+            return e;
         }
     }
 }

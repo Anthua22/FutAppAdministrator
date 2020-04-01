@@ -14,13 +14,20 @@
         <Style TargetType="{x:Type Label}">
             <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="400"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
         </Style>
     </Window.Resources>
     <DockPanel>
         <TextBlock Text="Los campos con * son obligatorios" DockPanel.Dock="Top" Margin="10" FontSize="16" Foreground="Green"/>
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center">
-            <Button Content="Aceptar" x:Name="AceptarButton"/>
-            <Button Content="Cancelar" x:Name="CancelarButton"/>
+            <Button Content="Aceptar" x:Name="AceptarButton" Click="AceptarButton_Click"/>
+            <Button Content="Cancelar" x:Name="CancelarButton" IsCancel="True"/>
         </StackPanel>
 
         <GroupBox Header="Inserta un Árbitro" Margin="10">
@@ -39,28 +46,42 @@
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <Label Content="DNI*" Grid.Row="0" Grid.Column="0"/>
-                    <TextBox x:Name="DniTextBox" Grid.Row="0" Grid.Column="1"/>
+                    <TextBox x:Name="DniTextBox" Grid.Row="0" Grid.Column="1" Text="456879541X"/>
 
                     <Label Content="Contraseña*" Grid.Row="1" Grid.Column="0"/>
-                    <TextBox x:Name="ContraseñaTextBox" Grid.Row="1" Grid.Column="1"/>
+                    <TextBox x:Name="ContraseñaTextBox" Grid.Row="1" Grid.Column="1" Text="Lola12@3"/>
 
                     <Label Content="Nombre Completo" Grid.Row="2" Grid.Column="0"/>
-                    <TextBox x:Name="NombreCompletoTextBox" Grid.Row="2" Grid.Column="1"></TextBox>
+                    <TextBox x:Name="NombreCompletoTextBox" Grid.Row="2" Grid.Column="1" Text="Lola Pérez"></TextBox>
 
                     <Label Content="Fecha de Nacimiento*" Grid.Row="3" Grid.Column="0"/>
-                    <DatePicker Grid.Row="3" Grid.Column="1" x:Name="FechaDatePicker" Width="200" HorizontalAlignment="Left"/>
+                    <DatePicker Grid.Row="3" Grid.Column="1" x:Name="FechaDatePicker" Width="200" HorizontalAlignment="Left" Margin="0,0,0,10"/>
 
                     <Label Content="Email*" Grid.Row="4" Grid.Column="0"/>
-                    <TextBox x:Name="EmailTextBox" Grid.Row="4" Grid.Column="1"/>
+                    <TextBox x:Name="EmailTextBox" Grid.Row="4" Grid.Column="1" Text="lol@gmail.com"/>
 
                     <Label Content="Teléfono" Grid.Row="5" Grid.Column="0"/>
-                    <TextBox x:Name="TelefonoTextBox" Grid.Row="5" Grid.Column="1"/>
+                    <TextBox x:Name="TelefonoTextBox" Grid.Row="5" Grid.Column="1" Text="789456123"/>
 
                     <Label Grid.Row="6" Grid.Column="0" Content="Categoría*"/>
-                    <TextBox x:Name="CategoriaTextBox" Grid.Row="6" Grid.Column="1"/>
+                    <ComboBox x:Name="CategoriaComboBox" Grid.Row="6" Grid.Column="1" Height="25" Width="400" ItemsSource="{Binding Categorias}" HorizontalAlignment="Left" Margin="0,0,0,10"/>
+
+                    <Label Grid.Row="7" Grid.Column="0" Content="Provincia*"/>
+                    <TextBox x:Name="ProvinciaTextBox" Grid.Row="7" Grid.Column="1" Text="Alicante"/>
+
+                    <Label Grid.Row="8" Grid.Column="0" Content="Localidad"/>
+                    <TextBox x:Name="LocalidadTextBox" Grid.Row="8" Grid.Column="1"/>
+
+                    <Label Grid.Row="9" Grid.Column="0" Content="Código Postal"/>
+                    <TextBox x:Name="CpTextBox" Grid.Row="9" Grid.Column="1"/>
                     
+                    <Label Grid.Row="10" Grid.Column="0" Content="Foto"/>
+                    <Button x:Name="FotoButton" Grid.Row="10" Grid.Column="1" Content="..." HorizontalAlignment="Left" Width="80"/>
 
                 </Grid>
             </ScrollViewer>
