@@ -45,7 +45,10 @@ namespace NombramientoPartidos.View
 
         private void EliminarArbitroButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if((DataContext as ArbitroViewModel).DeleteArbitroClick())
+            {
+                MessageBox.Show("Arbitro Eliminado", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
     }
 }

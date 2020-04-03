@@ -23,7 +23,7 @@ namespace NombramientoPartidos.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public bool InsertarArbitro(string dni, string contraseña, string nombre_completo, string email, string fecha_nacimiento, string provincia, string localidad, string cp, string catergoria, string telefono)
+        public bool Insert(string dni, string contraseña, string nombre_completo, string email, string fecha_nacimiento, string provincia, string localidad, string cp, string catergoria, string telefono)
         {
             ArbitroInsertar = new Arbitro()
             {
@@ -42,7 +42,6 @@ namespace NombramientoPartidos.ViewModel
             {
                
                 return ApiRest.InsertArbitro(ArbitroInsertar);
-                
                 
             }
             return false;

@@ -97,6 +97,7 @@
     <Compile Include="Utilidades\Utils.cs" />
     <Compile Include="Utilidades\ValidacionesRegexp.cs" />
     <Compile Include="ViewModel\ArbitroViewModel.cs" />
+    <Compile Include="ViewModel\DeleteViewModel.cs" />
     <Compile Include="ViewModel\EditarArbitroViewModel.cs" />
     <Compile Include="ViewModel\InsertarArbitroViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />

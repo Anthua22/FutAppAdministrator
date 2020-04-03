@@ -29,21 +29,7 @@
         <Style TargetType="{x:Type Label}">
             <Setter Property="Margin" Value="10"/>
         </Style>
-        <DataTemplate x:Key="Combo">
-            <StackPanel Orientation="Horizontal">
-                <Ellipse Height="50" Width="50">
-                    <Ellipse.Fill>
-                        <ImageBrush ImageSource="{Binding}"/>
-                    </Ellipse.Fill>
-                </Ellipse>
-                <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
-                <StackPanel VerticalAlignment="Center">
-                    <TextBlock Text="{Binding Nombre_Completo}" FontWeight="Bold"></TextBlock>
-                    <TextBlock Text="{Binding Dni}" Foreground="Gray"></TextBlock>
-                </StackPanel>
-            </StackPanel>
-        </DataTemplate>
-
+       
 
     </Window.Resources>
 

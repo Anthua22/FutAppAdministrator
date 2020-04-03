@@ -65,7 +65,6 @@ namespace NombramientoPartidos.ViewModel
             {
                 case "1º División":
                     ArbitrosFilter = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("1º División")));
-
                     break;
                 case "2º División":
                     ArbitrosFilter = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("2º División")));

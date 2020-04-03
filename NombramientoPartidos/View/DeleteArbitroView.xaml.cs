@@ -1,4 +1,7 @@
-﻿using System;
+﻿using NombramientoPartidos.Utilidades;
+using NombramientoPartidos.Utilidades.ClasesPojos;
+using NombramientoPartidos.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +24,34 @@ namespace NombramientoPartidos.View
     {
         public DeleteArbitroView()
         {
+            DataContext = new DeleteViewModel();
             InitializeComponent();
+
+        }
+
+        private void CategoriaComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            (DataContext as DeleteViewModel).Filtro(CategoriaComboBox.SelectedItem as string);
+            ArbitrosComboBox.ItemsSource = (DataContext as DeleteViewModel).Arbitros;
+            ArbitrosComboBox.IsEnabled = true;
+        }
+
+        private void AceptarButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if((DataContext as DeleteViewModel).Delete(ArbitrosComboBox.SelectedItem as Arbitro))
+                {
+                    DialogResult = true;
+                }
+            }catch(CRUDException crud)
+            {
+                MessageBox.Show("Error: " + crud.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
         }
     }
 }

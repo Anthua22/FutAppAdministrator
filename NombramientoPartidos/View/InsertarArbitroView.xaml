@@ -29,7 +29,6 @@
             <Button Content="Aceptar" x:Name="AceptarButton" Click="AceptarButton_Click"/>
             <Button Content="Cancelar" x:Name="CancelarButton" IsCancel="True"/>
         </StackPanel>
-
         <GroupBox Header="Inserta un Árbitro" Margin="10">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -86,7 +85,7 @@
                         <TextBox x:Name="EmailTextBox" Grid.Row="4" Grid.Column="1" Text="lol@gmail.com"/>
 
                         <Label Content="Teléfono" Grid.Row="5" Grid.Column="0"/>
-                        <TextBox x:Name="TelefonoTextBox" Grid.Row="5" Grid.Column="1" Text="789456123"/>
+                        <TextBox x:Name="TelefonoTextBox" Grid.Row="5" Grid.Column="1" Text="789456123" MaxLength="9"/>
 
                         <Label Grid.Row="6" Grid.Column="0" Content="Categoría*"/>
                         <ComboBox x:Name="CategoriaComboBox" Grid.Row="6" Grid.Column="1" Height="25" Width="400" ItemsSource="{Binding Categorias}" HorizontalAlignment="Left" Margin="0,0,0,10"/>

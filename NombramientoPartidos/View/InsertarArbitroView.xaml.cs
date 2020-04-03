@@ -31,7 +31,7 @@ namespace NombramientoPartidos.View
         {
             try
             {
-                if((DataContext as InsertarArbitroViewModel).InsertarArbitro(DniTextBox.Text, ContraseñaTextBox.Text, NombreCompletoTextBox.Text, EmailTextBox.Text, FechaDatePicker.SelectedDate.Value.Year + "-" + FechaDatePicker.SelectedDate.Value.Month + "-" + FechaDatePicker.SelectedDate.Value.Day, ProvinciaTextBox.Text, LocalidadTextBox.Text, CpTextBox.Text, CategoriaComboBox.SelectedItem as string, TelefonoTextBox.Text))
+                if((DataContext as InsertarArbitroViewModel).Insert(DniTextBox.Text, ContraseñaTextBox.Text.ToUpper(), NombreCompletoTextBox.Text, EmailTextBox.Text, FechaDatePicker.SelectedDate.Value.Year + "-" + FechaDatePicker.SelectedDate.Value.Month + "-" + FechaDatePicker.SelectedDate.Value.Day, ProvinciaTextBox.Text, LocalidadTextBox.Text, CpTextBox.Text, CategoriaComboBox.SelectedItem as string, TelefonoTextBox.Text))
                 {
                     DialogResult = true;
                 }
@@ -39,7 +39,6 @@ namespace NombramientoPartidos.View
                 {
                     MessageBox.Show("Hay algunos campos requiros vacíos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     CambioCalores();
-
 
                 }
                

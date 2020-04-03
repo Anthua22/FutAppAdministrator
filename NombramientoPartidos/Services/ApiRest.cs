@@ -60,7 +60,6 @@ namespace NombramientoPartidos.Services
             if (Utils.ControlCampos(arbitro))
             {
                 var json = JsonConvert.SerializeObject(arbitro);
-                var bytes = Encoding.UTF8.GetBytes(json);
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://localhost/liga/arbitros");
                 request.Method = "POST";
                 request.ContentType = "application/json";
@@ -79,6 +78,20 @@ namespace NombramientoPartidos.Services
                 return true;
             }
             return false;
+        }
+
+        public static void DeleteteArbitro(int id)
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://localhost/liga/arbitros/"+id);
+            request.Method = "DELETE";
+            request.Accept = "application/json";
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            if (!response.StatusCode.Equals(HttpStatusCode.OK))
+            {
+                throw new CRUDException("Error al borral el registro");
+            }
+          
+
         }
     }
 }
