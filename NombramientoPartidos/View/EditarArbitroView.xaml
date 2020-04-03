@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NombramientoPartidos.View"
+        xmlns:comandos="clr-namespace:NombramientoPartidos.Utilidades"
         mc:Ignorable="d"
         Title="Modificar Datos Árbitro" Height="500" Width="800" ResizeMode="NoResize" ShowInTaskbar="False">
     <Window.Resources>
@@ -46,6 +47,13 @@
 
     </Window.Resources>
 
+    <Window.CommandBindings>
+        <CommandBinding 
+            Command="comandos:ComandosPersonalizados.AceptarEdicion"
+            CanExecute=" EditarCommand_CanExecute"
+            Executed="EditarCommand_Executed"/>
+    </Window.CommandBindings>
+
     <DockPanel>
 
         <Grid DockPanel.Dock="Top" Margin="20">
@@ -74,7 +82,7 @@
 
 
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,20">
-            <Button x:Name="AceptarButton" Click="AceptarButton_Click">Aceptar</Button>
+            <Button x:Name="AceptarButton" Command="comandos:ComandosPersonalizados.AceptarEdicion">Aceptar</Button>
             <Button IsCancel="True">Cancelar</Button>
         </StackPanel>
         <DataGrid x:Name="ListaArbitrosDataGrid" ItemsSource="{Binding}" Visibility="Hidden" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="ListaArbitrosDataGrid_SelectionChanged">

@@ -29,7 +29,10 @@ namespace NombramientoPartidos.View
 
         private void AgregarArbitroButton_Click(object sender, RoutedEventArgs e)
         {
-            (DataContext as ArbitroViewModel).InsertarArbitroClick();
+            if((DataContext as ArbitroViewModel).InsertarArbitroClick())
+            {
+                MessageBox.Show("Nuevo Árbitro insertado", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void ModificarArbitroButton_Click(object sender, RoutedEventArgs e)

@@ -1,14 +1,38 @@
-﻿using NombramientoPartidos.Utilidades.ClasesPojos;
-using System.Drawing;
+﻿using NombramientoPartidos.Services;
+using NombramientoPartidos.Utilidades.ClasesPojos;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Media.Imaging;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Forms;
+using System;
 
 namespace NombramientoPartidos.Utilidades
 {
     public static class Utils
     {
+        public static ObservableCollection<string> Categorias { get; }
+  
+
+        static Utils()
+        {
+            Categorias = new ObservableCollection<string>()
+            {
+                "1º División",
+                "2º División",
+                "2ºB División",
+                "3º División",
+                "Preferente",
+                "Fútbol Base"
+            };
+        }
+
+       
         public static string EncriptarEnSHA1(string str)
         {
             SHA1 sha1 = SHA1Managed.Create();
@@ -19,18 +43,18 @@ namespace NombramientoPartidos.Utilidades
             return sb.ToString();
         }
        
-
         public static bool ControlCampos(Arbitro arbitro)
         {
             if (arbitro.Pass.Length != 40 && ValidacionesRegexp.ValidarPass(arbitro.Pass))
             {
-                arbitro.Pass = EncriptarEnSHA1(arbitro.Pass);
-               
+                string v = EncriptarEnSHA1(arbitro.Pass);
+                arbitro.Pass = v;
             } 
-            if(ValidacionesRegexp.ComprobarCategoria(arbitro.Categoria) && ValidacionesRegexp.ValidarFecha(arbitro.Fecha_Nacimiento) && ValidacionesRegexp.ValidarEmail(arbitro.Email))
+            if(ValidacionesRegexp.ComprobarCategoria(arbitro.Categoria)
+                && ValidacionesRegexp.ValidarFecha(arbitro.Fecha_Nacimiento)
+                && ValidacionesRegexp.ValidarEmail(arbitro.Email))
             {
                 return true;
-
             }
            
             return false;
@@ -49,6 +73,12 @@ namespace NombramientoPartidos.Utilidades
             return btyimagen;
 
         }
+
+        public static bool HayCamposVacios(string dni, string contraseña, string fecha_nacimiento, string email, string provincia, string cp)
+        {
+            return (string.IsNullOrWhiteSpace(dni) || string.IsNullOrWhiteSpace(contraseña) || string.IsNullOrWhiteSpace(fecha_nacimiento) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(provincia) || string.IsNullOrWhiteSpace(cp));
+        }
+
         public static BitmapImage ToWpfImage(System.Drawing.Image img)
         {
             MemoryStream ms = new MemoryStream();  // no using here! BitmapImage will dispose the stream after loading
@@ -60,33 +90,28 @@ namespace NombramientoPartidos.Utilidades
             ix.StreamSource = ms;
             ix.EndInit();
             return ix;
-
-        }
-        public static BitmapImage ObtenerBitmap(Arbitro e)
-        {
-            var bytes = Encoding.UTF8.GetBytes(e.Foto);
-           
-            MemoryStream ms = new MemoryStream(bytes);
-            Image img = Image.FromStream(ms);
-            ms.Close();
-            return ToWpfImage(img);
         }
 
-        public static Arbitro ComprobarCamposVacios(Arbitro e)
+        public static string ObtnerRutaFichero()
         {
-            if (e.Nombre_Completo.Equals(""))
+            OpenFileDialog dialogoImagen = new OpenFileDialog();
+            string ruta = "";
+            dialogoImagen.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            dialogoImagen.Filter = "Imágenes JPG (*.jpg)|*.jpg|Imágenes PNG (*.png)|*.png|Todos los archivos (*.*)|*.*";
+
+            dialogoImagen.FilterIndex = 3;
+
+            dialogoImagen.RestoreDirectory = true;
+
+            if (dialogoImagen.ShowDialog() == DialogResult.OK)
             {
-                e.Nombre_Completo = null;
-            }else if (e.Telefono.Equals(""))
-            {
-                e.Telefono = null;
-            }else if (e.Localidad.Equals(""))
-            {
-                e.Localidad = null;
+
+                ruta = dialogoImagen.FileName;
+
             }
-           
-
-            return e;
+            return ruta;
         }
+        
+       
     }
 }

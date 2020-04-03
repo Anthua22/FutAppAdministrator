@@ -37,29 +37,17 @@ namespace NombramientoPartidos.Utilidades
             }
             else
             {
-                throw new FechaException("La fecha no tiene el formato correcto: 'xxxx-xx-xx', 'xxxx/xx/xx','xxxx.xx.xx'");
+                throw new FechaException("La fecha no tiene el formato correcto: 'aaaa-mm-dd', 'aaaa/mm/dd','aaaa.mm.dd'");
             }
         }
 
         public static bool ComprobarCategoria(string categoria)
         {
-            switch (categoria)
+            if (Utils.Categorias.Contains(categoria))
             {
-                case "1º División":
-                    return true;
-                case "2º División":
-                    return true;
-                case "2ºB División":
-                    return true;
-                case "3º División":
-                    return true;
-                case "Preferente":
-                    return true;
-                case "Fútbol Base":
-                    return true;
-                default:
-                    throw new CategoriaException("La categoría introducida no existe");
+                return true;
             }
+            throw new CategoriaException("La categoría introducida no existe");   
         }
     }
 }

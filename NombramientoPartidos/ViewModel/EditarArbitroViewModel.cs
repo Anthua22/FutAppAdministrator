@@ -17,7 +17,7 @@ namespace NombramientoPartidos.ViewModel
     {
         public ObservableCollection<string> Categorias { get; }
         public event PropertyChangedEventHandler PropertyChanged;
-        public CollectionViewSource Vista { get; set; }
+        public CollectionViewSource Vista { get; private set; }
         private ObservableCollection<Arbitro> ArbitrosFilter { get; set; }
         string filtro;
         private Arbitro ArbitroUpdate { get; set; } 
@@ -25,15 +25,7 @@ namespace NombramientoPartidos.ViewModel
         public string Categoria { get; set; }
         public EditarArbitroViewModel()
         {
-            Categorias = new ObservableCollection<string>
-            {
-                "1º División",
-                "2º División",
-                "2ºB División",
-                "3º División",
-                "Preferente",
-                "Fútbol Base"
-            };
+            Categorias = Utils.Categorias;
             ArbitrosFilter = new ObservableCollection<Arbitro>();
             Vista = new CollectionViewSource();
             Vista.Filter += Vista_Filter;
@@ -73,6 +65,7 @@ namespace NombramientoPartidos.ViewModel
             {
                 case "1º División":
                     ArbitrosFilter = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("1º División")));
+
                     break;
                 case "2º División":
                     ArbitrosFilter = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("2º División")));
@@ -123,7 +116,7 @@ namespace NombramientoPartidos.ViewModel
 
         public void ColocarImagen(Arbitro arbitro, Image image)
         {
-            image.Source = Utils.ObtenerBitmap(arbitro);
+            //image.Source = Utils.ObtenerBitmap(arbitro);
         }
         
     }

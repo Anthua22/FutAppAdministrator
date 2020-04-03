@@ -33,7 +33,7 @@ namespace NombramientoPartidos.Utilidades.ClasesPojos
         public string Localidad { get; set; }
 
         [JsonProperty(PropertyName = "cp")]
-        public int Cp { get; set; }
+        public string Cp { get; set; }
 
         [JsonProperty(PropertyName = "categoria")]
         public string Categoria { get; set; }
@@ -46,7 +46,7 @@ namespace NombramientoPartidos.Utilidades.ClasesPojos
 
         }
 
-        public Arbitro(string dni, string pass, string nombre_completo, string email, string fecha_nacimiento, string provincia, string localidad, int cp, string categoria, string telefono)
+        public Arbitro(string dni, string pass, string nombre_completo, string email, string fecha_nacimiento, string provincia, string localidad, string cp, string categoria, string telefono)
         {
             Dni = dni;
             Pass = Utils.EncriptarEnSHA1(pass);
@@ -60,20 +60,19 @@ namespace NombramientoPartidos.Utilidades.ClasesPojos
             Cp = cp;
         }
 
+        public Arbitro(string dni, string contraseña, string fecha_nacimiento, string email, string categoria, string provincia)
+        {
+            Dni = dni;
+            Pass = Utils.EncriptarEnSHA1(contraseña); 
+            Fecha_Nacimiento = fecha_nacimiento;
+            Email = email;
+            Categoria = categoria;
+            Provincia = provincia;
+        }
+
         public override string ToString()
         {
-            return "{" +
-                    "\"dni\": \""+Dni+"\"," +
-                    "\"pass\": \"" + Pass + "\"," +
-                    "\"foto\": \"" + Foto + "\"," +
-                    "\"nombre_completo\": \"" + Nombre_Completo + "\"," +
-                    "\"email\": \"" + Email + "\"," +
-                    "\"fecha_nacimiento\": \"" + Email + "\"," +
-                    "\"provincia\": \"" + Provincia + "\"," +
-                    "\"localidad\": \"" + Localidad + "\"," +
-                    "\"cp\": \"" + Cp + "\"," +
-                    "\"categoria\": \"" + Categoria + "\"," +
-                    "\"telefono\": \"" + Telefono + "\"}";
+            return base.ToString();
         }
 
     }

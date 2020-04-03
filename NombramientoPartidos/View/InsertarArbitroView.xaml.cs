@@ -31,17 +31,50 @@ namespace NombramientoPartidos.View
         {
             try
             {
-                if((DataContext as InsertarArbitroViewModel).InsertarArbitro(DniTextBox.Text, ContraseñaTextBox.Text, NombreCompletoTextBox.Text ,EmailTextBox.Text, FechaDatePicker.SelectedDate.Value.Year+"-"+FechaDatePicker.SelectedDate.Value.Month+"-"+FechaDatePicker.SelectedDate.Value.Day, ProvinciaTextBox.Text, LocalidadTextBox.Text, int.Parse(CpTextBox.Text), CategoriaComboBox.SelectedItem as string, TelefonoTextBox.Text))
+                if((DataContext as InsertarArbitroViewModel).InsertarArbitro(DniTextBox.Text, ContraseñaTextBox.Text, NombreCompletoTextBox.Text, EmailTextBox.Text, FechaDatePicker.SelectedDate.Value.Year + "-" + FechaDatePicker.SelectedDate.Value.Month + "-" + FechaDatePicker.SelectedDate.Value.Day, ProvinciaTextBox.Text, LocalidadTextBox.Text, CpTextBox.Text, CategoriaComboBox.SelectedItem as string, TelefonoTextBox.Text))
                 {
                     DialogResult = true;
                 }
-            }catch(InsertException ins){
-                MessageBox.Show("Error: " + ins.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }catch(Exception ex)
+                else
+                {
+                    MessageBox.Show("Hay algunos campos requiros vacíos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    CambioCalores();
+
+
+                }
+               
+            }
+        
+            catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                if(ex.Message.Equals("El objeto que acepta valores Null debe tener un valor."))
+                {
+                    MessageBox.Show("Hay algunos campos requiros vacíos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    CambioCalores();
+                }
+                else
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }   
+                
             }
            
+        }
+        private void CambioCalores()
+        {
+            DniTextBox.BorderBrush = Brushes.Red;
+            ContraseñaTextBox.BorderBrush = Brushes.Red;
+            ProvinciaTextBox.BorderBrush = Brushes.Red;
+            CpTextBox.BorderBrush = Brushes.Red;
+            EmailTextBox.BorderBrush = Brushes.Red;
+            CategoriaComboBox.BorderThickness = new Thickness(2);
+            CategoriaComboBox.BorderBrush = Brushes.Red;
+            FechaDatePicker.BorderBrush = Brushes.Red;
+        }
+
+        private void FotoButton_Click(object sender, RoutedEventArgs e)
+        {
+            (DataContext as InsertarArbitroViewModel).PonerImagen(ImagenArbitroImage);
         }
     }
 }

@@ -2,18 +2,9 @@
 using NombramientoPartidos.Utilidades.ClasesPojos;
 using NombramientoPartidos.ViewModel;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace NombramientoPartidos.View
 {
@@ -42,7 +33,8 @@ namespace NombramientoPartidos.View
             }catch(PassException pas)
             {
                 MessageBox.Show("Error: " + pas.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }catch(EmailException em)
+            }
+            catch (EmailException em)
             {
                 MessageBox.Show("Error: " + em.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -54,7 +46,7 @@ namespace NombramientoPartidos.View
             {
                 MessageBox.Show("Error: " + cat.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch(UpdateException exp)
+            catch(CRUDException exp)
             {
                 MessageBox.Show("Error: " + exp.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -70,6 +62,7 @@ namespace NombramientoPartidos.View
             try
             {
                 (this.DataContext as EditarArbitroViewModel).FiltroCategoria(CategoriaComboBox.SelectedItem as string);
+                
                 FiltroNombreTextBox.IsEnabled = true;
                 ListaArbitrosDataGrid.Visibility = Visibility.Visible;
             }catch(Exception ex)
@@ -98,6 +91,16 @@ namespace NombramientoPartidos.View
         private void ListaArbitrosDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             (DataContext as EditarArbitroViewModel).FiltroCategoria(sender as string);
+        }
+
+        private void EditarCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+
+        }
+
+        private void EditarCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            (DataContext as EditarArbitroViewModel).Update(ListaArbitrosDataGrid.SelectedItem);
         }
     }
 }

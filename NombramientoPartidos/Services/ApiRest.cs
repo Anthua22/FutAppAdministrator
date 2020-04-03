@@ -15,7 +15,7 @@ namespace NombramientoPartidos.Services
         
         public static Administrador RescatarAdministrador(string dni)
         {
-            string url = "http://192.168.0.132/liga/administradores/" + dni;
+            string url = "http://localhost/liga/administradores/" + dni;
             var json = new WebClient().DownloadString(url);
             Administrador x = JsonConvert.DeserializeObject<List<Administrador>>(json).First();
             return x;
@@ -23,7 +23,7 @@ namespace NombramientoPartidos.Services
 
         public static ObservableCollection<Arbitro> RescatarArbitros()
         {
-            string url = "http://192.168.0.132/liga/arbitros/";
+            string url = "http://localhost/liga/arbitros/";
             var json = new WebClient().DownloadString(url);
             ObservableCollection<Arbitro> arbitros = new ObservableCollection<Arbitro>(JsonConvert.DeserializeObject<List<Arbitro>>(json));
             return arbitros;
@@ -35,7 +35,7 @@ namespace NombramientoPartidos.Services
             {
                 var json = JsonConvert.SerializeObject(arbitro);
                 var bytes = Encoding.UTF8.GetBytes(json);
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://192.168.0.132/liga/arbitros/" + arbitro.Id);
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://localhost/liga/arbitros/" + arbitro.Id);
                 request.Method = "PUT";
                 request.ContentType = "application/json";
                 using(var requestStream = request.GetRequestStream())
@@ -46,7 +46,7 @@ namespace NombramientoPartidos.Services
             
                 if(!response.StatusCode.Equals(HttpStatusCode.OK))
                 {
-                    throw new UpdateException("Error al modificar el dato");
+                    throw new CRUDException("Error al modificar el dato");
                 }
                 return true;
             }
@@ -57,25 +57,28 @@ namespace NombramientoPartidos.Services
 
         public static bool InsertArbitro(Arbitro arbitro)
         {
-            var json = JsonConvert.SerializeObject(arbitro);
-            var bytes = Encoding.Default.GetBytes(json);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://192.168.0.132/liga/arbitros/");
-            request.Method = "POST";
-            request.ContentLength = bytes.Length;
-            request.ContentType = "text/plain; charset=utf-8";
-            using (var requestStream = request.GetRequestStream())
+            if (Utils.ControlCampos(arbitro))
             {
-                requestStream.Write(bytes, 0, bytes.Length);
-            }
-            var response = (HttpWebResponse)request.GetResponse();
-            StreamReader reader = new StreamReader(response.GetResponseStream());
-            string body = reader.ReadToEnd();
+                var json = JsonConvert.SerializeObject(arbitro);
+                var bytes = Encoding.UTF8.GetBytes(json);
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://localhost/liga/arbitros");
+                request.Method = "POST";
+                request.ContentType = "application/json";
 
-            if (!response.StatusCode.Equals(HttpStatusCode.Created))
-            {
-                throw new InsertException("Error al insertar el dato");
+                using (var streamwriter = new StreamWriter(request.GetRequestStream()))
+                {  
+                    streamwriter.Write(json);
+                    streamwriter.Flush();
+                }
+
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                if (!response.StatusCode.Equals(HttpStatusCode.Created))
+                {
+                    throw new CRUDException("Error al insertar el dato");
+                }
+                return true;
             }
-            return true;
+            return false;
         }
     }
 }

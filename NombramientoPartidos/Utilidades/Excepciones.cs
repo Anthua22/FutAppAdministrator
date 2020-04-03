@@ -2,19 +2,10 @@
 
 namespace NombramientoPartidos.Utilidades
 {
-    public class UpdateException:Exception
+    public class CRUDException:Exception
     {
         string mensaje;
-        public UpdateException(string mensaje) : base(mensaje)
-        {
-            this.mensaje = mensaje;
-        }
-    }
-
-    public class InsertException : Exception
-    {
-        string mensaje;
-        public InsertException(string mensaje) : base(mensaje)
+        public CRUDException(string mensaje) : base(mensaje)
         {
             this.mensaje = mensaje;
         }
