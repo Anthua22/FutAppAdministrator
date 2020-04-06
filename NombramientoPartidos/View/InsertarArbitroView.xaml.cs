@@ -31,7 +31,7 @@ namespace NombramientoPartidos.View
         {
             try
             {
-                if((DataContext as InsertarArbitroViewModel).Insert(DniTextBox.Text, ContraseñaTextBox.Text.ToUpper(), NombreCompletoTextBox.Text, EmailTextBox.Text, FechaDatePicker.SelectedDate.Value.Year + "-" + FechaDatePicker.SelectedDate.Value.Month + "-" + FechaDatePicker.SelectedDate.Value.Day, ProvinciaTextBox.Text, LocalidadTextBox.Text, CpTextBox.Text, CategoriaComboBox.SelectedItem as string, TelefonoTextBox.Text))
+                if((DataContext as InsertarArbitroViewModel).Insert(DniTextBox.Text.ToUpper(), ContraseñaTextBox.Text, NombreCompletoTextBox.Text, EmailTextBox.Text, FechaDatePicker.SelectedDate.Value.Year + "-" + FechaDatePicker.SelectedDate.Value.Month + "-" + FechaDatePicker.SelectedDate.Value.Day, ProvinciaTextBox.Text, LocalidadTextBox.Text, CpTextBox.Text, CategoriaComboBox.SelectedItem as string, TelefonoTextBox.Text))
                 {
                     DialogResult = true;
                 }

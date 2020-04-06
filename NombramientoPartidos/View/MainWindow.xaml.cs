@@ -35,5 +35,15 @@ namespace NombramientoPartidos
             }
 
         }
+
+        private void EntrarCommand_CanExecute(object sender, System.Windows.Input.CanExecuteRoutedEventArgs e)
+        {
+
+        }
+
+        private void EntrarCommand_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+
+        }
     }
 }

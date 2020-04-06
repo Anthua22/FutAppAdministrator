@@ -9,17 +9,35 @@ namespace NombramientoPartidos.Utilidades
 {
     public static class ComandosPersonalizados
     {
-        public static readonly RoutedUICommand AceptarEdicion = new RoutedUICommand
+        public static readonly RoutedUICommand Entrar = new RoutedUICommand
             (
-                "Aceptar",
-                "Aceptar",
+                "Entrar",
+                "Entrar",
                 typeof(ComandosPersonalizados),
-                new InputGestureCollection
+                 new InputGestureCollection()
                 {
                     new KeyGesture(Key.Enter)
                 }
             );
+        
+        public static readonly RoutedUICommand AceptarEdicion = new RoutedUICommand
+            (
+                "Aceptar",
+                "Aceptar",
+                typeof(ComandosPersonalizados)
+            );
 
+        public static readonly RoutedUICommand AceptarEliminacion = new RoutedUICommand
+            (
+                "Aceptar",
+                "Aceptar",
+                typeof(ComandosPersonalizados),
+                new InputGestureCollection()
+                {
+                    new KeyGesture(Key.Enter)
+                }
+
+            );
        
     }
 }

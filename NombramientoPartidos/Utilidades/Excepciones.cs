@@ -46,4 +46,22 @@ namespace NombramientoPartidos.Utilidades
             this.mensaje = mensaje;
         }
     }
+
+    public class TelefonoException : Exception
+    {
+        string mensaje;
+        public TelefonoException(string mensaje) : base(mensaje)
+        {
+            this.mensaje = mensaje;
+        }
+    }
+
+    public class DniNie : Exception
+    {
+        string mensaje;
+        public DniNie(string mensaje) : base(mensaje)
+        {
+            this.mensaje = mensaje;
+        }
+    }
 }

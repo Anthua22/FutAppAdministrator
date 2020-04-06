@@ -31,27 +31,40 @@ namespace NombramientoPartidos.View
 
         private void CategoriaComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            (DataContext as DeleteViewModel).Filtro(CategoriaComboBox.SelectedItem as string);
-            ArbitrosComboBox.ItemsSource = (DataContext as DeleteViewModel).Arbitros;
+            (DataContext as DeleteViewModel).Filtro();
             ArbitrosComboBox.IsEnabled = true;
         }
 
-        private void AceptarButton_Click(object sender, RoutedEventArgs e)
+
+        private void BorrarCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if((DataContext as DeleteViewModel).DeleteCanExecute())
+            {
+                e.CanExecute = true;
+            }
+            else
+            {
+                e.CanExecute = false;
+            }
+        }
+
+        private void BorrarCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             try
             {
-                if((DataContext as DeleteViewModel).Delete(ArbitrosComboBox.SelectedItem as Arbitro))
+                if ((DataContext as DeleteViewModel).DeleteExecute())
                 {
                     DialogResult = true;
                 }
-            }catch(CRUDException crud)
+            }
+            catch (CRUDException crud)
             {
                 MessageBox.Show("Error: " + crud.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            
         }
     }
 }

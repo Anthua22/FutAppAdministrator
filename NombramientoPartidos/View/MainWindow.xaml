@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NombramientoPartidos"
+        xmlns:comandos="clr-namespace:NombramientoPartidos.Utilidades"
         mc:Ignorable="d"
       Title="Inicio de sesión en FutAppAdministrator" Height="350" Width="350" FontSize="10" Background="#FA522F" ResizeMode="NoResize">
     <Window.Resources>
@@ -13,6 +14,13 @@
         </Style>
 
     </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding 
+            Command="comandos:ComandosPersonalizados.Entrar"
+            CanExecute="EntrarCommand_CanExecute"
+            Executed="EntrarCommand_Executed"
+            />
+    </Window.CommandBindings>
     <Border Background="#2e3137" CornerRadius="20" Margin="20">
         <DockPanel Margin="20">
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Center">

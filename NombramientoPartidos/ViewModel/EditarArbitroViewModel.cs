@@ -20,16 +20,19 @@ namespace NombramientoPartidos.ViewModel
         public CollectionViewSource Vista { get; private set; }
         private ObservableCollection<Arbitro> ArbitrosFilter { get; set; }
         string filtro;
-        private Arbitro ArbitroUpdate { get; set; } 
-
+       
+        public Arbitro ArbitroUpdate { get; set; }
+        
         public string Categoria { get; set; }
+        
         public EditarArbitroViewModel()
         {
             Categorias = Utils.Categorias;
             ArbitrosFilter = new ObservableCollection<Arbitro>();
             Vista = new CollectionViewSource();
-            Vista.Filter += Vista_Filter;
             Vista.Source = ArbitrosFilter;
+            Vista.Filter += Vista_Filter;
+            
         }
 
         public void RecuperandoInformacion(System.Windows.Controls.TextBox textBox)
@@ -58,10 +61,10 @@ namespace NombramientoPartidos.ViewModel
               }
         }
 
-        public void FiltroCategoria(string categoria)
+        public void FiltroCategoria()
         {
 
-            switch (categoria)
+            switch (Categoria)
             {
                 case "1º División":
                     ArbitrosFilter = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("1º División")));
@@ -86,9 +89,8 @@ namespace NombramientoPartidos.ViewModel
 
         }
 
-        public bool Update(object e)
+        public bool UpdateExecute()
         {
-            ArbitroUpdate = e as Arbitro;
             return ApiRest.UpdateArbitro(ArbitroUpdate);
         }
 
@@ -113,10 +115,12 @@ namespace NombramientoPartidos.ViewModel
             }
         }
 
-        public void ColocarImagen(Arbitro arbitro, Image image)
+        public bool EditarCanExecute()
         {
-            //image.Source = Utils.ObtenerBitmap(arbitro);
+            return (ArbitroUpdate != null && Categoria != null);
         }
-        
+
+
+       
     }
 }

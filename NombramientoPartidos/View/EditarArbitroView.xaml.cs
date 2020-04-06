@@ -21,47 +21,12 @@ namespace NombramientoPartidos.View
             ListaArbitrosDataGrid.DataContext = (DataContext as EditarArbitroViewModel).Vista;
         }
 
-        private void AceptarButton_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if((DataContext as EditarArbitroViewModel).Update(ListaArbitrosDataGrid.SelectedItem))
-                {
-                    DialogResult = true;
-                }
-                
-            }catch(PassException pas)
-            {
-                MessageBox.Show("Error: " + pas.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (EmailException em)
-            {
-                MessageBox.Show("Error: " + em.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch(FechaException fe)
-            {
-                MessageBox.Show("Error: " + fe.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch(CategoriaException cat)
-            {
-                MessageBox.Show("Error: " + cat.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch(CRUDException exp)
-            {
-                MessageBox.Show("Error: " + exp.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-
-        }
 
         private void CategoriaComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
-                (this.DataContext as EditarArbitroViewModel).FiltroCategoria(CategoriaComboBox.SelectedItem as string);
+                (this.DataContext as EditarArbitroViewModel).FiltroCategoria();
                 
                 FiltroNombreTextBox.IsEnabled = true;
                 ListaArbitrosDataGrid.Visibility = Visibility.Visible;
@@ -72,10 +37,6 @@ namespace NombramientoPartidos.View
             
         }
 
-        private void SeleccionImagenElementoButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void FiltarButton_Click(object sender, RoutedEventArgs e)
         {
@@ -88,19 +49,38 @@ namespace NombramientoPartidos.View
             (DataContext as EditarArbitroViewModel).EditarImagen(FotoArbitroImage, (Arbitro)(ListaArbitrosDataGrid.SelectedItem));
         }
 
-        private void ListaArbitrosDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            (DataContext as EditarArbitroViewModel).FiltroCategoria(sender as string);
-        }
-
         private void EditarCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-
+           
+            if ((DataContext as EditarArbitroViewModel).EditarCanExecute())
+            {
+                e.CanExecute = true;
+            }
+            else
+            {
+                e.CanExecute = false;
+            }
+          
         }
 
         private void EditarCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            (DataContext as EditarArbitroViewModel).Update(ListaArbitrosDataGrid.SelectedItem);
+            try
+            {
+                if((DataContext as EditarArbitroViewModel).UpdateExecute())
+                {
+                    DialogResult = true;
+                }
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+           
+        }
+
+        private void ListaArbitrosDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            (DataContext as EditarArbitroViewModel).ArbitroUpdate = ListaArbitrosDataGrid.SelectedItem as Arbitro;
         }
     }
 }

@@ -9,7 +9,9 @@ namespace NombramientoPartidos.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        
+        public string User { get; set; }
+        public string Pass { get; set; }
+
         public bool Entrar(string dni, string pass)
         {
             Administrador x = ApiRest.RescatarAdministrador(dni);
@@ -18,6 +20,11 @@ namespace NombramientoPartidos.ViewModel
                 return true;
             }
             return false;
+        }
+
+        public bool EntrarcanExecute()
+        {
+            return (User != null && Pass != null);
         }
     }
 }

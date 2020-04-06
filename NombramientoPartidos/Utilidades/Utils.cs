@@ -52,7 +52,9 @@ namespace NombramientoPartidos.Utilidades
             } 
             if(ValidacionesRegexp.ComprobarCategoria(arbitro.Categoria)
                 && ValidacionesRegexp.ValidarFecha(arbitro.Fecha_Nacimiento)
-                && ValidacionesRegexp.ValidarEmail(arbitro.Email))
+                && ValidacionesRegexp.ValidarEmail(arbitro.Email)
+                && ValidacionesRegexp.ValidarTelefono(arbitro.Telefono)
+                && ValidacionesRegexp.ValidarDniNie(arbitro.Dni))
             {
                 return true;
             }

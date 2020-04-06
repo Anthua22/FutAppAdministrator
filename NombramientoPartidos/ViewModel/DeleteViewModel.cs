@@ -17,6 +17,9 @@ namespace NombramientoPartidos.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<string> Categorias{ get; private set; }
         public ObservableCollection<Arbitro> Arbitros { get; private set; }
+        public string Categoria { get; set; }
+        public Arbitro ArbitroEliminar { get; set; }
+
 
         public DeleteViewModel()
         {
@@ -24,9 +27,9 @@ namespace NombramientoPartidos.ViewModel
             Arbitros = new ObservableCollection<Arbitro>();
         }
 
-        public void Filtro(string categoria)
+        public void Filtro()
         {
-            switch (categoria)
+            switch (Categoria)
             {
                 case "1º División":
                     Arbitros = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("1º División")).OrderBy(y=> y.Nombre_Completo));
@@ -49,15 +52,20 @@ namespace NombramientoPartidos.ViewModel
             }
         }
 
-        public bool Delete(Arbitro arbitro)
+        public bool DeleteExecute()
         {
-            MessageBoxResult messageresult = MessageBox.Show("Esta seguro de eliminar a " + arbitro.Nombre_Completo + " con DNI: " + arbitro.Dni + '?', "Advertencia", MessageBoxButton.YesNo,MessageBoxImage.Warning);
+            MessageBoxResult messageresult = MessageBox.Show("Esta seguro de eliminar a " + ArbitroEliminar.Nombre_Completo + " con DNI: " + ArbitroEliminar.Dni + '?', "Advertencia", MessageBoxButton.YesNo,MessageBoxImage.Warning);
             if(messageresult == MessageBoxResult.Yes)
             {
-                ApiRest.DeleteteArbitro(arbitro.Id);
+                ApiRest.DeleteteArbitro(ArbitroEliminar.Id);
                 return true;
             }
             return false;
+        }
+
+        public bool DeleteCanExecute()
+        {
+            return (ArbitroEliminar != null && Categoria != null);
         }
 
     }

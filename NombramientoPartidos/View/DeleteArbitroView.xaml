@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NombramientoPartidos.View"
+        xmlns:comandos="clr-namespace:NombramientoPartidos.Utilidades"
         mc:Ignorable="d"
         Title="Eliminar un Árbitro" Height="400" Width="800" ResizeMode="NoResize">
     <Window.Resources>
@@ -25,7 +26,7 @@
         <Style TargetType="{x:Type TextBox}">
             <Setter Property="Margin" Value="10"/>
         </Style>
-      
+
         <DataTemplate x:Key="Combo">
             <StackPanel Orientation="Horizontal">
                 <Ellipse Height="50" Width="50">
@@ -40,13 +41,18 @@
                 </StackPanel>
             </StackPanel>
         </DataTemplate>
-
-
     </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding 
+            Command="comandos:ComandosPersonalizados.AceptarEliminacion"
+            CanExecute="BorrarCommand_CanExecute"
+            Executed="BorrarCommand_Executed"
+            />
+    </Window.CommandBindings>
     <DockPanel>
         <TextBlock Text="Elija una categoría y luego escoja el árbitro que desea eliminar" Foreground="Green" DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="0,30,0,20" FontSize="18"/>
          <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,30">
-            <Button x:Name="AceptarButton" Click="AceptarButton_Click">Aceptar</Button>
+            <Button x:Name="AceptarButton" Command="comandos:ComandosPersonalizados.AceptarEliminacion">Aceptar</Button>
             <Button IsCancel="True">Cancelar</Button>
         </StackPanel>
         <Grid Width="459">
@@ -59,9 +65,9 @@
                 <RowDefinition Height="100"></RowDefinition>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Grid.Column="0" Content="Escoge la categoría" VerticalAlignment="Center"/>
-            <ComboBox x:Name="CategoriaComboBox" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Categorias}" HorizontalAlignment="Left" SelectionChanged="CategoriaComboBox_SelectionChanged" />
+            <ComboBox x:Name="CategoriaComboBox" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Categorias}" HorizontalAlignment="Left" SelectionChanged="CategoriaComboBox_SelectionChanged" SelectedItem="{Binding Categoria}"/>
             <Label Grid.Row="1" Grid.Column="0" Content="Elija el árbitro a eliminar" VerticalAlignment="Top"/>
-            <ComboBox x:Name="ArbitrosComboBox" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Arbitros, UpdateSourceTrigger=PropertyChanged}" Height="45" ItemTemplate="{StaticResource Combo}" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <ComboBox x:Name="ArbitrosComboBox" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Arbitros}" Height="45" ItemTemplate="{StaticResource Combo}" SelectedItem="{Binding ArbitroEliminar}" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         </Grid>
        
 
