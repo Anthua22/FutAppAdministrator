@@ -7,7 +7,7 @@
         xmlns:arbitroView="clr-namespace:NombramientoPartidos.View"
         xmlns:equipoView ="clr-namespace:NombramientoPartidos.View.Equipo"
         mc:Ignorable="d"
-        Title="Inicio" Height="600" Width="950" MinWidth="700" MinHeight="400">
+        Title="Inicio" Height="570" Width="950" MinWidth="700" MinHeight="400">
    
     <Grid>
         <TabControl>

@@ -46,7 +46,6 @@ namespace NombramientoPartidos.View.Equipo
             }
             ControlCombosBox();
             ((EquiposViewModel)this.DataContext).LimpiaCampos();
-            CategoriasCRUDComboBox.SelectedItem = "";
          
         }
 
@@ -101,7 +100,6 @@ namespace NombramientoPartidos.View.Equipo
 
         private void ControlCombosBox()
         {
-            EquiposComboBox.SelectedItem = new Utilidades.ClasesPojos.Equipo() { Categoria = "" };
             CategoriasCRUDComboBox.SelectedItem = null;
             EquiposComboBox.IsEnabled = false;
 
@@ -152,7 +150,7 @@ namespace NombramientoPartidos.View.Equipo
 
         private void CategoriasCRUDComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            (DataContext as EquiposViewModel).FiltroCategoria();
+            (DataContext as EquiposViewModel).FiltroCategoria(CategoriasCRUDComboBox.SelectedItem as string);
             EquiposComboBox.IsEnabled = true;
         }
     }

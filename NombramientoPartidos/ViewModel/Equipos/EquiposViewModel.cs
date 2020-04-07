@@ -21,7 +21,6 @@ namespace NombramientoPartidos.ViewModel.Equipos
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Equipo Equipo { get; set; }
-       // public string Categoria { get; set; }
         public ObservableCollection<string> Categorias { get; set; }
         public ObservableCollection<Equipo> ListaEquipos { get; private set; }
         public Accion Accion { get; private set; }
@@ -79,19 +78,13 @@ namespace NombramientoPartidos.ViewModel.Equipos
 
         public void CambiaAccion(Accion accion)
         {
-            if (accion == Accion.Editar || accion == Accion.Borrar)
-            {
-                ListaEquipos = null;
-          
-
-            }
-
+            LimpiaCampos();
             this.Accion = accion;
         }
-        public void FiltroCategoria()
+        public void FiltroCategoria(string categoria)
         {
 
-            switch (Equipo.Categoria)
+            switch (categoria)
             {
                 case "1º División":
                     ListaEquipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("1º División")));
@@ -112,7 +105,7 @@ namespace NombramientoPartidos.ViewModel.Equipos
                     ListaEquipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("Fútbol Base")));
                     break;
                 default:
-                    ListaEquipos = null;
+                    ListaEquipos = new ObservableCollection<Equipo>();
                     break;
             }
         }
@@ -120,7 +113,7 @@ namespace NombramientoPartidos.ViewModel.Equipos
         public void LimpiaCampos()
         { 
             Equipo = new Equipo();
-   
+            ListaEquipos = new ObservableCollection<Equipo>();
         }
 
         public void ElegirFoto(Image image)
