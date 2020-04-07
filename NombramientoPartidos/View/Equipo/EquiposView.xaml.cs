@@ -23,7 +23,7 @@ namespace NombramientoPartidos.View.Equipo
             switch (respuesta)
             {
                 case -1:
-                    MessageBox.Show("No se ha podido realizar la acción", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("No se ha podido realizar la acción, asegurese de haber escogido un equipo o haber rellenado los todos los campos requiridos", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
 
                     break;
 
@@ -44,8 +44,9 @@ namespace NombramientoPartidos.View.Equipo
                     break;
 
             }
+            ControlCombosBox();
             ((EquiposViewModel)this.DataContext).LimpiaCampos();
-            CategoriasCRUDComboBox.SelectedItem = null;
+            CategoriasCRUDComboBox.SelectedItem = "";
          
         }
 
@@ -57,7 +58,7 @@ namespace NombramientoPartidos.View.Equipo
             }
             else
             {
-                e.CanExecute = !string.IsNullOrWhiteSpace((DataContext as EquiposViewModel).Equipo.Nombre);
+                e.CanExecute = ((EquiposViewModel)DataContext).Equipo != null;
             }
         }
 
@@ -78,12 +79,10 @@ namespace NombramientoPartidos.View.Equipo
 
         private void ModificarEquipoButton_Click(object sender, RoutedEventArgs e)
         {
-            ControlCombosBox();
+            ControlCombosBox(); 
             CRUDGroupBox.Header = "Modificar Equipo";
             AceptarCambiosButton.Content = "Modificar Equipo";
-
             ((EquiposViewModel)this.DataContext).CambiaAccion(Accion.Editar);
-
             OcultarElementos((DataContext as EquiposViewModel).Accion);
            
         }
@@ -102,7 +101,7 @@ namespace NombramientoPartidos.View.Equipo
 
         private void ControlCombosBox()
         {
-            EquiposComboBox.SelectedItem = new Utilidades.ClasesPojos.Equipo();
+            EquiposComboBox.SelectedItem = new Utilidades.ClasesPojos.Equipo() { Categoria = "" };
             CategoriasCRUDComboBox.SelectedItem = null;
             EquiposComboBox.IsEnabled = false;
 

@@ -111,6 +111,9 @@ namespace NombramientoPartidos.ViewModel.Equipos
                 case "Fútbol Base":
                     ListaEquipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("Fútbol Base")));
                     break;
+                default:
+                    ListaEquipos = null;
+                    break;
             }
         }
 
