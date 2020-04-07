@@ -34,7 +34,7 @@
                         <ImageBrush ImageSource="{Binding}"/>
                     </Ellipse.Fill>
                 </Ellipse>
-                <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+               
                 <StackPanel VerticalAlignment="Center">
                     <TextBlock Text="{Binding Nombre_Completo}" FontWeight="Bold"></TextBlock>
                     <TextBlock Text="{Binding Dni}" Foreground="Gray"></TextBlock>

@@ -5,26 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NombramientoPartidos.View"
         xmlns:arbitroView="clr-namespace:NombramientoPartidos.View"
+        xmlns:equipoView ="clr-namespace:NombramientoPartidos.View.Equipo"
         mc:Ignorable="d"
-        Title="Inicio" Height="450" Width="800">
-    <Window.Resources>
-        <DataTemplate x:Key="EEE">
-            <Ellipse>
-                <Ellipse.Fill>
-                    <ImageBrush ImageSource=""></ImageBrush>
-                </Ellipse.Fill>
-            </Ellipse>
-        </DataTemplate>
-    </Window.Resources>
+        Title="Inicio" Height="450" Width="950" MinWidth="700">
+   
     <Grid>
         <TabControl>
             <TabItem Header="Arbitros">
                 <arbitroView:Arbitros></arbitroView:Arbitros>    
             </TabItem>
-            <TabItem Header="Asignamientos">
-                <StackPanel>
-                    <ComboBox ItemsSource="{Binding}"></ComboBox>
-                </StackPanel>
+            <TabItem Header="Equipos">
+                <equipoView:EquiposView></equipoView:EquiposView>
             </TabItem>
         </TabControl>
     </Grid>

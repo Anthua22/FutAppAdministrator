@@ -92,40 +92,49 @@
     <Compile Include="Services\ApiRest.cs" />
     <Compile Include="Utilidades\ClasesPojos\Administrador.cs" />
     <Compile Include="Utilidades\ClasesPojos\Arbitro.cs" />
+    <Compile Include="Utilidades\ClasesPojos\Equipo.cs" />
     <Compile Include="Utilidades\ComandosPersonalizados.cs" />
     <Compile Include="Utilidades\Excepciones.cs" />
     <Compile Include="Utilidades\Utils.cs" />
     <Compile Include="Utilidades\ValidacionesRegexp.cs" />
-    <Compile Include="ViewModel\ArbitroViewModel.cs" />
-    <Compile Include="ViewModel\DeleteViewModel.cs" />
-    <Compile Include="ViewModel\EditarArbitroViewModel.cs" />
-    <Compile Include="ViewModel\InsertarArbitroViewModel.cs" />
-    <Compile Include="ViewModel\MainWindowViewModel.cs" />
-    <Compile Include="View\ArbitrosView.xaml.cs">
+    <Compile Include="ViewModel\Arbitro\ArbitroViewModel.cs" />
+    <Compile Include="ViewModel\Arbitro\DeleteViewModel.cs" />
+    <Compile Include="ViewModel\Arbitro\EditarArbitroViewModel.cs" />
+    <Compile Include="ViewModel\Arbitro\InsertarArbitroViewModel.cs" />
+    <Compile Include="ViewModel\Arbitro\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\Equipos\EquiposViewModel.cs" />
+    <Compile Include="View\Arbitro\ArbitrosView.xaml.cs">
       <DependentUpon>ArbitrosView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\DeleteArbitroView.xaml.cs">
+    <Compile Include="View\Arbitro\DeleteArbitroView.xaml.cs">
       <DependentUpon>DeleteArbitroView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\EditarArbitroView.xaml.cs">
+    <Compile Include="View\Arbitro\EditarArbitroView.xaml.cs">
       <DependentUpon>EditarArbitroView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Equipo\EquiposView.xaml.cs">
+      <DependentUpon>EquiposView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Inicio.xaml.cs">
       <DependentUpon>Inicio.xaml</DependentUpon>
     </Compile>
-    <Page Include="View\ArbitrosView.xaml">
+    <Page Include="View\Arbitro\ArbitrosView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\DeleteArbitroView.xaml">
+    <Page Include="View\Arbitro\DeleteArbitroView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\EditarArbitroView.xaml">
+    <Page Include="View\Arbitro\EditarArbitroView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\InsertarArbitroView.xaml">
+    <Page Include="View\Arbitro\InsertarArbitroView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Equipo\EquiposView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -137,7 +146,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\InsertarArbitroView.xaml.cs">
+    <Compile Include="View\Arbitro\InsertarArbitroView.xaml.cs">
       <DependentUpon>InsertarArbitroView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainWindow.xaml.cs">
