@@ -1,14 +1,9 @@
-﻿using NombramientoPartidos.Services;
-using NombramientoPartidos.Utilidades.ClasesPojos;
+﻿using NombramientoPartidos.Utilidades.ClasesPojos;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Media.Imaging;
-using System.ComponentModel;
-using System.Linq;
-using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Forms;
 using System;
 
@@ -94,7 +89,7 @@ namespace NombramientoPartidos.Utilidades
             return ix;
         }
 
-        public static string ObtnerRutaFichero()
+        public static string ObtenerRutaFichero()
         {
             OpenFileDialog dialogoImagen = new OpenFileDialog();
             string ruta = "";

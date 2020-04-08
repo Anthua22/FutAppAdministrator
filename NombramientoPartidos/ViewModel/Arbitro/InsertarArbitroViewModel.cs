@@ -2,7 +2,6 @@
 using NombramientoPartidos.Utilidades;
 using NombramientoPartidos.Utilidades.ClasesPojos;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Controls;
@@ -14,30 +13,20 @@ namespace NombramientoPartidos.ViewModel
     {
         public Arbitro ArbitroInsertar { get; set; }
         public ObservableCollection<string> Categorias { get; }
+        public DateTime FechaNacimiento { get; set; }
 
         public InsertarArbitroViewModel()
         {
             Categorias = Utils.Categorias;
             ArbitroInsertar = new Arbitro();
+            FechaNacimiento = DateTime.Now;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public bool Insert(string dni, string contraseña, string nombre_completo, string email, string fecha_nacimiento, string provincia, string localidad, string cp, string catergoria, string telefono)
+        public bool Insert()
         {
-            ArbitroInsertar = new Arbitro()
-            {
-                Dni = dni,
-                Pass = contraseña,
-                Nombre_Completo = nombre_completo,
-                Email = email,
-                Fecha_Nacimiento = fecha_nacimiento,
-                Provincia = provincia,
-                Localidad = localidad,
-                Cp = cp,
-                Categoria = catergoria,
-                Telefono = telefono
-            };
+            ArbitroInsertar.Fecha_Nacimiento = FechaNacimiento.Year + "-" + FechaNacimiento.Month + "-" + FechaNacimiento.Day;
             if(!Utils.HayCamposVacios(ArbitroInsertar.Dni, ArbitroInsertar.Pass, ArbitroInsertar.Fecha_Nacimiento, ArbitroInsertar.Email, ArbitroInsertar.Provincia, ArbitroInsertar.Cp))
             {
                 return ApiRest.InsertArbitro(ArbitroInsertar);
@@ -47,7 +36,7 @@ namespace NombramientoPartidos.ViewModel
 
         public void PonerImagen(Image imagen)
         {
-            imagen.Source = new BitmapImage(new Uri(Utils.ObtnerRutaFichero()));
+            imagen.Source = new BitmapImage(new Uri(Utils.ObtenerRutaFichero()));
         }
 
     }

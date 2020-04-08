@@ -46,6 +46,7 @@ namespace NombramientoPartidos.View.Equipo
             }
             ControlCombosBox();
             ((EquiposViewModel)this.DataContext).LimpiaCampos();
+            ImagenEquipoImage.Source = null;
          
         }
 
@@ -102,6 +103,7 @@ namespace NombramientoPartidos.View.Equipo
         {
             CategoriasCRUDComboBox.SelectedItem = null;
             EquiposComboBox.IsEnabled = false;
+            ImagenEquipoImage.Source = null;
 
         }
         private void OcultarElementos(Accion accion)

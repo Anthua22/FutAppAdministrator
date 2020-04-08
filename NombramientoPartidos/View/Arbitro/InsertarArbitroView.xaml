@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NombramientoPartidos.View"
         mc:Ignorable="d"
-        Title="Agregar un Arbitro" Height="450" Width="800" ResizeMode="NoResize">
+        Title="Agregar un Arbitro" Height="450" Width="800" ResizeMode="NoResize" ShowInTaskbar="False">
     <Window.Resources>
         <Style TargetType="{x:Type Button}">
             <Setter Property="Margin" Value="10"/>
@@ -59,10 +59,10 @@
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <Label Content="DNI/NIE*" Grid.Row="0" Grid.Column="0"/>
-                        <TextBox x:Name="DniTextBox" Grid.Row="0" Grid.Column="1" MaxLength="9" Text="45689541X" />
+                        <TextBox x:Name="DniTextBox" Grid.Row="0" Grid.Column="1" MaxLength="9" Text="{Binding ArbitroInsertar.Dni}" />
 
                         <Label Content="Contraseña*" Grid.Row="1" Grid.Column="0"/>
-                        <TextBox x:Name="ContraseñaTextBox" Grid.Row="1" Grid.Column="1" MaxLength="30" Text="Lola12@3" ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="3000">
+                        <TextBox x:Name="ContraseñaTextBox" Grid.Row="1" Grid.Column="1" MaxLength="30" Text="{Binding ArbitroInsertar.Pass}" ToolTipService.ShowOnDisabled="True" ToolTipService.ShowDuration="3000">
                             <TextBox.ToolTip>
                                 <StackPanel>
                                     <StackPanel Orientation="Horizontal">
@@ -76,31 +76,31 @@
                         </TextBox>
 
                         <Label Content="Nombre Completo" Grid.Row="2" Grid.Column="0"/>
-                        <TextBox x:Name="NombreCompletoTextBox" Grid.Row="2" Grid.Column="1" Text="Lola Pérez"></TextBox>
+                        <TextBox x:Name="NombreCompletoTextBox" Grid.Row="2" Grid.Column="1" Text="{Binding ArbitroInsertar.Nombre_Completo}"></TextBox>
 
                         <Label Content="Fecha de Nacimiento*" Grid.Row="3" Grid.Column="0"/>
-                        <DatePicker Grid.Row="3" Grid.Column="1" x:Name="FechaDatePicker" Width="200" HorizontalAlignment="Left" Margin="0,0,0,10"/>
+                        <DatePicker Grid.Row="3" Grid.Column="1" x:Name="FechaDatePicker" SelectedDate="{Binding FechaNacimiento}" Width="200" HorizontalAlignment="Left" Margin="0,0,0,10"/>
 
                         <Label Content="Email*" Grid.Row="4" Grid.Column="0"/>
-                        <TextBox x:Name="EmailTextBox" Grid.Row="4" Grid.Column="1" Text="lol@gmail.com"/>
+                        <TextBox x:Name="EmailTextBox" Grid.Row="4" Grid.Column="1" Text="{Binding ArbitroInsertar.Email}"/>
 
                         <Label Content="Teléfono" Grid.Row="5" Grid.Column="0"/>
-                        <TextBox x:Name="TelefonoTextBox" Grid.Row="5" Grid.Column="1" Text="789456123" MaxLength="9"/>
+                        <TextBox x:Name="TelefonoTextBox" Grid.Row="5" Grid.Column="1" Text="{Binding ArbitroInsertar.Telefono}" MaxLength="9"/>
 
                         <Label Grid.Row="6" Grid.Column="0" Content="Categoría*"/>
-                        <ComboBox x:Name="CategoriaComboBox" Grid.Row="6" Grid.Column="1" Height="25" Width="400" ItemsSource="{Binding Categorias}" HorizontalAlignment="Left" Margin="0,0,0,10"/>
+                        <ComboBox x:Name="CategoriaComboBox" Grid.Row="6" Grid.Column="1" Height="25" Width="400" ItemsSource="{Binding Categorias}" SelectedItem="{Binding ArbitroInsertar.Categoria}" HorizontalAlignment="Left" Margin="0,0,0,10"/>
 
                         <Label Grid.Row="7" Grid.Column="0" Content="Provincia*"/>
-                        <TextBox x:Name="ProvinciaTextBox" Grid.Row="7" Grid.Column="1" Text="Alicante"/>
+                        <TextBox x:Name="ProvinciaTextBox" Grid.Row="7" Grid.Column="1" Text="{Binding ArbitroInsertar.Provincia}"/>
 
                         <Label Grid.Row="8" Grid.Column="0" Content="Localidad"/>
-                        <TextBox x:Name="LocalidadTextBox" Grid.Row="8" Grid.Column="1"/>
+                        <TextBox x:Name="LocalidadTextBox" Grid.Row="8" Grid.Column="1" Text="{Binding ArbitroInsertar.Localidad}"/>
 
                         <Label Grid.Row="9" Grid.Column="0" Content="Código Postal*"/>
-                        <TextBox x:Name="CpTextBox" Grid.Row="9" Grid.Column="1" MaxLength="5"/>
+                        <TextBox x:Name="CpTextBox" Grid.Row="9" Grid.Column="1" MaxLength="5" Text="{Binding ArbitroInsertar.Cp}"/>
 
                         <Label Grid.Row="10" Grid.Column="0" Content="Foto"/>
-                        <Button x:Name="FotoButton" Grid.Row="10" Grid.Column="1" Content="..." Margin="0" HorizontalAlignment="Left" Width="45" Height="25" Click="FotoButton_Click"/>
+                        <Button x:Name="FotoButton" Grid.Row="10" Grid.Column="1" Content="camera" FontFamily="{StaticResource FontAwesome}" Foreground="Green" FontSize="18" Margin="0" HorizontalAlignment="Left" Width="45" Height="25" Click="FotoButton_Click"/>
                     </Grid>
                 </ScrollViewer>
                 <StackPanel Grid.Row="0" Grid.Column="1">

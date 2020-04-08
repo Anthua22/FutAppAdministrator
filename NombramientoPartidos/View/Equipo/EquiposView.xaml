@@ -18,19 +18,7 @@
        
         </Style>
 
-        <DataTemplate x:Key="EquiposTemplate">
-            <StackPanel Orientation="Horizontal">
-                <Ellipse Height="50" Width="50">
-                    <Ellipse.Fill>
-                        <ImageBrush ImageSource="{Binding}"/>
-                    </Ellipse.Fill>
-                </Ellipse>
-                <StackPanel VerticalAlignment="Center">
-                    <TextBlock Text="{Binding Nombre}" FontWeight="Bold"></TextBlock>
-                    <TextBlock Text="{Binding Categoria}" Foreground="Gray"></TextBlock>
-                </StackPanel>
-            </StackPanel>
-        </DataTemplate>
+        
     </UserControl.Resources>
     <UserControl.CommandBindings>
         <CommandBinding
@@ -97,7 +85,7 @@
 
                             <Label Grid.Column="0" Grid.Row="5" x:Name="EscudoLabel" Content="Escudo del Equipo:"/>
 
-                            <Button Grid.Column="1" Grid.Row="5" x:Name="SeleccionImagenEquipoButton" HorizontalAlignment="Left" Content="..." Width="30" Margin="15,0,0,0" Height="18" Click="SeleccionImagenEquipoButton_Click"/>
+                            <Button Grid.Column="1" Grid.Row="5" x:Name="SeleccionImagenEquipoButton" HorizontalAlignment="Left" Content="camera" FontFamily="{StaticResource FontAwesome}" Foreground="Green" FontSize="20" Width="40" Margin="15,0,0,0" Height="25" Click="SeleccionImagenEquipoButton_Click"/>
 
                             <Image x:Name="ImagenEquipoImage" Grid.Column="2" Grid.RowSpan="4" Source="{Binding ElementoSeleccionado.ImagenElementoURL}"></Image>
 

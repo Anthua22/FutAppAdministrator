@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:NombramientoPartidos.View"
         xmlns:comandos="clr-namespace:NombramientoPartidos.Utilidades"
         mc:Ignorable="d"
-        Title="Eliminar un Árbitro" Height="400" Width="800" ResizeMode="NoResize">
+        Title="Eliminar un Árbitro" Height="400" Width="800" ResizeMode="NoResize" ShowInTaskbar="False">
     <Window.Resources>
         <Style TargetType="{x:Type ComboBox}">
             <Setter Property="Width" Value="250"/>
@@ -27,20 +27,7 @@
             <Setter Property="Margin" Value="10"/>
         </Style>
 
-        <DataTemplate x:Key="Combo">
-            <StackPanel Orientation="Horizontal">
-                <Ellipse Height="50" Width="50">
-                    <Ellipse.Fill>
-                        <ImageBrush ImageSource="{Binding}"/>
-                    </Ellipse.Fill>
-                </Ellipse>
-               
-                <StackPanel VerticalAlignment="Center">
-                    <TextBlock Text="{Binding Nombre_Completo}" FontWeight="Bold"></TextBlock>
-                    <TextBlock Text="{Binding Dni}" Foreground="Gray"></TextBlock>
-                </StackPanel>
-            </StackPanel>
-        </DataTemplate>
+       
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding 
@@ -67,7 +54,7 @@
             <Label Grid.Row="0" Grid.Column="0" Content="Escoge la categoría" VerticalAlignment="Center"/>
             <ComboBox x:Name="CategoriaComboBox" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Categorias}" HorizontalAlignment="Left" SelectionChanged="CategoriaComboBox_SelectionChanged" SelectedItem="{Binding Categoria}"/>
             <Label Grid.Row="1" Grid.Column="0" Content="Elija el árbitro a eliminar" VerticalAlignment="Top"/>
-            <ComboBox x:Name="ArbitrosComboBox" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Arbitros}" Height="45" ItemTemplate="{StaticResource Combo}" SelectedItem="{Binding ArbitroEliminar}" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <ComboBox x:Name="ArbitrosComboBox" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Arbitros}" Height="45" ItemTemplate="{StaticResource ArbitrosTemplate}" SelectedItem="{Binding ArbitroEliminar}" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         </Grid>
        
 

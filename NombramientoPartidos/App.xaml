@@ -5,5 +5,33 @@
              StartupUri="View/MainWindow.xaml">
     <Application.Resources>
         <FontFamily x:Key="FontAwesome">/Assets/FontAwesome5Solid.otf#Font Awesome 5 Free Solid</FontFamily>
+        <DataTemplate x:Key="EquiposTemplate">
+            <StackPanel Orientation="Horizontal">
+                <Ellipse Height="50" Width="50">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="{Binding}"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Nombre}" FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="{Binding Categoria}" Foreground="Gray"></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="ArbitrosTemplate">
+            <StackPanel Orientation="Horizontal">
+                <Ellipse Height="50" Width="50">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="{Binding}"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Nombre_Completo}" FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="{Binding Dni}" Foreground="Gray"></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
     </Application.Resources>
+    
 </Application>

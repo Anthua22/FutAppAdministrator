@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="NombramientoPartidos.View.JugadoresStaff.JugadoresStaffView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NombramientoPartidos.View.JugadoresStaff"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBlock}" x:Key="IconosFontAwesome">
+            <Setter Property="FontFamily" Value="{StaticResource FontAwesome}"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="Foreground" Value="Green"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Width" Value="250"/>
+            <Setter Property="Height" Value="90"/>
+        </Style>
+    </UserControl.Resources>
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,80,0,50">
+            <Button x:Name="AddJugadorButton" Click="AddJugadorButton_Click">
+                <StackPanel>
+                    <TextBlock Text="user-plus" Style="{StaticResource IconosFontAwesome}"/>
+                    <TextBlock Text="Dar de alta un jugador" Margin="0,10,0,0"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="EditJugadorButton">
+                <StackPanel>
+                    <TextBlock Text="user-edit"  Style="{StaticResource IconosFontAwesome}"/>
+                    <TextBlock Text="Editar Datos de un jugador" Margin="0,10,0,0"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="DeleteJugadorButton">
+                <StackPanel>
+                    <TextBlock Text="user-times" Style="{StaticResource IconosFontAwesome}"/>
+                    <TextBlock Text="Borrar un jugador" Margin="0,10,0,0"/>
+                </StackPanel>
+            </Button>            
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,50,0,50" DockPanel.Dock="Bottom">
+            <Button x:Name="AddStaffButton" Click="AddStaffButton_Click">
+                <StackPanel>
+                    <TextBlock Text="users" Style="{StaticResource IconosFontAwesome}"/>
+                    <TextBlock Text="Dar de alta un cuerpo Técnico"  Margin="0,10,0,0"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="EditStaffButton">
+                <StackPanel>
+                    <TextBlock Text="users-cog" Style="{StaticResource IconosFontAwesome}"/>
+                    <TextBlock Text="Editar datos de un cuerpo Técnico"  Margin="0,10,0,0"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="DeleteStaffButton">
+                <StackPanel>
+                    <TextBlock Text="trash" Style="{StaticResource IconosFontAwesome}"/>
+                    <TextBlock Text="Eliminar persona de un cuerpo Técnico" Margin="0,10,0,0"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <Separator></Separator>
+    </DockPanel>
+</UserControl>

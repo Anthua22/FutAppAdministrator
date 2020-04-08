@@ -29,5 +29,18 @@ namespace NombramientoPartidos.Utilidades.ClasesPojos
         {
 
         }
+        
+        public Equipo(string nombre, string categoria, string provincia, string direccion_campo)
+        {
+            Nombre = nombre;
+            Categoria = categoria;
+            Provincia = provincia;
+            Direccion_Campo = direccion_campo;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }

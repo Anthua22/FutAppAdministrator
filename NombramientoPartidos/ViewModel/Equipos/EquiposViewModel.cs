@@ -118,7 +118,7 @@ namespace NombramientoPartidos.ViewModel.Equipos
 
         public void ElegirFoto(Image image)
         {
-            image.Source = new BitmapImage(new Uri(Utils.ObtnerRutaFichero()));
+            image.Source = new BitmapImage(new Uri(Utils.ObtenerRutaFichero()));
         }
     }
 }

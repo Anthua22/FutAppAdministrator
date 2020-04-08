@@ -44,9 +44,6 @@
     <Reference Include="Google.Protobuf, Version=3.6.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Protobuf.3.6.1\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=8.0.19.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.8.0.19\lib\net452\MySql.Data.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -77,9 +74,6 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="Ubiety.Dns.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.8.0.19\lib\net452\Ubiety.Dns.Core.dll</HintPath>
-    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -93,6 +87,8 @@
     <Compile Include="Utilidades\ClasesPojos\Administrador.cs" />
     <Compile Include="Utilidades\ClasesPojos\Arbitro.cs" />
     <Compile Include="Utilidades\ClasesPojos\Equipo.cs" />
+    <Compile Include="Utilidades\ClasesPojos\Jugador.cs" />
+    <Compile Include="Utilidades\ClasesPojos\Staff.cs" />
     <Compile Include="Utilidades\ComandosPersonalizados.cs" />
     <Compile Include="Utilidades\Excepciones.cs" />
     <Compile Include="Utilidades\Utils.cs" />
@@ -103,6 +99,8 @@
     <Compile Include="ViewModel\Arbitro\InsertarArbitroViewModel.cs" />
     <Compile Include="ViewModel\Arbitro\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\Equipos\EquiposViewModel.cs" />
+    <Compile Include="ViewModel\JuadoresStaff\InsertarJugadorViewModel.cs" />
+    <Compile Include="ViewModel\JuadoresStaff\JugadoresStaffViewModel.cs" />
     <Compile Include="View\Arbitro\ArbitrosView.xaml.cs">
       <DependentUpon>ArbitrosView.xaml</DependentUpon>
     </Compile>
@@ -138,6 +136,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\JugadoresStaff\InsertarJugadorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\JugadoresStaff\JugadoresStaffView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -148,6 +154,12 @@
     </Compile>
     <Compile Include="View\Arbitro\InsertarArbitroView.xaml.cs">
       <DependentUpon>InsertarArbitroView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\JugadoresStaff\InsertarJugadorView.xaml.cs">
+      <DependentUpon>InsertarJugadorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\JugadoresStaff\JugadoresStaffView.xaml.cs">
+      <DependentUpon>JugadoresStaffView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -200,9 +212,7 @@
   <ItemGroup>
     <Resource Include="Assets\defecto.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\PersonasEquipo\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.6.1.1\build\Fody.targets" Condition="Exists('..\packages\Fody.6.1.1\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
