@@ -60,10 +60,17 @@ namespace NombramientoPartidos.ViewModel.JuadoresStaff
 
         public void FiltroJugadores()
         {
-            Jugadores = new ObservableCollection<Jugador>(ApiRest.RescatarJugadores().Where(x => x.Equipo == EquipoJugador.IdEquipo).OrderBy(y => y.Nombre_Completo));
+            if (EquipoJugador != null)
+            {
+                Jugadores = new ObservableCollection<Jugador>(ApiRest.RescatarJugadores().Where(x => x.Equipo == EquipoJugador.IdEquipo).OrderBy(y => y.Nombre_Completo));
+            }
+           
 
         }
 
-
+        public bool Update()
+        {
+            return ApiRest.UpdateJugador(JugadorUpdate);
+        }
     }
 }

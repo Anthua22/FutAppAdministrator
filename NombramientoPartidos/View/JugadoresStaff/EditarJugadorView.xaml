@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NombramientoPartidos.View.JugadoresStaff"
+        xmlns:comandos="clr-namespace:NombramientoPartidos.Utilidades"
         mc:Ignorable="d"
         Title="Modificar Datos de un Jugador" Height="600" Width="800" ResizeMode="NoResize">
     <Window.Resources>
@@ -17,7 +18,15 @@
         <Style TargetType="{x:Type ComboBox}">
             <Setter Property="Margin" Value="0,0,0,5"/>
         </Style>
+        
     </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding
+            Command="comandos:ComandosPersonalizados.AceptarEdicionJugador"
+            CanExecute="EditarJugador_CanExecute"
+            Executed="EditarJugadorExecuted"
+            />
+    </Window.CommandBindings>
     <DockPanel>
         <GroupBox Header="Aplicar Filtros" Margin="20" DockPanel.Dock="Top">
            <Grid Margin="15">
@@ -44,7 +53,7 @@
         </GroupBox>
 
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Margin="0,0,0,20" HorizontalAlignment="Center">
-            <Button Content="Aceptar" x:Name="AceptarButton"/>
+            <Button Content="Aceptar" x:Name="AceptarButton" Command="comandos:ComandosPersonalizados.AceptarEdicionJugador"/>
             <Button Content="Cancelar" IsCancel="True"/>
         </StackPanel>
         

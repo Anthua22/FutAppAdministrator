@@ -137,7 +137,6 @@ namespace NombramientoPartidos.Services
         public static void UpdateEquipo(Equipo equipo)
         {
             var json = JsonConvert.SerializeObject(equipo);
-            var bytes = Encoding.UTF8.GetBytes(json);
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase+"equipos/" + equipo.IdEquipo);
             request.Method = "PUT";
             request.ContentType = "application/json";
@@ -189,6 +188,28 @@ namespace NombramientoPartidos.Services
             return true;
         }
 
+        public static bool UpdateJugador(Jugador jugador)
+        {
+            var json = JsonConvert.SerializeObject(jugador);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "jugadores/" + jugador.Id);
+            request.Method = "PUT";
+            request.ContentType = "application/json";
+            using (var streamwriter = new StreamWriter(request.GetRequestStream()))
+            {
+                streamwriter.Write(json);
+                streamwriter.Flush();
+            }
+            var response = (HttpWebResponse)request.GetResponse();
 
+            if (response.StatusCode.Equals(HttpStatusCode.OK))
+            {
+                return true;
+            }
+            else
+            {
+                throw new CRUDException("Error al modificar el dato");
+            }
+
+        }
     }
 }

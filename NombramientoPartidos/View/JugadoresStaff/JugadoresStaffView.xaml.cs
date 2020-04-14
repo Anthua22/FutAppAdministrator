@@ -1,4 +1,4 @@
-﻿using NombramientoPartidos.ViewModel.JuadoresStaff;
+﻿    using NombramientoPartidos.ViewModel.JuadoresStaff;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -27,7 +27,10 @@ namespace NombramientoPartidos.View.JugadoresStaff
 
         private void EditJugadorButton_Click(object sender, RoutedEventArgs e)
         {
-            (DataContext as JugadoresStaffViewModel).UpdateJugador();
+            if((DataContext as JugadoresStaffViewModel).UpdateJugador())
+            {
+                MessageBox.Show("Jugador Modificado", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
     }
 }
