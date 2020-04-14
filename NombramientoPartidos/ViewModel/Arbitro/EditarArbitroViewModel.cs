@@ -35,9 +35,9 @@ namespace NombramientoPartidos.ViewModel
             
         }
 
-        public void RecuperandoInformacion(System.Windows.Controls.TextBox textBox)
+        public void RecuperandoInformacion(string filtro)
         {
-            filtro = textBox.Text;
+            this.filtro = filtro.ToLower();
         }
 
         private void Vista_Filter(object sender, FilterEventArgs e)
@@ -84,6 +84,9 @@ namespace NombramientoPartidos.ViewModel
                 case "Fútbol Base":
                     ArbitrosFilter = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("Fútbol Base")));
                     break;
+                case "Regional":
+                    ArbitrosFilter = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("Regional")).OrderBy(y => y.Nombre_Completo));
+                    break;
             }
             Vista.Source = ArbitrosFilter;
 
@@ -91,28 +94,15 @@ namespace NombramientoPartidos.ViewModel
 
         public bool UpdateExecute()
         {
+            ArbitroUpdate.Dni = ArbitroUpdate.Dni.ToUpper();
             return ApiRest.UpdateArbitro(ArbitroUpdate);
         }
 
         public void EditarImagen(Image image, Arbitro e)
         {
-            OpenFileDialog dialogoImagen = new OpenFileDialog();
 
-            dialogoImagen.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
-            dialogoImagen.Filter = "Imágenes JPG (*.jpg)|*.jpg|Imágenes PNG (*.png)|*.png|Todos los archivos (*.*)|*.*";
-
-            dialogoImagen.FilterIndex = 3;
-
-            dialogoImagen.RestoreDirectory = true;
-
-            if (dialogoImagen.ShowDialog() == DialogResult.OK)
-            {
-
-                string ruta = dialogoImagen.FileName;
-                image.Source = new BitmapImage(new Uri(ruta));
-             // e.Foto = Utils.ImagenABytes(ruta);
-                
-            }
+            image.Source = new BitmapImage(new Uri(Utils.ObtenerRutaFichero()));
+          
         }
 
         public bool EditarCanExecute()

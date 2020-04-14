@@ -22,6 +22,7 @@ namespace NombramientoPartidos.Utilidades
                 "2º División",
                 "2ºB División",
                 "3º División",
+                "Regional",
                 "Preferente",
                 "Fútbol Base"
             };
@@ -109,6 +110,37 @@ namespace NombramientoPartidos.Utilidades
             return ruta;
         }
         
-       
+        public static string ObtenerCategoriaJugador(DateTime dateTime, int añoinicioTemporada)
+        {
+            if(dateTime != DateTime.Now && dateTime.Year < DateTime.Now.Year)
+            {
+                if(añoinicioTemporada - dateTime.Year >= 8 && añoinicioTemporada - dateTime.Year <= 9)
+                {
+                    return "Benjamin";
+                }
+                else if(añoinicioTemporada - dateTime.Year >= 10 && añoinicioTemporada - dateTime.Year <= 11)
+                {
+                    return "Alevin";
+                }
+                else if (añoinicioTemporada - dateTime.Year >=12 && añoinicioTemporada - dateTime.Year <= 13)
+                {
+                    return "Infantil";
+                }
+                else if (añoinicioTemporada - dateTime.Year >= 14 && añoinicioTemporada - dateTime.Year <= 15)
+                {
+                    return "Cadete";
+                }
+                else if (añoinicioTemporada - dateTime.Year >= 16 && añoinicioTemporada - dateTime.Year <= 18)
+                {
+                    return "Juvenil";
+                }
+                else
+                {
+                    return "Senior";
+                }
+            }
+            return null;
+            
+        }
     }
 }

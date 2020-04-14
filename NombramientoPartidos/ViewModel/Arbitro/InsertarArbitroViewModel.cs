@@ -27,6 +27,7 @@ namespace NombramientoPartidos.ViewModel
         public bool Insert()
         {
             ArbitroInsertar.Fecha_Nacimiento = FechaNacimiento.Year + "-" + FechaNacimiento.Month + "-" + FechaNacimiento.Day;
+            ArbitroInsertar.Dni = ArbitroInsertar.Dni.ToUpper();
             if(!Utils.HayCamposVacios(ArbitroInsertar.Dni, ArbitroInsertar.Pass, ArbitroInsertar.Fecha_Nacimiento, ArbitroInsertar.Email, ArbitroInsertar.Provincia, ArbitroInsertar.Cp))
             {
                 return ApiRest.InsertArbitro(ArbitroInsertar);

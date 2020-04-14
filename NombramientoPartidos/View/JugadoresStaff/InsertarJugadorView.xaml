@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:NombramientoPartidos.View.JugadoresStaff"
         xmlns:comandos="clr-namespace:NombramientoPartidos.Utilidades"
         mc:Ignorable="d"
-        Title="Dar de Alta un Jugador" Height="450" Width="800" ResizeMode="NoResize">
+        Title="Dar de Alta un Jugador" Height="450" Width="800" ResizeMode="NoResize" ShowInTaskbar="False">
     <Window.Resources>
         <Style TargetType="{x:Type ComboBox}">
             <Setter Property="Width" Value="300"/>
@@ -78,7 +78,7 @@
                     <Label Content="Foto" Grid.Row="5" Grid.Column="0"/>
                     <Button x:Name="FotoButton" Content="camera" FontFamily="{StaticResource FontAwesome}" FontSize="18" Height="30" Width="50" HorizontalAlignment="Left" Foreground="Green" Margin="0" Grid.Column="1" Grid.Row="5" Click="FotoButton_Click"/>
                 </Grid>
-                <Image Grid.Column="1" Grid.Row="0" x:Name="ImagenJugador" Margin="20"></Image>
+                <Image Grid.Column="1" Grid.Row="0" x:Name="ImagenJugador" Source="/Assets/defecto.jpg" Margin="20"></Image>
             </Grid>
         </GroupBox>
     </DockPanel>

@@ -49,6 +49,9 @@ namespace NombramientoPartidos.ViewModel
                 case "Fútbol Base":
                     Arbitros = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("Fútbol Base")).OrderBy(y => y.Nombre_Completo));
                     break;
+                case "Regional":
+                    Arbitros = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("Regional")).OrderBy(y => y.Nombre_Completo));
+                    break;
             }
         }
 

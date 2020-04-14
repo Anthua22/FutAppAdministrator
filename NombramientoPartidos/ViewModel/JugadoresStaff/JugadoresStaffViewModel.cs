@@ -21,7 +21,13 @@ namespace NombramientoPartidos.ViewModel.JuadoresStaff
         public bool InsertJugador()
         {
             InsertarJugadorView insertJugador = new InsertarJugadorView();
-            return(bool)insertJugador.ShowDialog();
+            return (bool)insertJugador.ShowDialog();
+        }
+
+        public bool UpdateJugador()
+        {
+            EditarJugadorView editarJugador = new EditarJugadorView();
+            return (bool)editarJugador.ShowDialog();
         }
     }
 }

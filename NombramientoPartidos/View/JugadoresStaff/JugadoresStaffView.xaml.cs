@@ -15,14 +15,19 @@ namespace NombramientoPartidos.View.JugadoresStaff
             InitializeComponent();
         }
 
-        private void AddStaffButton_Click(object sender, RoutedEventArgs e)
-        {
-           
-        }
+      
 
         private void AddJugadorButton_Click(object sender, RoutedEventArgs e)
         {
-            (DataContext as JugadoresStaffViewModel).InsertJugador();
+            if((DataContext as JugadoresStaffViewModel).InsertJugador())
+            {
+                MessageBox.Show("Nuevo Jugador Añadido", "Información",MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        private void EditJugadorButton_Click(object sender, RoutedEventArgs e)
+        {
+            (DataContext as JugadoresStaffViewModel).UpdateJugador();
         }
     }
 }

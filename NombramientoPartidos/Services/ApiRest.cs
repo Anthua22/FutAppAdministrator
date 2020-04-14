@@ -55,7 +55,6 @@ namespace NombramientoPartidos.Services
             if (Utils.ControlCampos(arbitro))
             {
                 var json = JsonConvert.SerializeObject(arbitro);
-                var bytes = Encoding.UTF8.GetBytes(json);
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase+"arbitros/" + arbitro.Id);
                 request.Method = "PUT";
                 request.ContentType = "application/json";
@@ -189,5 +188,7 @@ namespace NombramientoPartidos.Services
             }
             return true;
         }
+
+
     }
 }

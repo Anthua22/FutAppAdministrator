@@ -1,4 +1,5 @@
 ﻿using NombramientoPartidos.ViewModel.Equipos;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -23,7 +24,7 @@ namespace NombramientoPartidos.View.Equipo
             switch (respuesta)
             {
                 case -1:
-                    MessageBox.Show("No se ha podido realizar la acción, asegurese de haber escogido un equipo o haber rellenado los todos los campos requiridos", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("No se ha podido realizar la acción, asegurese de haber escogido un equipo o haber rellenado los todos los campos requiridos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
                     break;
 
@@ -64,7 +65,14 @@ namespace NombramientoPartidos.View.Equipo
 
         private void SeleccionImagenEquipoButton_Click(object sender, RoutedEventArgs e)
         {
-            (DataContext as EquiposViewModel).ElegirFoto(ImagenEquipoImage);
+            try
+            {
+                (DataContext as EquiposViewModel).ElegirFoto(ImagenEquipoImage);
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message + "\nNo se ha elegido ninguna imagen", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
         }
 
         private void AñadirEquipoButton_Click(object sender, RoutedEventArgs e)
@@ -74,7 +82,9 @@ namespace NombramientoPartidos.View.Equipo
             AceptarCambiosButton.Content = "Añadir Equipo";   
             ((EquiposViewModel)this.DataContext).CambiaAccion(Accion.Nuevo);
             OcultarElementos((DataContext as EquiposViewModel).Accion);
- 
+            AñadirEquipoButton.IsEnabled = false;
+            ModificarEquipoButton.IsEnabled = true;
+            EliminarEquipoButton.IsEnabled = true;
         }
 
         private void ModificarEquipoButton_Click(object sender, RoutedEventArgs e)
@@ -84,7 +94,9 @@ namespace NombramientoPartidos.View.Equipo
             AceptarCambiosButton.Content = "Modificar Equipo";
             ((EquiposViewModel)this.DataContext).CambiaAccion(Accion.Editar);
             OcultarElementos((DataContext as EquiposViewModel).Accion);
-           
+            ModificarEquipoButton.IsEnabled = false;
+            AñadirEquipoButton.IsEnabled = true;
+            EliminarEquipoButton.IsEnabled = true;
         }
 
         private void EliminarEquipoButton_Click(object sender, RoutedEventArgs e)
@@ -95,7 +107,9 @@ namespace NombramientoPartidos.View.Equipo
             ((EquiposViewModel)this.DataContext).CambiaAccion(Accion.Borrar);
             OcultarElementos((DataContext as EquiposViewModel).Accion);
             EquiposComboBox.IsEnabled = false;
-               
+            EliminarEquipoButton.IsEnabled = false;
+            AñadirEquipoButton.IsEnabled = true;
+            ModificarEquipoButton.IsEnabled = true;
             
         }
 
@@ -152,7 +166,8 @@ namespace NombramientoPartidos.View.Equipo
 
         private void CategoriasCRUDComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            (DataContext as EquiposViewModel).FiltroCategoria(CategoriasCRUDComboBox.SelectedItem as string);
+            (DataContext as EquiposViewModel).Equipo.Categoria = CategoriasCRUDComboBox.SelectedItem as string;
+            (DataContext as EquiposViewModel).FiltroCategoria();
             EquiposComboBox.IsEnabled = true;
         }
     }

@@ -1,4 +1,5 @@
 ﻿using NombramientoPartidos.ViewModel.JuadoresStaff;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -24,7 +25,15 @@ namespace NombramientoPartidos.View.JugadoresStaff
 
         private void FotoButton_Click(object sender, RoutedEventArgs e)
         {
-            (DataContext as InsertarJugadorViewModel).PonerImagen(ImagenJugador);
+            try
+            {
+                (DataContext as InsertarJugadorViewModel).PonerImagen(ImagenJugador);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
         }
 
         private void InsertCommandCanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -34,10 +43,18 @@ namespace NombramientoPartidos.View.JugadoresStaff
 
         private void InsertCommandExecute(object sender, ExecutedRoutedEventArgs e)
         {
-            if((DataContext as InsertarJugadorViewModel).Execute())
+            try
+            { 
+                if((DataContext as InsertarJugadorViewModel).Execute())
+                {
+                    DialogResult = true;
+                }
+
+            }catch(Exception ex)
             {
-                DialogResult = true;
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+           
         }
     }
 }

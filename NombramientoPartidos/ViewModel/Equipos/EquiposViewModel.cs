@@ -81,10 +81,10 @@ namespace NombramientoPartidos.ViewModel.Equipos
             LimpiaCampos();
             this.Accion = accion;
         }
-        public void FiltroCategoria(string categoria)
+        public void FiltroCategoria()
         {
 
-            switch (categoria)
+            switch (Equipo.Categoria)
             {
                 case "1º División":
                     ListaEquipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("1º División")));
@@ -103,6 +103,9 @@ namespace NombramientoPartidos.ViewModel.Equipos
                     break;
                 case "Fútbol Base":
                     ListaEquipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("Fútbol Base")));
+                    break;
+                case "Regional":
+                    ListaEquipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("Regional")).OrderBy(y => y.Nombre));
                     break;
                 default:
                     ListaEquipos = new ObservableCollection<Equipo>();

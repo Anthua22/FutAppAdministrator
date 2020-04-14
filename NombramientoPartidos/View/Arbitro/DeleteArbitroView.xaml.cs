@@ -59,11 +59,11 @@ namespace NombramientoPartidos.View
             }
             catch (CRUDException crud)
             {
-                MessageBox.Show("Error: " + crud.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(crud.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

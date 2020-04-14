@@ -15,7 +15,6 @@
 
         <Style TargetType="TextBox">
             <Setter Property="Margin" Value="10"/>
-       
         </Style>
 
         
@@ -35,7 +34,7 @@
 
         <StackPanel x:Name="CRUDStackPanel" Orientation="Vertical" VerticalAlignment="Center">
 
-            <Button Margin="0,0,0,15" Height="50" x:Name="AñadirEquipoButton" Content="Añadir un nuevo Equipo" Click="AñadirEquipoButton_Click"/>
+            <Button Margin="0,0,0,15" Height="50" x:Name="AñadirEquipoButton" Content="Añadir un nuevo Equipo" Click="AñadirEquipoButton_Click" IsEnabled="False"/>
             <Button Margin="0,0,0,15" Height="50" x:Name="ModificarEquipoButton" Content="Modificar datos de un Equipo" Click="ModificarEquipoButton_Click"/>
             <Button Margin="0,0,0,15" Height="50" x:Name="EliminarEquipoButton" Content="Eliminar un Equipo" Click="EliminarEquipoButton_Click"/>
 
@@ -47,7 +46,6 @@
                     <TextBlock Text="Los campos con * son obligatorios" FontSize="16" Foreground="Green" HorizontalAlignment="Center" Margin="0,30,0,0" DockPanel.Dock="Top"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0" DockPanel.Dock="Bottom">
                         <Button x:Name="AceptarCambiosButton" Content="Añadir Equipo" Margin="5" Width="150" Command="ApplicationCommands.Save"/>
-                        <Button x:Name="LimpiarCamposButton" Content="Limpiar Campos" IsCancel="True" Margin="5" Width="150" />
                     </StackPanel>
                     <StackPanel VerticalAlignment="Center">
                         <Grid>

@@ -32,7 +32,7 @@ namespace NombramientoPartidos.View
                 ListaArbitrosDataGrid.Visibility = Visibility.Visible;
             }catch(Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             
         }
@@ -40,13 +40,20 @@ namespace NombramientoPartidos.View
 
         private void FiltarButton_Click(object sender, RoutedEventArgs e)
         {
-            (DataContext as EditarArbitroViewModel).RecuperandoInformacion(FiltroNombreTextBox);
+            (DataContext as EditarArbitroViewModel).RecuperandoInformacion(FiltroNombreTextBox.Text);
             (DataContext as EditarArbitroViewModel).Vista.View.Refresh();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            (DataContext as EditarArbitroViewModel).EditarImagen(FotoArbitroImage, (Arbitro)(ListaArbitrosDataGrid.SelectedItem));
+            try
+            {
+                (DataContext as EditarArbitroViewModel).EditarImagen(FotoArbitroImage, (Arbitro)(ListaArbitrosDataGrid.SelectedItem));
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message+"\nNo se ha elegido ninguna imagen", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
         }
 
         private void EditarCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -73,7 +80,7 @@ namespace NombramientoPartidos.View
                 }
             }catch(Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
            
         }

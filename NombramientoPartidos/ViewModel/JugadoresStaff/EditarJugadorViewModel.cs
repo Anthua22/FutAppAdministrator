@@ -1,37 +1,39 @@
 ﻿using NombramientoPartidos.Services;
 using NombramientoPartidos.Utilidades;
 using NombramientoPartidos.Utilidades.ClasesPojos;
-using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Windows.Controls;
-using System.Windows.Media.Imaging;
 
 namespace NombramientoPartidos.ViewModel.JuadoresStaff
 {
-    class InsertarJugadorViewModel : INotifyPropertyChanged
+    class EditarJugadorViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        public ObservableCollection<string> Categorias { get; private set; }
-        public ObservableCollection<Equipo> Equipos { get; private set; }
-        public Equipo EquipoJugador { get; set; }
-        public string Categoria { get; set; }
-        public DateTime FechaNacimiento { get; set; }
-        public Jugador JugadorInsertar { get; set; }
 
-        public InsertarJugadorViewModel()
+        public ObservableCollection<Jugador> Jugadores { get; set; }
+
+        public ObservableCollection<string> Categorias { get; set; }
+
+        public ObservableCollection<Equipo> Equipos { get; set; }
+
+        public Jugador JugadorUpdate { get; set; }
+
+        public Equipo EquipoJugador { get; set; }
+
+        public EditarJugadorViewModel()
         {
             Categorias = Utils.Categorias;
-            JugadorInsertar = new Jugador();
             EquipoJugador = new Equipo();
-            FechaNacimiento = DateTime.Now;
+            Equipos = new ObservableCollection<Equipo>();
+            Jugadores = new ObservableCollection<Jugador>();
         }
 
-        public void Filtro()
+        public void FiltroEquipos(string categoria)
         {
-            switch (Categoria)
+            switch (categoria)
             {
+
                 case "1º División":
                     Equipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("1º División")).OrderBy(y => y.Nombre));
                     break;
@@ -50,20 +52,18 @@ namespace NombramientoPartidos.ViewModel.JuadoresStaff
                 case "Fútbol Base":
                     Equipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("Fútbol Base")).OrderBy(y => y.Nombre));
                     break;
-              
+                case "Regional":
+                    Equipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("Regional")).OrderBy(y => y.Nombre));
+                    break;
             }
         }
 
-        public void PonerImagen(Image imagen)
+        public void FiltroJugadores()
         {
-            imagen.Source = new BitmapImage(new Uri(Utils.ObtenerRutaFichero()));
+            Jugadores = new ObservableCollection<Jugador>(ApiRest.RescatarJugadores().Where(x => x.Equipo == EquipoJugador.IdEquipo).OrderBy(y => y.Nombre_Completo));
+
         }
 
-        public bool Execute()
-        {
-            JugadorInsertar.Equipo = EquipoJugador.IdEquipo;
-            JugadorInsertar.Fecha_Nacimiento = FechaNacimiento.Year + "-" + FechaNacimiento.Month + "-" + FechaNacimiento.Day;
-            return ApiRest.InsertJugador(JugadorInsertar);
-        }
+
     }
 }

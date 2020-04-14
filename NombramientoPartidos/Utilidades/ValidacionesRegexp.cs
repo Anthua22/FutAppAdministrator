@@ -73,7 +73,16 @@ namespace NombramientoPartidos.Utilidades
             {
                 return true;
             }
-            throw new CategoriaException("La categoría introducida no existe");   
+            else
+            {
+                string cats = "";
+                foreach(string x in Utils.Categorias)
+                {
+                    cats += x + '\n';
+                }
+                throw new CategoriaException("La categoría introducida no existe, o tiene el formato correcto:\n"+cats);   
+            }
+           
         }
     }
 }

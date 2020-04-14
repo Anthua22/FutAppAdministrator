@@ -28,6 +28,9 @@ namespace NombramientoPartidos.Utilidades.ClasesPojos
         [JsonProperty(PropertyName = "fecha_nacimiento")]
         public string Fecha_Nacimiento { get; set; }
 
+        [JsonProperty(PropertyName = "categoria")]
+        public string Categoria { get; set; }
+
         [JsonProperty(PropertyName = "dni")]
         public string Dni { get; set; }
 
@@ -36,12 +39,13 @@ namespace NombramientoPartidos.Utilidades.ClasesPojos
 
         }
 
-        public Jugador(string nombre_completo, int equipo, string dni, string fecha_nacimiento)
+        public Jugador(string nombre_completo, int equipo, string dni, string fecha_nacimiento, string categoria)
         {
             Nombre_Completo = nombre_completo; 
             Dni = dni;
             Fecha_Nacimiento = fecha_nacimiento;
             Equipo = equipo;
+            Categoria = categoria;
         }
 
         public override string ToString()

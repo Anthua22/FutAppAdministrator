@@ -14,7 +14,7 @@ namespace NombramientoPartidos.Utilidades
                 "Entrar",
                 "Entrar",
                 typeof(ComandosPersonalizados),
-                 new InputGestureCollection()
+                new InputGestureCollection()
                 {
                     new KeyGesture(Key.Enter)
                 }
@@ -40,6 +40,13 @@ namespace NombramientoPartidos.Utilidades
             );
 
         public static readonly RoutedUICommand AceptarInsertJugador = new RoutedUICommand
+            (
+                "Aceptar",
+                "Aceptar",
+                typeof(ComandosPersonalizados)
+            );
+
+        public static readonly RoutedUICommand AceptarEdicionJugador = new RoutedUICommand
             (
                 "Aceptar",
                 "Aceptar",

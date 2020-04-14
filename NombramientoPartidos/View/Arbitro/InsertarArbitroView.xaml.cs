@@ -53,7 +53,7 @@ namespace NombramientoPartidos.View
                 }
                 else
                 {
-                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }   
                 
             }
@@ -73,7 +73,15 @@ namespace NombramientoPartidos.View
 
         private void FotoButton_Click(object sender, RoutedEventArgs e)
         {
-            (DataContext as InsertarArbitroViewModel).PonerImagen(ImagenArbitroImage);
+            try
+            {
+                (DataContext as InsertarArbitroViewModel).PonerImagen(ImagenArbitroImage);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
         }
     }
 }
