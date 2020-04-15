@@ -1,6 +1,7 @@
 ﻿using NombramientoPartidos.Services;
 using NombramientoPartidos.Utilidades;
 using NombramientoPartidos.Utilidades.ClasesPojos;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -31,31 +32,7 @@ namespace NombramientoPartidos.ViewModel.JuadoresStaff
 
         public void FiltroEquipos(string categoria)
         {
-            switch (categoria)
-            {
-
-                case "1º División":
-                    Equipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("1º División")).OrderBy(y => y.Nombre));
-                    break;
-                case "2º División":
-                    Equipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("2º División")).OrderBy(y => y.Nombre));
-                    break;
-                case "2ºB División":
-                    Equipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("2ºB División")).OrderBy(y => y.Nombre));
-                    break;
-                case "3º División":
-                    Equipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("3º División")).OrderBy(y => y.Nombre));
-                    break;
-                case "Preferente":
-                    Equipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("Preferente")).OrderBy(y => y.Nombre));
-                    break;
-                case "Fútbol Base":
-                    Equipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("Fútbol Base")).OrderBy(y => y.Nombre));
-                    break;
-                case "Regional":
-                    Equipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("Regional")).OrderBy(y => y.Nombre));
-                    break;
-            }
+            Equipos = Utils.FiltroEquipos(categoria);
         }
 
         public void FiltroJugadores()
@@ -70,6 +47,9 @@ namespace NombramientoPartidos.ViewModel.JuadoresStaff
 
         public bool Update()
         {
+            JugadorUpdate.Dni = JugadorUpdate.Dni.ToUpper();
+            string[] fecha = JugadorUpdate.Fecha_Nacimiento.Split('-');
+            JugadorUpdate.Categoria = Utils.ObtenerCategoriaJugador(new DateTime(int.Parse(fecha[0]),int.Parse(fecha[1]),int.Parse(fecha[2])), 2019);
             return ApiRest.UpdateJugador(JugadorUpdate);
         }
     }

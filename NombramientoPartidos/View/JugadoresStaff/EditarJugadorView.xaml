@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:NombramientoPartidos.View.JugadoresStaff"
         xmlns:comandos="clr-namespace:NombramientoPartidos.Utilidades"
         mc:Ignorable="d"
-        Title="Modificar Datos de un Jugador" Height="600" Width="800" ResizeMode="NoResize">
+        Title="Modificar Datos de un Jugador" Height="650" Width="800" ResizeMode="NoResize" ShowInTaskbar="False">
     <Window.Resources>
         <Style TargetType="{x:Type Button}">
             <Setter Property="Width" Value="100"/>
@@ -22,7 +22,7 @@
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding
-            Command="comandos:ComandosPersonalizados.AceptarEdicionJugador"
+            Command="comandos:ComandosPersonalizados.ComandoJugador"
             CanExecute="EditarJugador_CanExecute"
             Executed="EditarJugadorExecuted"
             />
@@ -53,7 +53,7 @@
         </GroupBox>
 
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Margin="0,0,0,20" HorizontalAlignment="Center">
-            <Button Content="Aceptar" x:Name="AceptarButton" Command="comandos:ComandosPersonalizados.AceptarEdicionJugador"/>
+            <Button Content="Aceptar" x:Name="AceptarButton" Command="comandos:ComandosPersonalizados.ComandoJugador"/>
             <Button Content="Cancelar" IsCancel="True"/>
         </StackPanel>
         
@@ -61,9 +61,11 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
@@ -89,6 +91,10 @@
                 <Label Content="Nº de Goles" Grid.Row="5" Grid.Column="0"/>
                 <TextBox Grid.Row="5" Grid.Column="1" MaxLength="3" Text="{Binding JugadorUpdate.Goles}"/>
 
+                <Label Content="Foto del jugador" Grid.Row="6" Grid.Column="0"/>
+                <Button x:Name="FotoJugadorButton" Content="camera" FontFamily="{StaticResource FontAwesome}" Grid.Row="6" Grid.Column="1" FontSize="18" Height="35" Width="65" HorizontalAlignment="Left" Foreground="Green"/>
+
+                <Image x:Name="ImagenJugador" Grid.Column="2" Grid.RowSpan="3" Source="/Assets/defecto.jpg"/>
             </Grid>  
         </Border>
        

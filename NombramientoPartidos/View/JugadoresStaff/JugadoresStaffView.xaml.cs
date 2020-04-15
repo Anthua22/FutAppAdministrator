@@ -32,5 +32,10 @@ namespace NombramientoPartidos.View.JugadoresStaff
                 MessageBox.Show("Jugador Modificado", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
+
+        private void DeleteJugadorButton_Click(object sender, RoutedEventArgs e)
+        {
+            (DataContext as JugadoresStaffViewModel).DeleteJugador();
+        }
     }
 }

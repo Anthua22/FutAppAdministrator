@@ -29,5 +29,11 @@ namespace NombramientoPartidos.ViewModel.JuadoresStaff
             EditarJugadorView editarJugador = new EditarJugadorView();
             return (bool)editarJugador.ShowDialog();
         }
+
+        public bool DeleteJugador()
+        {
+            BorrarJugadorView borrarJugadorView = new BorrarJugadorView();
+            return (bool)borrarJugadorView.ShowDialog();
+        }
     }
 }

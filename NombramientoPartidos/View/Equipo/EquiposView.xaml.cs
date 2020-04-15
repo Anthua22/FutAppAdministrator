@@ -19,35 +19,44 @@ namespace NombramientoPartidos.View.Equipo
 
         private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            int respuesta = ((EquiposViewModel)this.DataContext).Save_Execute();
+            try
+            {   
+                int respuesta = ((EquiposViewModel)this.DataContext).Save_Execute();
+                switch (respuesta)
+                {
+                    case -1:
+                        MessageBox.Show("No se ha podido realizar la acción, asegurese de haber escogido un equipo o haber rellenado los todos los campos requiridos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
-            switch (respuesta)
-            {
-                case -1:
-                    MessageBox.Show("No se ha podido realizar la acción, asegurese de haber escogido un equipo o haber rellenado los todos los campos requiridos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        break;
 
-                    break;
+                    case 0:
+                        MessageBox.Show("Acción cancelada", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                        break;
 
-                case 0:
-                    MessageBox.Show("Acción cancelada", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
-                    break;
+                    case 1:
+                        MessageBox.Show("Nuevo equipo creado correctamente", "Insertar", MessageBoxButton.OK, MessageBoxImage.Information);
+                        break;
 
-                case 1:
-                    MessageBox.Show("Nuevo equipo creado correctamente", "Insertar", MessageBoxButton.OK, MessageBoxImage.Information);
-                    break;
+                    case 2:
+                        MessageBox.Show("Equipo modificado correctamente", "Editar", MessageBoxButton.OK, MessageBoxImage.Information);
+                        break;
 
-                case 2:
-                    MessageBox.Show("Equipo modificado correctamente", "Editar", MessageBoxButton.OK, MessageBoxImage.Information);
-                    break;
+                    case 3:
+                        MessageBox.Show("Equipo eliminado correctamente", "Eliminar", MessageBoxButton.OK, MessageBoxImage.Information);
+                        break;
 
-                case 3:
-                    MessageBox.Show("Equipo eliminado correctamente", "Eliminar", MessageBoxButton.OK, MessageBoxImage.Information);
-                    break;
-
+                }
+                ControlCombosBox();
+                ((EquiposViewModel)this.DataContext).LimpiaCampos();
+                ImagenEquipoImage.Source = null;
             }
-            ControlCombosBox();
-            ((EquiposViewModel)this.DataContext).LimpiaCampos();
-            ImagenEquipoImage.Source = null;
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+         
+
+          
          
         }
 

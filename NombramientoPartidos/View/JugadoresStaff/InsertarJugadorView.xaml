@@ -29,7 +29,7 @@
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding
-            Command="comandos:ComandosPersonalizados.AceptarInsertJugador"
+            Command="comandos:ComandosPersonalizados.ComandoJugador"
             CanExecute="InsertCommandCanExecute"
             Executed="InsertCommandExecute"
             />
@@ -38,7 +38,7 @@
     <DockPanel>
         <TextBlock Text="Rellene todos los campos" DockPanel.Dock="Top" HorizontalAlignment="Center" Foreground="Green" FontSize="18" Margin="0,20,0,0"/>
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center">
-            <Button Content="Aceptar" Command="comandos:ComandosPersonalizados.AceptarInsertJugador"></Button>
+            <Button Content="Aceptar" Command="comandos:ComandosPersonalizados.ComandoJugador"></Button>
             <Button Content="Cancelar" IsCancel="True"></Button>
         </StackPanel>
         <GroupBox Header="Añade un Jugador" Margin="10">

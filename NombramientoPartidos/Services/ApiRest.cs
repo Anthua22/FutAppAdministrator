@@ -211,5 +211,19 @@ namespace NombramientoPartidos.Services
             }
 
         }
+
+        public static void DeleteteJugador(int id)
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "jugadores/" + id);
+            request.Method = "DELETE";
+            request.Accept = "application/json";
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            if (!response.StatusCode.Equals(HttpStatusCode.OK))
+            {
+                throw new CRUDException("Error al borral el registro");
+            }
+
+        }
     }
+
 }

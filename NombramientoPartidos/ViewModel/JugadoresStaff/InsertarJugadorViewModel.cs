@@ -30,30 +30,7 @@ namespace NombramientoPartidos.ViewModel.JuadoresStaff
 
         public void Filtro()
         {
-            switch (Categoria)
-            {
-                case "1º División":
-                    Equipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("1º División")).OrderBy(y => y.Nombre));
-                    break;
-                case "2º División":
-                    Equipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("2º División")).OrderBy(y => y.Nombre));
-                    break;
-                case "2ºB División":
-                    Equipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("2ºB División")).OrderBy(y => y.Nombre));
-                    break;
-                case "3º División":
-                    Equipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("3º División")).OrderBy(y => y.Nombre));
-                    break;
-                case "Preferente":
-                    Equipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("Preferente")).OrderBy(y => y.Nombre));
-                    break;
-                case "Fútbol Base":
-                    Equipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("Fútbol Base")).OrderBy(y => y.Nombre));
-                    break;
-                case "Regional":
-                    Equipos =new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("Regional")).OrderBy(y => y.Nombre));
-                    break;
-            }
+            Equipos = Utils.FiltroEquipos(Categoria);
         }
 
         public void PonerImagen(Image imagen)

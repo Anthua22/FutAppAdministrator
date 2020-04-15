@@ -99,6 +99,7 @@
     <Compile Include="ViewModel\Arbitro\InsertarArbitroViewModel.cs" />
     <Compile Include="ViewModel\Arbitro\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\Equipos\EquiposViewModel.cs" />
+    <Compile Include="ViewModel\JugadoresStaff\BorrarJugadorViewModel.cs" />
     <Compile Include="ViewModel\JugadoresStaff\EditarJugadorViewModel.cs" />
     <Compile Include="ViewModel\JugadoresStaff\InsertarJugadorViewModel.cs" />
     <Compile Include="ViewModel\JugadoresStaff\JugadoresStaffViewModel.cs" />
@@ -137,6 +138,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\JugadoresStaff\BorrarJugadorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\JugadoresStaff\EditarJugadorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -159,6 +164,9 @@
     </Compile>
     <Compile Include="View\Arbitro\InsertarArbitroView.xaml.cs">
       <DependentUpon>InsertarArbitroView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\JugadoresStaff\BorrarJugadorView.xaml.cs">
+      <DependentUpon>BorrarJugadorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\JugadoresStaff\EditarJugadorView.xaml.cs">
       <DependentUpon>EditarJugadorView.xaml</DependentUpon>

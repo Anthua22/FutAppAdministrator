@@ -18,8 +18,6 @@ namespace NombramientoPartidos.View.JugadoresStaff
 
         private void CategoriasCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            (DataContext as EditarJugadorViewModel).Equipos = new System.Collections.ObjectModel.ObservableCollection<Utilidades.ClasesPojos.Equipo>();
-            (DataContext as EditarJugadorViewModel).EquipoJugador = new Utilidades.ClasesPojos.Equipo();
             (DataContext as EditarJugadorViewModel).FiltroEquipos(CategoriasCombobox.SelectedItem as string);
             EquiposComboBox.IsEnabled = true;
             DatosJugadorBorder.Visibility = Visibility.Hidden;

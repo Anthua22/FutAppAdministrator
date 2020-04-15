@@ -33,7 +33,7 @@
                     <TextBlock Text="Editar Datos de un jugador" Margin="0,10,0,0"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="DeleteJugadorButton">
+            <Button x:Name="DeleteJugadorButton" Click="DeleteJugadorButton_Click">
                 <StackPanel>
                     <TextBlock Text="user-times" Style="{StaticResource IconosFontAwesome}"/>
                     <TextBlock Text="Borrar un jugador" Margin="0,10,0,0"/>

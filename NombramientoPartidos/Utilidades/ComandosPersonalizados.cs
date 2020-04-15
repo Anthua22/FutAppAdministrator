@@ -39,18 +39,12 @@ namespace NombramientoPartidos.Utilidades
 
             );
 
-        public static readonly RoutedUICommand AceptarInsertJugador = new RoutedUICommand
+        public static readonly RoutedUICommand ComandoJugador = new RoutedUICommand
             (
                 "Aceptar",
                 "Aceptar",
                 typeof(ComandosPersonalizados)
             );
 
-        public static readonly RoutedUICommand AceptarEdicionJugador = new RoutedUICommand
-            (
-                "Aceptar",
-                "Aceptar",
-                typeof(ComandosPersonalizados)
-            );
     }
 }
