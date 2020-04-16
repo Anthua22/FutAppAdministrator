@@ -46,5 +46,12 @@ namespace NombramientoPartidos.Utilidades
                 typeof(ComandosPersonalizados)
             );
 
+        public static readonly RoutedUICommand ComandoStaff = new RoutedUICommand
+            (
+                "Aceptar",
+                "Aceptar",
+                typeof(ComandosPersonalizados)
+            );
+
     }
 }

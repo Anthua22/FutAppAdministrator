@@ -19,7 +19,7 @@ namespace NombramientoPartidos.View.JugadoresStaff
 
         private void CategoriasComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            (DataContext as InsertarJugadorViewModel).Filtro();
+            (DataContext as InsertarJugadorViewModel).Filtro(CategoriasComboBox.SelectedItem as string);
             EquiposComboBox.IsEnabled = true;
         }
 
@@ -38,7 +38,7 @@ namespace NombramientoPartidos.View.JugadoresStaff
 
         private void InsertCommandCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = ((DataContext as InsertarJugadorViewModel).EquipoJugador.IdEquipo!=0 && !string.IsNullOrWhiteSpace((DataContext as InsertarJugadorViewModel).JugadorInsertar.Nombre_Completo) && (DataContext as InsertarJugadorViewModel).FechaNacimiento != null);
+            e.CanExecute = ((DataContext as InsertarJugadorViewModel).EquipoJugador!=null && (DataContext as InsertarJugadorViewModel).EquipoJugador.IdEquipo !=0&& !string.IsNullOrWhiteSpace((DataContext as InsertarJugadorViewModel).JugadorInsertar.Nombre_Completo) && !string.IsNullOrWhiteSpace((DataContext as InsertarJugadorViewModel).JugadorInsertar.Dni));
         }
 
         private void InsertCommandExecute(object sender, ExecutedRoutedEventArgs e)
@@ -55,6 +55,11 @@ namespace NombramientoPartidos.View.JugadoresStaff
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
            
+        }
+
+        private void EquiposComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            (DataContext as InsertarJugadorViewModel).AsignarEquipo();
         }
     }
 }

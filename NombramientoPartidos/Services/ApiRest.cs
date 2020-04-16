@@ -50,6 +50,14 @@ namespace NombramientoPartidos.Services
             return jugadores;
         }
 
+        public static ObservableCollection<Staff> RescatarStaffs()
+        {
+            string url = Urlbase + "staffs";
+            var json = new WebClient().DownloadString(url);
+            ObservableCollection<Staff> staffs = new ObservableCollection<Staff>(JsonConvert.DeserializeObject<List<Staff>>(json));
+            return staffs;
+        }
+
         public static bool UpdateArbitro(Arbitro arbitro)
         {
             if (Utils.ControlCampos(arbitro))
@@ -223,6 +231,50 @@ namespace NombramientoPartidos.Services
                 throw new CRUDException("Error al borral el registro");
             }
 
+        }
+
+        public static bool InsertStaff(Staff staff)
+        {
+            var json = JsonConvert.SerializeObject(staff);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "staffs");
+            request.Method = "POST";
+            request.ContentType = "application/json";
+
+            using (var streamwriter = new StreamWriter(request.GetRequestStream()))
+            {
+                streamwriter.Write(json);
+                streamwriter.Flush();
+            }
+
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            if (!response.StatusCode.Equals(HttpStatusCode.Created))
+            {
+                throw new CRUDException("Error al insertar el dato");
+            }
+            return true;
+        }
+        
+        public static bool UpdateStaff(Staff staff)
+        {
+            var json = JsonConvert.SerializeObject(staff);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "staffs/" + staff.Id);
+            request.Method = "PUT";
+            request.ContentType = "application/json";
+            using (var streamwriter = new StreamWriter(request.GetRequestStream()))
+            {
+                streamwriter.Write(json);
+                streamwriter.Flush();
+            }
+            var response = (HttpWebResponse)request.GetResponse();
+
+            if (response.StatusCode.Equals(HttpStatusCode.OK))
+            {
+                return true;
+            }
+            else
+            {
+                throw new CRUDException("Error al modificar el dato");
+            }
         }
     }
 

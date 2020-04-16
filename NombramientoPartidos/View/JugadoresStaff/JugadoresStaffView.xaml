@@ -41,22 +41,22 @@
             </Button>            
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,50,0,50" DockPanel.Dock="Bottom">
-            <Button x:Name="AddStaffButton">
+            <Button x:Name="AddStaffButton" Click="AddStaffButton_Click">
                 <StackPanel>
                     <TextBlock Text="users" Style="{StaticResource IconosFontAwesome}"/>
-                    <TextBlock Text="Dar de alta un cuerpo Técnico"  Margin="0,10,0,0"/>
+                    <TextBlock Text="Dar de alta un Cuerpo Técnico"  Margin="0,10,0,0"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="EditStaffButton">
+            <Button x:Name="EditStaffButton" Click="EditStaffButton_Click">
                 <StackPanel>
                     <TextBlock Text="users-cog" Style="{StaticResource IconosFontAwesome}"/>
-                    <TextBlock Text="Editar datos de un cuerpo Técnico"  Margin="0,10,0,0"/>
+                    <TextBlock Text="Editar datos de un Cuerpo Técnico"  Margin="0,10,0,0"/>
                 </StackPanel>
             </Button>
             <Button x:Name="DeleteStaffButton">
                 <StackPanel>
                     <TextBlock Text="trash" Style="{StaticResource IconosFontAwesome}"/>
-                    <TextBlock Text="Eliminar persona de un cuerpo Técnico" Margin="0,10,0,0"/>
+                    <TextBlock Text="Eliminar persona de un Cuerpo Técnico" Margin="0,10,0,0"/>
                 </StackPanel>
             </Button>
         </StackPanel>

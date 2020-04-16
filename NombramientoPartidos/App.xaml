@@ -32,7 +32,6 @@
                 </StackPanel>
             </StackPanel>
         </DataTemplate>
-
         <DataTemplate x:Key="JugadoresTemplate">
             <StackPanel Orientation="Horizontal">
                 <Ellipse Height="50" Width="50">
@@ -44,6 +43,20 @@
                 <StackPanel VerticalAlignment="Center">
                     <TextBlock Text="{Binding Nombre_Completo}" FontWeight="Bold"></TextBlock>
                     <TextBlock Text="{Binding Categoria}" Foreground="Gray"></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="StaffsTemplate">
+            <StackPanel Orientation="Horizontal">
+                <Ellipse Height="50" Width="50">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="{Binding}"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Nombre_Completo}" FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="{Binding Cargo}" Foreground="Gray"></TextBlock>
                 </StackPanel>
             </StackPanel>
         </DataTemplate>

@@ -101,7 +101,9 @@
     <Compile Include="ViewModel\Equipos\EquiposViewModel.cs" />
     <Compile Include="ViewModel\JugadoresStaff\BorrarJugadorViewModel.cs" />
     <Compile Include="ViewModel\JugadoresStaff\EditarJugadorViewModel.cs" />
+    <Compile Include="ViewModel\JugadoresStaff\EditarStaffViewModel.cs" />
     <Compile Include="ViewModel\JugadoresStaff\InsertarJugadorViewModel.cs" />
+    <Compile Include="ViewModel\JugadoresStaff\InsertarStaffViewModel.cs" />
     <Compile Include="ViewModel\JugadoresStaff\JugadoresStaffViewModel.cs" />
     <Compile Include="View\Arbitro\ArbitrosView.xaml.cs">
       <DependentUpon>ArbitrosView.xaml</DependentUpon>
@@ -142,11 +144,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\JugadoresStaff\DeleteStaffView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\JugadoresStaff\EditarJugadorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\JugadoresStaff\EditarStaffView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\JugadoresStaff\InsertarJugadorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\JugadoresStaff\InsertarStaffView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -168,11 +182,20 @@
     <Compile Include="View\JugadoresStaff\BorrarJugadorView.xaml.cs">
       <DependentUpon>BorrarJugadorView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\JugadoresStaff\DeleteStaffView.xaml.cs">
+      <DependentUpon>DeleteStaffView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\JugadoresStaff\EditarJugadorView.xaml.cs">
       <DependentUpon>EditarJugadorView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\JugadoresStaff\EditarStaffView.xaml.cs">
+      <DependentUpon>EditarStaffView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\JugadoresStaff\InsertarJugadorView.xaml.cs">
       <DependentUpon>InsertarJugadorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\JugadoresStaff\InsertarStaffView.xaml.cs">
+      <DependentUpon>InsertarStaffView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\JugadoresStaff\JugadoresStaffView.xaml.cs">
       <DependentUpon>JugadoresStaffView.xaml</DependentUpon>

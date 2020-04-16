@@ -41,13 +41,13 @@ namespace NombramientoPartidos.ViewModel.JuadoresStaff
             {
                 Jugadores = new ObservableCollection<Jugador>(ApiRest.RescatarJugadores().Where(x => x.Equipo == EquipoJugador.IdEquipo).OrderBy(y => y.Nombre_Completo));
             }
-           
-
+          
         }
 
         public bool Update()
         {
             JugadorUpdate.Dni = JugadorUpdate.Dni.ToUpper();
+            JugadorUpdate.Equipo = EquipoJugador.IdEquipo;
             string[] fecha = JugadorUpdate.Fecha_Nacimiento.Split('-');
             JugadorUpdate.Categoria = Utils.ObtenerCategoriaJugador(new DateTime(int.Parse(fecha[0]),int.Parse(fecha[1]),int.Parse(fecha[2])), 2019);
             return ApiRest.UpdateJugador(JugadorUpdate);

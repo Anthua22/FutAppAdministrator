@@ -35,5 +35,17 @@ namespace NombramientoPartidos.ViewModel.JuadoresStaff
             BorrarJugadorView borrarJugadorView = new BorrarJugadorView();
             return (bool)borrarJugadorView.ShowDialog();
         }
+
+        public bool InsertarSatff()
+        {
+            InsertarStaffView insertarStaffView = new InsertarStaffView();
+            return (bool)insertarStaffView.ShowDialog();
+        }
+
+        public bool UpdateStaff()
+        {
+            EditarStaffView editarStaffView = new EditarStaffView();
+            return (bool)editarStaffView.ShowDialog();
+        }
     }
 }

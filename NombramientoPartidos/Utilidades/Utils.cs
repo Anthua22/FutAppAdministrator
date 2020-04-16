@@ -12,8 +12,8 @@ namespace NombramientoPartidos.Utilidades
     public static class Utils
     {
         public static ObservableCollection<string> Categorias { get; }
-  
 
+        public static ObservableCollection<string> CargosStaff { get; }
         static Utils()
         {
             Categorias = new ObservableCollection<string>()
@@ -25,6 +25,16 @@ namespace NombramientoPartidos.Utilidades
                 "Regional",
                 "Preferente",
                 "Fútbol Base"
+            };
+
+            CargosStaff = new ObservableCollection<string>()
+            {
+                "Entrenador",
+                "Delegado",
+                "Encargado Material",
+                "Preparador Físico",
+                "Entrenador Porteros",
+                "Fisioterapeuta"
             };
         }
 
@@ -150,5 +160,7 @@ namespace NombramientoPartidos.Utilidades
             }
             return Equipos;
         }
+
+
     }
 }

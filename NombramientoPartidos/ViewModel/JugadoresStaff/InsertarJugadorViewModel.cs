@@ -16,7 +16,6 @@ namespace NombramientoPartidos.ViewModel.JuadoresStaff
         public ObservableCollection<string> Categorias { get; private set; }
         public ObservableCollection<Equipo> Equipos { get; private set; }
         public Equipo EquipoJugador { get; set; }
-        public string Categoria { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public Jugador JugadorInsertar { get; set; }
 
@@ -28,9 +27,9 @@ namespace NombramientoPartidos.ViewModel.JuadoresStaff
             FechaNacimiento = DateTime.Now;
         }
 
-        public void Filtro()
+        public void Filtro(string categoria)
         {
-            Equipos = Utils.FiltroEquipos(Categoria);
+            Equipos = Utils.FiltroEquipos(categoria);
         }
 
         public void PonerImagen(Image imagen)
@@ -45,6 +44,14 @@ namespace NombramientoPartidos.ViewModel.JuadoresStaff
             JugadorInsertar.Categoria = Utils.ObtenerCategoriaJugador(FechaNacimiento,2019);
             JugadorInsertar.Fecha_Nacimiento = FechaNacimiento.Year + "-" + FechaNacimiento.Month + "-" + FechaNacimiento.Day;
             return ApiRest.InsertJugador(JugadorInsertar);
+        }
+
+        public void AsignarEquipo()
+        {
+            if (EquipoJugador != null)
+            {
+                JugadorInsertar.Id = EquipoJugador.IdEquipo;
+            }
         }
     }
 }
