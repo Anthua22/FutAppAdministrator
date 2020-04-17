@@ -82,7 +82,7 @@
                 <TextBox Text="{Binding JugadorUpdate.Nombre_Completo}" Grid.Row="0" Grid.Column="1"/>
 
                 <Label Content="Equipo al que Pertenece:" Grid.Row="1" Grid.Column="0"/>
-                <ComboBox ItemsSource="{Binding Equipos}" SelectedItem="{Binding EquipoJugador}" x:Name="EquipoComboBox" ItemTemplate="{StaticResource EquiposTemplate}" Grid.Row="1" Grid.Column="1"/>
+                <ComboBox ItemsSource="{Binding Equipos}" SelectedItem="{Binding EquipoCambio}" x:Name="EquipoComboBox" ItemTemplate="{StaticResource EquiposTemplate}" Grid.Row="1" Grid.Column="1"/>
 
                 <Label Content="DNI o NIE:" Grid.Row="2" Grid.Column="0"/>
                 <TextBox MaxLength="9" Grid.Row="2" Grid.Column="1" Text="{Binding JugadorUpdate.Dni}"/>

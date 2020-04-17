@@ -276,6 +276,18 @@ namespace NombramientoPartidos.Services
                 throw new CRUDException("Error al modificar el dato");
             }
         }
+    
+        public static void DeleteStaff(int id)
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "staffs/" + id);
+            request.Method = "DELETE";
+            request.Accept = "application/json";
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            if (!response.StatusCode.Equals(HttpStatusCode.OK))
+            {
+                throw new CRUDException("Error al borral el registro");
+            }
+        }
     }
 
 }

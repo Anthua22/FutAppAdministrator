@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:NombramientoPartidos.View.JugadoresStaff"
         xmlns:comandos="clr-namespace:NombramientoPartidos.Utilidades"
         mc:Ignorable="d"
-        Title="Moodificar datos de un Cuerpo Técnico" Height="650" Width="800">
+        Title="Modificar datos de un Cuerpo Técnico" Height="650" Width="800">
     <Window.Resources>
         <Style TargetType="{x:Type Button}">
             <Setter Property="Width" Value="100"/>
@@ -47,7 +47,7 @@
                 <ComboBox Name="CategoriasCombobox" ItemsSource="{Binding Categorias}" Grid.Row="0" Grid.Column="1" SelectionChanged="CategoriasCombobox_SelectionChanged"/>
 
                 <Label Content="Escoge su Equipo" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
-                <ComboBox Name="EquiposComboBox" ItemsSource="{Binding Equipos}" Grid.Row="1" Grid.Column="1"  IsEnabled="False" ItemTemplate="{StaticResource EquiposTemplate}" SelectedItem="{Binding EquipoStaff, Mode=OneWayToSource}" SelectionChanged="EquiposComboBox_SelectionChanged"/>
+                <ComboBox Name="EquiposComboBox" ItemsSource="{Binding Equipos}" Grid.Row="1" Grid.Column="1"  IsEnabled="False" ItemTemplate="{StaticResource EquiposTemplate}" SelectedItem="{Binding EquipoStaff}" SelectionChanged="EquiposComboBox_SelectionChanged"/>
 
                 <Label Content="Elija la persona del Cuerpo Técnico a modificar" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
                 <ComboBox Name="StaffsComboBox" ItemsSource="{Binding Staffs}" Grid.Row="2" Grid.Column="1" IsEnabled="False" SelectedItem="{Binding StaffUpdate}" ItemTemplate="{StaticResource StaffsTemplate}" SelectionChanged="StaffsComboBox_SelectionChanged"/>
@@ -57,7 +57,7 @@
         </GroupBox>
 
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Margin="0,0,0,20" HorizontalAlignment="Center">
-            <Button Content="Aceptar" x:Name="AceptarButton" Command="comandos:ComandosPersonalizados.ComandoJugador"/>
+            <Button Content="Aceptar" x:Name="AceptarButton" Command="comandos:ComandosPersonalizados.ComandoStaff"/>
             <Button Content="Cancelar" IsCancel="True"/>
         </StackPanel>
 
@@ -78,10 +78,10 @@
      
                 </Grid.RowDefinitions>
                 <Label Content="Nombre Completo:" Grid.Row="0" Grid.Column="0"/>
-                <TextBox Text="{Binding JugadorUpdate.Nombre_Completo}" Grid.Row="0" Grid.Column="1"/>
+                <TextBox Text="{Binding StaffUpdate.Nombre_Completo}" Grid.Row="0" Grid.Column="1"/>
 
                 <Label Content="Equipo al que Pertenece:" Grid.Row="1" Grid.Column="0"/>
-                <ComboBox ItemsSource="{Binding Equipos}" SelectedItem="{Binding EquipoStaff}" x:Name="EquipoComboBox" ItemTemplate="{StaticResource EquiposTemplate}" Grid.Row="1" Grid.Column="1" SelectionChanged="EquipoComboBox_SelectionChanged"/>
+                <ComboBox ItemsSource="{Binding Equipos}" SelectedItem="{Binding EquipoCambio}" x:Name="EquipoComboBox" ItemTemplate="{StaticResource EquiposTemplate}" Grid.Row="1" Grid.Column="1" />
 
                 <Label Content="DNI o NIE:" Grid.Row="2" Grid.Column="0"/>
                 <TextBox MaxLength="9" Grid.Row="2" Grid.Column="1" Text="{Binding StaffUpdate.Dni}"/>

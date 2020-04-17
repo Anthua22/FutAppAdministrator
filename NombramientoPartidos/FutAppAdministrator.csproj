@@ -100,6 +100,7 @@
     <Compile Include="ViewModel\Arbitro\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\Equipos\EquiposViewModel.cs" />
     <Compile Include="ViewModel\JugadoresStaff\BorrarJugadorViewModel.cs" />
+    <Compile Include="ViewModel\JugadoresStaff\BorrarStaffViewModel.cs" />
     <Compile Include="ViewModel\JugadoresStaff\EditarJugadorViewModel.cs" />
     <Compile Include="ViewModel\JugadoresStaff\EditarStaffViewModel.cs" />
     <Compile Include="ViewModel\JugadoresStaff\InsertarJugadorViewModel.cs" />
@@ -144,7 +145,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\JugadoresStaff\DeleteStaffView.xaml">
+    <Page Include="View\JugadoresStaff\BorrarStaffView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -182,8 +183,8 @@
     <Compile Include="View\JugadoresStaff\BorrarJugadorView.xaml.cs">
       <DependentUpon>BorrarJugadorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\JugadoresStaff\DeleteStaffView.xaml.cs">
-      <DependentUpon>DeleteStaffView.xaml</DependentUpon>
+    <Compile Include="View\JugadoresStaff\BorrarStaffView.xaml.cs">
+      <DependentUpon>BorrarStaffView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\JugadoresStaff\EditarJugadorView.xaml.cs">
       <DependentUpon>EditarJugadorView.xaml</DependentUpon>
@@ -251,7 +252,9 @@
   <ItemGroup>
     <Resource Include="Assets\defecto.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ViewModel\Partidos\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.6.1.1\build\Fody.targets" Condition="Exists('..\packages\Fody.6.1.1\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

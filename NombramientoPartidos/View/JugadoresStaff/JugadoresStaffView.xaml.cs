@@ -56,5 +56,13 @@ namespace NombramientoPartidos.View.JugadoresStaff
                 MessageBox.Show("Persona de Staff Modificada", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
+
+        private void DeleteStaffButton_Click(object sender, RoutedEventArgs e)
+        {
+            if((DataContext as JugadoresStaffViewModel).DeleteStaff())
+            {
+                MessageBox.Show("Staff eliminado", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
     }
 }

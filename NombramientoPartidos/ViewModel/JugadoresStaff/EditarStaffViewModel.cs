@@ -27,12 +27,14 @@ namespace NombramientoPartidos.ViewModel.JugadoresStaff
 
         public Equipo EquipoStaff { get; set; }
 
+        public Equipo EquipoCambio { get; set; }
 
         public EditarStaffViewModel()
         {
             Staffs = new ObservableCollection<Staff>();
             Categorias = Utils.Categorias;
             Cargos = Utils.CargosStaff;
+            EquipoCambio = new Equipo();
             EquipoStaff = new Equipo();
         }
 
@@ -52,7 +54,7 @@ namespace NombramientoPartidos.ViewModel.JugadoresStaff
         public bool Update()
         {
             StaffUpdate.Dni = StaffUpdate.Dni.ToUpper();
-            StaffUpdate.Equipo = EquipoStaff.IdEquipo;
+            StaffUpdate.Equipo = EquipoCambio.IdEquipo;
             return ApiRest.UpdateStaff(StaffUpdate);
         }
     }

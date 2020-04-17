@@ -22,10 +22,15 @@ namespace NombramientoPartidos.ViewModel.JuadoresStaff
 
         public Equipo EquipoJugador { get; set; }
 
+        public string CategoriaJugador { get; set; }
+
+        public Equipo EquipoCambio { get; set; }
+
         public EditarJugadorViewModel()
         {
             Categorias = Utils.Categorias;
             EquipoJugador = new Equipo();
+            EquipoCambio = new Equipo();
             Equipos = new ObservableCollection<Equipo>();
             Jugadores = new ObservableCollection<Jugador>();
         }
@@ -47,7 +52,7 @@ namespace NombramientoPartidos.ViewModel.JuadoresStaff
         public bool Update()
         {
             JugadorUpdate.Dni = JugadorUpdate.Dni.ToUpper();
-            JugadorUpdate.Equipo = EquipoJugador.IdEquipo;
+            JugadorUpdate.Equipo = EquipoCambio.IdEquipo;
             string[] fecha = JugadorUpdate.Fecha_Nacimiento.Split('-');
             JugadorUpdate.Categoria = Utils.ObtenerCategoriaJugador(new DateTime(int.Parse(fecha[0]),int.Parse(fecha[1]),int.Parse(fecha[2])), 2019);
             return ApiRest.UpdateJugador(JugadorUpdate);

@@ -42,6 +42,7 @@ namespace NombramientoPartidos.View.JugadoresStaff
 
         private void StaffsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            (DataContext as EditarStaffViewModel).EquipoCambio = (DataContext as EditarStaffViewModel).EquipoStaff;
             DatosStaffBorder.Visibility = Visibility.Visible;
         }
 
@@ -65,9 +66,6 @@ namespace NombramientoPartidos.View.JugadoresStaff
             }
         }
 
-        private void EquipoComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+       
     }
 }

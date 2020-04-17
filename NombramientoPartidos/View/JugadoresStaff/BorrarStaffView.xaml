@@ -1,4 +1,4 @@
-﻿<Window x:Class="NombramientoPartidos.View.JugadoresStaff.DeleteStaffView"
+﻿<Window x:Class="NombramientoPartidos.View.JugadoresStaff.BorrarStaffView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:NombramientoPartidos.View.JugadoresStaff"
         xmlns:comandos="clr-namespace:NombramientoPartidos.Utilidades"
         mc:Ignorable="d"
-        Title="Eliminar un Staff" Height="450" Width="850">
+        Title="Eliminar persona de un Cuerpo Técnico" Height="450" Width="800" ShowInTaskbar="False" ResizeMode="NoResize">
     <Window.Resources>
         <Style TargetType="{x:Type Button}">
             <Setter Property="Width" Value="100"/>
@@ -22,20 +22,20 @@
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding
-            Command="comandos:ComandosPersonalizados.ComandoJugador"
+            Command="comandos:ComandosPersonalizados.ComandoStaff"
             CanExecute="Delete_CanExecute"
-            Executed="Delete_Execute"/>
+            Executed="Delete_Executed"/>
     </Window.CommandBindings>
     <DockPanel>
         <TextBlock Text="Busca el Staff a Eliminar" FontSize="18" DockPanel.Dock="Top" Foreground="Green"  HorizontalAlignment="Center" Margin="0,30,0,0"/>
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="0,0,0,20">
-            <Button Content="Aceptar" Command="comandos:ComandosPersonalizados.ComandoJugador"/>
+            <Button Content="Aceptar" Command="comandos:ComandosPersonalizados.ComandoStaff"/>
             <Button Content="Cancelar" IsCancel="True"/>
         </StackPanel>
         <Grid Margin="40">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="95*"></ColumnDefinition>
+                <ColumnDefinition Width="143*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
@@ -43,14 +43,14 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Label Content="Elige una categoría" Grid.Row="0" Grid.Column="0"/>
-            <ComboBox x:Name="CategoriasComboBox" ItemsSource="{Binding Categorias}" Grid.Row="0" Grid.Column="1" SelectionChanged="CategoriasComboBox_SelectionChanged"/>
+            <Label Content="Elige una categoría" Grid.Row="0" Grid.Column="0" Height="26" Margin="0,28"/>
+            <ComboBox x:Name="CategoriasComboBox" ItemsSource="{Binding Categorias}" Grid.Row="0" Grid.Column="1" Height="Auto" Margin="56,21" Width="Auto" SelectionChanged="CategoriasComboBox_SelectionChanged"/>
 
-            <Label Content="Elige el equipo que pertenece el staff" Grid.Row="1" Grid.Column="0"/>
-            <ComboBox x:Name="EquiposComboBox" ItemsSource="{Binding Equipos}" ItemTemplate="{StaticResource EquiposTemplate}" SelectedItem="{Binding EquipoJugador}" Grid.Row="1" Grid.Column="1" IsEnabled="False" SelectionChanged="EquiposComboBox_SelectionChanged"/>
+            <Label Content="Elige el equipo que pertenece el Cuerpo Técnico" Grid.Row="1" Grid.Column="0" Height="25" Margin="0,29"/>
+            <ComboBox x:Name="EquiposComboBox" ItemsSource="{Binding Equipos}" ItemTemplate="{StaticResource EquiposTemplate}" SelectedItem="{Binding EquipoStaff}" Grid.Row="1" Grid.Column="1" IsEnabled="False" Height="Auto" Margin="56,22,56,21" Width="Auto" SelectionChanged="EquiposComboBox_SelectionChanged"/>
 
-            <Label Content="Elige la persona del Cuerpo Técnico a eliminar" Grid.Row="2" Grid.Column="0"/>
-            <ComboBox x:Name="JugadoresComboBox" ItemsSource="{Binding Jugadores}" ItemTemplate="{StaticResource JugadoresTemplate}" SelectedItem="{Binding JugadorDelete}" Grid.Row="2" Grid.Column="1" IsEnabled="False"/>
+            <Label Content="Elige la persona del Cuerpo Técnico a eliminar" Grid.Row="2" Grid.Column="0" Height="24" Margin="0,29"/>
+            <ComboBox x:Name="StaffsComboBox" ItemsSource="{Binding Staffs}" ItemTemplate="{StaticResource StaffsTemplate}" SelectedItem="{Binding StaffDelete}" Grid.Row="2" Grid.Column="1" IsEnabled="False" Height="Auto" Margin="56,21" Width="Auto"/>
 
         </Grid>
     </DockPanel>

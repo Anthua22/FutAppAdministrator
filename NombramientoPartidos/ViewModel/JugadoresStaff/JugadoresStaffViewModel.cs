@@ -47,5 +47,11 @@ namespace NombramientoPartidos.ViewModel.JuadoresStaff
             EditarStaffView editarStaffView = new EditarStaffView();
             return (bool)editarStaffView.ShowDialog();
         }
+
+        public bool DeleteStaff()
+        {
+            BorrarStaffView borrarStaffView = new BorrarStaffView();
+            return (bool)borrarStaffView.ShowDialog();
+        }
     }
 }
