@@ -18,7 +18,10 @@ namespace NombramientoPartidos.ViewModel
         public InsertarArbitroViewModel()
         {
             Categorias = Utils.Categorias;
-            ArbitroInsertar = new Arbitro();
+            ArbitroInsertar = new Arbitro()
+            {
+                Foto = "/Assets/defecto.jpg"
+            };
             FechaNacimiento = DateTime.Now;
         }
 
@@ -28,17 +31,28 @@ namespace NombramientoPartidos.ViewModel
         {
             ArbitroInsertar.Fecha_Nacimiento = FechaNacimiento.Year + "-" + FechaNacimiento.Month + "-" + FechaNacimiento.Day;
             ArbitroInsertar.Dni = ArbitroInsertar.Dni.ToUpper();
-            if(!Utils.HayCamposVacios(ArbitroInsertar.Dni, ArbitroInsertar.Pass, ArbitroInsertar.Fecha_Nacimiento, ArbitroInsertar.Email, ArbitroInsertar.Provincia, ArbitroInsertar.Cp))
+            if (!ArbitroInsertar.Foto.Equals("/Assets/defecto.jpg"))
             {
-                return ApiRest.InsertArbitro(ArbitroInsertar);
+                string[] rutaimagen = ArbitroInsertar.Foto.Split('/');
+                string urlImagen = BlobStorage.GuardarImagen(ArbitroInsertar.Foto, rutaimagen[rutaimagen.Length - 1], ArbitroInsertar);
+                ArbitroInsertar.Foto = urlImagen;
             }
-            return false;
+         
+            return ApiRest.InsertArbitro(ArbitroInsertar);
+          
         }
 
-        public void PonerImagen(Image imagen)
-        {
-            imagen.Source = new BitmapImage(new Uri(Utils.ObtenerRutaFichero()));
+        public void PonerImagen()
+        {      
+            string ruta = Utils.ObtenerRutaFichero().Replace('\\', '/');
+            if(!string.IsNullOrWhiteSpace(ruta))
+            {
+                ArbitroInsertar.Foto = ruta;
+            }
+            
         }
+
+
 
     }
 

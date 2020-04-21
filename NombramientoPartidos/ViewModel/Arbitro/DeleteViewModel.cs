@@ -29,7 +29,7 @@ namespace NombramientoPartidos.ViewModel
 
         public void Filtro()
         {
-            switch (Categoria)
+            switch (ArbitroEliminar.Categoria)
             {
                 case "1º División":
                     Arbitros = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("1º División")).OrderBy(y=> y.Nombre_Completo));
@@ -68,7 +68,7 @@ namespace NombramientoPartidos.ViewModel
 
         public bool DeleteCanExecute()
         {
-            return (ArbitroEliminar != null && Categoria != null);
+            return (ArbitroEliminar.Categoria!=null);
         }
 
     }

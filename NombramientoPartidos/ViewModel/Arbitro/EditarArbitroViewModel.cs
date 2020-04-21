@@ -1,15 +1,10 @@
 ﻿using NombramientoPartidos.Services;
 using NombramientoPartidos.Utilidades;
 using NombramientoPartidos.Utilidades.ClasesPojos;
-using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Forms;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 
 namespace NombramientoPartidos.ViewModel
 {
@@ -23,7 +18,7 @@ namespace NombramientoPartidos.ViewModel
        
         public Arbitro ArbitroUpdate { get; set; }
         
-        public string Categoria { get; set; }
+    
         
         public EditarArbitroViewModel()
         {
@@ -32,7 +27,7 @@ namespace NombramientoPartidos.ViewModel
             Vista = new CollectionViewSource();
             Vista.Source = ArbitrosFilter;
             Vista.Filter += Vista_Filter;
-            
+            ArbitroUpdate = new Arbitro();
         }
 
         public void RecuperandoInformacion(string filtro)
@@ -64,7 +59,7 @@ namespace NombramientoPartidos.ViewModel
         public void FiltroCategoria()
         {
 
-            switch (Categoria)
+            switch (ArbitroUpdate.Categoria)
             {
                 case "1º División":
                     ArbitrosFilter = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("1º División")));
@@ -94,20 +89,36 @@ namespace NombramientoPartidos.ViewModel
 
         public bool UpdateExecute()
         {
+            if (!ArbitroUpdate.Foto.Equals("/Assets/defecto.jpg") && !ArbitroUpdate.Foto.Contains("http"))
+            {
+                string[] urlBlob = ArbitroUpdate.Foto.Split('/');
+
+                ArbitroUpdate.Foto = BlobStorage.GuardarImagen(ArbitroUpdate.Foto, urlBlob[urlBlob.Length - 1], ArbitroUpdate);
+            }
             ArbitroUpdate.Dni = ArbitroUpdate.Dni.ToUpper();
+
             return ApiRest.UpdateArbitro(ArbitroUpdate);
         }
 
-        public void EditarImagen(Image image, Arbitro e)
+        public void EditarImagen()
         {
+            string ruta = Utils.ObtenerRutaFichero().Replace('\\', '/');
+            if (!string.IsNullOrWhiteSpace(ruta))
+            {
+                if (!ArbitroUpdate.Foto.Equals("/Assets/defecto.jpg"))
+                {
+                    string[] urlBlob = ArbitroUpdate.Foto.Split('/');
 
-            image.Source = new BitmapImage(new Uri(Utils.ObtenerRutaFichero()));
+                    BlobStorage.EliminarImagen(urlBlob[urlBlob.Length - 1], ArbitroUpdate);
+                }
+                ArbitroUpdate.Foto = ruta;
+            }
           
         }
 
         public bool EditarCanExecute()
         {
-            return (ArbitroUpdate != null && Categoria != null);
+            return ArbitroUpdate.Categoria != null;
         }
 
 

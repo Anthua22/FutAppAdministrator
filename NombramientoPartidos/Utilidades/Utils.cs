@@ -68,12 +68,6 @@ namespace NombramientoPartidos.Utilidades
             return false;
         }
 
-
-        public static bool HayCamposVacios(string dni, string contraseña, string fecha_nacimiento, string email, string provincia, string cp)
-        {
-            return (string.IsNullOrWhiteSpace(dni) || string.IsNullOrWhiteSpace(contraseña) || string.IsNullOrWhiteSpace(fecha_nacimiento) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(provincia) || string.IsNullOrWhiteSpace(cp));
-        }
-
     
         public static string ObtenerRutaFichero()
         {

@@ -35,7 +35,7 @@
 
     <Window.CommandBindings>
         <CommandBinding 
-            Command="comandos:ComandosPersonalizados.AceptarEdicion"
+            Command="comandos:ComandosPersonalizados.ComandoArbitro"
             CanExecute="EditarCommand_CanExecute"
             Executed="EditarCommand_Executed"/>
     </Window.CommandBindings>
@@ -53,10 +53,10 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Elige la categoría"  VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
-            <ComboBox Grid.Row="0" Grid.Column="1" x:Name="CategoriaComboBox" ItemsSource="{Binding Categorias}" SelectionChanged="CategoriaComboBox_SelectionChanged" SelectedItem="{Binding Categoria}"></ComboBox>
-            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2">
-                <Image x:Name="FotoArbitroImage" ></Image>
-                <Button Content="&#xf303;" Foreground="Green" FontFamily="{StaticResource FontAwesome}" Margin="15,0,0,0" Height="25" Width="50" Click="Button_Click" RenderTransformOrigin="0.502,0.504"/>
+            <ComboBox Grid.Row="0" Grid.Column="1" x:Name="CategoriaComboBox" ItemsSource="{Binding Categorias}" SelectionChanged="CategoriaComboBox_SelectionChanged" SelectedItem="{Binding ArbitroUpdate.Categoria}"></ComboBox>
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2" x:Name="FotoArbitro" Visibility="Hidden">
+                <Image x:Name="FotoArbitroImage" Source="{Binding ArbitroUpdate.Foto}"></Image>
+                <Button Content="&#xf303;" Foreground="Green" FontFamily="{StaticResource FontAwesome}" Margin="15,0,0,0" Height="25" Width="50" Click="Button_Click"/>
             </StackPanel>
             
 
@@ -68,10 +68,10 @@
 
 
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,20">
-            <Button x:Name="AceptarButton" Command="comandos:ComandosPersonalizados.AceptarEdicion">Aceptar</Button>
+            <Button x:Name="AceptarButton" Command="comandos:ComandosPersonalizados.ComandoArbitro">Aceptar</Button>
             <Button IsCancel="True">Cancelar</Button>
         </StackPanel>
-        <DataGrid x:Name="ListaArbitrosDataGrid" ItemsSource="{Binding}" Visibility="Hidden" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="ListaArbitrosDataGrid_SelectionChanged">
+        <DataGrid x:Name="ListaArbitrosDataGrid" ItemsSource="{Binding}" Visibility="Hidden" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="ListaArbitrosDataGrid_SelectionChanged" SelectedItem="{Binding ArbitroUpdate}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Dni" Binding="{Binding Dni}"/>
                 <DataGridTextColumn Header="Contraseña" Binding="{Binding Pass}"/>

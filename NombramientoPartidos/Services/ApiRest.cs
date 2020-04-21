@@ -6,7 +6,6 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
 
 namespace NombramientoPartidos.Services
 {
@@ -18,6 +17,7 @@ namespace NombramientoPartidos.Services
         {
             Urlbase = "http://localhost/liga/";
         }
+
         public static Administrador RescatarAdministrador(string dni)
         {
             string url = Urlbase + "administradores/" + dni;

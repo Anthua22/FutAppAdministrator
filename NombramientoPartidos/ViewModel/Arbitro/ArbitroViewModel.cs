@@ -7,11 +7,15 @@ namespace NombramientoPartidos.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public ArbitroViewModel()
+        {
+    
+        }
+
         public bool EditarArbitroClick()
         {
             EditarArbitroView editarArbitroView = new EditarArbitroView();
             return (bool)editarArbitroView.ShowDialog();
-          
         }
 
         public bool InsertarArbitroClick()
@@ -22,8 +26,8 @@ namespace NombramientoPartidos.ViewModel
 
         public bool DeleteArbitroClick()
         {
-            DeleteArbitroView deleteArbitro = new DeleteArbitroView();
-            return (bool)deleteArbitro.ShowDialog();
+            DeleteArbitroView deleteArbitroView = new DeleteArbitroView();
+            return (bool)deleteArbitroView.ShowDialog();
         }
     }
 }

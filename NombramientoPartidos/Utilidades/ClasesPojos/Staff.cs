@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 namespace NombramientoPartidos.Utilidades.ClasesPojos
 {
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
-    public class Staff
+    public class Staff: INotifyPropertyChanged
     {
         [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }
@@ -41,6 +42,8 @@ namespace NombramientoPartidos.Utilidades.ClasesPojos
             Cargo = cargo;
             Equipo = equipo;
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public override string ToString()
         {

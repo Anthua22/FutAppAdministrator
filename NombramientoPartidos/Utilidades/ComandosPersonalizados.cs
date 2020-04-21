@@ -20,7 +20,7 @@ namespace NombramientoPartidos.Utilidades
                 }
             );
         
-        public static readonly RoutedUICommand AceptarEdicion = new RoutedUICommand
+        public static readonly RoutedUICommand ComandoArbitro = new RoutedUICommand
             (
                 "Aceptar",
                 "Aceptar",

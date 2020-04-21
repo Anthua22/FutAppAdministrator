@@ -1,9 +1,10 @@
 ﻿using Newtonsoft.Json;
+using System.ComponentModel;
 
 namespace NombramientoPartidos.Utilidades.ClasesPojos
 {
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
-    public class Arbitro
+    public class Arbitro:INotifyPropertyChanged
     {
         [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }
@@ -69,6 +70,8 @@ namespace NombramientoPartidos.Utilidades.ClasesPojos
             Categoria = categoria;
             Provincia = provincia;
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public override string ToString()
         {

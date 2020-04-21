@@ -27,61 +27,41 @@ namespace NombramientoPartidos.View
             InitializeComponent();
         }
 
-        private void AceptarButton_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if((DataContext as InsertarArbitroViewModel).Insert())
-                {
-                    DialogResult = true;
-                }
-                else
-                {
-                    MessageBox.Show("Hay algunos campos requiros vacíos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    CambioCalores();
-
-                }
-               
-            }
-        
-            catch (Exception ex)
-            {
-                if(ex.Message.Equals("El objeto que acepta valores Null debe tener un valor."))
-                {
-                    MessageBox.Show("Hay algunos campos requiros vacíos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    CambioCalores();
-                }
-                else
-                {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }   
-                
-            }
-           
-        }
-        private void CambioCalores()
-        {
-            DniTextBox.BorderBrush = Brushes.Red;
-            ContraseñaTextBox.BorderBrush = Brushes.Red;
-            ProvinciaTextBox.BorderBrush = Brushes.Red;
-            CpTextBox.BorderBrush = Brushes.Red;
-            EmailTextBox.BorderBrush = Brushes.Red;
-            CategoriaComboBox.BorderThickness = new Thickness(2);
-            CategoriaComboBox.BorderBrush = Brushes.Red;
-            FechaDatePicker.BorderBrush = Brushes.Red;
-        }
-
+ 
+      
         private void FotoButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                (DataContext as InsertarArbitroViewModel).PonerImagen(ImagenArbitroImage);
+                (DataContext as InsertarArbitroViewModel).PonerImagen();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
+        }
+
+        private void InsertArbitro_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = !string.IsNullOrWhiteSpace((DataContext as InsertarArbitroViewModel).ArbitroInsertar.Dni) && !string.IsNullOrWhiteSpace((DataContext as InsertarArbitroViewModel).ArbitroInsertar.Pass) && !string.IsNullOrWhiteSpace((DataContext as InsertarArbitroViewModel).ArbitroInsertar.Email) && !string.IsNullOrWhiteSpace((DataContext as InsertarArbitroViewModel).ArbitroInsertar.Provincia) && !string.IsNullOrWhiteSpace((DataContext as InsertarArbitroViewModel).ArbitroInsertar.Cp);
+        }
+
+        private void InsertArbitro_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            try
+            {
+                if ((DataContext as InsertarArbitroViewModel).Insert())
+                {
+                    DialogResult = true;
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            }
         }
     }
 }

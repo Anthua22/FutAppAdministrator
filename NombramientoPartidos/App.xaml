@@ -12,7 +12,7 @@
                         <ImageBrush ImageSource="{Binding}"/>
                     </Ellipse.Fill>
                 </Ellipse>
-                <StackPanel VerticalAlignment="Center">
+                <StackPanel VerticalAlignment="Center" Margin="10,0,0,0">
                     <TextBlock Text="{Binding Nombre}" FontWeight="Bold"></TextBlock>
                     <TextBlock Text="{Binding Categoria}" Foreground="Gray"></TextBlock>
                 </StackPanel>
@@ -22,11 +22,11 @@
             <StackPanel Orientation="Horizontal">
                 <Ellipse Height="50" Width="50">
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="{Binding}"/>
+                        <ImageBrush ImageSource="{Binding Foto}"/>
                     </Ellipse.Fill>
                 </Ellipse>
 
-                <StackPanel VerticalAlignment="Center">
+                <StackPanel VerticalAlignment="Center" Margin="10,0,0,0">
                     <TextBlock Text="{Binding Nombre_Completo}" FontWeight="Bold"></TextBlock>
                     <TextBlock Text="{Binding Dni}" Foreground="Gray"></TextBlock>
                 </StackPanel>
@@ -40,7 +40,7 @@
                     </Ellipse.Fill>
                 </Ellipse>
 
-                <StackPanel VerticalAlignment="Center">
+                <StackPanel VerticalAlignment="Center" Margin="10,0,0,0">
                     <TextBlock Text="{Binding Nombre_Completo}" FontWeight="Bold"></TextBlock>
                     <TextBlock Text="{Binding Categoria}" Foreground="Gray"></TextBlock>
                 </StackPanel>

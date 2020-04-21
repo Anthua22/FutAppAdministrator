@@ -48,7 +48,7 @@ namespace NombramientoPartidos.View
         {
             try
             {
-                (DataContext as EditarArbitroViewModel).EditarImagen(FotoArbitroImage, (Arbitro)(ListaArbitrosDataGrid.SelectedItem));
+                (DataContext as EditarArbitroViewModel).EditarImagen();
             }catch(Exception ex)
             {
                 MessageBox.Show(ex.Message+"\nNo se ha elegido ninguna imagen", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -87,7 +87,18 @@ namespace NombramientoPartidos.View
 
         private void ListaArbitrosDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            (DataContext as EditarArbitroViewModel).ArbitroUpdate = ListaArbitrosDataGrid.SelectedItem as Arbitro;
+            if(ListaArbitrosDataGrid.SelectedItem != null)
+            {
+                (DataContext as EditarArbitroViewModel).ArbitroUpdate = ListaArbitrosDataGrid.SelectedItem as Arbitro;
+                FotoArbitroImage.IsEnabled = true;
+                FotoArbitro.Visibility = Visibility.Visible;
+            }
+         
+           
+            else
+            {
+                FotoArbitro.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

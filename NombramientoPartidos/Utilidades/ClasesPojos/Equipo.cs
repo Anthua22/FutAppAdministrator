@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 namespace NombramientoPartidos.Utilidades.ClasesPojos
 {
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
-    public class Equipo
+    public class Equipo: INotifyPropertyChanged
     {
         [JsonProperty(PropertyName = "idEquipo")]
         public int IdEquipo { get; set; }
@@ -37,6 +38,8 @@ namespace NombramientoPartidos.Utilidades.ClasesPojos
             Provincia = provincia;
             Direccion_Campo = direccion_campo;
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public override string ToString()
         {
