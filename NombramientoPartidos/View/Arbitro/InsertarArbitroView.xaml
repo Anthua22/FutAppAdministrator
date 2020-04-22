@@ -98,7 +98,7 @@
                         <ComboBox x:Name="CategoriaComboBox" Grid.Row="6" Grid.Column="1" Height="25" Width="400" ItemsSource="{Binding Categorias}" SelectedItem="{Binding ArbitroInsertar.Categoria, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="0,0,0,10"/>
 
                         <Label Grid.Row="7" Grid.Column="0" Content="Provincia*"/>
-                        <TextBox x:Name="ProvinciaTextBox" Grid.Row="7" Grid.Column="1" Text="{Binding ArbitroInsertar.Provincia, UpdateSourceTrigger=PropertyChanged}"/>
+                        <ComboBox x:Name="ProvinciasComboBox" Grid.Row="7" Grid.Column="1" Height="25" Width="400" ItemsSource="{Binding Provincias}" SelectedItem="{Binding ArbitroInsertar.Provincia, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="0,0,0,10"/>
 
                         <Label Grid.Row="8" Grid.Column="0" Content="Localidad"/>
                         <TextBox x:Name="LocalidadTextBox" Grid.Row="8" Grid.Column="1" Text="{Binding ArbitroInsertar.Localidad, UpdateSourceTrigger=PropertyChanged}"/>

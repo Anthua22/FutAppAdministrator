@@ -25,6 +25,7 @@ namespace NombramientoPartidos.ViewModel
         {
             Categorias = Utils.Categorias;
             Arbitros = new ObservableCollection<Arbitro>();
+            ArbitroEliminar = new Arbitro();
         }
 
         public void Filtro()

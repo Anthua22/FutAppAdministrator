@@ -23,6 +23,9 @@ namespace NombramientoPartidos.Utilidades.ClasesPojos
         [JsonProperty(PropertyName = "provincia")]
         public string Provincia { get; set; }
 
+        [JsonProperty(PropertyName = "foto")]
+        public string Foto { get; set; }
+
         [JsonProperty(PropertyName = "direccion_campo")]
         public string Direccion_Campo { get; set; }
 

@@ -29,7 +29,9 @@
         <Style TargetType="{x:Type Label}">
             <Setter Property="Margin" Value="10"/>
         </Style>
-       
+        <DataTemplate x:Key="Provincias">
+            <ComboBox x:Name="ProvinciasComboBox" ItemsSource="{Binding Provincias}" SelectedItem="{Binding Provincia}"/>
+        </DataTemplate>
 
     </Window.Resources>
 
@@ -66,12 +68,15 @@
 
         </Grid>
 
-
+        <StackPanel Visibility="Collapsed">
+            <ComboBox x:Name="ProvinciasComboBox" ItemsSource="{Binding Provincias}" SelectedItem="{Binding ArbitroUpdate.Provincia}"/>
+            <ComboBox x:Name="CategoriasNueva" ItemsSource="{Binding CategoriasNueva}" SelectedItem="{Binding ArbitroUpdate.Categoria}"/>
+        </StackPanel>
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,20">
             <Button x:Name="AceptarButton" Command="comandos:ComandosPersonalizados.ComandoArbitro">Aceptar</Button>
             <Button IsCancel="True">Cancelar</Button>
         </StackPanel>
-        <DataGrid x:Name="ListaArbitrosDataGrid" ItemsSource="{Binding}" Visibility="Hidden" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="ListaArbitrosDataGrid_SelectionChanged" SelectedItem="{Binding ArbitroUpdate}">
+        <DataGrid x:Name="ListaArbitrosDataGrid" ItemsSource="{Binding}" Visibility="Hidden"  AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="ListaArbitrosDataGrid_SelectionChanged" SelectedItem="{Binding ArbitroUpdate}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Dni" Binding="{Binding Dni}"/>
                 <DataGridTextColumn Header="Contraseña" Binding="{Binding Pass}"/>
@@ -79,10 +84,23 @@
                 <DataGridTextColumn Header="Teléfono" Binding="{Binding Telefono}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Email" Binding="{Binding Email}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Fecha Nacimiento" Binding="{Binding Fecha_Nacimiento}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Provincia" Binding="{Binding Provincia}"></DataGridTextColumn>
+                <DataGridTemplateColumn Header="Provincias">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox ItemsSource="{Binding ElementName=ProvinciasComboBox, Path=ItemsSource}" SelectedItem="{Binding Provincia}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
                 <DataGridTextColumn Header="Localidad" Binding="{Binding Localidad}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Código Postal" Binding="{Binding Cp}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Categoría" Binding="{Binding Categoria}"></DataGridTextColumn>
+                <DataGridTemplateColumn Header="Categoria">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox ItemsSource="{Binding ElementName=CategoriasNueva, Path=ItemsSource}" SelectedItem="{Binding Categoria}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
 
         </DataGrid>

@@ -32,7 +32,7 @@ namespace NombramientoPartidos.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("bVOOCgvwNx3sav8YOzrT8+zYJOn2p3LpcpVzcm9IHkbpQ6ZVOyXQdh6+IjXVajNYkak+0cLQUHCqjXWbC" +
             "+c0hA==")]
@@ -40,32 +40,53 @@ namespace NombramientoPartidos.Properties {
             get {
                 return ((string)(this["KeyValue"]));
             }
-            set {
-                this["KeyValue"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("arbitros")]
         public string ContainerArbitros {
             get {
                 return ((string)(this["ContainerArbitros"]));
             }
-            set {
-                this["ContainerArbitros"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("jugadores")]
         public string ContainerJugadores {
             get {
                 return ((string)(this["ContainerJugadores"]));
             }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("equipos")]
+        public string ContainerEquipos {
+            get {
+                return ((string)(this["ContainerEquipos"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("staffs")]
+        public string ContainerStaffs {
+            get {
+                return ((string)(this["ContainerStaffs"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("administradores")]
+        public string ContainerAdministradores {
+            get {
+                return ((string)(this["ContainerAdministradores"]));
+            }
             set {
-                this["ContainerJugadores"] = value;
+                this["ContainerAdministradores"] = value;
             }
         }
     }

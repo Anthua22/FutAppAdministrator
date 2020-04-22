@@ -14,6 +14,9 @@ namespace NombramientoPartidos.Utilidades
         public static ObservableCollection<string> Categorias { get; }
 
         public static ObservableCollection<string> CargosStaff { get; }
+
+        public static ObservableCollection<string> Provincias { get; }
+
         static Utils()
         {
             Categorias = new ObservableCollection<string>()
@@ -35,6 +38,13 @@ namespace NombramientoPartidos.Utilidades
                 "Preparador Físico",
                 "Entrenador Porteros",
                 "Fisioterapeuta"
+            };
+
+            Provincias = new ObservableCollection<string>()
+            {
+                "Alicante",
+                "Valencia",
+                "Castellón"
             };
         }
 

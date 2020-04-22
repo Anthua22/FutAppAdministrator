@@ -11,9 +11,11 @@ namespace NombramientoPartidos.ViewModel
     class EditarArbitroViewModel:INotifyPropertyChanged
     {
         public ObservableCollection<string> Categorias { get; }
+        public ObservableCollection<string> CategoriasNueva { get; }
         public event PropertyChangedEventHandler PropertyChanged;
         public CollectionViewSource Vista { get; private set; }
-        private ObservableCollection<Arbitro> ArbitrosFilter { get; set; }
+        public ObservableCollection<Arbitro> ArbitrosFilter { get; set; }
+        public ObservableCollection<string> Provincias { get; set; }
         string filtro;
        
         public Arbitro ArbitroUpdate { get; set; }
@@ -23,6 +25,8 @@ namespace NombramientoPartidos.ViewModel
         public EditarArbitroViewModel()
         {
             Categorias = Utils.Categorias;
+            CategoriasNueva = Utils.Categorias;
+            Provincias = Utils.Provincias;
             ArbitrosFilter = new ObservableCollection<Arbitro>();
             Vista = new CollectionViewSource();
             Vista.Source = ArbitrosFilter;

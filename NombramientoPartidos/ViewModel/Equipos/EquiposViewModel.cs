@@ -31,7 +31,10 @@ namespace NombramientoPartidos.ViewModel.Equipos
 
             if(this.Accion == Accion.Nuevo)
             {
-                Equipo = new Equipo();
+                Equipo = new Equipo()
+                {
+                    Foto = "/Assets/equipodefecto.jpg"
+                };
             }
             Categorias = Utils.Categorias;
         }
@@ -46,6 +49,11 @@ namespace NombramientoPartidos.ViewModel.Equipos
                         
                         if (!string.IsNullOrWhiteSpace(Equipo.Nombre) && !string.IsNullOrWhiteSpace(Equipo.Provincia))
                         {
+                            if (!Equipo.Foto.Equals("/Assets/equipodefecto.jpg") && !Equipo.Foto.Contains("http"))
+                            {
+                                string[] referenceblob = Equipo.Foto.Split('/');
+                                BlobStorage.GuardarImagen(Equipo.Foto, referenceblob[referenceblob.Length - 1], Equipo);
+                            }
                             ApiRest.InsertEquipo(Equipo);
                             return 1;
                         }
@@ -114,14 +122,21 @@ namespace NombramientoPartidos.ViewModel.Equipos
         }
 
         public void LimpiaCampos()
-        { 
-            Equipo = new Equipo();
+        {
+            Equipo = new Equipo()
+            {
+                Foto = "/Assets/equipodefecto.jpg"
+            };
             ListaEquipos = new ObservableCollection<Equipo>();
         }
 
-        public void ElegirFoto(Image image)
+        public void ElegirFoto()
         {
-            image.Source = new BitmapImage(new Uri(Utils.ObtenerRutaFichero()));
+            string ruta = Utils.ObtenerRutaFichero().Replace('\\','/');
+            if (!string.IsNullOrWhiteSpace(ruta))
+            {
+                Equipo.Foto = ruta;
+            }
         }
     }
 }

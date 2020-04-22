@@ -68,7 +68,7 @@ namespace NombramientoPartidos.View.Equipo
             }
             else
             {
-                e.CanExecute = ((EquiposViewModel)DataContext).Equipo != null;
+                e.CanExecute = !string.IsNullOrWhiteSpace((DataContext as EquiposViewModel).Equipo.Nombre);
             }
         }
 
@@ -76,7 +76,7 @@ namespace NombramientoPartidos.View.Equipo
         {
             try
             {
-                (DataContext as EquiposViewModel).ElegirFoto(ImagenEquipoImage);
+                (DataContext as EquiposViewModel).ElegirFoto();
             }catch(Exception ex)
             {
                 MessageBox.Show(ex.Message + "\nNo se ha elegido ninguna imagen", "Error", MessageBoxButton.OK, MessageBoxImage.Error);

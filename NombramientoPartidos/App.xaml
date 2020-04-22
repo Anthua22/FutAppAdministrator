@@ -9,7 +9,7 @@
             <StackPanel Orientation="Horizontal">
                 <Ellipse Height="50" Width="50">
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="{Binding}"/>
+                        <ImageBrush ImageSource="{Binding Foto}"/>
                     </Ellipse.Fill>
                 </Ellipse>
                 <StackPanel VerticalAlignment="Center" Margin="10,0,0,0">
@@ -36,7 +36,7 @@
             <StackPanel Orientation="Horizontal">
                 <Ellipse Height="50" Width="50">
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="{Binding}"/>
+                        <ImageBrush ImageSource="{Binding Foto}"/>
                     </Ellipse.Fill>
                 </Ellipse>
 
@@ -50,7 +50,7 @@
             <StackPanel Orientation="Horizontal">
                 <Ellipse Height="50" Width="50">
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="{Binding}"/>
+                        <ImageBrush ImageSource="{Binding Foto}"/>
                     </Ellipse.Fill>
                 </Ellipse>
 

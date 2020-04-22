@@ -26,6 +26,9 @@ namespace NombramientoPartidos.Utilidades.ClasesPojos
         [JsonProperty(PropertyName = "nombre_completo")]
         public string Nombre_Completo { get; set; }
 
+        [JsonProperty(PropertyName = "foto")]
+        public string Foto { get; set; }
+
         [JsonProperty(PropertyName = "dni")]
         public string Dni { get; set; }
 

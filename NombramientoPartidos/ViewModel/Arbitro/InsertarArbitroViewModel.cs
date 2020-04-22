@@ -14,10 +14,11 @@ namespace NombramientoPartidos.ViewModel
         public Arbitro ArbitroInsertar { get; set; }
         public ObservableCollection<string> Categorias { get; }
         public DateTime FechaNacimiento { get; set; }
-
+        public ObservableCollection<string> Provincias { get; }
         public InsertarArbitroViewModel()
         {
             Categorias = Utils.Categorias;
+            Provincias = Utils.Provincias;
             ArbitroInsertar = new Arbitro()
             {
                 Foto = "/Assets/defecto.jpg"
