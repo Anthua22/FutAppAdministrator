@@ -26,6 +26,8 @@ namespace NombramientoPartidos.ViewModel.JuadoresStaff
 
         public Equipo EquipoCambio { get; set; }
 
+        string fotoantigua;
+
         public EditarJugadorViewModel()
         {
             Categorias = Utils.Categorias;
@@ -49,12 +51,33 @@ namespace NombramientoPartidos.ViewModel.JuadoresStaff
           
         }
 
+        public void EditarImagen()
+        {
+            string ruta = Utils.ObtenerRutaFichero().Replace('\\', '/');
+            if (!string.IsNullOrWhiteSpace(ruta))
+            {
+                if (!JugadorUpdate.Foto.Equals("/Assets/defecto.jpg"))
+                {
+                    string[] urlBlob = JugadorUpdate.Foto.Split('/');
+
+                    fotoantigua = urlBlob[urlBlob.Length - 1];
+                }
+                JugadorUpdate.Foto = ruta;
+            }
+
+        }
         public bool Update()
         {
             JugadorUpdate.Dni = JugadorUpdate.Dni.ToUpper();
             JugadorUpdate.Equipo = EquipoCambio.IdEquipo;
             string[] fecha = JugadorUpdate.Fecha_Nacimiento.Split('-');
             JugadorUpdate.Categoria = Utils.ObtenerCategoriaJugador(new DateTime(int.Parse(fecha[0]),int.Parse(fecha[1]),int.Parse(fecha[2])), 2019);
+            if (!JugadorUpdate.Foto.Equals("/Assets/defecto.jpg") && !JugadorUpdate.Foto.Contains("http"))
+            {
+                string[] urlBlob = JugadorUpdate.Foto.Split('/');
+                BlobStorage.EliminarImagen(fotoantigua, JugadorUpdate);
+                JugadorUpdate.Foto = BlobStorage.GuardarImagen(JugadorUpdate.Foto, urlBlob[urlBlob.Length - 1], JugadorUpdate);
+            }
             return ApiRest.UpdateJugador(JugadorUpdate);
         }
     }

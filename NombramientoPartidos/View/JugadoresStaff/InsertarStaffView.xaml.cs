@@ -52,5 +52,10 @@ namespace NombramientoPartidos.View.JugadoresStaff
             (DataContext as InsertarStaffViewModel).Filtro(CategoriasComboBox.SelectedItem as string);
             EquiposComboBox.IsEnabled = true;
         }
+
+        private void FotoButton_Click(object sender, RoutedEventArgs e)
+        {
+            (DataContext as InsertarStaffViewModel).PonerImagen();
+        }
     }
 }

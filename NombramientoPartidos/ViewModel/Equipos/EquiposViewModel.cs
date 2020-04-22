@@ -24,6 +24,7 @@ namespace NombramientoPartidos.ViewModel.Equipos
         public ObservableCollection<string> Categorias { get; set; }
         public ObservableCollection<Equipo> ListaEquipos { get; private set; }
         public Accion Accion { get; private set; }
+        string fotoantigua;
 
         public EquiposViewModel(Accion accion)
         {
@@ -64,7 +65,13 @@ namespace NombramientoPartidos.ViewModel.Equipos
 
                 case Accion.Editar:
                     if (!string.IsNullOrWhiteSpace(Equipo.Nombre) && !string.IsNullOrWhiteSpace(Equipo.Provincia) && Equipo.Categoria != null)
-                    {     
+                    {
+                        if (!Equipo.Foto.Equals("/Assets/equipodefecto.jpg") && !Equipo.Foto.Contains("http"))
+                        {
+                            string[] referenceblob = Equipo.Foto.Split('/');
+                            BlobStorage.EliminarImagen(fotoantigua, Equipo);
+                            BlobStorage.GuardarImagen(Equipo.Foto, referenceblob[referenceblob.Length - 1], Equipo);
+                        }
                         ApiRest.UpdateEquipo(Equipo);
                         return 2;
                     }
@@ -73,7 +80,15 @@ namespace NombramientoPartidos.ViewModel.Equipos
 
                 case Accion.Borrar:
                     if (ApiRest.DeleteEquipo(Equipo.IdEquipo))
+                    {
+                        if(!Equipo.Foto.Equals("/Assets/equipodefecto.jpg"))
+                        {
+                            string[] referenceblob = Equipo.Foto.Split('/');
+                            BlobStorage.EliminarImagen(referenceblob[referenceblob.Length-1], Equipo);
+                        }
                         return 3;
+                    }
+                       
                     else
                         return -1;
 
@@ -135,6 +150,12 @@ namespace NombramientoPartidos.ViewModel.Equipos
             string ruta = Utils.ObtenerRutaFichero().Replace('\\','/');
             if (!string.IsNullOrWhiteSpace(ruta))
             {
+                if (!Equipo.Foto.Equals("/Assets/equipodefecto.jpg"))
+                {
+                    string[] urlBlob = Equipo.Foto.Split('/');
+
+                    fotoantigua = urlBlob[urlBlob.Length - 1];
+                }
                 Equipo.Foto = ruta;
             }
         }

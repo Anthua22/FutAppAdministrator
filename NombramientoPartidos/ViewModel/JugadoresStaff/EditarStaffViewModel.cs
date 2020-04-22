@@ -29,6 +29,8 @@ namespace NombramientoPartidos.ViewModel.JugadoresStaff
 
         public Equipo EquipoCambio { get; set; }
 
+        string fotoantigua;
+
         public EditarStaffViewModel()
         {
             Staffs = new ObservableCollection<Staff>();
@@ -55,6 +57,12 @@ namespace NombramientoPartidos.ViewModel.JugadoresStaff
         {
             StaffUpdate.Dni = StaffUpdate.Dni.ToUpper();
             StaffUpdate.Equipo = EquipoCambio.IdEquipo;
+            if (!StaffUpdate.Foto.Equals("/Assets/defecto.jpg") && !StaffUpdate.Foto.Contains("http"))
+            {
+                string[] urlBlob = StaffUpdate.Foto.Split('/');
+                BlobStorage.EliminarImagen(fotoantigua, StaffUpdate);
+                StaffUpdate.Foto = BlobStorage.GuardarImagen(StaffUpdate.Foto, urlBlob[urlBlob.Length - 1], StaffUpdate);
+            }
             return ApiRest.UpdateStaff(StaffUpdate);
         }
     }

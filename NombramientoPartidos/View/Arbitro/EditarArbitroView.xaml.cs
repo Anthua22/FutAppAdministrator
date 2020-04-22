@@ -18,7 +18,7 @@ namespace NombramientoPartidos.View
         {
             this.DataContext = new EditarArbitroViewModel();
             InitializeComponent();
-            ListaArbitrosDataGrid.DataContext = (DataContext as EditarArbitroViewModel).Vista;
+           // ListaArbitrosDataGrid.DataContext = (DataContext as EditarArbitroViewModel).Vista;
         }
 
 
@@ -91,6 +91,7 @@ namespace NombramientoPartidos.View
             {
                 (DataContext as EditarArbitroViewModel).ArbitroUpdate = ListaArbitrosDataGrid.SelectedItem as Arbitro;
                 FotoArbitroImage.IsEnabled = true;
+                FiltarButton.IsEnabled = true;
                 FotoArbitro.Visibility = Visibility.Visible;
             }
          

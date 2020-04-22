@@ -79,10 +79,10 @@
                     <DatePicker x:Name="FechaNacimientoDatePicker" SelectedDate="{Binding FechaNacimiento}" Grid.Column="1" Grid.Row="5"/>
 
                     <Label Content="Foto" Grid.Row="6" Grid.Column="0"/>
-                    <Button x:Name="FotoButton" Content="camera" FontFamily="{StaticResource FontAwesome}" FontSize="18" Height="30" Width="50" HorizontalAlignment="Left" Foreground="Green" Margin="0" Grid.Column="1" Grid.Row="6"/>
+                    <Button x:Name="FotoButton" Content="camera" FontFamily="{StaticResource FontAwesome}" Click="FotoButton_Click" FontSize="18" Height="30" Width="50" HorizontalAlignment="Left" Foreground="Green" Margin="0" Grid.Column="1" Grid.Row="6"/>
 
                 </Grid>
-                <Image Grid.Column="1" Grid.Row="0" x:Name="ImagenJugador" Source="/Assets/defecto.jpg" Margin="20"></Image>
+                <Image Grid.Column="1" Grid.Row="0" x:Name="ImagenJugador" Source="{Binding StaffInsert.Foto}" Margin="20"></Image>
             </Grid>
         </GroupBox>
     </DockPanel>

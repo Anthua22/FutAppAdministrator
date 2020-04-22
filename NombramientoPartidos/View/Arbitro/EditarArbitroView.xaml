@@ -64,19 +64,19 @@
 
             <TextBlock Grid.Row="1" Grid.Column="0" Text="Buscar por Nombre o Dni" VerticalAlignment="Center" HorizontalAlignment="Left"/>
             <TextBox Grid.Row="1" Grid.Column="1" x:Name="FiltroNombreTextBox" Width="250" Height="25" IsEnabled="False"/>
-            <Button Grid.Row="1" Grid.Column="2" Width="100" Height="25" x:Name="FiltarButton" HorizontalAlignment="Left" Click="FiltarButton_Click" Content="Filtrar"/>
+            <Button Grid.Row="1" Grid.Column="2" Width="100" Height="25" x:Name="FiltarButton" HorizontalAlignment="Left" Click="FiltarButton_Click" Content="Filtrar" IsEnabled="False"/>
 
         </Grid>
 
         <StackPanel Visibility="Collapsed">
-            <ComboBox x:Name="ProvinciasComboBox" ItemsSource="{Binding Provincias}" SelectedItem="{Binding ArbitroUpdate.Provincia}"/>
-            <ComboBox x:Name="CategoriasNueva" ItemsSource="{Binding CategoriasNueva}" SelectedItem="{Binding ArbitroUpdate.Categoria}"/>
+            <ComboBox x:Name="ProvinciasComboBox" ItemsSource="{Binding Provincias}"/>
+            <ComboBox x:Name="CategoriasNueva" ItemsSource="{Binding CategoriasNueva}"/>
         </StackPanel>
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,20">
             <Button x:Name="AceptarButton" Command="comandos:ComandosPersonalizados.ComandoArbitro">Aceptar</Button>
             <Button IsCancel="True">Cancelar</Button>
         </StackPanel>
-        <DataGrid x:Name="ListaArbitrosDataGrid" ItemsSource="{Binding}" Visibility="Hidden"  AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="ListaArbitrosDataGrid_SelectionChanged" SelectedItem="{Binding ArbitroUpdate}">
+        <DataGrid x:Name="ListaArbitrosDataGrid" ItemsSource="{Binding Vista.View}" Visibility="Hidden" SelectionMode="Single" SelectionUnit="FullRow" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="ListaArbitrosDataGrid_SelectionChanged" SelectedItem="{Binding ArbitroUpdate}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Dni" Binding="{Binding Dni}"/>
                 <DataGridTextColumn Header="Contraseña" Binding="{Binding Pass}"/>

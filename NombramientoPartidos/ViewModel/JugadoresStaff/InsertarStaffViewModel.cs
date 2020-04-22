@@ -30,7 +30,10 @@ namespace NombramientoPartidos.ViewModel.JugadoresStaff
             Categorias = Utils.Categorias;
             Equipos = new ObservableCollection<Equipo>();
             EquipoStaff = new Equipo();
-            StaffInsert = new Staff();
+            StaffInsert = new Staff()
+            {
+                Foto = "/Assets/defecto.jpg"
+            };
         }
     
         public void Filtro(string categoria)
@@ -43,7 +46,22 @@ namespace NombramientoPartidos.ViewModel.JugadoresStaff
             StaffInsert.Equipo = EquipoStaff.IdEquipo;
             StaffInsert.Dni = StaffInsert.Dni.ToUpper();
             StaffInsert.Fecha_Nacimiento = FechaNacimiento.Year + "-" + FechaNacimiento.Month + "-" + FechaNacimiento.Day;
+            if (!StaffInsert.Foto.Equals("/Assets/defecto.jpg"))
+            {
+                string[] rutaimagen = StaffInsert.Foto.Split('/');
+                string urlImagen = BlobStorage.GuardarImagen(StaffInsert.Foto, rutaimagen[rutaimagen.Length - 1], StaffInsert);
+                StaffInsert.Foto = urlImagen;
+            }
             return ApiRest.InsertStaff(StaffInsert);
+        }
+
+        public void PonerImagen()
+        {
+            string ruta = Utils.ObtenerRutaFichero().Replace('\\', '/');
+            if (!string.IsNullOrWhiteSpace(ruta))
+            {
+                StaffInsert.Foto = ruta;
+            }
         }
 
     }

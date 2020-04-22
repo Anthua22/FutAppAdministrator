@@ -55,5 +55,17 @@ namespace NombramientoPartidos.View.JugadoresStaff
             }
             
         }
+
+        private void FotoJugadorButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                (DataContext as EditarJugadorViewModel).EditarImagen();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
 }

@@ -48,10 +48,10 @@
                 <ComboBox Name="CategoriasCombobox" ItemsSource="{Binding Categorias}" Grid.Row="0" Grid.Column="1" SelectionChanged="CategoriasCombobox_SelectionChanged"/>
             
                 <Label Content="Escoge su Equipo" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
-                <ComboBox Name="EquiposComboBox" ItemsSource="{Binding Equipos}" Grid.Row="1" Grid.Column="1"  IsEnabled="False" ItemTemplate="{StaticResource EquiposTemplate}" SelectedItem="{Binding EquipoJugador}" SelectionChanged="EquiposComboBox_SelectionChanged"/>
+                <ComboBox Name="EquiposComboBox" ItemsSource="{Binding Equipos}" Grid.Row="1" Grid.Column="1" Height="55" IsEnabled="False" ItemTemplate="{StaticResource EquiposTemplate}" SelectedItem="{Binding EquipoJugador}" SelectionChanged="EquiposComboBox_SelectionChanged"/>
 
                 <Label Content="Elija el Jugador" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
-                <ComboBox Name="JugadoresComboBox" ItemsSource="{Binding Jugadores}" Grid.Row="2" Grid.Column="1" IsEnabled="False" SelectedItem="{Binding JugadorUpdate}" ItemTemplate="{StaticResource JugadoresTemplate}" SelectionChanged="JugadoresComboBox_SelectionChanged"/>
+                <ComboBox Name="JugadoresComboBox" ItemsSource="{Binding Jugadores}" Grid.Row="2" Grid.Column="1" Height="55" IsEnabled="False" SelectedItem="{Binding JugadorUpdate}" ItemTemplate="{StaticResource JugadoresTemplate}" SelectionChanged="JugadoresComboBox_SelectionChanged"/>
 
 
             </Grid> 
@@ -97,9 +97,9 @@
                 <TextBox Grid.Row="5" Grid.Column="1" MaxLength="3" Text="{Binding JugadorUpdate.Goles}"/>
 
                 <Label Content="Foto del jugador" Grid.Row="6" Grid.Column="0" />
-                <Button x:Name="FotoJugadorButton" Content="camera" FontFamily="{StaticResource FontAwesome}" Grid.Row="6" Grid.Column="1" FontSize="18" Height="35" Width="65" HorizontalAlignment="Left" Foreground="Green" VerticalAlignment="Center"/>
+                <Button x:Name="FotoJugadorButton" Content="camera" FontFamily="{StaticResource FontAwesome}" Grid.Row="6" Grid.Column="1" FontSize="18" Height="35" Width="65" HorizontalAlignment="Left" Foreground="Green" VerticalAlignment="Center" Click="FotoJugadorButton_Click"/>
 
-                <Image x:Name="ImagenJugador" Grid.Column="2" Grid.RowSpan="3" Source="/Assets/defecto.jpg"/>
+                <Image x:Name="ImagenJugador" Grid.Column="2" Grid.RowSpan="3" Source="{Binding JugadorUpdate.Foto}"/>
             </Grid>  
         </Border>
        

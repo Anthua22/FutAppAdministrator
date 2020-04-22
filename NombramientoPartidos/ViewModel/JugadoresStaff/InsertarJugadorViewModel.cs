@@ -22,7 +22,10 @@ namespace NombramientoPartidos.ViewModel.JuadoresStaff
         public InsertarJugadorViewModel()
         {
             Categorias = Utils.Categorias;
-            JugadorInsertar = new Jugador();
+            JugadorInsertar = new Jugador()
+            {
+                Foto = "/Assets/defecto.jpg"
+            };
             EquipoJugador = new Equipo();
             FechaNacimiento = DateTime.Now;
         }
@@ -32,9 +35,13 @@ namespace NombramientoPartidos.ViewModel.JuadoresStaff
             Equipos = Utils.FiltroEquipos(categoria);
         }
 
-        public void PonerImagen(Image imagen)
+        public void PonerImagen()
         {
-            imagen.Source = new BitmapImage(new Uri(Utils.ObtenerRutaFichero()));
+            string ruta = Utils.ObtenerRutaFichero().Replace('\\', '/');
+            if (!string.IsNullOrWhiteSpace(ruta))
+            {
+                JugadorInsertar.Foto = ruta;
+            }
         }
 
         public bool Execute()
@@ -43,6 +50,12 @@ namespace NombramientoPartidos.ViewModel.JuadoresStaff
             JugadorInsertar.Dni = JugadorInsertar.Dni.ToUpper();
             JugadorInsertar.Categoria = Utils.ObtenerCategoriaJugador(FechaNacimiento,2019);
             JugadorInsertar.Fecha_Nacimiento = FechaNacimiento.Year + "-" + FechaNacimiento.Month + "-" + FechaNacimiento.Day;
+            if (!JugadorInsertar.Foto.Equals("/Assets/defecto.jpg"))
+            {
+                string[] rutaimagen = JugadorInsertar.Foto.Split('/');
+                string urlImagen = BlobStorage.GuardarImagen(JugadorInsertar.Foto, rutaimagen[rutaimagen.Length - 1], JugadorInsertar);
+                JugadorInsertar.Foto = urlImagen;
+            }
             return ApiRest.InsertJugador(JugadorInsertar);
         }
 

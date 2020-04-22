@@ -61,6 +61,13 @@ namespace NombramientoPartidos.ViewModel
             MessageBoxResult messageresult = MessageBox.Show("Esta seguro de eliminar a " + ArbitroEliminar.Nombre_Completo + " con DNI: " + ArbitroEliminar.Dni + '?', "Advertencia", MessageBoxButton.YesNo,MessageBoxImage.Warning);
             if(messageresult == MessageBoxResult.Yes)
             {
+              
+                if(!ArbitroEliminar.Foto.Equals("/Assets/equipodefecto.jpg"))
+                {
+                    string[] blobreference = ArbitroEliminar.Foto.Split('/');
+                    BlobStorage.EliminarImagen(blobreference[blobreference.Length - 1], ArbitroEliminar);
+                }
+                
                 ApiRest.DeleteteArbitro(ArbitroEliminar.Id);
                 return true;
             }

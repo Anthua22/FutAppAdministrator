@@ -17,6 +17,7 @@ namespace NombramientoPartidos.ViewModel
         public ObservableCollection<Arbitro> ArbitrosFilter { get; set; }
         public ObservableCollection<string> Provincias { get; set; }
         string filtro;
+        string fotoantigua;
        
         public Arbitro ArbitroUpdate { get; set; }
         
@@ -96,7 +97,7 @@ namespace NombramientoPartidos.ViewModel
             if (!ArbitroUpdate.Foto.Equals("/Assets/defecto.jpg") && !ArbitroUpdate.Foto.Contains("http"))
             {
                 string[] urlBlob = ArbitroUpdate.Foto.Split('/');
-
+                BlobStorage.EliminarImagen(fotoantigua, ArbitroUpdate);
                 ArbitroUpdate.Foto = BlobStorage.GuardarImagen(ArbitroUpdate.Foto, urlBlob[urlBlob.Length - 1], ArbitroUpdate);
             }
             ArbitroUpdate.Dni = ArbitroUpdate.Dni.ToUpper();
@@ -113,7 +114,7 @@ namespace NombramientoPartidos.ViewModel
                 {
                     string[] urlBlob = ArbitroUpdate.Foto.Split('/');
 
-                    BlobStorage.EliminarImagen(urlBlob[urlBlob.Length - 1], ArbitroUpdate);
+                    fotoantigua = urlBlob[urlBlob.Length - 1];
                 }
                 ArbitroUpdate.Foto = ruta;
             }

@@ -27,7 +27,7 @@ namespace NombramientoPartidos.View.JugadoresStaff
         {
             try
             {
-                (DataContext as InsertarJugadorViewModel).PonerImagen(ImagenJugador);
+                (DataContext as InsertarJugadorViewModel).PonerImagen();
             }
             catch (Exception ex)
             {
@@ -38,7 +38,7 @@ namespace NombramientoPartidos.View.JugadoresStaff
 
         private void InsertCommandCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = ((DataContext as InsertarJugadorViewModel).EquipoJugador!=null && (DataContext as InsertarJugadorViewModel).EquipoJugador.IdEquipo !=0&& !string.IsNullOrWhiteSpace((DataContext as InsertarJugadorViewModel).JugadorInsertar.Nombre_Completo) && !string.IsNullOrWhiteSpace((DataContext as InsertarJugadorViewModel).JugadorInsertar.Dni));
+            e.CanExecute =  ((DataContext as InsertarJugadorViewModel).EquipoJugador.IdEquipo !=0&& !string.IsNullOrWhiteSpace((DataContext as InsertarJugadorViewModel).JugadorInsertar.Nombre_Completo) && !string.IsNullOrWhiteSpace((DataContext as InsertarJugadorViewModel).JugadorInsertar.Dni) && (DataContext as InsertarJugadorViewModel).FechaNacimiento!=DateTime.Now);
         }
 
         private void InsertCommandExecute(object sender, ExecutedRoutedEventArgs e)
