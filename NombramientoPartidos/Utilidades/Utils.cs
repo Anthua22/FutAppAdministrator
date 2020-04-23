@@ -128,7 +128,7 @@ namespace NombramientoPartidos.Utilidades
                     return "Senior";
                 }
             }
-            return null;
+            return "Sin Categoría";
             
         }
 

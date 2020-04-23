@@ -48,7 +48,6 @@ namespace NombramientoPartidos.View.Equipo
                 }
                 ControlCombosBox();
                 ((EquiposViewModel)this.DataContext).LimpiaCampos();
-                ImagenEquipoImage.Source = null;
             }
             catch(Exception ex)
             {
@@ -93,6 +92,7 @@ namespace NombramientoPartidos.View.Equipo
             OcultarElementos((DataContext as EquiposViewModel).Accion);
             AñadirEquipoButton.IsEnabled = false;
             ModificarEquipoButton.IsEnabled = true;
+            SeleccionImagenEquipoButton.IsEnabled = true;
             EliminarEquipoButton.IsEnabled = true;
         }
 
@@ -101,7 +101,9 @@ namespace NombramientoPartidos.View.Equipo
             ControlCombosBox(); 
             CRUDGroupBox.Header = "Modificar Equipo";
             AceptarCambiosButton.Content = "Modificar Equipo";
+            SeleccionImagenEquipoButton.IsEnabled = false;
             ((EquiposViewModel)this.DataContext).CambiaAccion(Accion.Editar);
+            (DataContext as EquiposViewModel).Equipo.Foto = "";
             OcultarElementos((DataContext as EquiposViewModel).Accion);
             ModificarEquipoButton.IsEnabled = false;
             AñadirEquipoButton.IsEnabled = true;
@@ -114,8 +116,8 @@ namespace NombramientoPartidos.View.Equipo
             CRUDGroupBox.Header = "Eliminar Equipo";
             AceptarCambiosButton.Content = "Eliminar Equipo";
             ((EquiposViewModel)this.DataContext).CambiaAccion(Accion.Borrar);
+            (DataContext as EquiposViewModel).Equipo.Foto = "";
             OcultarElementos((DataContext as EquiposViewModel).Accion);
-            EquiposComboBox.IsEnabled = false;
             EliminarEquipoButton.IsEnabled = false;
             AñadirEquipoButton.IsEnabled = true;
             ModificarEquipoButton.IsEnabled = true;
@@ -126,7 +128,6 @@ namespace NombramientoPartidos.View.Equipo
         {
             CategoriasCRUDComboBox.SelectedItem = null;
             EquiposComboBox.IsEnabled = false;
-            ImagenEquipoImage.Source = null;
 
         }
         private void OcultarElementos(Accion accion)
@@ -178,6 +179,11 @@ namespace NombramientoPartidos.View.Equipo
             (DataContext as EquiposViewModel).Equipo.Categoria = CategoriasCRUDComboBox.SelectedItem as string;
             (DataContext as EquiposViewModel).FiltroCategoria();
             EquiposComboBox.IsEnabled = true;
+        }
+
+        private void EquiposComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SeleccionImagenEquipoButton.IsEnabled = true; 
         }
     }
 }

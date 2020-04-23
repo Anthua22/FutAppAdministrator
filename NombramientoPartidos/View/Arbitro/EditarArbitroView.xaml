@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NombramientoPartidos.View"
         xmlns:comandos="clr-namespace:NombramientoPartidos.Utilidades"
+        xmlns:src="clr-namespace:NombramientoPartidos.ViewModel"
         mc:Ignorable="d"
         Title="Modificar Datos Árbitro" Height="500" Width="800" ResizeMode="NoResize" ShowInTaskbar="False">
     <Window.Resources>
@@ -14,6 +15,8 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             
         </Style>
+
+        <src:EditarArbitroViewModel x:Key="ListasCombosBox"/>
         <Style TargetType="{x:Type TextBlock}">
             <Setter Property="VerticalAlignment" Value="Center"/>
            
@@ -87,7 +90,7 @@
                 <DataGridTemplateColumn Header="Provincias">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ComboBox ItemsSource="{Binding ElementName=ProvinciasComboBox, Path=ItemsSource}" SelectedItem="{Binding Provincia}"/>
+                            <ComboBox  ItemsSource="{Binding Source={StaticResource ListasCombosBox},Path=Provincias}" SelectedItem="{Binding Provincia}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -97,7 +100,7 @@
                 <DataGridTemplateColumn Header="Categoria">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ComboBox ItemsSource="{Binding ElementName=CategoriasNueva, Path=ItemsSource}" SelectedItem="{Binding Categoria}"/>
+                            <ComboBox  x:Name="CategoriasNuevaComboBox" SelectionChanged="CategoriasNuevaComboBox_SelectionChanged" SelectedItem="{Binding Categoria}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

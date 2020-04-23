@@ -69,6 +69,7 @@ namespace NombramientoPartidos.ViewModel.JuadoresStaff
         public bool Update()
         {
             JugadorUpdate.Dni = JugadorUpdate.Dni.ToUpper();
+            ValidacionesRegexp.ValidarDniNie(JugadorUpdate.Dni);
             JugadorUpdate.Equipo = EquipoCambio.IdEquipo;
             string[] fecha = JugadorUpdate.Fecha_Nacimiento.Split('-');
             JugadorUpdate.Categoria = Utils.ObtenerCategoriaJugador(new DateTime(int.Parse(fecha[0]),int.Parse(fecha[1]),int.Parse(fecha[2])), 2019);

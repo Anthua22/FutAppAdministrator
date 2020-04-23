@@ -70,7 +70,7 @@
 
                             <Label x:Name="SeleccionEquipoLabel" Grid.Column="0" Grid.Row="1" Content="Seleccione un Equipo" Visibility="Collapsed"/>
                             <ComboBox Grid.Column="1" Grid.Row="1" x:Name="EquiposComboBox" Width="270" Margin="10,0,10,10" Visibility="Collapsed"
-                              ItemsSource="{Binding ListaEquipos}" SelectedItem="{Binding Equipo}" ItemTemplate="{StaticResource EquiposTemplate}" IsEnabled="False"></ComboBox>
+                              ItemsSource="{Binding ListaEquipos}" SelectedItem="{Binding Equipo}" ItemTemplate="{StaticResource EquiposTemplate}" IsEnabled="False" SelectionChanged="EquiposComboBox_SelectionChanged"></ComboBox>
 
                             <Label Grid.Column="0"  Grid.Row="2" x:Name="NombreEquipoLabel" Content="Nombre del Equipo/Club:*"/>
                             <TextBox Grid.Column="1" Grid.Row="2" x:Name="NombreEquipoTextBox" Width="270" Text="{Binding Equipo.Nombre}"/>

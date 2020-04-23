@@ -24,21 +24,21 @@ namespace NombramientoPartidos.View
     {
         public DeleteArbitroView()
         {
-            DataContext = new DeleteViewModel();
+            DataContext = new DeleteArbitroViewModel();
             InitializeComponent();
 
         }
 
         private void CategoriaComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            (DataContext as DeleteViewModel).Filtro();
+            (DataContext as DeleteArbitroViewModel).Filtro();
             ArbitrosComboBox.IsEnabled = true;
         }
 
 
         private void BorrarCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if((DataContext as DeleteViewModel).DeleteCanExecute())
+            if((DataContext as DeleteArbitroViewModel).DeleteCanExecute())
             {
                 e.CanExecute = true;
             }
@@ -52,7 +52,7 @@ namespace NombramientoPartidos.View
         {
             try
             {
-                if ((DataContext as DeleteViewModel).DeleteExecute())
+                if ((DataContext as DeleteArbitroViewModel).DeleteExecute())
                 {
                     DialogResult = true;
                 }

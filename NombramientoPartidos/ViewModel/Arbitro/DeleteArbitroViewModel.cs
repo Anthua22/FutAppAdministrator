@@ -12,7 +12,7 @@ using System.Windows;
 
 namespace NombramientoPartidos.ViewModel
 {
-    class DeleteViewModel : INotifyPropertyChanged
+    class DeleteArbitroViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<string> Categorias{ get; private set; }
@@ -21,7 +21,7 @@ namespace NombramientoPartidos.ViewModel
         public Arbitro ArbitroEliminar { get; set; }
 
 
-        public DeleteViewModel()
+        public DeleteArbitroViewModel()
         {
             Categorias = Utils.Categorias;
             Arbitros = new ObservableCollection<Arbitro>();

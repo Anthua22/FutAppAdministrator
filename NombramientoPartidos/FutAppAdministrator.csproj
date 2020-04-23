@@ -86,13 +86,14 @@
     <Compile Include="Utilidades\ClasesPojos\Arbitro.cs" />
     <Compile Include="Utilidades\ClasesPojos\Equipo.cs" />
     <Compile Include="Utilidades\ClasesPojos\Jugador.cs" />
+    <Compile Include="Utilidades\ClasesPojos\Partido.cs" />
     <Compile Include="Utilidades\ClasesPojos\Staff.cs" />
     <Compile Include="Utilidades\ComandosPersonalizados.cs" />
     <Compile Include="Utilidades\Excepciones.cs" />
     <Compile Include="Utilidades\Utils.cs" />
     <Compile Include="Utilidades\ValidacionesRegexp.cs" />
     <Compile Include="ViewModel\Arbitro\ArbitroViewModel.cs" />
-    <Compile Include="ViewModel\Arbitro\DeleteViewModel.cs" />
+    <Compile Include="ViewModel\Arbitro\DeleteArbitroViewModel.cs" />
     <Compile Include="ViewModel\Arbitro\EditarArbitroViewModel.cs" />
     <Compile Include="ViewModel\Arbitro\InsertarArbitroViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />

@@ -32,6 +32,7 @@ namespace NombramientoPartidos.ViewModel.JugadoresStaff
             Equipos = new ObservableCollection<Equipo>();
             Staffs = new ObservableCollection<Staff>();
             EquipoStaff = new Equipo();
+            StaffDelete = new Staff();
 
         }
 
@@ -52,6 +53,12 @@ namespace NombramientoPartidos.ViewModel.JugadoresStaff
             MessageBoxResult messageresult = MessageBox.Show("Esta seguro que desea eliminar a " + StaffDelete.Nombre_Completo + " del equipo: " + EquipoStaff.Nombre + '?', "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (messageresult == MessageBoxResult.Yes)
             {
+                if (!StaffDelete.Foto.Equals("/Assets/equipodefecto.jpg"))
+                {
+                    string[] blobreference = StaffDelete.Foto.Split('/');
+                    BlobStorage.EliminarImagen(blobreference[blobreference.Length - 1], StaffDelete);
+                }
+
                 ApiRest.DeleteStaff(StaffDelete.Id);
                 return true;
             }

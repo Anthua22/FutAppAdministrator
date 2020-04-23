@@ -54,7 +54,7 @@
                     </Ellipse.Fill>
                 </Ellipse>
 
-                <StackPanel VerticalAlignment="Center">
+                <StackPanel VerticalAlignment="Center"  Margin="10,0,0,0">
                     <TextBlock Text="{Binding Nombre_Completo}" FontWeight="Bold"></TextBlock>
                     <TextBlock Text="{Binding Cargo}" Foreground="Gray"></TextBlock>
                 </StackPanel>

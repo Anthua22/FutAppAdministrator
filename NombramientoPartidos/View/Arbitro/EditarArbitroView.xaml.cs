@@ -99,7 +99,13 @@ namespace NombramientoPartidos.View
             else
             {
                 FotoArbitro.Visibility = Visibility.Hidden;
+                
             }
+        }
+
+        private void CategoriasNuevaComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //(DataContext as EditarArbitroViewModel).ArbitroUpdate.Provincia = 
         }
     }
 }

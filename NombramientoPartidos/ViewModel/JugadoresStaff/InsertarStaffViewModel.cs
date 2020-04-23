@@ -45,6 +45,7 @@ namespace NombramientoPartidos.ViewModel.JugadoresStaff
         {
             StaffInsert.Equipo = EquipoStaff.IdEquipo;
             StaffInsert.Dni = StaffInsert.Dni.ToUpper();
+            ValidacionesRegexp.ValidarDniNie(StaffInsert.Dni);
             StaffInsert.Fecha_Nacimiento = FechaNacimiento.Year + "-" + FechaNacimiento.Month + "-" + FechaNacimiento.Day;
             if (!StaffInsert.Foto.Equals("/Assets/defecto.jpg"))
             {

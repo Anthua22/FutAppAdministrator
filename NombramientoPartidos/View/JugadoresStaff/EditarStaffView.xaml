@@ -70,7 +70,7 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
@@ -81,7 +81,7 @@
                 <TextBox Text="{Binding StaffUpdate.Nombre_Completo}" Grid.Row="0" Grid.Column="1"/>
 
                 <Label Content="Equipo al que Pertenece:" Grid.Row="1" Grid.Column="0"/>
-                <ComboBox ItemsSource="{Binding Equipos}" SelectedItem="{Binding EquipoCambio}" x:Name="EquipoComboBox" ItemTemplate="{StaticResource EquiposTemplate}" Grid.Row="1" Grid.Column="1" />
+                <ComboBox ItemsSource="{Binding Equipos}" SelectedItem="{Binding EquipoCambio}" x:Name="EquipoComboBox" Height="55" ItemTemplate="{StaticResource EquiposTemplate}" Grid.Row="1" Grid.Column="1" />
 
                 <Label Content="DNI o NIE:" Grid.Row="2" Grid.Column="0"/>
                 <TextBox MaxLength="9" Grid.Row="2" Grid.Column="1" Text="{Binding StaffUpdate.Dni}"/>
@@ -93,9 +93,9 @@
                 <DatePicker  SelectedDate="{Binding StaffUpdate.Fecha_Nacimiento}" Grid.Row="4" Grid.Column="1" Margin="0,0,0,5"/>
 
                 <Label Content="Foto del jugador" Grid.Row="5" Grid.Column="0"/>
-                <Button x:Name="FotoJugadorButton" Content="camera" FontFamily="{StaticResource FontAwesome}" Grid.Row="5" Grid.Column="1" FontSize="18" Height="35" Width="65" HorizontalAlignment="Left" Foreground="Green"/>
+                <Button x:Name="FotoStaffButton" Content="camera" FontFamily="{StaticResource FontAwesome}" Grid.Row="5" Grid.Column="1" FontSize="18" Height="35" Width="65" HorizontalAlignment="Left" Foreground="Green" Click="FotoStaffButton_Click"/>
 
-                <Image x:Name="ImagenJugador" Grid.Column="2" Grid.RowSpan="3" Margin="10" Source="/Assets/defecto.jpg"/>
+                <Image x:Name="ImagenJugador" Grid.Column="2" Grid.RowSpan="3" Margin="10" Source="{Binding StaffUpdate.Foto}"/>
             </Grid>
         </Border>
 

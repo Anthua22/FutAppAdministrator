@@ -28,6 +28,7 @@ namespace NombramientoPartidos.ViewModel.JugadoresStaff
             Jugadores = new ObservableCollection<Jugador>();
             EquipoJugador = new Equipo();
             Equipos = new ObservableCollection<Equipo>();
+            JugadorDelete = new Jugador();
         }
 
         public void Filtro(string categoria)
@@ -49,6 +50,12 @@ namespace NombramientoPartidos.ViewModel.JugadoresStaff
             MessageBoxResult messageresult = MessageBox.Show("Esta seguro que desea eliminar a " + JugadorDelete.Nombre_Completo + " del equipo: " + EquipoJugador.Nombre + '?', "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (messageresult == MessageBoxResult.Yes)
             {
+                if (!JugadorDelete.Foto.Equals("/Assets/equipodefecto.jpg"))
+                {
+                    string[] blobreference = JugadorDelete.Foto.Split('/');
+                    BlobStorage.EliminarImagen(blobreference[blobreference.Length - 1], JugadorDelete);
+                }
+
                 ApiRest.DeleteteJugador(JugadorDelete.Id);
                 return true;
             }

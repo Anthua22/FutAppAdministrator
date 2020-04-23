@@ -67,5 +67,9 @@ namespace NombramientoPartidos.View.JugadoresStaff
         }
 
        
+        private void FotoStaffButton_Click(object sender, RoutedEventArgs e)
+        {
+            (DataContext as EditarStaffViewModel).CambiarFoto();
+        }
     }
 }

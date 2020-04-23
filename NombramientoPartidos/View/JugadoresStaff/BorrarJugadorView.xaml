@@ -48,10 +48,10 @@
             <ComboBox x:Name="CategoriasComboBox" ItemsSource="{Binding Categorias}" Grid.Row="0" Grid.Column="1" SelectionChanged="CategoriasComboBox_SelectionChanged"/>
 
             <Label Content="Elige el equipo que pertenece el jugador" Grid.Row="1" Grid.Column="0"/>
-            <ComboBox x:Name="EquiposComboBox" ItemsSource="{Binding Equipos}" ItemTemplate="{StaticResource EquiposTemplate}" SelectedItem="{Binding EquipoJugador}" Grid.Row="1" Grid.Column="1" IsEnabled="False" SelectionChanged="EquiposComboBox_SelectionChanged"/>
+            <ComboBox x:Name="EquiposComboBox" ItemsSource="{Binding Equipos}" ItemTemplate="{StaticResource EquiposTemplate}" SelectedItem="{Binding EquipoJugador}" Height="55" Grid.Row="1" Grid.Column="1" IsEnabled="False" SelectionChanged="EquiposComboBox_SelectionChanged"/>
 
             <Label Content="Elige el jugador a eliminar" Grid.Row="2" Grid.Column="0"/>
-            <ComboBox x:Name="JugadoresComboBox" ItemsSource="{Binding Jugadores}" ItemTemplate="{StaticResource JugadoresTemplate}" SelectedItem="{Binding JugadorDelete}" Grid.Row="2" Grid.Column="1" IsEnabled="False"/>
+            <ComboBox x:Name="JugadoresComboBox" ItemsSource="{Binding Jugadores}" ItemTemplate="{StaticResource JugadoresTemplate}" SelectedItem="{Binding JugadorDelete}" Height="55" Grid.Row="2" Grid.Column="1" IsEnabled="False"/>
 
         </Grid>
     </DockPanel>

@@ -56,6 +56,7 @@ namespace NombramientoPartidos.ViewModel.JugadoresStaff
         public bool Update()
         {
             StaffUpdate.Dni = StaffUpdate.Dni.ToUpper();
+            ValidacionesRegexp.ValidarDniNie(StaffUpdate.Dni);
             StaffUpdate.Equipo = EquipoCambio.IdEquipo;
             if (!StaffUpdate.Foto.Equals("/Assets/defecto.jpg") && !StaffUpdate.Foto.Contains("http"))
             {
@@ -64,6 +65,21 @@ namespace NombramientoPartidos.ViewModel.JugadoresStaff
                 StaffUpdate.Foto = BlobStorage.GuardarImagen(StaffUpdate.Foto, urlBlob[urlBlob.Length - 1], StaffUpdate);
             }
             return ApiRest.UpdateStaff(StaffUpdate);
+        }
+
+        public void CambiarFoto()
+        {
+            string ruta = Utils.ObtenerRutaFichero().Replace('\\', '/');
+            if (!string.IsNullOrWhiteSpace(ruta))
+            {
+                if (!StaffUpdate.Foto.Equals("/Assets/defecto.jpg"))
+                {
+                    string[] urlBlob = StaffUpdate.Foto.Split('/');
+
+                    fotoantigua = urlBlob[urlBlob.Length - 1];
+                }
+                StaffUpdate.Foto = ruta;
+            }
         }
     }
 }
