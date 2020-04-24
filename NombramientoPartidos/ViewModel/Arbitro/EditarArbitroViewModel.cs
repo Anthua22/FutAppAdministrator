@@ -15,6 +15,7 @@ namespace NombramientoPartidos.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
         public CollectionViewSource Vista { get; private set; }
         public ObservableCollection<Arbitro> ArbitrosFilter { get; set; }
+        public string  Categoria { get; set; }
         public ObservableCollection<string> Provincias { get; set; }
         string filtro;
         string fotoantigua;
@@ -64,7 +65,7 @@ namespace NombramientoPartidos.ViewModel
         public void FiltroCategoria()
         {
 
-            switch (ArbitroUpdate.Categoria)
+            switch (Categoria)
             {
                 case "1º División":
                     ArbitrosFilter = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("1º División")));

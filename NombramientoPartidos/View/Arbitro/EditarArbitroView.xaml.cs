@@ -89,7 +89,7 @@ namespace NombramientoPartidos.View
         {
             if(ListaArbitrosDataGrid.SelectedItem != null)
             {
-                (DataContext as EditarArbitroViewModel).ArbitroUpdate = ListaArbitrosDataGrid.SelectedItem as Arbitro;
+              
                 FotoArbitroImage.IsEnabled = true;
                 FiltarButton.IsEnabled = true;
                 FotoArbitro.Visibility = Visibility.Visible;
@@ -103,9 +103,6 @@ namespace NombramientoPartidos.View
             }
         }
 
-        private void CategoriasNuevaComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //(DataContext as EditarArbitroViewModel).ArbitroUpdate.Provincia = 
-        }
+       
     }
 }

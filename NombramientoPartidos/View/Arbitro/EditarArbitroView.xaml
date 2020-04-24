@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NombramientoPartidos.View"
         xmlns:comandos="clr-namespace:NombramientoPartidos.Utilidades"
-        xmlns:src="clr-namespace:NombramientoPartidos.ViewModel"
         mc:Ignorable="d"
         Title="Modificar Datos Árbitro" Height="500" Width="800" ResizeMode="NoResize" ShowInTaskbar="False">
     <Window.Resources>
@@ -16,7 +15,6 @@
             
         </Style>
 
-        <src:EditarArbitroViewModel x:Key="ListasCombosBox"/>
         <Style TargetType="{x:Type TextBlock}">
             <Setter Property="VerticalAlignment" Value="Center"/>
            
@@ -32,9 +30,6 @@
         <Style TargetType="{x:Type Label}">
             <Setter Property="Margin" Value="10"/>
         </Style>
-        <DataTemplate x:Key="Provincias">
-            <ComboBox x:Name="ProvinciasComboBox" ItemsSource="{Binding Provincias}" SelectedItem="{Binding Provincia}"/>
-        </DataTemplate>
 
     </Window.Resources>
 
@@ -58,10 +53,10 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Elige la categoría"  VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
-            <ComboBox Grid.Row="0" Grid.Column="1" x:Name="CategoriaComboBox" ItemsSource="{Binding Categorias}" SelectionChanged="CategoriaComboBox_SelectionChanged" SelectedItem="{Binding ArbitroUpdate.Categoria}"></ComboBox>
+            <ComboBox Grid.Row="0" Grid.Column="1" x:Name="CategoriaComboBox" ItemsSource="{Binding Categorias}" SelectionChanged="CategoriaComboBox_SelectionChanged" SelectedItem="{Binding Categoria}"></ComboBox>
             <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2" x:Name="FotoArbitro" Visibility="Hidden">
-                <Image x:Name="FotoArbitroImage" Source="{Binding ArbitroUpdate.Foto}"></Image>
-                <Button Content="&#xf303;" Foreground="Green" FontFamily="{StaticResource FontAwesome}" Margin="15,0,0,0" Height="25" Width="50" Click="Button_Click"/>
+                <Image x:Name="FotoArbitroImage" Source="{Binding ArbitroUpdate.Foto}" ToolTip="Imagen del árbitro seleccionado o del primer árbitro sino se ha seleccionado ninguno" Width="150" HorizontalAlignment="Left"></Image>
+                <Button Content="&#xf303;" Foreground="Green" FontFamily="{StaticResource FontAwesome}" Margin="5,0,10,0" Height="25" Width="50" Click="Button_Click"/>
             </StackPanel>
             
 
@@ -71,10 +66,7 @@
 
         </Grid>
 
-        <StackPanel Visibility="Collapsed">
-            <ComboBox x:Name="ProvinciasComboBox" ItemsSource="{Binding Provincias}"/>
-            <ComboBox x:Name="CategoriasNueva" ItemsSource="{Binding CategoriasNueva}"/>
-        </StackPanel>
+     
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,20">
             <Button x:Name="AceptarButton" Command="comandos:ComandosPersonalizados.ComandoArbitro">Aceptar</Button>
             <Button IsCancel="True">Cancelar</Button>
@@ -90,7 +82,7 @@
                 <DataGridTemplateColumn Header="Provincias">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ComboBox  ItemsSource="{Binding Source={StaticResource ListasCombosBox},Path=Provincias}" SelectedItem="{Binding Provincia}"/>
+                            <ComboBox  ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=local:EditarArbitroView}, Path=DataContext.Provincias}" SelectedItem="{Binding Provincia, UpdateSourceTrigger=PropertyChanged}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -100,7 +92,7 @@
                 <DataGridTemplateColumn Header="Categoria">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ComboBox  x:Name="CategoriasNuevaComboBox" SelectionChanged="CategoriasNuevaComboBox_SelectionChanged" SelectedItem="{Binding Categoria}"/>
+                            <ComboBox  ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=local:EditarArbitroView}, Path=DataContext.CategoriasNueva}"  SelectedItem="{Binding Categoria, UpdateSourceTrigger=PropertyChanged}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
