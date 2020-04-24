@@ -51,7 +51,7 @@ namespace NombramientoPartidos.View.Equipo
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
          
 
@@ -63,7 +63,7 @@ namespace NombramientoPartidos.View.Equipo
         {
             if (((EquiposViewModel)DataContext).Accion == Accion.Nuevo)
             {
-                e.CanExecute = (((EquiposViewModel)DataContext).Equipo.Categoria != null && !string.IsNullOrWhiteSpace((DataContext as EquiposViewModel).Equipo.Nombre) && !string.IsNullOrWhiteSpace((DataContext as EquiposViewModel).Equipo.Provincia));
+                e.CanExecute = (((EquiposViewModel)DataContext).Equipo.Categoria != null && !string.IsNullOrWhiteSpace((DataContext as EquiposViewModel).Equipo.Nombre) && !string.IsNullOrWhiteSpace((DataContext as EquiposViewModel).Equipo.Provincia) && !string.IsNullOrWhiteSpace((DataContext as EquiposViewModel).Equipo.Correo));
             }
             else
             {
@@ -90,10 +90,6 @@ namespace NombramientoPartidos.View.Equipo
             AceptarCambiosButton.Content = "Añadir Equipo";   
             ((EquiposViewModel)this.DataContext).CambiaAccion(Accion.Nuevo);
             OcultarElementos((DataContext as EquiposViewModel).Accion);
-            AñadirEquipoButton.IsEnabled = false;
-            ModificarEquipoButton.IsEnabled = true;
-            SeleccionImagenEquipoButton.IsEnabled = true;
-            EliminarEquipoButton.IsEnabled = true;
         }
 
         private void ModificarEquipoButton_Click(object sender, RoutedEventArgs e)
@@ -105,9 +101,7 @@ namespace NombramientoPartidos.View.Equipo
             ((EquiposViewModel)this.DataContext).CambiaAccion(Accion.Editar);
             (DataContext as EquiposViewModel).Equipo.Foto = "";
             OcultarElementos((DataContext as EquiposViewModel).Accion);
-            ModificarEquipoButton.IsEnabled = false;
-            AñadirEquipoButton.IsEnabled = true;
-            EliminarEquipoButton.IsEnabled = true;
+        
         }
 
         private void EliminarEquipoButton_Click(object sender, RoutedEventArgs e)
@@ -118,9 +112,7 @@ namespace NombramientoPartidos.View.Equipo
             ((EquiposViewModel)this.DataContext).CambiaAccion(Accion.Borrar);
             (DataContext as EquiposViewModel).Equipo.Foto = "";
             OcultarElementos((DataContext as EquiposViewModel).Accion);
-            EliminarEquipoButton.IsEnabled = false;
-            AñadirEquipoButton.IsEnabled = true;
-            ModificarEquipoButton.IsEnabled = true;
+       
             
         }
 
@@ -140,11 +132,18 @@ namespace NombramientoPartidos.View.Equipo
                     NombreEquipoLabel.Visibility = Visibility.Visible;
                     NombreEquipoTextBox.Visibility = Visibility.Visible;
                     ProvinciaLabel.Visibility = Visibility.Visible;
-                    ProvinciaEquipoTextBox.Visibility = Visibility.Visible;
+                    ProvinciaEquipoComboBox.Visibility = Visibility.Visible;
                     DireccionCampoTextBox.Visibility = Visibility.Visible;
                     DireccionLabel.Visibility = Visibility.Visible;
                     EscudoLabel.Visibility = Visibility.Visible;
                     SeleccionImagenEquipoButton.Visibility = Visibility.Visible;
+                    CorreoContactoLabel.Visibility = Visibility.Visible;
+                    CorreoContactoTextBox.Visibility = Visibility.Visible;
+                    AñadirEquipoButton.IsEnabled = false;
+                    ModificarEquipoButton.IsEnabled = true;
+                    SeleccionImagenEquipoButton.IsEnabled = true;
+                    ProvinciaEquipoComboBox.IsEnabled = true;
+                    EliminarEquipoButton.IsEnabled = true;
                     break;
                 case Accion.Editar:
                     EquiposComboBox.Visibility = Visibility.Visible;
@@ -152,11 +151,18 @@ namespace NombramientoPartidos.View.Equipo
                     NombreEquipoLabel.Visibility = Visibility.Visible;
                     NombreEquipoTextBox.Visibility = Visibility.Visible;
                     ProvinciaLabel.Visibility = Visibility.Visible;
-                    ProvinciaEquipoTextBox.Visibility = Visibility.Visible;
+                    ProvinciaEquipoComboBox.Visibility = Visibility.Visible;
                     DireccionCampoTextBox.Visibility = Visibility.Visible;
                     DireccionLabel.Visibility = Visibility.Visible;
                     EscudoLabel.Visibility = Visibility.Visible;
+                    CorreoContactoLabel.Visibility = Visibility.Visible;
+                    CorreoContactoTextBox.Visibility = Visibility.Visible;
                     SeleccionImagenEquipoButton.Visibility = Visibility.Visible;
+                    SeleccionImagenEquipoButton.IsEnabled = false;
+                    ModificarEquipoButton.IsEnabled = false;
+                    AñadirEquipoButton.IsEnabled = true;
+                    ProvinciaEquipoComboBox.IsEnabled = false;
+                    EliminarEquipoButton.IsEnabled = true;
                     break;
                 case Accion.Borrar:
                     EquiposComboBox.Visibility = Visibility.Visible;
@@ -164,11 +170,16 @@ namespace NombramientoPartidos.View.Equipo
                     NombreEquipoLabel.Visibility = Visibility.Hidden;
                     NombreEquipoTextBox.Visibility = Visibility.Hidden;
                     ProvinciaLabel.Visibility = Visibility.Hidden;
-                    ProvinciaEquipoTextBox.Visibility = Visibility.Hidden;
+                    ProvinciaEquipoComboBox.Visibility = Visibility.Hidden;
                     DireccionCampoTextBox.Visibility = Visibility.Hidden;
                     DireccionLabel.Visibility = Visibility.Hidden;
                     EscudoLabel.Visibility = Visibility.Hidden;
+                    CorreoContactoLabel.Visibility = Visibility.Hidden;
+                    CorreoContactoTextBox.Visibility = Visibility.Hidden;
                     SeleccionImagenEquipoButton.Visibility = Visibility.Hidden;
+                    EliminarEquipoButton.IsEnabled = false;
+                    AñadirEquipoButton.IsEnabled = true;
+                    ModificarEquipoButton.IsEnabled = true;
                     break;
             }
            
@@ -183,7 +194,8 @@ namespace NombramientoPartidos.View.Equipo
 
         private void EquiposComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SeleccionImagenEquipoButton.IsEnabled = true; 
+            SeleccionImagenEquipoButton.IsEnabled = true;
+            ProvinciaEquipoComboBox.IsEnabled = true;
         }
     }
 }

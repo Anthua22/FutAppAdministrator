@@ -38,12 +38,29 @@ namespace NombramientoPartidos
 
         private void EntrarCommand_CanExecute(object sender, System.Windows.Input.CanExecuteRoutedEventArgs e)
         {
-
+           // e.CanExecute = UsernameTextBlock.Text.Length > 0 && PasswordPasswordBox.Password.Length > 0;
         }
 
         private void EntrarCommand_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
         {
-
+             try
+            {
+                if ((this.DataContext as MainWindowViewModel).Entrar(UsernameTextBlock.Text, PasswordPasswordBox.Password))
+                {
+                   
+                    Inicio inicio = new Inicio();
+                    inicio.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Usuario o contraseña incorrectos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

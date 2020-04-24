@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:NombramientoPartidos.View.JugadoresStaff"
         xmlns:comandos="clr-namespace:NombramientoPartidos.Utilidades"
         mc:Ignorable="d"
-        Title="Dar de alta un Cuerpo Técnico" Height="550" Width="800" ResizeMode="NoResize" ShowInTaskbar="False">
+        Title="Dar de alta un Cuerpo Técnico" Height="600" Width="800" ResizeMode="NoResize" ShowInTaskbar="False">
     <Window.Resources>
         <Style TargetType="{x:Type ComboBox}">
             <Setter Property="Width" Value="300"/>
@@ -55,7 +55,7 @@
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
-                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="70"></RowDefinition>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
@@ -70,7 +70,7 @@
                     <ComboBox Name="CategoriasComboBox" ItemsSource="{Binding Categorias}" Grid.Column="1" Grid.Row="2"  SelectionChanged="CategoriasComboBox_SelectionChanged"/>
 
                     <Label Content="Equipo al que pertenece:" Grid.Row="3" Grid.Column="0"/>
-                    <ComboBox Name="EquiposComboBox" ItemsSource="{Binding Equipos}" ItemTemplate="{StaticResource EquiposTemplate}" Height="40" SelectedItem="{Binding EquipoStaff}" Grid.Column="1" Grid.Row="3" IsEnabled="False"/>
+                    <ComboBox Name="EquiposComboBox" ItemsSource="{Binding Equipos}" ItemTemplate="{StaticResource EquiposTemplate}" Height="55" SelectedItem="{Binding EquipoStaff}" Grid.Column="1" Grid.Row="3" IsEnabled="False"/>
 
                     <Label Content="Cargo" Grid.Row="4" Grid.Column="0"/>
                     <ComboBox ItemsSource="{Binding Cargos}" SelectedItem="{Binding StaffInsert.Cargo}" Grid.Row="4" Grid.Column="1" Margin="0,0,0,10"/>

@@ -29,14 +29,18 @@ namespace NombramientoPartidos.Utilidades.ClasesPojos
         [JsonProperty(PropertyName = "direccion_campo")]
         public string Direccion_Campo { get; set; }
 
+        [JsonProperty(PropertyName = "correo")]
+        public string Correo { get; set; }
+
         public Equipo()
         {
 
         }
         
-        public Equipo(string nombre, string categoria, string provincia, string direccion_campo)
+        public Equipo(string nombre, string categoria, string provincia, string direccion_campo,string correo)
         {
             Nombre = nombre;
+            Correo = correo;
             Categoria = categoria;
             Provincia = provincia;
             Direccion_Campo = direccion_campo;

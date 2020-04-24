@@ -49,13 +49,29 @@ namespace NombramientoPartidos.View.JugadoresStaff
 
         private void CategoriasComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            (DataContext as InsertarStaffViewModel).Filtro(CategoriasComboBox.SelectedItem as string);
-            EquiposComboBox.IsEnabled = true;
+            try
+            {
+                (DataContext as InsertarStaffViewModel).Filtro(CategoriasComboBox.SelectedItem as string);
+                EquiposComboBox.IsEnabled = true;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+           
         }
 
         private void FotoButton_Click(object sender, RoutedEventArgs e)
         {
-            (DataContext as InsertarStaffViewModel).PonerImagen();
+            try
+            {
+                (DataContext as InsertarStaffViewModel).PonerImagen();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
         }
     }
 }

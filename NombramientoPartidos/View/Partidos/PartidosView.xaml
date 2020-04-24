@@ -1,0 +1,95 @@
+﻿<UserControl x:Class="NombramientoPartidos.View.Partidos.PartidosView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NombramientoPartidos.View.Partidos"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+
+        <Style TargetType="Label">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+
+
+    </UserControl.Resources>
+
+    <Grid x:Name="ContenedorPrincipalGrid" Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel x:Name="CRUDStackPanel" Orientation="Vertical" VerticalAlignment="Center">
+
+            <Button Margin="0,0,0,15" Height="50" x:Name="AsignarPartidoButton" Content="Asignar un Partido" Click="AsignarPartidoButton_Click" IsEnabled="False"/>
+            <Button Margin="0,0,0,15" Height="50" x:Name="ModificarPartidoButton" Content="Modificar datos de un Partido" Click="ModificarPartidoButton_Click"/>
+
+        </StackPanel>
+
+        <GroupBox x:Name="CRUDGroupBox" Grid.Column="1" Margin="10px" Header="Asignar Partido">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <DockPanel HorizontalAlignment="Center" Width="498">
+                    <TextBlock Text="Los campos con * son obligatorios" FontSize="16" Foreground="Green" HorizontalAlignment="Center" Margin="0,30,0,0" DockPanel.Dock="Top"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0" DockPanel.Dock="Bottom">
+                        <Button x:Name="AceptarCambiosButton" Content="Añadir Equipo" Margin="5" Width="150"/>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Center">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="229"></ColumnDefinition>
+                                <ColumnDefinition Width="269"></ColumnDefinition>
+                                <ColumnDefinition Width="0*" ></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Column="0" Grid.Row="0" Content="Seleccione la Categoría del Partido*" VerticalContentAlignment="Center"/>
+                            <ComboBox Grid.Column="1" Grid.Row="0" x:Name="CategoriasCRUDComboBox" Margin="13,0,13,10" SelectionChanged="CategoriasCRUDComboBox_SelectionChanged"
+                            ItemsSource="{Binding Categorias}"/>
+
+                            <Label x:Name="SeleccionEquipoLabel" Grid.Column="0" Grid.Row="1" Content="Seleccione un Equipo" Visibility="Collapsed" Margin="5,5,5,33" Grid.RowSpan="2"/>
+                            <ComboBox Grid.Column="1" Grid.Row="1" x:Name="EquiposComboBox" Margin="13,0,13,38" Visibility="Collapsed"
+                            ItemsSource="{Binding ListaEquipos}" SelectedItem="{Binding Equipo, UpdateSourceTrigger=PropertyChanged}" ItemTemplate="{StaticResource EquiposTemplate}" IsEnabled="False"  Grid.RowSpan="2"/>
+
+                            <Label Grid.Column="0"  Grid.Row="2" x:Name="NombreEquipoLabel" Content="Nombre del Equipo/Club:*"/>
+                            <TextBox Grid.Column="1" Grid.Row="2" x:Name="NombreEquipoTextBox" Text="{Binding Equipo.Nombre, UpdateSourceTrigger=PropertyChanged}" Margin="13,10"/>
+
+                            <Label Grid.Column="0" Grid.Row="3" x:Name="ProvinciaLabel" Content="Provincia donde reside:*"/>
+                            <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding Provincias}" SelectedItem="{Binding Equipo.Provincia, UpdateSourceTrigger=PropertyChanged}" x:Name="ProvinciaEquipoComboBox" Margin="13,10" />
+
+                            <Label Grid.Column="0" Grid.Row="4" x:Name="DireccionLabel" Content="Dirección Campo:"/>
+                            <TextBox Grid.Column="1" Grid.Row="4" x:Name="DireccionCampoTextBox" TextAlignment="Left" Text="{Binding Equipo.Direccion_Campo}" Margin="13,10"/>
+
+                            <Label Grid.Row="5" Grid.Column="0" x:Name="CorreoContactoLabel" Content="Correo de Contacto"/>
+                            <TextBox x:Name="CorreoContactoTextBox" Grid.Row="5" Grid.Column="1" Text="{Binding Equipo.Correo, UpdateSourceTrigger=PropertyChanged}" Margin="13,10"/>
+
+                            <Label Grid.Column="0" Grid.Row="6" x:Name="EscudoLabel" Content="Escudo del Equipo:"/>
+                            <Button Grid.Column="1" Grid.Row="6" x:Name="SeleccionImagenEquipoButton" HorizontalAlignment="Left" Content="camera" FontFamily="{StaticResource FontAwesome}" Foreground="Green" FontSize="20" Width="40" Margin="15,6,0,6"/>
+
+                            <Image x:Name="ImagenEquipoImage" Grid.Column="2" Grid.RowSpan="4" Source="{Binding Equipo.Foto}"></Image>
+
+                        </Grid>
+                    </StackPanel>
+
+
+
+                </DockPanel>
+            </ScrollViewer>
+
+        </GroupBox>
+    </Grid>
+</UserControl>

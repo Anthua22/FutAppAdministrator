@@ -105,6 +105,7 @@
     <Compile Include="ViewModel\JugadoresStaff\InsertarJugadorViewModel.cs" />
     <Compile Include="ViewModel\JugadoresStaff\InsertarStaffViewModel.cs" />
     <Compile Include="ViewModel\JugadoresStaff\JugadoresStaffViewModel.cs" />
+    <Compile Include="ViewModel\Partidos\PartidosViewModel.cs" />
     <Compile Include="View\Arbitro\ArbitrosView.xaml.cs">
       <DependentUpon>ArbitrosView.xaml</DependentUpon>
     </Compile>
@@ -120,8 +121,8 @@
     <Compile Include="View\Inicio.xaml.cs">
       <DependentUpon>Inicio.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Partidos\AsignarPartidos.xaml.cs">
-      <DependentUpon>AsignarPartidos.xaml</DependentUpon>
+    <Compile Include="View\Partidos\PartidosView.xaml.cs">
+      <DependentUpon>PartidosView.xaml</DependentUpon>
     </Compile>
     <Page Include="View\Arbitro\ArbitrosView.xaml">
       <SubType>Designer</SubType>
@@ -211,7 +212,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Partidos\AsignarPartidos.xaml">
+    <Page Include="View\Partidos\PartidosView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -258,9 +259,7 @@
   <ItemGroup>
     <Resource Include="Assets\defecto.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\Partidos\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Assets\equipodefecto.jpg" />
   </ItemGroup>

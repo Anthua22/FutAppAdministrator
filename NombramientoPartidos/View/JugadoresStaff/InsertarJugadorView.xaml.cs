@@ -19,8 +19,16 @@ namespace NombramientoPartidos.View.JugadoresStaff
 
         private void CategoriasComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            (DataContext as InsertarJugadorViewModel).Filtro(CategoriasComboBox.SelectedItem as string);
-            EquiposComboBox.IsEnabled = true;
+            try
+            {
+                (DataContext as InsertarJugadorViewModel).Filtro(CategoriasComboBox.SelectedItem as string);
+                EquiposComboBox.IsEnabled = true;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+           
         }
 
         private void FotoButton_Click(object sender, RoutedEventArgs e)

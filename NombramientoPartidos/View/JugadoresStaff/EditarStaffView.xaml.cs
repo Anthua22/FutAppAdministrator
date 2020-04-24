@@ -28,16 +28,32 @@ namespace NombramientoPartidos.View.JugadoresStaff
 
         private void CategoriasCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            (DataContext as EditarStaffViewModel).FiltroEquipos(CategoriasCombobox.SelectedItem as string);
-            EquiposComboBox.IsEnabled = true;
-            DatosStaffBorder.Visibility = Visibility.Hidden;
+            try
+            {
+                (DataContext as EditarStaffViewModel).FiltroEquipos(CategoriasCombobox.SelectedItem as string);
+                EquiposComboBox.IsEnabled = true;
+                DatosStaffBorder.Visibility = Visibility.Hidden;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+           
         }
 
         private void EquiposComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            (DataContext as EditarStaffViewModel).Staffs.Clear();
-            (DataContext as EditarStaffViewModel).FiltroStaffs();
-            StaffsComboBox.IsEnabled = true;
+            try
+            {
+                (DataContext as EditarStaffViewModel).Staffs.Clear();
+                (DataContext as EditarStaffViewModel).FiltroStaffs();
+                StaffsComboBox.IsEnabled = true;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+          
         }
 
         private void StaffsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -69,7 +85,15 @@ namespace NombramientoPartidos.View.JugadoresStaff
        
         private void FotoStaffButton_Click(object sender, RoutedEventArgs e)
         {
-            (DataContext as EditarStaffViewModel).CambiarFoto();
+            try
+            {
+                (DataContext as EditarStaffViewModel).CambiarFoto();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+           
         }
     }
 }

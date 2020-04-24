@@ -16,7 +16,10 @@ namespace NombramientoPartidos.Utilidades
             {
                 return true;
             }
-            return false;
+            else
+            {
+                throw new EmailException("El formato de correo introducido no es correcto");
+            }
         }
 
         public static bool ValidarPass(string pass)

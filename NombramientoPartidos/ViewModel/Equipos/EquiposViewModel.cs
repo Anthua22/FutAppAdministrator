@@ -24,6 +24,7 @@ namespace NombramientoPartidos.ViewModel.Equipos
         public ObservableCollection<string> Categorias { get; set; }
         public ObservableCollection<Equipo> ListaEquipos { get; private set; }
         public Accion Accion { get; private set; }
+        public ObservableCollection<string> Provincias { get; set; }
         string fotoantigua;
 
         public EquiposViewModel(Accion accion)
@@ -38,6 +39,7 @@ namespace NombramientoPartidos.ViewModel.Equipos
                 };
             }
             Categorias = Utils.Categorias;
+            Provincias = Utils.Provincias;
         }
 
         public int Save_Execute()
@@ -46,19 +48,17 @@ namespace NombramientoPartidos.ViewModel.Equipos
             {
                 case Accion.Nuevo:
                     if (Equipo.Categoria != null)
-                    {
-                        
-                        if (!string.IsNullOrWhiteSpace(Equipo.Nombre) && !string.IsNullOrWhiteSpace(Equipo.Provincia))
+                    {  
+                        if (!Equipo.Foto.Equals("/Assets/equipodefecto.jpg") && !Equipo.Foto.Contains("http"))
                         {
-                            if (!Equipo.Foto.Equals("/Assets/equipodefecto.jpg") && !Equipo.Foto.Contains("http"))
-                            {
-                                string[] referenceblob = Equipo.Foto.Split('/');
-                                BlobStorage.GuardarImagen(Equipo.Foto, referenceblob[referenceblob.Length - 1], Equipo);
-                            }
-                            ApiRest.InsertEquipo(Equipo);
-                            return 1;
+                            string[] referenceblob = Equipo.Foto.Split('/');
+                            BlobStorage.GuardarImagen(Equipo.Foto, referenceblob[referenceblob.Length - 1], Equipo);
                         }
-                        else return -1;
+                        ValidacionesRegexp.ValidarEmail(Equipo.Correo);
+                        ApiRest.InsertEquipo(Equipo);
+                        return 1;
+                        
+                  
 
                     }
                     else return -1;
@@ -72,6 +72,7 @@ namespace NombramientoPartidos.ViewModel.Equipos
                             BlobStorage.EliminarImagen(fotoantigua, Equipo);
                             BlobStorage.GuardarImagen(Equipo.Foto, referenceblob[referenceblob.Length - 1], Equipo);
                         }
+                        ValidacionesRegexp.ValidarEmail(Equipo.Correo);
                         ApiRest.UpdateEquipo(Equipo);
                         return 2;
                     }
@@ -106,34 +107,7 @@ namespace NombramientoPartidos.ViewModel.Equipos
         }
         public void FiltroCategoria()
         {
-
-            switch (Equipo.Categoria)
-            {
-                case "1º División":
-                    ListaEquipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("1º División")));
-                    break;
-                case "2º División":
-                    ListaEquipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("2º División")));
-                    break;
-                case "2ºB División":
-                    ListaEquipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("2ºB División")));
-                    break;
-                case "3º División":
-                    ListaEquipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("3º División")));
-                    break;
-                case "Preferente":
-                    ListaEquipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("Preferente")));
-                    break;
-                case "Fútbol Base":
-                    ListaEquipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("Fútbol Base")));
-                    break;
-                case "Regional":
-                    ListaEquipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("Regional")).OrderBy(y => y.Nombre));
-                    break;
-                default:
-                    ListaEquipos = new ObservableCollection<Equipo>();
-                    break;
-            }
+            ListaEquipos = Utils.FiltroEquipos(Equipo.Categoria);
         }
 
         public void LimpiaCampos()

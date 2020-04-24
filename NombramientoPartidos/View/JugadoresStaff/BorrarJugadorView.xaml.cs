@@ -28,15 +28,29 @@ namespace NombramientoPartidos.View.JugadoresStaff
 
         private void CategoriasComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            (DataContext as BorrarJugadorViewModel).Filtro(CategoriasComboBox.SelectedItem as string);
-            EquiposComboBox.IsEnabled = true;
+            try
+            {
+                (DataContext as BorrarJugadorViewModel).Filtro(CategoriasComboBox.SelectedItem as string);
+                EquiposComboBox.IsEnabled = true;
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
         }
 
         private void EquiposComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            (DataContext as BorrarJugadorViewModel).Jugadores.Clear();
-            (DataContext as BorrarJugadorViewModel).FiltroJugadores();
-            JugadoresComboBox.IsEnabled = true;
+            try
+            {
+                (DataContext as BorrarJugadorViewModel).Jugadores.Clear();
+                (DataContext as BorrarJugadorViewModel).FiltroJugadores();
+                JugadoresComboBox.IsEnabled = true;
+            }
+            catch(Exception ex){
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
         }
 
         private void Delete_CanExecute(object sender, CanExecuteRoutedEventArgs e)

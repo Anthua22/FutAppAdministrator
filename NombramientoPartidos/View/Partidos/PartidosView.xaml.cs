@@ -18,11 +18,26 @@ namespace NombramientoPartidos.View.Partidos
     /// <summary>
     /// Lógica de interacción para AsignarPartidos.xaml
     /// </summary>
-    public partial class AsignarPartidos : UserControl
+    public partial class PartidosView : UserControl
     {
-        public AsignarPartidos()
+        public PartidosView()
         {
             InitializeComponent();
+        }
+
+        private void AsignarPartidoButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ModificarPartidoButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CategoriasCRUDComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
