@@ -44,7 +44,14 @@ namespace NombramientoPartidos.Utilidades
             {
                 "Alicante",
                 "Valencia",
-                "Castellón"
+                "Castellón",
+                "Madrid",
+                "Barcelona",
+                "Murcia",
+                "Navarra",
+                "Sevilla",
+                "Granada",
+                "Málaga"
             };
         }
 
@@ -163,6 +170,36 @@ namespace NombramientoPartidos.Utilidades
                     break;
             }
             return Equipos;
+        }
+
+        public static ObservableCollection<Arbitro> FiltroArbitros(string categoria)
+        {
+            switch (categoria)
+            {
+                case "1º División":
+                    return new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("1º División")).OrderBy(y => y.Nombre_Completo));
+                    
+                case "2º División":
+                    return new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("2º División")).OrderBy(y => y.Nombre_Completo));
+                    
+                case "2ºB División":
+                    return new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("2ºB División")).OrderBy(y => y.Nombre_Completo));
+                   
+                case "3º División":
+                    return new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("3º División")).OrderBy(y => y.Nombre_Completo));
+                    
+                case "Preferente":
+                     return new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("Preferente")).OrderBy(y => y.Nombre_Completo));
+                    
+                case "Fútbol Base":
+                     return new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("Fútbol Base")).OrderBy(y => y.Nombre_Completo));
+                    
+                case "Regional":
+                     return new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("Regional")).OrderBy(y => y.Nombre_Completo));
+                default:
+                    return new ObservableCollection<Arbitro>();
+                    
+            }
         }
 
 

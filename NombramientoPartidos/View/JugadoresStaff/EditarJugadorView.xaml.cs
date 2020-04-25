@@ -18,16 +18,32 @@ namespace NombramientoPartidos.View.JugadoresStaff
 
         private void CategoriasCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            (DataContext as EditarJugadorViewModel).FiltroEquipos(CategoriasCombobox.SelectedItem as string);
-            EquiposComboBox.IsEnabled = true;
-            DatosJugadorBorder.Visibility = Visibility.Hidden;
+            try
+            {
+                (DataContext as EditarJugadorViewModel).FiltroEquipos(CategoriasCombobox.SelectedItem as string);
+                EquiposComboBox.IsEnabled = true;
+                DatosJugadorBorder.Visibility = Visibility.Hidden;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+           
         }
 
         private void EquiposComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            (DataContext as EditarJugadorViewModel).Jugadores.Clear();
-            (DataContext as EditarJugadorViewModel).FiltroJugadores();
-            JugadoresComboBox.IsEnabled = true;    
+            try
+            { 
+                (DataContext as EditarJugadorViewModel).Jugadores.Clear();
+                (DataContext as EditarJugadorViewModel).FiltroJugadores();
+                JugadoresComboBox.IsEnabled = true;    
+
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+           
         }
 
         private void JugadoresComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -49,12 +49,13 @@ namespace NombramientoPartidos.ViewModel.Equipos
                 case Accion.Nuevo:
                     if (Equipo.Categoria != null)
                     {  
+                        ValidacionesRegexp.ValidarEmail(Equipo.Correo);
                         if (!Equipo.Foto.Equals("/Assets/equipodefecto.jpg") && !Equipo.Foto.Contains("http"))
                         {
                             string[] referenceblob = Equipo.Foto.Split('/');
-                            BlobStorage.GuardarImagen(Equipo.Foto, referenceblob[referenceblob.Length - 1], Equipo);
+                            Equipo.Foto = BlobStorage.GuardarImagen(Equipo.Foto, referenceblob[referenceblob.Length - 1], Equipo);
                         }
-                        ValidacionesRegexp.ValidarEmail(Equipo.Correo);
+                        
                         ApiRest.InsertEquipo(Equipo);
                         return 1;
                         
@@ -65,14 +66,15 @@ namespace NombramientoPartidos.ViewModel.Equipos
 
                 case Accion.Editar:
                     if (!string.IsNullOrWhiteSpace(Equipo.Nombre) && !string.IsNullOrWhiteSpace(Equipo.Provincia) && Equipo.Categoria != null)
-                    {
+                    { 
+                        ValidacionesRegexp.ValidarEmail(Equipo.Correo);
                         if (!Equipo.Foto.Equals("/Assets/equipodefecto.jpg") && !Equipo.Foto.Contains("http"))
                         {
                             string[] referenceblob = Equipo.Foto.Split('/');
                             BlobStorage.EliminarImagen(fotoantigua, Equipo);
-                            BlobStorage.GuardarImagen(Equipo.Foto, referenceblob[referenceblob.Length - 1], Equipo);
+                            Equipo.Foto =  BlobStorage.GuardarImagen(Equipo.Foto, referenceblob[referenceblob.Length - 1], Equipo);
                         }
-                        ValidacionesRegexp.ValidarEmail(Equipo.Correo);
+                       
                         ApiRest.UpdateEquipo(Equipo);
                         return 2;
                     }

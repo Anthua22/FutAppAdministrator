@@ -30,30 +30,7 @@ namespace NombramientoPartidos.ViewModel
 
         public void Filtro()
         {
-            switch (ArbitroEliminar.Categoria)
-            {
-                case "1º División":
-                    Arbitros = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("1º División")).OrderBy(y=> y.Nombre_Completo));
-                    break;
-                case "2º División":
-                    Arbitros = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("2º División")).OrderBy(y => y.Nombre_Completo));
-                    break;
-                case "2ºB División":
-                    Arbitros = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("2ºB División")).OrderBy(y => y.Nombre_Completo));
-                    break;
-                case "3º División":
-                    Arbitros = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("3º División")).OrderBy(y => y.Nombre_Completo));
-                    break;
-                case "Preferente":
-                    Arbitros = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("Preferente")).OrderBy(y => y.Nombre_Completo));
-                    break;
-                case "Fútbol Base":
-                    Arbitros = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("Fútbol Base")).OrderBy(y => y.Nombre_Completo));
-                    break;
-                case "Regional":
-                    Arbitros = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("Regional")).OrderBy(y => y.Nombre_Completo));
-                    break;
-            }
+            Arbitros = Utils.FiltroArbitros(ArbitroEliminar.Categoria);
         }
 
         public bool DeleteExecute()

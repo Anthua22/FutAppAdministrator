@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NombramientoPartidos.ViewModel.Partidos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace NombramientoPartidos.View.Partidos
     {
         public PartidosView()
         {
+            DataContext = new PartidosViewModel();
             InitializeComponent();
         }
 
@@ -37,7 +39,28 @@ namespace NombramientoPartidos.View.Partidos
 
         private void CategoriasCRUDComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            (DataContext as PartidosViewModel).ObtenerEquiposyArbitrosPrincipales();
+            EquiposLocalesComboBox.IsEnabled = true;
+          //  CronometradoresComboBox.IsEnabled = true;
+            ArbitrosPrincipalesComboBox.IsEnabled = true;
+        }
 
+        private void ArbitrosPrincipalesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            (DataContext as PartidosViewModel).ObtenerArbitrosSecundarios();
+            ArbitrosSecundariosComboBox.IsEnabled = true;
+        }
+
+        private void EquiposLocalesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            (DataContext as PartidosViewModel).ObtenerEquiposVisitantes();
+            EquiposVisitantesComboBox.IsEnabled = true;
+        }
+
+        private void ArbitrosSecundariosComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            (DataContext as PartidosViewModel).ObtenerCronometradores();
+            CronometradoresComboBox.IsEnabled = true;
         }
     }
 }

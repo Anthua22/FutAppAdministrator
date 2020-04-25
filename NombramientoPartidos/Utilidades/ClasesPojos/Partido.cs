@@ -39,6 +39,9 @@ namespace NombramientoPartidos.Utilidades.ClasesPojos
         [JsonProperty(PropertyName = "cronometrador")]
         public Arbitro Cronometrador { get; set; }
 
+        [JsonProperty(PropertyName = "tercer_arbitro")]
+        public Arbitro Tercer_Arbitro { get; set; }
+
         [JsonProperty(PropertyName = "cp")]
         public int Cp { get; set; }
 
