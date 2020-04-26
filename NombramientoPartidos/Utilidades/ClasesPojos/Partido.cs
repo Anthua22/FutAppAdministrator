@@ -42,9 +42,6 @@ namespace NombramientoPartidos.Utilidades.ClasesPojos
         [JsonProperty(PropertyName = "tercer_arbitro")]
         public Arbitro Tercer_Arbitro { get; set; }
 
-        [JsonProperty(PropertyName = "cp")]
-        public int Cp { get; set; }
-
         [JsonProperty(PropertyName = "direccion_encuentro")]
         public string Direccion_Encuentro { get; set; }
 

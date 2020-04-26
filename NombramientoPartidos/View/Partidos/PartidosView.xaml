@@ -14,7 +14,8 @@
         </Style>
 
         <Style TargetType="TextBox">
-            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Margin" Value="13"/>
+            <Setter Property="Height" Value="25"/>
         </Style>
         <Style TargetType="{x:Type ComboBox}" x:Key="ComoboBoxPlantilla">
             <Setter Property="Height" Value="60"/>
@@ -46,11 +47,10 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto">
 
                 <DockPanel HorizontalAlignment="Center">
-                    <Grid Margin="5">
+                    <Grid Margin="0,5,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="229"></ColumnDefinition>
                             <ColumnDefinition Width="269"></ColumnDefinition>
-
                         </Grid.ColumnDefinitions>
 
                         <Grid.RowDefinitions>
@@ -61,6 +61,11 @@
                             <RowDefinition Height="38*"></RowDefinition>
                             <RowDefinition Height="38*"></RowDefinition>
                             <RowDefinition Height="38*"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
 
                         <Label Grid.Column="0" Grid.Row="0" Content="Seleccione la Categoría del Partido*" Height="26" />
@@ -74,10 +79,10 @@
                         <Label Grid.Column="0"  Grid.Row="2" x:Name="NombreEquipoLabel" Content="Equipo Visitante" Height="26" Margin="5,25,5,20"/>
                         <ComboBox Grid.Column="1" Grid.Row="2" x:Name="EquiposVisitantesComboBox" Style="{StaticResource ComoboBoxPlantilla}" ItemsSource="{Binding EquiposVisitantes}" ItemTemplate="{StaticResource EquiposTemplate}" SelectedItem="{Binding PartidoUso.EquipoVisitante}" IsEnabled="False" />
 
-                        <Label Grid.Column="0" Grid.Row="3" x:Name="ProvinciaLabel" Content="Árbitro Principal" Height="26" Margin="5,8"/>
+                        <Label Grid.Column="0" Grid.Row="3" x:Name="ArbitrosPrincipalesLabel" Content="Árbitro Principal" Height="26" Margin="5,8"/>
                         <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding ArbitrosPrincipales}" ItemTemplate="{StaticResource ArbitrosTemplate}" SelectedItem="{Binding PartidoUso.ArbitroPrincipal, UpdateSourceTrigger=PropertyChanged}" x:Name="ArbitrosPrincipalesComboBox" Style="{StaticResource ComoboBoxPlantilla}" IsEnabled="False" SelectionChanged="ArbitrosPrincipalesComboBox_SelectionChanged"/>
 
-                        <Label Grid.Column="0" Grid.Row="4" x:Name="DireccionLabel" Content="Segundo Árbitro" Height="26" Margin="5,6"/>
+                        <Label Grid.Column="0" Grid.Row="4" x:Name="ArbitrosSecundariosLabel" Content="Segundo Árbitro" Height="26" Margin="5,6"/>
                         <ComboBox Grid.Column="1" Grid.Row="4" x:Name="ArbitrosSecundariosComboBox" ItemsSource="{Binding ArbitrosSecundarios}" ItemTemplate="{StaticResource ArbitrosTemplate}" Style="{StaticResource ComoboBoxPlantilla}" SelectedItem="{Binding PartidoUso.ArbitroSecundario}" IsEnabled="False" SelectionChanged="ArbitrosSecundariosComboBox_SelectionChanged"/>
 
                         <Label Grid.Row="5" Grid.Column="0" x:Name="CorreoContactoLabel" Content="Árbitro de Mesa" Height="26" Margin="5,6"/>
@@ -86,8 +91,25 @@
                         <Label Grid.Column="0" Grid.Row="6" x:Name="EscudoLabel" Content="Tercer Arbitro" Height="26" Margin="5,6"/>
                         <ComboBox x:Name="TercerosArbitrosComboBox" ItemsSource="{Binding ArbitrosTerceros}" ItemTemplate="{StaticResource ArbitrosTemplate}" Style="{StaticResource ComoboBoxPlantilla}" IsEnabled="False" Grid.Row="6" Grid.Column="1"/>
 
-                       
+                        <Label Grid.Column="0" Grid.Row="7" Content="Provincia del Encuentro" x:Name="ProvinciaLabel"/>
+                        <ComboBox Grid.Column="1" Grid.Row="7" ItemsSource="{Binding Provincias}" SelectedItem="{Binding PartidoUso.EquipoLocal.Provincia}" IsEnabled="False" Margin="13,2,13,12" Height="22"/>
 
+                        <Label Grid.Column="0" Grid.Row="8" Content="Localidad del Encuentro" x:Name="LocalidadLabel"/>
+                        <TextBox Grid.Column="1" Grid.Row="8" Text="{Binding PartidoUso.EquipoLocal.Localidad}" x:Name="LocalidadTextBox" />
+
+                        <Label Grid.Column="0" Grid.Row="9" Content="Dirección del Encuentro" x:Name="DireccionLabel"/>
+                        <TextBox Grid.Column="1" Grid.Row="9" Text="{Binding PartidoUso.EquipoLocal.Direccion_Campo}" x:Name="DireccionTextBox"/>
+
+                        <Label Grid.Row="10" Grid.Column="0" Content="Fecha del Encuentro" x:Name="FechaLabel"/>
+                        <DatePicker Grid.Row="10" Grid.Column="1" SelectedDate="{Binding PartidoUso.Fecha_Encuentro}" Margin="13"/>
+
+                        <Label Grid.Row="11" Grid.Column="0" Content="Hora del Encuentro" />
+                        <StackPanel Grid.Row="11" Grid.Column="1" Orientation="Horizontal" Margin="10,0,0,0" DataContext="{Binding PartidoUso.Fecha_Encuentro}">
+                            <TextBox  Width="25"  MaxLength="2" Margin="0" />
+                            <TextBlock  Text=":" VerticalAlignment="Center" FontSize="18" Margin="3,0,3,0"/>
+                            <TextBox  Width="25"   Margin="0" />
+                        </StackPanel>
+                        
                     </Grid>
 
                 </DockPanel>

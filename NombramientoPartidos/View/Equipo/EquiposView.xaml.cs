@@ -63,7 +63,7 @@ namespace NombramientoPartidos.View.Equipo
         {
             if (((EquiposViewModel)DataContext).Accion == Accion.Nuevo)
             {
-                e.CanExecute = (((EquiposViewModel)DataContext).Equipo.Categoria != null && !string.IsNullOrWhiteSpace((DataContext as EquiposViewModel).Equipo.Nombre) && !string.IsNullOrWhiteSpace((DataContext as EquiposViewModel).Equipo.Provincia) && !string.IsNullOrWhiteSpace((DataContext as EquiposViewModel).Equipo.Correo));
+                e.CanExecute = (((EquiposViewModel)DataContext).Equipo.Categoria != null && !string.IsNullOrWhiteSpace((DataContext as EquiposViewModel).Equipo.Nombre) && !string.IsNullOrWhiteSpace((DataContext as EquiposViewModel).Equipo.Provincia) && !string.IsNullOrWhiteSpace((DataContext as EquiposViewModel).Equipo.Correo) && !string.IsNullOrWhiteSpace((DataContext as EquiposViewModel).Equipo.Localidad));
             }
             else
             {
@@ -130,6 +130,8 @@ namespace NombramientoPartidos.View.Equipo
                     EquiposComboBox.Visibility = Visibility.Collapsed;
                     SeleccionEquipoLabel.Visibility = Visibility.Collapsed;
                     NombreEquipoLabel.Visibility = Visibility.Visible;
+                    LocalidadLabel.Visibility = Visibility.Visible;
+                    LocalidadTextBox.Visibility = Visibility.Visible;
                     NombreEquipoTextBox.Visibility = Visibility.Visible;
                     ProvinciaLabel.Visibility = Visibility.Visible;
                     ProvinciaEquipoComboBox.Visibility = Visibility.Visible;
@@ -148,6 +150,8 @@ namespace NombramientoPartidos.View.Equipo
                 case Accion.Editar:
                     EquiposComboBox.Visibility = Visibility.Visible;
                     SeleccionEquipoLabel.Visibility = Visibility.Visible;
+                    LocalidadLabel.Visibility = Visibility.Visible;
+                    LocalidadTextBox.Visibility = Visibility.Visible;
                     NombreEquipoLabel.Visibility = Visibility.Visible;
                     NombreEquipoTextBox.Visibility = Visibility.Visible;
                     ProvinciaLabel.Visibility = Visibility.Visible;
@@ -167,6 +171,8 @@ namespace NombramientoPartidos.View.Equipo
                 case Accion.Borrar:
                     EquiposComboBox.Visibility = Visibility.Visible;
                     SeleccionEquipoLabel.Visibility = Visibility.Visible;
+                    LocalidadLabel.Visibility = Visibility.Hidden;
+                    LocalidadTextBox.Visibility = Visibility.Hidden;
                     NombreEquipoLabel.Visibility = Visibility.Hidden;
                     NombreEquipoTextBox.Visibility = Visibility.Hidden;
                     ProvinciaLabel.Visibility = Visibility.Hidden;

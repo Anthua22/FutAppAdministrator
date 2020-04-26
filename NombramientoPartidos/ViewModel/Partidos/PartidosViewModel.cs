@@ -15,7 +15,7 @@ namespace NombramientoPartidos.ViewModel.Partidos
     public enum AccionCategoria
     {
         PrimeraySegunda,
-        Tercera,
+        TerceraySegundaB,
         RegionalyPreferente,
         FutbolBase
     }
@@ -42,6 +42,9 @@ namespace NombramientoPartidos.ViewModel.Partidos
 
         public AccionCategoria AccionCategoriaTrabajo { get; set; }
 
+        public ObservableCollection<string> Provincias { get; set; }
+
+
         public string Categoria { get; set; }
 
         public PartidosViewModel()
@@ -55,10 +58,12 @@ namespace NombramientoPartidos.ViewModel.Partidos
                 Cronometrador = new Arbitro(),
                 Tercer_Arbitro = new Arbitro(),
                 EquipoVisitante = new Equipo(),
-                EquipoLocal = new Equipo()
-
+                EquipoLocal = new Equipo(),
+                Fecha_Encuentro = DateTime.Now
+                
             }; 
             Categorias = Utils.Categorias;
+            Provincias = Utils.Provincias;
         }
 
         public void ObtenerEquiposyArbitrosPrincipales()
@@ -71,9 +76,9 @@ namespace NombramientoPartidos.ViewModel.Partidos
             {
                 AccionCategoriaTrabajo = AccionCategoria.RegionalyPreferente;
             }
-            else if(Categoria.Equals("3º División"))
+            else if(Categoria.Equals("3º División") || Categoria.Equals("2ºB División"))
             {
-                AccionCategoriaTrabajo = AccionCategoria.Tercera;
+                AccionCategoriaTrabajo = AccionCategoria.TerceraySegundaB;
             }
             else
             {
@@ -81,7 +86,7 @@ namespace NombramientoPartidos.ViewModel.Partidos
             }
             EquiposLocales = Utils.FiltroEquipos(Categoria);
             ArbitrosPrincipales = Utils.FiltroArbitros(Categoria);
-          
+            
         }
 
 
@@ -101,9 +106,10 @@ namespace NombramientoPartidos.ViewModel.Partidos
             {
                 case AccionCategoria.PrimeraySegunda:
                     Cronometradores = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => !x.Categoria.Equals("Preferente") && !x.Categoria.Equals("Regional") && !x.Categoria.Equals("Fútbol Base") && !x.Categoria.Equals("3º División") && x.Dni!=PartidoUso.ArbitroPrincipal.Dni && x.Dni!=PartidoUso.ArbitroSecundario.Dni).OrderByDescending(y=>y.Categoria));
+                    int u =PartidoUso.Fecha_Encuentro.Hour;
                     break;
 
-                case AccionCategoria.Tercera:
+                case AccionCategoria.TerceraySegundaB:
                     Cronometradores = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => !x.Categoria.Equals("Fútbol Base") && !x.Categoria.Equals("Preferente")).OrderByDescending(y=>y.Categoria));
                     break;
                 case AccionCategoria.RegionalyPreferente:

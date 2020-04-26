@@ -63,6 +63,7 @@
                                 <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
 
                             <Label Grid.Column="0" Grid.Row="0" Content="Seleccione la Categoría*" VerticalContentAlignment="Center"/>
@@ -79,14 +80,17 @@
                             <Label Grid.Column="0" Grid.Row="3" x:Name="ProvinciaLabel" Content="Provincia donde reside:*"/>
                             <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding Provincias}" SelectedItem="{Binding Equipo.Provincia, UpdateSourceTrigger=PropertyChanged}" x:Name="ProvinciaEquipoComboBox" Width="270" Margin="10" />
 
-                            <Label Grid.Column="0" Grid.Row="4" x:Name="DireccionLabel" Content="Dirección Campo:"/>
-                            <TextBox Grid.Column="1" Grid.Row="4" x:Name="DireccionCampoTextBox" Width="270" TextAlignment="Left" Text="{Binding Equipo.Direccion_Campo}"/>
+                            <Label Grid.Row="4" Grid.Column="0" Content="Localidad" x:Name="LocalidadLabel"/>
+                            <TextBox Grid.Row="4" Grid.Column="1" x:Name="LocalidadTextBox" Text="{Binding Equipo.Localidad, UpdateSourceTrigger=PropertyChanged}" Width="270" TextAlignment="Left"/>
 
-                            <Label Grid.Row="5" Grid.Column="0" x:Name="CorreoContactoLabel" Content="Correo de Contacto"/>
-                            <TextBox x:Name="CorreoContactoTextBox" Grid.Row="5" Grid.Column="1" Width="270" Text="{Binding Equipo.Correo, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Label Grid.Column="0" Grid.Row="5" x:Name="DireccionLabel" Content="Dirección Campo:"/>
+                            <TextBox Grid.Column="1" Grid.Row="5" x:Name="DireccionCampoTextBox" Width="270" TextAlignment="Left" Text="{Binding Equipo.Direccion_Campo}"/>
 
-                            <Label Grid.Column="0" Grid.Row="6" x:Name="EscudoLabel" Content="Escudo del Equipo:"/>
-                            <Button Grid.Column="1" Grid.Row="6" x:Name="SeleccionImagenEquipoButton" HorizontalAlignment="Left" Content="camera" FontFamily="{StaticResource FontAwesome}" Foreground="Green" FontSize="20" Width="40" Margin="15,0,0,0" Height="25" Click="SeleccionImagenEquipoButton_Click"/>
+                            <Label Grid.Row="6" Grid.Column="0" x:Name="CorreoContactoLabel" Content="Correo de Contacto"/>
+                            <TextBox x:Name="CorreoContactoTextBox" Grid.Row="6" Grid.Column="1" Width="270" Text="{Binding Equipo.Correo, UpdateSourceTrigger=PropertyChanged}"/>
+
+                            <Label Grid.Column="0" Grid.Row="7" x:Name="EscudoLabel" Content="Escudo del Equipo:"/>
+                            <Button Grid.Column="1" Grid.Row="7" x:Name="SeleccionImagenEquipoButton" HorizontalAlignment="Left" Content="camera" FontFamily="{StaticResource FontAwesome}" Foreground="Green" FontSize="20" Width="40" Margin="15,0,0,0" Height="25" Click="SeleccionImagenEquipoButton_Click"/>
 
                             <Image x:Name="ImagenEquipoImage" Grid.Column="2" Grid.RowSpan="4" Source="{Binding Equipo.Foto}"></Image>
 
