@@ -9,6 +9,7 @@ namespace NombramientoPartidos.Utilidades
         private static readonly Regex patronFecha = new Regex(@"^\d{4}([\-/.])(0?[1-9]|1[1-2])\1(3[01]|[12][0-9]|0?[1-9])$");
         private static readonly Regex patronTelefono = new Regex(@"^\d{9}$");
         private static readonly Regex patronIdentidad = new Regex(@"^\w{9}$");
+        private static readonly Regex patronHoraMinutos = new Regex(@"^([01]?[0-9]|2[0-3]):[0-5][0-9]$");
 
         public static bool ValidarEmail(string email)
         {
@@ -86,6 +87,18 @@ namespace NombramientoPartidos.Utilidades
                 throw new CategoriaException("La categoría introducida no existe, o tiene el formato correcto:\n"+cats);   
             }
            
+        }
+
+        public static bool ComprobarHoraMinutos(string horaminutos)
+        {
+            if (patronHoraMinutos.IsMatch(horaminutos))
+            {
+                return true;
+            }
+            else
+            {
+                throw new System.Exception("El formato de la hora es incorrecto");
+            }
         }
     }
 }

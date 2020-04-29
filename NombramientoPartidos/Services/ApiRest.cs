@@ -58,6 +58,13 @@ namespace NombramientoPartidos.Services
             return staffs;
         }
 
+        public static ObservableCollection<Partido> RescartarPartidos()
+        {
+            string url = Urlbase + "partidos";
+            var json = new WebClient().DownloadString(url);
+            ObservableCollection<Partido> partidos = new ObservableCollection<Partido>(JsonConvert.DeserializeObject<List<Partido>>(json));
+            return partidos;
+        }
         public static bool UpdateArbitro(Arbitro arbitro)
         {
             if (Utils.ControlCampos(arbitro))
@@ -286,6 +293,46 @@ namespace NombramientoPartidos.Services
             if (!response.StatusCode.Equals(HttpStatusCode.OK))
             {
                 throw new CRUDException("Error al borral el registro");
+            }
+        }
+
+        public static void InsertPartido(Partido partido)
+        {
+            var json = JsonConvert.SerializeObject(partido);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "partidos");
+            request.Method = "POST";
+            request.ContentType = "application/json";
+
+            using (var streamwriter = new StreamWriter(request.GetRequestStream()))
+            {
+                streamwriter.Write(json);
+                streamwriter.Flush();
+            }
+
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            if (!response.StatusCode.Equals(HttpStatusCode.Created))
+            {
+                throw new CRUDException("Error al insertar el dato");
+            }
+       
+        }
+
+        public static void UpdatePartido(Partido partido)
+        {
+            var json = JsonConvert.SerializeObject(partido);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "partidos/" + partido.IdPartido);
+            request.Method = "PUT";
+            request.ContentType = "application/json";
+            using (var streamwriter = new StreamWriter(request.GetRequestStream()))
+            {
+                streamwriter.Write(json);
+                streamwriter.Flush();
+            }
+            var response = (HttpWebResponse)request.GetResponse();
+
+            if (!response.StatusCode.Equals(HttpStatusCode.OK))
+            {
+                throw new CRUDException("Error al modificar el dato");
             }
         }
     }

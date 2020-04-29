@@ -89,6 +89,7 @@
     <Compile Include="Utilidades\ClasesPojos\Partido.cs" />
     <Compile Include="Utilidades\ClasesPojos\Staff.cs" />
     <Compile Include="Utilidades\ComandosPersonalizados.cs" />
+    <Compile Include="Utilidades\EquiposTemplate.cs" />
     <Compile Include="Utilidades\Excepciones.cs" />
     <Compile Include="Utilidades\Utils.cs" />
     <Compile Include="Utilidades\ValidacionesRegexp.cs" />

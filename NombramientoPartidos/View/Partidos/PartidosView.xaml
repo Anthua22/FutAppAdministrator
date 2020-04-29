@@ -23,6 +23,34 @@
             <Setter Property="Margin" Value="13,10"/>
         </Style>
 
+        <DataTemplate x:Key="PartidosTemplate">
+            <StackPanel Orientation="Horizontal">
+                <Ellipse Height="50" Width="50">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="{Binding EquipoLocal.Foto}"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+
+                <StackPanel VerticalAlignment="Center"  Margin="10,0,0,0">
+                    <TextBlock Text="{Binding EquipoLocal.Nombre}" FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="{Binding EquipoLocal.Categoria}" Foreground="Gray"></TextBlock>
+                </StackPanel>
+
+                <TextBlock Text="VS"  VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15,0,15,0"/>
+                <Ellipse Height="50" Width="50">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="{Binding EquipoVisitante.Foto}"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+
+                <StackPanel VerticalAlignment="Center"  Margin="10,0,0,0">
+                    <TextBlock Text="{Binding EquipoVisitante.Nombre}" FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="{Binding EquipoVisitante.Categoria}" Foreground="Gray"></TextBlock>
+                </StackPanel>
+
+            </StackPanel>
+        </DataTemplate>
+        
     </UserControl.Resources>
 
 
@@ -47,76 +75,102 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto">
 
                 <DockPanel HorizontalAlignment="Center">
-                    <Grid Margin="0,5,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="229"></ColumnDefinition>
-                            <ColumnDefinition Width="269"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
+                  
+                    <StackPanel VerticalAlignment="Center">
+                        <Grid Margin="0,5,0,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="229"></ColumnDefinition>
+                                <ColumnDefinition Width="380"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="45"></RowDefinition>
-                            <RowDefinition Height="80"></RowDefinition>
-                            <RowDefinition Height="80"></RowDefinition>
-                            <RowDefinition Height="42*"></RowDefinition>
-                            <RowDefinition Height="38*"></RowDefinition>
-                            <RowDefinition Height="38*"></RowDefinition>
-                            <RowDefinition Height="38*"></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
 
-                        <Label Grid.Column="0" Grid.Row="0" Content="Seleccione la Categoría del Partido*" Height="26" />
-                        <ComboBox Grid.Column="1" Grid.Row="0" x:Name="CategoriasCRUDComboBox" Margin="13,2,13,12" SelectionChanged="CategoriasCRUDComboBox_SelectionChanged" SelectedItem="{Binding Categoria}"
-                        ItemsSource="{Binding Categorias}" VerticalAlignment="Center" Height="22"/>
+                            <Label Grid.Column="0" Grid.Row="0" Content="Seleccione la Categoría del Partido*" Height="26" />
+                            <ComboBox Grid.Column="1" Grid.Row="0" x:Name="CategoriasCRUDComboBox" Margin="13,2,13,12" SelectionChanged="CategoriasCRUDComboBox_SelectionChanged" SelectedItem="{Binding Categoria, UpdateSourceTrigger=PropertyChanged}"
+                            ItemsSource="{Binding Categorias}" VerticalAlignment="Center" Height="22"/>
 
-                        <Label x:Name="SeleccionEquipoLabel" Grid.Column="0" Grid.Row="1" Content="Equipo Local" Height="26" />
-                        <ComboBox Grid.Column="1" Grid.Row="1" x:Name="EquiposLocalesComboBox" Style="{StaticResource ComoboBoxPlantilla}"
-                        ItemsSource="{Binding EquiposLocales}"  ItemTemplate="{StaticResource EquiposTemplate}" SelectedItem="{Binding PartidoUso.EquipoLocal}" SelectionChanged="EquiposLocalesComboBox_SelectionChanged" IsEnabled="False" />
+                            <Label Grid.Row="1" Grid.Column="0" x:Name="EligirPartidoLabel" Content="Elija el Partido" Visibility="Collapsed"/>
+                            <ComboBox Grid.Row="1" Grid.Column="1" x:Name="PartidosComboBox" ItemsSource="{Binding PartidosTemplates}" Height="55" Margin="13,10" ItemTemplate="{StaticResource PartidosTemplate}" SelectedItem="{Binding EquipoTemplate}" Visibility="Collapsed" SelectionChanged="PartidosComboBox_SelectionChanged"/>
 
-                        <Label Grid.Column="0"  Grid.Row="2" x:Name="NombreEquipoLabel" Content="Equipo Visitante" Height="26" Margin="5,25,5,20"/>
-                        <ComboBox Grid.Column="1" Grid.Row="2" x:Name="EquiposVisitantesComboBox" Style="{StaticResource ComoboBoxPlantilla}" ItemsSource="{Binding EquiposVisitantes}" ItemTemplate="{StaticResource EquiposTemplate}" SelectedItem="{Binding PartidoUso.EquipoVisitante}" IsEnabled="False" />
+                            <Label Grid.Row="2" Grid.Column="0" Content="Jornada"/>
+                            <ComboBox Grid.Row="2" Grid.Column="1" x:Name="JornadaComboBox" ItemsSource="{Binding Jornadas}" Width="50" HorizontalAlignment="Left" Margin="13,21" SelectedItem="{Binding PartidoUso.Jornada, UpdateSourceTrigger=PropertyChanged}"/>
 
-                        <Label Grid.Column="0" Grid.Row="3" x:Name="ArbitrosPrincipalesLabel" Content="Árbitro Principal" Height="26" Margin="5,8"/>
-                        <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding ArbitrosPrincipales}" ItemTemplate="{StaticResource ArbitrosTemplate}" SelectedItem="{Binding PartidoUso.ArbitroPrincipal, UpdateSourceTrigger=PropertyChanged}" x:Name="ArbitrosPrincipalesComboBox" Style="{StaticResource ComoboBoxPlantilla}" IsEnabled="False" SelectionChanged="ArbitrosPrincipalesComboBox_SelectionChanged"/>
+                            <Label x:Name="EquipoLocalLabel" Grid.Column="0" Grid.Row="3" Content="Equipo Local" Height="26" />
+                            <ComboBox Grid.Column="1" Grid.Row="3" x:Name="EquiposLocalesComboBox" Style="{StaticResource ComoboBoxPlantilla}"
+                            ItemsSource="{Binding EquiposLocales}"  ItemTemplate="{StaticResource EquiposTemplate}" SelectedItem="{Binding EquipoLocal}" SelectionChanged="EquiposLocalesComboBox_SelectionChanged" IsEnabled="False" />
 
-                        <Label Grid.Column="0" Grid.Row="4" x:Name="ArbitrosSecundariosLabel" Content="Segundo Árbitro" Height="26" Margin="5,6"/>
-                        <ComboBox Grid.Column="1" Grid.Row="4" x:Name="ArbitrosSecundariosComboBox" ItemsSource="{Binding ArbitrosSecundarios}" ItemTemplate="{StaticResource ArbitrosTemplate}" Style="{StaticResource ComoboBoxPlantilla}" SelectedItem="{Binding PartidoUso.ArbitroSecundario}" IsEnabled="False" SelectionChanged="ArbitrosSecundariosComboBox_SelectionChanged"/>
+                            <Label Grid.Column="0"  Grid.Row="4" x:Name="EquipoVisitanteLabel" Content="Equipo Visitante" Height="26" Margin="5,25,5,20"/>
+                            <ComboBox Grid.Column="1" Grid.Row="4" x:Name="EquiposVisitantesComboBox" Style="{StaticResource ComoboBoxPlantilla}" ItemsSource="{Binding EquiposVisitantes}" ItemTemplate="{StaticResource EquiposTemplate}" SelectedItem="{Binding EquipoVisitante}" IsEnabled="False" />
 
-                        <Label Grid.Row="5" Grid.Column="0" x:Name="CorreoContactoLabel" Content="Árbitro de Mesa" Height="26" Margin="5,6"/>
-                        <ComboBox x:Name="CronometradoresComboBox" Grid.Row="5" Grid.Column="1" ItemsSource="{Binding Cronometradores}"  ItemTemplate="{StaticResource ArbitrosTemplate}" Style="{StaticResource ComoboBoxPlantilla}" SelectedItem="{Binding PartidoUso.Cronometrador}" IsEnabled="False"/>
+                            <Label Grid.Column="0" Grid.Row="5" x:Name="ArbitrosPrincipalesLabel" Content="Árbitro Principal" Height="26" Margin="5,8"/>
+                            <ComboBox Grid.Column="1" Grid.Row="5" ItemsSource="{Binding ArbitrosPrincipales}" ItemTemplate="{StaticResource ArbitrosTemplate}" SelectedItem="{Binding ArbitroPrincipal, UpdateSourceTrigger=PropertyChanged}" x:Name="ArbitrosPrincipalesComboBox" Style="{StaticResource ComoboBoxPlantilla}" IsEnabled="False" SelectionChanged="ArbitrosPrincipalesComboBox_SelectionChanged"/>
 
-                        <Label Grid.Column="0" Grid.Row="6" x:Name="EscudoLabel" Content="Tercer Arbitro" Height="26" Margin="5,6"/>
-                        <ComboBox x:Name="TercerosArbitrosComboBox" ItemsSource="{Binding ArbitrosTerceros}" ItemTemplate="{StaticResource ArbitrosTemplate}" Style="{StaticResource ComoboBoxPlantilla}" IsEnabled="False" Grid.Row="6" Grid.Column="1"/>
+                            <Label Grid.Column="0" Grid.Row="6" x:Name="ArbitrosSecundariosLabel" Content="Segundo Árbitro" Height="26" Margin="5,6"/>
+                            <ComboBox Grid.Column="1" Grid.Row="6" x:Name="ArbitrosSecundariosComboBox" ItemsSource="{Binding ArbitrosSecundarios}" ItemTemplate="{StaticResource ArbitrosTemplate}" Style="{StaticResource ComoboBoxPlantilla}" SelectedItem="{Binding ArbitroSecundario}" IsEnabled="False" SelectionChanged="ArbitrosSecundariosComboBox_SelectionChanged"/>
 
-                        <Label Grid.Column="0" Grid.Row="7" Content="Provincia del Encuentro" x:Name="ProvinciaLabel"/>
-                        <ComboBox Grid.Column="1" Grid.Row="7" ItemsSource="{Binding Provincias}" SelectedItem="{Binding PartidoUso.EquipoLocal.Provincia}" IsEnabled="False" Margin="13,2,13,12" Height="22"/>
+                            <Label Grid.Row="7" Grid.Column="0" x:Name="CronometradoresLabel" Content="Árbitro de Mesa" Height="26" Margin="5,6"/>
+                            <ComboBox x:Name="CronometradoresComboBox" Grid.Row="7" Grid.Column="1" ItemsSource="{Binding Cronometradores}"  ItemTemplate="{StaticResource ArbitrosTemplate}" Style="{StaticResource ComoboBoxPlantilla}" SelectedItem="{Binding Cronometrador}" SelectionChanged="CronometradoresComboBox_SelectionChanged" IsEnabled="False"/>
 
-                        <Label Grid.Column="0" Grid.Row="8" Content="Localidad del Encuentro" x:Name="LocalidadLabel"/>
-                        <TextBox Grid.Column="1" Grid.Row="8" Text="{Binding PartidoUso.EquipoLocal.Localidad}" x:Name="LocalidadTextBox" />
+                            <Label Grid.Column="0" Grid.Row="8" x:Name="TercerArbitroLabel" Content="Tercer Arbitro" Height="26" Margin="5,6"/>
+                            <ComboBox x:Name="TercerosArbitrosComboBox" ItemsSource="{Binding ArbitrosTerceros}" ItemTemplate="{StaticResource ArbitrosTemplate}" Style="{StaticResource ComoboBoxPlantilla}" SelectedItem="{Binding TercerArbitro, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" Grid.Row="8" Grid.Column="1"/>
 
-                        <Label Grid.Column="0" Grid.Row="9" Content="Dirección del Encuentro" x:Name="DireccionLabel"/>
-                        <TextBox Grid.Column="1" Grid.Row="9" Text="{Binding PartidoUso.EquipoLocal.Direccion_Campo}" x:Name="DireccionTextBox"/>
+                         
+                            <Label Grid.Column="0" Grid.Row="9" Content="Provincia del Encuentro" x:Name="ProvinciaLabel"/>
+                            <ComboBox Grid.Column="1" Grid.Row="9" ItemsSource="{Binding Provincias}" SelectedItem="{Binding EquipoLocal.Provincia, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" Margin="13,2,13,12" Height="22"/>
 
-                        <Label Grid.Row="10" Grid.Column="0" Content="Fecha del Encuentro" x:Name="FechaLabel"/>
-                        <DatePicker Grid.Row="10" Grid.Column="1" SelectedDate="{Binding PartidoUso.Fecha_Encuentro}" Margin="13"/>
+                            <Label Grid.Column="0" Grid.Row="10" Content="Localidad del Encuentro" x:Name="LocalidadLabel"/>
+                            <TextBox Grid.Column="1" Grid.Row="10" Text="{Binding EquipoLocal.Localidad, UpdateSourceTrigger=PropertyChanged}" x:Name="LocalidadTextBox" />
 
-                        <Label Grid.Row="11" Grid.Column="0" Content="Hora del Encuentro" />
-                        <StackPanel Grid.Row="11" Grid.Column="1" Orientation="Horizontal" Margin="10,0,0,0" DataContext="{Binding PartidoUso.Fecha_Encuentro}">
-                            <TextBox  Width="25"  MaxLength="2" Margin="0" />
-                            <TextBlock  Text=":" VerticalAlignment="Center" FontSize="18" Margin="3,0,3,0"/>
-                            <TextBox  Width="25"   Margin="0" />
-                        </StackPanel>
-                        
-                    </Grid>
+                            <Label Grid.Column="0" Grid.Row="11" Content="Dirección del Encuentro" x:Name="DireccionLabel"/>
+                            <TextBox Grid.Column="1" Grid.Row="11" Text="{Binding EquipoLocal.Direccion_Campo, UpdateSourceTrigger=PropertyChanged}" x:Name="DireccionTextBox"/>
+
+                            <Label Grid.Row="12" Grid.Column="0" Content="Fecha del Encuentro" x:Name="FechaLabel"/>
+                            <DatePicker Grid.Row="12" Grid.Column="1" SelectedDate="{Binding Fecha, UpdateSourceTrigger=PropertyChanged}" Margin="13"/>
+
+                            <Label Grid.Row="13" Grid.Column="0" Content="Hora del Encuentro"/>
+                            <StackPanel Grid.Row="13" Grid.Column="1" Orientation="Horizontal" Margin="12,0,0,0">
+                                <TextBox  Width="25"  MaxLength="2" Margin="0"  x:Name="HoraTextBox" Text="{Binding Hora, UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBlock  Text=":" VerticalAlignment="Center" FontSize="18" Margin="3,0,3,0"/>
+                                <TextBox  Width="25"  MaxLength="2" Margin="0" x:Name="MinutosTextBox" Text="{Binding Minutos, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+
+                            <Label Content="Disputado" Grid.Row="14" Grid.Column="0" x:Name="DisputadoLabel" Visibility="Collapsed"/>
+                            <CheckBox IsChecked="{Binding PartidoUso.Disputado}" Margin="10,0,0,0" VerticalAlignment="Center" x:Name="DisputadoCheckBox" Grid.Row="14" Grid.Column="1" Visibility="Collapsed"/>
+
+                            <Label Grid.Row="15" Grid.Column="0" Content="Resultado" x:Name="ResultadoLabel" Visibility="Collapsed"/>
+                            <StackPanel Grid.Row="15" Grid.Column="1" Orientation="Horizontal" Margin="12,0,0,0" x:Name="ResultadoStackPanel" Visibility="Collapsed">
+                                <TextBox  Width="25"  MaxLength="2" Margin="0"  x:Name="GolLocalTextBox" />
+                                <TextBlock  Text="-" VerticalAlignment="Center" FontSize="18" Margin="3,0,3,0"/>
+                                <TextBox  Width="25"  MaxLength="2" Margin="0" x:Name="GolVisitanteTextBox" />
+                            </StackPanel>
+
+
+                        </Grid>
+                    </StackPanel>
+                   
 
                 </DockPanel>
             </ScrollViewer>
         </GroupBox>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Grid.ColumnSpan="2">
-            <Button x:Name="AceptarCambiosButton" Content="Añadir Equipo" Margin="5" Width="150" Height="30"/>
+            <Button x:Name="AceptarCambiosButton" Content="Asignar Partido" Margin="5" Width="150" Height="30" Click="AceptarCambiosButton_Click"/>
         </StackPanel>
     </Grid>
     <!-- <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,10">

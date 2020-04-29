@@ -46,7 +46,6 @@ namespace NombramientoPartidos.ViewModel.JuadoresStaff
 
         public bool Execute()
         {
-            JugadorInsertar.Equipo = EquipoJugador.IdEquipo;
             JugadorInsertar.Dni = JugadorInsertar.Dni.ToUpper();
             ValidacionesRegexp.ValidarDniNie(JugadorInsertar.Dni);
             JugadorInsertar.Categoria = Utils.ObtenerCategoriaJugador(FechaNacimiento,2019);
@@ -64,7 +63,7 @@ namespace NombramientoPartidos.ViewModel.JuadoresStaff
         {
             if (EquipoJugador != null)
             {
-                JugadorInsertar.Id = EquipoJugador.IdEquipo;
+                JugadorInsertar.Equipo = EquipoJugador.IdEquipo;
             }
         }
     }
