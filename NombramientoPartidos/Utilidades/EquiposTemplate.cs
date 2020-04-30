@@ -12,9 +12,11 @@ namespace NombramientoPartidos.Utilidades
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-         public Equipo EquipoLocal { get; set; }
+        public Equipo EquipoLocal { get; set; }
 
         public Equipo EquipoVisitante { get; set; }
+
+
 
         public EquiposTemplate()
         {

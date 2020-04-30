@@ -12,7 +12,7 @@ namespace NombramientoPartidos.Utilidades.ClasesPojos
         public int IdPartido { get; set; }
 
         [JsonProperty(PropertyName = "jornada")]
-        public int Jornada { get; set; }
+        public string Jornada { get; set; }
 
         [JsonProperty(PropertyName = "equipolocal")]
         public int EquipoLocal { get; set; }
@@ -58,7 +58,7 @@ namespace NombramientoPartidos.Utilidades.ClasesPojos
 
         }
 
-        public Partido(int jornada, int equipolocal, int equipovisitante, int arbitroprincipal,string provincia, string localidad, string direccion_encuentro, string fecha_encuentro)
+        public Partido(string jornada, int equipolocal, int equipovisitante, int arbitroprincipal,string provincia, string localidad, string direccion_encuentro, string fecha_encuentro)
         {
             Jornada = jornada;
             EquipoLocal = equipolocal;

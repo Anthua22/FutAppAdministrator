@@ -31,8 +31,8 @@ namespace NombramientoPartidos.View.Partidos
         {
             (DataContext as PartidosViewModel).LimpiarCampos();
             (DataContext as PartidosViewModel).AccionAsignarmodificar = Accion.Asignar;
-            CRUDGroupBox.Header = "Modificar un Partido";
-            AceptarCambiosButton.Content = "Modificar Partido";
+            CRUDGroupBox.Header = "Asignar un Partido";
+            AceptarCambiosButton.Content = "Asignar Partido";
             OcultarControlPorAccion();
            
         }
@@ -40,46 +40,85 @@ namespace NombramientoPartidos.View.Partidos
         private void ModificarPartidoButton_Click(object sender, RoutedEventArgs e)
         {
             (DataContext as PartidosViewModel).AccionAsignarmodificar = Accion.Modificar;
-            CRUDGroupBox.Header = "Asignar un Partido";
-            AceptarCambiosButton.Content = "Asignar Partido";
+            CRUDGroupBox.Header = "Modificar un Partido";
+            AceptarCambiosButton.Content = "Modificar Partido";
             OcultarControlPorAccion();
             (DataContext as PartidosViewModel).LimpiarCampos();
         }
 
         private void CategoriasCRUDComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            try
+            {
+                OcultarMostrarcontrolesPorCategoria();
+                (DataContext as PartidosViewModel).ObtenerEquiposyArbitrosPrincipales();
+                (DataContext as PartidosViewModel).CambioAccionCategorias();
+                (DataContext as PartidosViewModel).ObtenerPartidos();
+                if ((DataContext as PartidosViewModel).AccionAsignarmodificar == Accion.Asignar && (DataContext as PartidosViewModel).Categoria != null)
+                {
+                    EquiposLocalesComboBox.IsEnabled = true;
+                    ArbitrosPrincipalesComboBox.IsEnabled = true;
+                    PartidosComboBox.IsEnabled = false;
+                }
+                else if ((DataContext as PartidosViewModel).AccionAsignarmodificar == Accion.Modificar && (DataContext as PartidosViewModel).Categoria != null)
+                {
+                    PartidosComboBox.IsEnabled = true;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
            
-            OcultarMostrarcontrolesPorCategoria();
-            (DataContext as PartidosViewModel).ObtenerEquiposyArbitrosPrincipales();
-         
-            (DataContext as PartidosViewModel).CambioAccionCategorias();
-
-            (DataContext as PartidosViewModel).ObtenerPartidos();
-            EquiposLocalesComboBox.IsEnabled = true;
-            ArbitrosPrincipalesComboBox.IsEnabled = true;
         }
 
         private void ArbitrosPrincipalesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            (DataContext as PartidosViewModel).ObtenerArbitrosSecundarios();
-            if((DataContext as PartidosViewModel).AccionCategoriaTrabajo == AccionCategoria.RegionalyPreferente)
+            try
             {
-                (DataContext as PartidosViewModel).ObtenerCronometradores();
-                CronometradoresComboBox.IsEnabled = true;
+                (DataContext as PartidosViewModel).ObtenerArbitrosSecundarios();
+                if ((DataContext as PartidosViewModel).AccionCategoriaTrabajo == AccionCategoria.RegionalyPreferente)
+                {
+                    (DataContext as PartidosViewModel).ObtenerCronometradores();
+                    CronometradoresComboBox.IsEnabled = true;
+                }
+                ArbitrosSecundariosComboBox.IsEnabled = true;
             }
-            ArbitrosSecundariosComboBox.IsEnabled = true;
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+           
         }
 
         private void EquiposLocalesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            (DataContext as PartidosViewModel).ObtenerEquiposVisitantes();
-            EquiposVisitantesComboBox.IsEnabled = true;
+            try
+            {
+                if ((DataContext as PartidosViewModel).Categoria != null && (DataContext as PartidosViewModel).AccionAsignarmodificar == Accion.Asignar)
+                {
+                    (DataContext as PartidosViewModel).ObtenerEquiposVisitantes();
+                    EquiposVisitantesComboBox.IsEnabled = true;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+                       
         }
 
         private void ArbitrosSecundariosComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            (DataContext as PartidosViewModel).ObtenerCronometradores();
-            CronometradoresComboBox.IsEnabled = true;
+            try
+            {
+                (DataContext as PartidosViewModel).ObtenerCronometradores();
+                CronometradoresComboBox.IsEnabled = true;
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
         }
 
         private void AceptarCambiosButton_Click(object sender, RoutedEventArgs e)
@@ -92,9 +131,14 @@ namespace NombramientoPartidos.View.Partidos
                     case 1:
                         MessageBox.Show("Nuevo partido asignado correctamente", "Insertar", MessageBoxButton.OK, MessageBoxImage.Information);
                         break;
+                    case 2:
+                        MessageBox.Show("Partido modificado correctamente", "Modificar", MessageBoxButton.OK, MessageBoxImage.Information);
+                        break;
                 }
+                OcultarControlPorAccion();
 
-            }catch(Exception ex)
+            }
+            catch(Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -167,6 +211,10 @@ namespace NombramientoPartidos.View.Partidos
                 ResultadoLabel.Visibility = Visibility.Visible;
                 ResultadoStackPanel.Visibility = Visibility.Visible;
 
+                JornadaComboBox.IsEnabled = false;
+                DeshabilitarControles();
+                
+
                 AsignarPartidoButton.IsEnabled = true;
                 ModificarPartidoButton.IsEnabled = false;
 
@@ -185,6 +233,15 @@ namespace NombramientoPartidos.View.Partidos
                 ResultadoLabel.Visibility = Visibility.Collapsed;
                 ResultadoStackPanel.Visibility = Visibility.Collapsed;
 
+                JornadaComboBox.IsEnabled = true;
+                HoraEncuentroStackPanel.IsEnabled = true;
+                FechaEncuentro.IsEnabled = true;
+                LocalidadTextBox.IsEnabled = true;
+                DireccionTextBox.IsEnabled = true;
+
+                DeshabilitarControles();
+            
+
                 AsignarPartidoButton.IsEnabled = false;
                 ModificarPartidoButton.IsEnabled = true;
             }
@@ -192,11 +249,61 @@ namespace NombramientoPartidos.View.Partidos
 
         private void PartidosComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if((DataContext as PartidosViewModel).Partidos.Count > 0)
+            try
             {
-                (DataContext as PartidosViewModel).ObtenerDatosPartidoUpdate();
+                if ((DataContext as PartidosViewModel).Partidos.Count > 0)
+                {
+                    (DataContext as PartidosViewModel).ObtenerDatosPartidoUpdate();
+                    HabilitarControles();
+                }
             }
-           
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+                      
+        }
+
+        private void HabilitarControles()
+        {
+            DisputadoCheckBox.IsEnabled = true;
+            ResultadoStackPanel.IsEnabled = true;
+            LocalidadTextBox.IsEnabled = true;
+            JornadaComboBox.IsEnabled = true;
+            ArbitrosPrincipalesComboBox.IsEnabled = true;
+            ArbitrosSecundariosComboBox.IsEnabled = true;
+            CronometradoresComboBox.IsEnabled = true;
+            TercerosArbitrosComboBox.IsEnabled = true;
+            DireccionTextBox.IsEnabled = true;
+            FechaEncuentro.IsEnabled = true;
+            HoraEncuentroStackPanel.IsEnabled = true;
+        }
+
+        private void DeshabilitarControles()
+        {
+            EquiposLocalesComboBox.IsEnabled = false;
+            EquiposVisitantesComboBox.IsEnabled = false;
+            HoraEncuentroStackPanel.IsEnabled = false;
+            FechaEncuentro.IsEnabled = false;
+            LocalidadTextBox.IsEnabled = false;
+            DireccionTextBox.IsEnabled = false;
+            ArbitrosPrincipalesComboBox.IsEnabled = false;
+            ArbitrosSecundariosComboBox.IsEnabled = false;
+            TercerosArbitrosComboBox.IsEnabled = false;
+            PartidosComboBox.IsEnabled = false;
+            DisputadoCheckBox.IsEnabled = false;
+            ResultadoStackPanel.IsEnabled = false;
+            CronometradoresComboBox.IsEnabled = false;
+        }
+
+        private void CommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+
+        }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+
         }
     }
 }

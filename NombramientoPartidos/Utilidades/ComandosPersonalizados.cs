@@ -53,5 +53,6 @@ namespace NombramientoPartidos.Utilidades
                 typeof(ComandosPersonalizados)
             );
 
+     
     }
 }

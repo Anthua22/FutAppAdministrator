@@ -53,7 +53,7 @@ namespace NombramientoPartidos.ViewModel.Partidos
 
         public ObservableCollection<Partido> Partidos { get; set; }
 
-        public ObservableCollection<int> Jornadas { get; set; }
+        public ObservableCollection<string> Jornadas { get; set; }
 
         public Accion AccionAsignarmodificar { get; set; }
 
@@ -62,6 +62,10 @@ namespace NombramientoPartidos.ViewModel.Partidos
         public string Hora { get; set; }
 
         public string Minutos { get; set; }
+
+        public int GolesLocales { get; set; }
+
+        public int GolesVisitantes { get; set; }
 
         public string Categoria { get; set; }
 
@@ -97,9 +101,9 @@ namespace NombramientoPartidos.ViewModel.Partidos
             EquiposVisitantes = new ObservableCollection<Equipo>();
             PartidosTemplates = new ObservableCollection<EquiposTemplate>();
             Partidos = new ObservableCollection<Partido>();
-            Jornadas = new ObservableCollection<int>()
+            Jornadas = new ObservableCollection<string>()
             {
-                1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40
+                "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40"
                 
             };
             AccionAsignarmodificar = Accion.Asignar;
@@ -109,6 +113,8 @@ namespace NombramientoPartidos.ViewModel.Partidos
             Minutos = "00";
             Categorias = Utils.Categorias;
             Provincias = Utils.Provincias;
+            GolesLocales = 0;
+            GolesVisitantes = 0;
        
         }
 
@@ -168,7 +174,10 @@ namespace NombramientoPartidos.ViewModel.Partidos
                     PartidosTemplates.Add(new EquiposTemplate(EquiposLocales.Where(x => x.IdEquipo == m.EquipoLocal).First(), EquiposVisitantes.Where(y => y.IdEquipo == m.EquipoVisitante).First()));
                 }
 
-                
+            }
+            else
+            {
+                 Partidos = new ObservableCollection<Partido>(ApiRest.RescartarPartidos().Where(x => x.Categoria.Equals(Categoria)));
             }
             
         }
@@ -204,26 +213,38 @@ namespace NombramientoPartidos.ViewModel.Partidos
 
         public void ObtenerCronometradores()
         {
-            switch (AccionCategoriaTrabajo)
+            if (ArbitroPrincipal != null)
             {
-                case AccionCategoria.PrimeraySegunda:
-                    Cronometradores = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => !x.Categoria.Equals("Preferente") && !x.Categoria.Equals("Regional") && !x.Categoria.Equals("Fútbol Base") && !x.Categoria.Equals("3º División") && x.Dni!=ArbitroPrincipal.Dni && x.Dni!=ArbitroSecundario.Dni).OrderByDescending(y=>y.Categoria));
-                    ArbitrosTerceros = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x=>x.Categoria.Equals("2ºB División")));
-                    break;
+                switch (AccionCategoriaTrabajo)
+                {
+                    case AccionCategoria.PrimeraySegunda:
+                        if (ArbitroSecundario != null)
+                        {
+                            Cronometradores = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => !x.Categoria.Equals("Preferente") && !x.Categoria.Equals("Regional") && !x.Categoria.Equals("Fútbol Base") && !x.Categoria.Equals("3º División") && x.Dni != ArbitroPrincipal.Dni && x.Dni != ArbitroSecundario.Dni).OrderByDescending(y => y.Categoria));
+                            if(Cronometrador != null)
+                            {
+                                ArbitrosTerceros = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("2ºB División")));
+                            }
+                        }
+                       
+                        break;
 
-                case AccionCategoria.TerceraySegundaB:
-                    Cronometradores = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => !x.Categoria.Equals("Fútbol Base") && !x.Categoria.Equals("Preferente")).OrderByDescending(y=>y.Categoria));
-                    ArbitrosTerceros = new ObservableCollection<Arbitro>();
-                    break;
-                case AccionCategoria.RegionalyPreferente:
-                    Cronometradores = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("Fútbol Base")).OrderBy(y=>y.Nombre_Completo));
-                    ArbitrosTerceros = new ObservableCollection<Arbitro>();
-                    break;
-                case AccionCategoria.FutbolBase:
-                    Cronometradores = new ObservableCollection<Arbitro>();
-                    ArbitrosTerceros = new ObservableCollection<Arbitro>();
-                    break;
+                    case AccionCategoria.TerceraySegundaB:
+                        
+                        Cronometradores = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => !x.Categoria.Equals("Fútbol Base") && !x.Categoria.Equals("Preferente")).OrderByDescending(y => y.Categoria));
+                        ArbitrosTerceros = new ObservableCollection<Arbitro>();
+                        break;
+                    case AccionCategoria.RegionalyPreferente:
+                        Cronometradores = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("Fútbol Base")).OrderBy(y => y.Nombre_Completo));
+                        ArbitrosTerceros = new ObservableCollection<Arbitro>();
+                        break;
+                    case AccionCategoria.FutbolBase:
+                        Cronometradores = new ObservableCollection<Arbitro>();
+                        ArbitrosTerceros = new ObservableCollection<Arbitro>();
+                        break;
+                }
             }
+           
         }
 
         public void ObtenerEquiposVisitantes()
@@ -238,25 +259,38 @@ namespace NombramientoPartidos.ViewModel.Partidos
             {
                 case Accion.Asignar:
                     AsignarValorPartido();
+                    ComprobarExisteJornada();
                     PonerBienFecha();   
                     ApiRest.InsertPartido(PartidoUso);
                     LimpiarCampos();
                     return 1;
                 case Accion.Modificar:
+                    AsignarValorPartido();
+                    PonerBienFecha();
+                    CambiarResultado();
+                    ApiRest.UpdatePartido(PartidoUso);
+                    LimpiarCampos();
                     return 2;
                 default:
                     LimpiarCampos();
                     return -1; 
                   
-            }
-           
+            }     
           
         }
 
         private void AsignarValorPartido()
         {
-            PartidoUso.EquipoLocal = EquipoLocal.IdEquipo;
-            PartidoUso.EquipoVisitante = EquipoVisitante.IdEquipo;
+            if(AccionAsignarmodificar == Accion.Asignar)
+            {
+                PartidoUso.EquipoLocal = EquipoLocal.IdEquipo;
+                PartidoUso.EquipoVisitante = EquipoVisitante.IdEquipo;
+            }else if(AccionAsignarmodificar == Accion.Modificar)
+            {
+                PartidoUso.EquipoLocal = EquipoTemplate.EquipoLocal.IdEquipo;
+                PartidoUso.EquipoVisitante = EquipoTemplate.EquipoVisitante.IdEquipo;
+            }
+           
             PartidoUso.ArbitroPrincipal = ArbitroPrincipal.Id;
             PartidoUso.ArbitroSecundario = ArbitroSecundario.Id;
             PartidoUso.Tercer_Arbitro = TercerArbitro.Id;
@@ -310,8 +344,9 @@ namespace NombramientoPartidos.ViewModel.Partidos
                 Cronometrador = Cronometradores.Where(x => x.Id == PartidoUso.Cronometrador).First();
             }
             ObtenerFecha();
-  
-         
+            ObtenerResultado();
+
+
         }
 
         public void LimpiarCampos()
@@ -323,7 +358,7 @@ namespace NombramientoPartidos.ViewModel.Partidos
             EquipoLocal = new Equipo();
             EquipoVisitante = new Equipo();
             EquipoTemplate = new EquiposTemplate();
-            PartidoUso = new Partido() { Jornada = 0};
+            PartidoUso = new Partido();
             Categoria = null;
             EquiposLocales.Clear();
             ArbitrosPrincipales.Clear();
@@ -333,15 +368,36 @@ namespace NombramientoPartidos.ViewModel.Partidos
             EquiposVisitantes.Clear();
             PartidosTemplates.Clear();
             Partidos.Clear();
-
-
-            
+            Fecha = DateTime.Now;
+            Hora = "00";
+            Minutos = "00";            
         }
 
         private void ComprobarExisteJornada()
         {
-            //Partidos.Where(x=>x.)
+
+            if(Partidos.Where(x=>x.EquipoLocal == PartidoUso.EquipoLocal && x.EquipoVisitante == PartidoUso.EquipoVisitante && x.Jornada == PartidoUso.Jornada || x.EquipoLocal == PartidoUso.EquipoLocal && x.EquipoVisitante == PartidoUso.EquipoVisitante).Count() > 0)
+            {
+                throw new Exception("El partido a asignar ya se ha asignado");
+            }
         }
+
+        private void ObtenerResultado()
+        {
+            if(!string.IsNullOrWhiteSpace(PartidoUso.Resultado))
+            {
+                string[] resultado = PartidoUso.Resultado.Split('-');
+                GolesLocales = int.Parse(resultado[0]);
+                GolesVisitantes = int.Parse(resultado[1]);
+            }
+            
+        }
+
+        private void CambiarResultado()
+        {
+            PartidoUso.Resultado = GolesLocales + "-" + GolesVisitantes;
+        }
+
 
     }
 }
