@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NombramientoPartidos.View.Partidos"
+             xmlns:comandos="clr-namespace:NombramientoPartidos.Utilidades"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -55,9 +56,9 @@
 
     <UserControl.CommandBindings>
         <CommandBinding
-            Command="ApplicationCommands.Save"
-            CanExecute="CommandBinding_CanExecute"
-            Executed="CommandBinding_Executed"/>
+            Command="comandos:ComandosPersonalizados.ComandoPartido"
+            CanExecute="AccionPartido_CanExecute"
+            Executed="AccionPartido_Executed"/>
     </UserControl.CommandBindings>
     <Grid x:Name="ContenedorPrincipalGrid" Margin="15">
         <Grid.ColumnDefinitions>
@@ -73,14 +74,14 @@
 
             <Button Margin="0,0,0,15" Height="50" x:Name="AsignarPartidoButton" Content="Asignar un Partido" Click="AsignarPartidoButton_Click" IsEnabled="False"/>
             <Button Margin="0,0,0,15" Height="50" x:Name="ModificarPartidoButton" Content="Modificar datos de un Partido" Click="ModificarPartidoButton_Click"/>
-
+            <Button Margin="0,0,0,15" Height="50" x:Name="EliminarPartidoButton" Content="Eliminar un Partido" Click="EliminarPartidoButton_Click"/>
         </StackPanel>
 
         <GroupBox x:Name="CRUDGroupBox" Grid.Column="1" Margin="10px" Header="Asignar Partido">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
 
                 <DockPanel HorizontalAlignment="Center">
-                  
+
                     <StackPanel VerticalAlignment="Center">
                         <Grid Margin="0,5,0,5">
                             <Grid.ColumnDefinitions>
@@ -111,10 +112,10 @@
                             <ComboBox Grid.Column="1" Grid.Row="0" x:Name="CategoriasCRUDComboBox" Margin="13,2,13,12" SelectionChanged="CategoriasCRUDComboBox_SelectionChanged" SelectedItem="{Binding Categoria, UpdateSourceTrigger=PropertyChanged}"
                             ItemsSource="{Binding Categorias}" VerticalAlignment="Center" Height="22"/>
 
-                            <Label Grid.Row="1" Grid.Column="0" x:Name="EligirPartidoLabel" Content="Elija el Partido" Visibility="Collapsed"/>
+                            <Label Grid.Row="1" Grid.Column="0" x:Name="ElegirPartidoLabel" Content="Elija el Partido" Visibility="Collapsed"/>
                             <ComboBox Grid.Row="1" Grid.Column="1" x:Name="PartidosComboBox" ItemsSource="{Binding PartidosTemplates}" Height="55" Margin="13,10" ItemTemplate="{StaticResource PartidosTemplate}" SelectedItem="{Binding EquipoTemplate}" Visibility="Collapsed" IsEnabled="False" SelectionChanged="PartidosComboBox_SelectionChanged"/>
 
-                            <Label Grid.Row="2" Grid.Column="0" Content="Jornada"/>
+                            <Label Grid.Row="2" Grid.Column="0" Content="Jornada" x:Name="JornadaLabel"/>
                             <ComboBox Grid.Row="2" Grid.Column="1" x:Name="JornadaComboBox" ItemsSource="{Binding Jornadas}" Width="50" HorizontalAlignment="Left" Margin="13,21" SelectedItem="{Binding PartidoUso.Jornada, UpdateSourceTrigger=PropertyChanged}"/>
 
                             <Label x:Name="EquipoLocalLabel" Grid.Column="0" Grid.Row="3" Content="Equipo Local" Height="26" />
@@ -136,9 +137,9 @@
                             <Label Grid.Column="0" Grid.Row="8" x:Name="TercerArbitroLabel" Content="Tercer Arbitro" Height="26" Margin="5,6"/>
                             <ComboBox x:Name="TercerosArbitrosComboBox" ItemsSource="{Binding ArbitrosTerceros}" ItemTemplate="{StaticResource ArbitrosTemplate}" Style="{StaticResource ComoboBoxPlantilla}" SelectedItem="{Binding TercerArbitro, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" Grid.Row="8" Grid.Column="1"/>
 
-                         
+
                             <Label Grid.Column="0" Grid.Row="9" Content="Provincia del Encuentro" x:Name="ProvinciaLabel"/>
-                            <ComboBox Grid.Column="1" Grid.Row="9" ItemsSource="{Binding Provincias}" SelectedItem="{Binding EquipoLocal.Provincia, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" Margin="13,2,13,12" Height="22"/>
+                            <ComboBox Grid.Column="1" Grid.Row="9" ItemsSource="{Binding Provincias}" x:Name="ProvinciasComboBox" SelectedItem="{Binding EquipoLocal.Provincia, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" Margin="13,2,13,12" Height="22"/>
 
                             <Label Grid.Column="0" Grid.Row="10" Content="Localidad del Encuentro" x:Name="LocalidadLabel"/>
                             <TextBox Grid.Column="1" Grid.Row="10" Text="{Binding EquipoLocal.Localidad, UpdateSourceTrigger=PropertyChanged}" x:Name="LocalidadTextBox" />
@@ -149,11 +150,11 @@
                             <Label Grid.Row="12" Grid.Column="0" Content="Fecha del Encuentro" x:Name="FechaLabel"/>
                             <DatePicker Grid.Row="12" Grid.Column="1" SelectedDate="{Binding Fecha, UpdateSourceTrigger=PropertyChanged}" Margin="13" x:Name="FechaEncuentro"/>
 
-                            <Label Grid.Row="13" Grid.Column="0" Content="Hora del Encuentro"/>
+                            <Label Grid.Row="13" Grid.Column="0" Content="Hora del Encuentro" x:Name="HoraLabel"/>
                             <StackPanel Grid.Row="13" Grid.Column="1" Orientation="Horizontal" Margin="12,0,0,0" x:Name="HoraEncuentroStackPanel">
-                                <TextBox  Width="25"  MaxLength="2" Margin="0"  x:Name="HoraTextBox" Text="{Binding Hora, UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBox  Width="25"  MaxLength="2" Margin="0"  Text="{Binding Hora, UpdateSourceTrigger=PropertyChanged}"/>
                                 <TextBlock  Text=":" VerticalAlignment="Center" FontSize="18" Margin="3,0,3,5"/>
-                                <TextBox  Width="25"  MaxLength="2" Margin="0" x:Name="MinutosTextBox" Text="{Binding Minutos, UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBox  Width="25"  MaxLength="2" Margin="0" Text="{Binding Minutos, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
 
                             <Label Content="Disputado" Grid.Row="14" Grid.Column="0" x:Name="DisputadoLabel" Visibility="Collapsed"/>
@@ -169,18 +170,13 @@
 
                         </Grid>
                     </StackPanel>
-                   
 
                 </DockPanel>
             </ScrollViewer>
         </GroupBox>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Grid.ColumnSpan="2">
-            <Button x:Name="AceptarCambiosButton" Content="Asignar Partido" Margin="5" Width="150" Height="30" Click="AceptarCambiosButton_Click"/>
+            <Button x:Name="AceptarCambiosButton" Content="Asignar Partido" Margin="5" Width="150" Height="30" Command="comandos:ComandosPersonalizados.ComandoPartido"/>
         </StackPanel>
     </Grid>
-    <!-- <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,10">
-            <Button x:Name="AceptarCambiosButton" Content="Añadir Equipo" Margin="5" Width="150"/>
-        </StackPanel>-->
-
 
 </UserControl>

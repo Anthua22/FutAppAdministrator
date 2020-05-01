@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using NombramientoPartidos.Services;
@@ -25,6 +26,10 @@ namespace NombramientoPartidos.ViewModel.Equipos
         public ObservableCollection<Equipo> ListaEquipos { get; private set; }
         public Accion Accion { get; private set; }
         public ObservableCollection<string> Provincias { get; set; }
+        private ObservableCollection<Partido> Partidos { get; set; }
+        private ObservableCollection<Jugador> Jugadores { get; set; }
+        private ObservableCollection<Staff> Staffs { get; set; }
+
         string fotoantigua;
 
         public EquiposViewModel(Accion accion)
@@ -40,6 +45,9 @@ namespace NombramientoPartidos.ViewModel.Equipos
             }
             Categorias = Utils.Categorias;
             Provincias = Utils.Provincias;
+            Partidos = new ObservableCollection<Partido>();
+            Jugadores = new ObservableCollection<Jugador>();
+            Staffs = new ObservableCollection<Staff>();
         }
 
         public int Save_Execute()
@@ -82,18 +90,20 @@ namespace NombramientoPartidos.ViewModel.Equipos
                         return -1;
 
                 case Accion.Borrar:
-                    if (ApiRest.DeleteEquipo(Equipo.IdEquipo))
+
+                    MessageBoxResult messageresult = MessageBox.Show("Esta seguro que desea el eliminar el Equipo: " + Equipo.Nombre + "?. Los jugadores y staffs que pertenezcan a este equipo o los partidos que haya participado se verán afectados", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (messageresult == MessageBoxResult.Yes)
                     {
-                        if(!Equipo.Foto.Equals("/Assets/equipodefecto.jpg"))
+                        CambiaEquipoDelte();
+                        ApiRest.DeleteEquipo(Equipo.IdEquipo);
+                        if (!Equipo.Foto.Equals("/Assets/equipodefecto.jpg"))
                         {
                             string[] referenceblob = Equipo.Foto.Split('/');
-                            BlobStorage.EliminarImagen(referenceblob[referenceblob.Length-1], Equipo);
+                            BlobStorage.EliminarImagen(referenceblob[referenceblob.Length - 1], Equipo);
                         }
                         return 3;
                     }
-                       
-                    else
-                        return -1;
+                    return 0;
 
                 default:
                     return 0;
@@ -133,6 +143,37 @@ namespace NombramientoPartidos.ViewModel.Equipos
                     fotoantigua = urlBlob[urlBlob.Length - 1];
                 }
                 Equipo.Foto = ruta;
+            }
+        }
+
+        private void CambiaEquipoDelte()
+        {
+            Partidos = new ObservableCollection<Partido>( ApiRest.RescartarPartidos().Where(x => x.EquipoLocal == Equipo.IdEquipo || x.EquipoVisitante == Equipo.IdEquipo));
+            Jugadores = new ObservableCollection<Jugador>(ApiRest.RescatarJugadores().Where(x=>x.Equipo == Equipo.IdEquipo));
+            Staffs = new ObservableCollection<Staff>(ApiRest.RescatarStaffs().Where(x=> x.Equipo == Equipo.IdEquipo));
+
+            for(int i =0; i < Partidos.Count; i++)
+            {
+                if(Partidos[i].EquipoLocal == Equipo.IdEquipo)
+                {
+                    Partidos[i].EquipoLocal = -1;
+                }else if(Partidos[i].EquipoVisitante == Equipo.IdEquipo)
+                {
+                    Partidos[i].EquipoVisitante = -1;
+                }
+                ApiRest.UpdatePartido(Partidos[i]);
+            }
+
+            for(int i = 0; i<Jugadores.Count; i++)
+            {
+                Jugadores[i].Equipo = -1;
+                ApiRest.UpdateJugador(Jugadores[i]);
+            }
+
+            for(int i = 0; i<Staffs.Count; i++)
+            {
+                Staffs[i].Equipo = -1;
+                ApiRest.UpdateStaff(Staffs[i]);
             }
         }
     }

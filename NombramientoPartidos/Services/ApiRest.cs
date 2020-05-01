@@ -168,7 +168,7 @@ namespace NombramientoPartidos.Services
             }
         }
 
-        public static bool DeleteEquipo(int id)
+        public static void DeleteEquipo(int id)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase+"equipos/" + id);
             request.Method = "DELETE";
@@ -178,8 +178,7 @@ namespace NombramientoPartidos.Services
             {
                 throw new CRUDException("Error al borral el registro");
             }
-            else
-                return true;
+          
         }
 
         public static bool InsertJugador(Jugador jugador)
@@ -334,6 +333,19 @@ namespace NombramientoPartidos.Services
             {
                 throw new CRUDException("Error al modificar el dato");
             }
+        }
+
+        public static void DeletePartido(int id)
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "partidos/" + id);
+            request.Method = "DELETE";
+            request.Accept = "application/json";
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            if (!response.StatusCode.Equals(HttpStatusCode.OK))
+            {
+                throw new CRUDException("Error al borral el registro");
+            }
+       
         }
     }
 

@@ -194,8 +194,13 @@ namespace NombramientoPartidos.View.Equipo
         private void CategoriasCRUDComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             (DataContext as EquiposViewModel).Equipo.Categoria = CategoriasCRUDComboBox.SelectedItem as string;
-            (DataContext as EquiposViewModel).FiltroCategoria();
-            EquiposComboBox.IsEnabled = true;
+            if((DataContext as EquiposViewModel).Accion == Accion.Editar ||(DataContext as EquiposViewModel).Accion == Accion.Borrar)
+            {
+                (DataContext as EquiposViewModel).FiltroCategoria();
+                EquiposComboBox.IsEnabled = true;
+            }
+            
+            
         }
 
         private void EquiposComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

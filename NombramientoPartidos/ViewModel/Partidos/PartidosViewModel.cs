@@ -1,6 +1,7 @@
 ﻿using NombramientoPartidos.Services;
 using NombramientoPartidos.Utilidades;
 using NombramientoPartidos.Utilidades.ClasesPojos;
+using NombramientoPartidos.ViewModel.Equipos;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,6 +9,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace NombramientoPartidos.ViewModel.Partidos
 {
@@ -20,11 +22,7 @@ namespace NombramientoPartidos.ViewModel.Partidos
         FutbolBase
     }
 
-    public enum Accion
-    {
-        Asignar,
-        Modificar
-    }
+   
 
     class PartidosViewModel : INotifyPropertyChanged
     {
@@ -106,7 +104,7 @@ namespace NombramientoPartidos.ViewModel.Partidos
                 "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40"
                 
             };
-            AccionAsignarmodificar = Accion.Asignar;
+            AccionAsignarmodificar = Accion.Nuevo;
             PartidoUso = new Partido();
             Fecha = DateTime.Now;
             Hora = "00";
@@ -139,7 +137,7 @@ namespace NombramientoPartidos.ViewModel.Partidos
                     AccionCategoriaTrabajo = AccionCategoria.FutbolBase;
                 }
 
-                if (AccionAsignarmodificar == Accion.Modificar)
+                if (AccionAsignarmodificar == Accion.Editar || AccionAsignarmodificar == Accion.Borrar)
                 {
                     EquiposLocales = Utils.FiltroEquipos(Categoria);
                     EquiposVisitantes = Utils.FiltroEquipos(Categoria);
@@ -166,7 +164,7 @@ namespace NombramientoPartidos.ViewModel.Partidos
         public void ObtenerPartidos()
         {
            
-            if(AccionAsignarmodificar == Accion.Modificar)
+            if(AccionAsignarmodificar == Accion.Editar ||AccionAsignarmodificar == Accion.Borrar)
             { 
                 Partidos = new ObservableCollection<Partido>(ApiRest.RescartarPartidos().Where(x => x.Categoria.Equals(Categoria)));
                 foreach(Partido m in Partidos)
@@ -220,10 +218,10 @@ namespace NombramientoPartidos.ViewModel.Partidos
                     case AccionCategoria.PrimeraySegunda:
                         if (ArbitroSecundario != null)
                         {
-                            Cronometradores = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => !x.Categoria.Equals("Preferente") && !x.Categoria.Equals("Regional") && !x.Categoria.Equals("Fútbol Base") && !x.Categoria.Equals("3º División") && x.Dni != ArbitroPrincipal.Dni && x.Dni != ArbitroSecundario.Dni).OrderByDescending(y => y.Categoria));
+                            Cronometradores = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria != null && !x.Categoria.Equals("Preferente") && !x.Categoria.Equals("Regional") && !x.Categoria.Equals("Fútbol Base") && !x.Categoria.Equals("3º División") && x.Dni != ArbitroPrincipal.Dni && x.Dni != ArbitroSecundario.Dni).OrderByDescending(y => y.Categoria));
                             if(Cronometrador != null)
                             {
-                                ArbitrosTerceros = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("2ºB División")));
+                                ArbitrosTerceros = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria != null && x.Categoria.Equals("2ºB División")));
                             }
                         }
                        
@@ -231,11 +229,11 @@ namespace NombramientoPartidos.ViewModel.Partidos
 
                     case AccionCategoria.TerceraySegundaB:
                         
-                        Cronometradores = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => !x.Categoria.Equals("Fútbol Base") && !x.Categoria.Equals("Preferente")).OrderByDescending(y => y.Categoria));
+                        Cronometradores = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria != null && !x.Categoria.Equals("Fútbol Base") && !x.Categoria.Equals("Preferente")).OrderByDescending(y => y.Categoria));
                         ArbitrosTerceros = new ObservableCollection<Arbitro>();
                         break;
                     case AccionCategoria.RegionalyPreferente:
-                        Cronometradores = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("Fútbol Base")).OrderBy(y => y.Nombre_Completo));
+                        Cronometradores = new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria != null && x.Categoria.Equals("Fútbol Base")).OrderBy(y => y.Nombre_Completo));
                         ArbitrosTerceros = new ObservableCollection<Arbitro>();
                         break;
                     case AccionCategoria.FutbolBase:
@@ -254,38 +252,47 @@ namespace NombramientoPartidos.ViewModel.Partidos
         }
 
         public int Excecute()
-        {
+        { 
+            AsignarValorPartido();
             switch (AccionAsignarmodificar)
             {
-                case Accion.Asignar:
-                    AsignarValorPartido();
+                case Accion.Nuevo:
+                   
                     ComprobarExisteJornada();
                     PonerBienFecha();   
                     ApiRest.InsertPartido(PartidoUso);
                     LimpiarCampos();
                     return 1;
-                case Accion.Modificar:
-                    AsignarValorPartido();
+                case Accion.Editar:
                     PonerBienFecha();
                     CambiarResultado();
                     ApiRest.UpdatePartido(PartidoUso);
                     LimpiarCampos();
                     return 2;
+                case Accion.Borrar:
+                    MessageBoxResult messageresult = MessageBox.Show("Esta seguro que desea el partido de la Jornada: " + PartidoUso.Jornada + " del equipo local " + EquipoLocal.Nombre + " vs " +EquipoTemplate.EquipoVisitante.Nombre, "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (messageresult == MessageBoxResult.Yes)
+                    {
+                        ApiRest.DeletePartido(PartidoUso.IdPartido);
+                        LimpiarCampos();
+                        return 3;
+                    }
+                    return -1;
                 default:
                     LimpiarCampos();
                     return -1; 
                   
             }     
-          
+            
         }
 
         private void AsignarValorPartido()
         {
-            if(AccionAsignarmodificar == Accion.Asignar)
+            if(AccionAsignarmodificar == Accion.Nuevo)
             {
                 PartidoUso.EquipoLocal = EquipoLocal.IdEquipo;
                 PartidoUso.EquipoVisitante = EquipoVisitante.IdEquipo;
-            }else if(AccionAsignarmodificar == Accion.Modificar)
+            }else if(AccionAsignarmodificar == Accion.Editar || AccionAsignarmodificar == Accion.Borrar)
             {
                 PartidoUso.EquipoLocal = EquipoTemplate.EquipoLocal.IdEquipo;
                 PartidoUso.EquipoVisitante = EquipoTemplate.EquipoVisitante.IdEquipo;

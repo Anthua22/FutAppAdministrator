@@ -145,25 +145,25 @@ namespace NombramientoPartidos.Utilidades
             switch (categoria)
             {
                  case "1º División":
-                    Equipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("1º División")).OrderBy(y => y.Nombre));
+                    Equipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria!=null && x.Categoria.Equals("1º División")).OrderBy(y => y.Nombre));
                     break;
                 case "2º División":
-                    Equipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("2º División")).OrderBy(y => y.Nombre));
+                    Equipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria != null && x.Categoria.Equals("2º División")).OrderBy(y => y.Nombre));
                     break;
                 case "2ºB División":
-                    Equipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("2ºB División")).OrderBy(y => y.Nombre));
+                    Equipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria != null && x.Categoria.Equals("2ºB División")).OrderBy(y => y.Nombre));
                     break;
                 case "3º División":
-                    Equipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("3º División")).OrderBy(y => y.Nombre));
+                    Equipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria != null && x.Categoria.Equals("3º División")).OrderBy(y => y.Nombre));
                     break;
                 case "Preferente":
-                    Equipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("Preferente")).OrderBy(y => y.Nombre));
+                    Equipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria != null && x.Categoria.Equals("Preferente")).OrderBy(y => y.Nombre));
                     break;
                 case "Fútbol Base":
-                    Equipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("Fútbol Base")).OrderBy(y => y.Nombre));
+                    Equipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria != null && x.Categoria.Equals("Fútbol Base")).OrderBy(y => y.Nombre));
                     break;
                 case "Regional":
-                    Equipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria.Equals("Regional")).OrderBy(y => y.Nombre));
+                    Equipos = new ObservableCollection<Equipo>(ApiRest.RescatarEquipos().Where(x => x.Categoria != null && x.Categoria.Equals("Regional")).OrderBy(y => y.Nombre));
                     break;
                 default:
                     Equipos = new ObservableCollection<Equipo>();
@@ -177,25 +177,25 @@ namespace NombramientoPartidos.Utilidades
             switch (categoria)
             {
                 case "1º División":
-                    return new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("1º División")).OrderBy(y => y.Nombre_Completo));
+                    return new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria != null && x.Categoria.Equals("1º División")).OrderBy(y => y.Nombre_Completo));
                     
                 case "2º División":
-                    return new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("2º División")).OrderBy(y => y.Nombre_Completo));
+                    return new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria != null && x.Categoria.Equals("2º División")).OrderBy(y => y.Nombre_Completo));
                     
                 case "2ºB División":
-                    return new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("2ºB División")).OrderBy(y => y.Nombre_Completo));
+                    return new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria != null && x.Categoria.Equals("2ºB División")).OrderBy(y => y.Nombre_Completo));
                    
                 case "3º División":
-                    return new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("3º División")).OrderBy(y => y.Nombre_Completo));
+                    return new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria != null && x.Categoria.Equals("3º División")).OrderBy(y => y.Nombre_Completo));
                     
                 case "Preferente":
-                     return new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("Preferente")).OrderBy(y => y.Nombre_Completo));
+                     return new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria != null && x.Categoria.Equals("Preferente")).OrderBy(y => y.Nombre_Completo));
                     
                 case "Fútbol Base":
-                     return new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("Fútbol Base")).OrderBy(y => y.Nombre_Completo));
+                     return new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria != null && x.Categoria.Equals("Fútbol Base")).OrderBy(y => y.Nombre_Completo));
                     
                 case "Regional":
-                     return new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria.Equals("Regional")).OrderBy(y => y.Nombre_Completo));
+                     return new ObservableCollection<Arbitro>(ApiRest.RescatarArbitros().Where(x => x.Categoria != null && x.Categoria.Equals("Regional")).OrderBy(y => y.Nombre_Completo));
                 default:
                     return new ObservableCollection<Arbitro>();
                     
