@@ -84,7 +84,7 @@
                 <ComboBox ItemsSource="{Binding Equipos}" SelectedItem="{Binding EquipoCambio}" x:Name="EquipoComboBox" Height="55" ItemTemplate="{StaticResource EquiposTemplate}" Grid.Row="1" Grid.Column="1" />
 
                 <Label Content="DNI o NIE:" Grid.Row="2" Grid.Column="0"/>
-                <TextBox MaxLength="9" Grid.Row="2" Grid.Column="1" Text="{Binding StaffUpdate.Dni}"/>
+                <TextBox MaxLength="9" Grid.Row="2" Grid.Column="1" Text="{Binding StaffUpdate.Dni, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <Label Content="Cargo" Grid.Row="3" Grid.Column="0"/>
                 <ComboBox ItemsSource="{Binding Cargos}" SelectedItem="{Binding StaffUpdate.Cargo}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Height="30" />
@@ -95,7 +95,7 @@
                 <Label Content="Foto del jugador" Grid.Row="5" Grid.Column="0"/>
                 <Button x:Name="FotoStaffButton" Content="camera" FontFamily="{StaticResource FontAwesome}" Grid.Row="5" Grid.Column="1" FontSize="18" Height="35" Width="65" HorizontalAlignment="Left" Foreground="Green" Click="FotoStaffButton_Click"/>
 
-                <Image x:Name="ImagenJugador" Grid.Column="2" Grid.RowSpan="3" Margin="10" Source="{Binding StaffUpdate.Foto}"/>
+                <Image x:Name="ImagenJugador" Grid.Column="2" Grid.RowSpan="3" Margin="10" Source="{Binding StaffUpdate.Foto, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
         </Border>
 

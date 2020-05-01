@@ -63,7 +63,7 @@
 
     <Grid>
         <Image Source="/Assets/fondo.jpg" Stretch="UniformToFill"/>
-        <Grid x:Name="ContenedorPrincipalGrid" Margin="15">
+        <Grid Margin="15">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="3*"></ColumnDefinition>

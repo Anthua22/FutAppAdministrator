@@ -9,23 +9,41 @@
         xmlns:jugadoresStaffView="clr-namespace:NombramientoPartidos.View.JugadoresStaff"
         xmlns:partidos="clr-namespace:NombramientoPartidos.View.Partidos"
         mc:Ignorable="d"
-        Title="Inicio" Height="650" Width="950" MinWidth="700" MinHeight="600">
+        Title="Inicio" Height="650" Width="950" MinWidth="700" MinHeight="600" Background="AliceBlue">
    
     <Grid>
-       
-        <TabControl>
-            <TabItem Header="Arbitros">
-                <arbitroView:Arbitros></arbitroView:Arbitros>    
-            </TabItem>
-            <TabItem Header="Equipos">
-                <equipoView:EquiposView></equipoView:EquiposView>
-            </TabItem>
-            <TabItem Header="Jugadores y Staff">
-                <jugadoresStaffView:JugadoresStaffView></jugadoresStaffView:JugadoresStaffView>
-            </TabItem>
-            <TabItem Header="Partidos">
-                <partidos:PartidosView></partidos:PartidosView>
-            </TabItem>
-        </TabControl>
+        <DockPanel>
+            <ToolBarTray DockPanel.Dock="Top">
+                <ToolBar>
+                    <Button>
+                        <Image Source="/Assets/informes.png" ToolTip="Nueva Conversación" />
+                    </Button>
+                  
+                    <Separator></Separator>
+                    <Button Click="CambioDatosCuenta">
+                        <Image Source="/Assets/settings.ico" ToolTip="Configuración"/>
+                    </Button>
+                   
+
+
+                </ToolBar>
+            </ToolBarTray>
+
+            <TabControl>
+                <TabItem Header="Arbitros">
+                    <arbitroView:Arbitros></arbitroView:Arbitros>    
+                </TabItem>
+                <TabItem Header="Equipos">
+                    <equipoView:EquiposView></equipoView:EquiposView>
+                </TabItem>
+                <TabItem Header="Jugadores y Staff">
+                    <jugadoresStaffView:JugadoresStaffView></jugadoresStaffView:JugadoresStaffView>
+                </TabItem>
+                <TabItem Header="Partidos">
+                    <partidos:PartidosView></partidos:PartidosView>
+                </TabItem>
+            </TabControl>
+        </DockPanel>
+        
     </Grid>
 </Window>

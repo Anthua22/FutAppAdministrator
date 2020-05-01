@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NombramientoPartidos.Utilidades.ClasesPojos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,22 @@ namespace NombramientoPartidos.View
     /// </summary>
     public partial class Inicio : Window
     {
-        public Inicio()
+        private Administrador AdministradorActual { get; set; }
+        public Inicio(Administrador administrador)
         {
             InitializeComponent();
+            AdministradorActual = administrador;
+        }
+
+        private void CambioDatosCuenta(object sender, RoutedEventArgs e)
+        {
+            ConfiguracionCuenta configuracion = new ConfiguracionCuenta(AdministradorActual);
+            configuracion.Owner = this;
+            if(configuracion.ShowDialog() == true)
+            {
+                MessageBox.Show("Datos Cambiados", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+
         }
     }
 }

@@ -20,7 +20,7 @@ namespace NombramientoPartidos
                 if ((this.DataContext as MainWindowViewModel).Entrar(UsernameTextBlock.Text, PasswordPasswordBox.Password))
                 {
                    
-                    Inicio inicio = new Inicio();
+                    Inicio inicio = new Inicio((DataContext as MainWindowViewModel).AdministradorActual);
                     inicio.Show();
                     this.Close();
                 }
@@ -48,7 +48,7 @@ namespace NombramientoPartidos
                 if ((this.DataContext as MainWindowViewModel).Entrar(UsernameTextBlock.Text, PasswordPasswordBox.Password))
                 {
                    
-                    Inicio inicio = new Inicio();
+                    Inicio inicio = new Inicio((DataContext as MainWindowViewModel).AdministradorActual);
                     inicio.Show();
                     this.Close();
                 }

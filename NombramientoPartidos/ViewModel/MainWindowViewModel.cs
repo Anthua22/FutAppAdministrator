@@ -11,11 +11,11 @@ namespace NombramientoPartidos.ViewModel
 
         public string User { get; set; }
         public string Pass { get; set; }
-
+        public Administrador AdministradorActual { get; set; }
         public bool Entrar(string dni, string pass)
         {
-            Administrador x = ApiRest.RescatarAdministrador(dni);
-            if(x!=null && x.Pass.Equals(Utils.EncriptarEnSHA1(pass)))
+            AdministradorActual = ApiRest.RescatarAdministrador(dni);
+            if(AdministradorActual != null && AdministradorActual.Pass.Equals(Utils.EncriptarEnSHA1(pass)))
             {
                 return true;
             }

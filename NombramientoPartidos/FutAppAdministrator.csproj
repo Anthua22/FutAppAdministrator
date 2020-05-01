@@ -97,6 +97,7 @@
     <Compile Include="ViewModel\Arbitro\DeleteArbitroViewModel.cs" />
     <Compile Include="ViewModel\Arbitro\EditarArbitroViewModel.cs" />
     <Compile Include="ViewModel\Arbitro\InsertarArbitroViewModel.cs" />
+    <Compile Include="ViewModel\ConfiguracionCuentaViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\Equipos\EquiposViewModel.cs" />
     <Compile Include="ViewModel\JugadoresStaff\BorrarJugadorViewModel.cs" />
@@ -115,6 +116,9 @@
     </Compile>
     <Compile Include="View\Arbitro\EditarArbitroView.xaml.cs">
       <DependentUpon>EditarArbitroView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ConfiguracionCuenta.xaml.cs">
+      <DependentUpon>ConfiguracionCuenta.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Equipo\EquiposView.xaml.cs">
       <DependentUpon>EquiposView.xaml</DependentUpon>
@@ -138,6 +142,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Arbitro\InsertarArbitroView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ConfiguracionCuenta.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -236,8 +244,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Resource Include="Assets\FontAwesome5Brands.otf" />
-    <Resource Include="Assets\FontAwesome5Regular.otf" />
     <Resource Include="Assets\FontAwesome5Solid.otf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -262,6 +268,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\equipodefecto.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\settings.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\informes.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.4.2.1\build\Fody.targets" Condition="Exists('..\packages\Fody.4.2.1\build\Fody.targets')" />

@@ -85,21 +85,21 @@
                 <ComboBox ItemsSource="{Binding Equipos}" SelectedItem="{Binding EquipoCambio}" x:Name="EquipoComboBox" Height="55" ItemTemplate="{StaticResource EquiposTemplate}" Grid.Row="1" Grid.Column="1"/>
 
                 <Label Content="DNI o NIE:" Grid.Row="2" Grid.Column="0"/>
-                <TextBox MaxLength="9" Grid.Row="2" Grid.Column="1" Text="{Binding JugadorUpdate.Dni}"/>
+                <TextBox MaxLength="9" Grid.Row="2" Grid.Column="1" Text="{Binding JugadorUpdate.Dni, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <Label Content="Sancionado" Grid.Row="3" Grid.Column="0"/>
-                <CheckBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" IsChecked="{Binding JugadorUpdate.Sancionado}"/>
+                <CheckBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" IsChecked="{Binding JugadorUpdate.Sancionado, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <Label Content="Fecha Nacimiento" Grid.Row="4" Grid.Column="0"/>
-                <DatePicker  SelectedDate="{Binding JugadorUpdate.Fecha_Nacimiento}" Grid.Row="4" Grid.Column="1" Margin="0,0,0,5"/>
+                <DatePicker  SelectedDate="{Binding JugadorUpdate.Fecha_Nacimiento, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="1" Margin="0,0,0,5"/>
 
                 <Label Content="Nº de Goles" Grid.Row="5" Grid.Column="0"/>
-                <TextBox Grid.Row="5" Grid.Column="1" MaxLength="3" Text="{Binding JugadorUpdate.Goles}"/>
+                <TextBox Grid.Row="5" Grid.Column="1" MaxLength="3" Text="{Binding JugadorUpdate.Goles, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <Label Content="Foto del jugador" Grid.Row="6" Grid.Column="0" />
                 <Button x:Name="FotoJugadorButton" Content="camera" FontFamily="{StaticResource FontAwesome}" Grid.Row="6" Grid.Column="1" FontSize="18" Height="35" Width="65" HorizontalAlignment="Left" Foreground="Green" VerticalAlignment="Center" Click="FotoJugadorButton_Click"/>
 
-                <Image x:Name="ImagenJugador" Grid.Column="2" Grid.RowSpan="3" Source="{Binding JugadorUpdate.Foto}"/>
+                <Image x:Name="ImagenJugador" Grid.Column="2" Grid.RowSpan="3" Source="{Binding JugadorUpdate.Foto, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>  
         </Border>
        

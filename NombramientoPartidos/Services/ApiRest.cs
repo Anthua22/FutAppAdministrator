@@ -65,6 +65,27 @@ namespace NombramientoPartidos.Services
             ObservableCollection<Partido> partidos = new ObservableCollection<Partido>(JsonConvert.DeserializeObject<List<Partido>>(json));
             return partidos;
         }
+
+        public static bool UpdateAdministrador(Administrador administrador)
+        {
+            var json = JsonConvert.SerializeObject(administrador);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "administradores/" + administrador.Dni);
+            request.Method = "PUT";
+            request.ContentType = "application/json";
+            using (var streamwriter = new StreamWriter(request.GetRequestStream()))
+            {
+                streamwriter.Write(json);
+                streamwriter.Flush();
+            }
+            var response = (HttpWebResponse)request.GetResponse();
+
+            if (!response.StatusCode.Equals(HttpStatusCode.OK))
+            {
+                throw new CRUDException("Error al modificar el dato");
+            }
+            return true;
+        }
+
         public static bool UpdateArbitro(Arbitro arbitro)
         {
             if (Utils.ControlCampos(arbitro))
