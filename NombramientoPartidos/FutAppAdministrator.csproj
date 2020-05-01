@@ -255,12 +255,11 @@
     <Resource Include="Assets\fef.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\yo.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\defecto.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\fondo.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\equipodefecto.jpg" />
   </ItemGroup>

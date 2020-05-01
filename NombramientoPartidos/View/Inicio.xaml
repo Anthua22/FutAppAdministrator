@@ -12,6 +12,7 @@
         Title="Inicio" Height="650" Width="950" MinWidth="700" MinHeight="600">
    
     <Grid>
+       
         <TabControl>
             <TabItem Header="Arbitros">
                 <arbitroView:Arbitros></arbitroView:Arbitros>    

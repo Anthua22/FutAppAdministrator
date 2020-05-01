@@ -13,9 +13,13 @@
             <Setter Property="Margin" Value="20"/>
         </Style>
     </UserControl.Resources>
-    <StackPanel VerticalAlignment="Center">
-        <Button x:Name="AgregarAbritroButton" Content="Agregar un Árbitro" Click="AgregarArbitroButton_Click"></Button>
-        <Button x:Name="ModificarArbitroButton" Content="Modificar Datos de un Árbitro" Click="ModificarArbitroButton_Click"></Button>
-        <Button x:Name="EliminarArbitroButton" Content="Eliminar un Árbitro" Click="EliminarArbitroButton_Click"></Button>
-    </StackPanel>
+    <Grid>
+        <Image Source="/Assets/fondo.jpg" Stretch="UniformToFill"/>
+        <StackPanel VerticalAlignment="Center">
+            <Button x:Name="AgregarAbritroButton" Content="Agregar un Árbitro" Click="AgregarArbitroButton_Click"></Button>
+            <Button x:Name="ModificarArbitroButton" Content="Modificar Datos de un Árbitro" Click="ModificarArbitroButton_Click"></Button>
+            <Button x:Name="EliminarArbitroButton" Content="Eliminar un Árbitro" Click="EliminarArbitroButton_Click"></Button>
+        </StackPanel>
+    </Grid>
+    
 </UserControl>
