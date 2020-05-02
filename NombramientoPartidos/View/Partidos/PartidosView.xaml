@@ -12,6 +12,8 @@
         <Style TargetType="Label">
             <Setter Property="Margin" Value="5"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="Brown"/>
+            <Setter Property="FontWeight" Value="Bold"/>
         </Style>
 
         <Style TargetType="TextBox">
@@ -80,7 +82,7 @@
                 <Button Margin="0,0,0,15" Height="50" x:Name="EliminarPartidoButton" Content="Eliminar un Partido" Click="EliminarPartidoButton_Click"/>
             </StackPanel>
 
-            <GroupBox x:Name="CRUDGroupBox" Grid.Column="1" Margin="10px" Header="Asignar Partido">
+            <GroupBox x:Name="CRUDGroupBox" Grid.Column="1" Margin="10px" Header="Asignar Partido" Foreground="Beige">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
 
                     <DockPanel HorizontalAlignment="Center">

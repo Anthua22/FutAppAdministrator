@@ -10,12 +10,7 @@ using NombramientoPartidos.Utilidades;
 using NombramientoPartidos.Utilidades.ClasesPojos;
 namespace NombramientoPartidos.ViewModel.Equipos
 {
-    public enum Accion
-    {
-        Nuevo,
-        Editar,
-        Borrar
-    }
+
 
     class EquiposViewModel : INotifyPropertyChanged
     {
