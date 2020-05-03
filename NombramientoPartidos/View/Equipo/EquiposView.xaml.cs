@@ -177,12 +177,12 @@ namespace NombramientoPartidos.View.Equipo
                     NombreEquipoTextBox.Visibility = Visibility.Hidden;
                     ProvinciaLabel.Visibility = Visibility.Hidden;
                     ProvinciaEquipoComboBox.Visibility = Visibility.Hidden;
-                    DireccionCampoTextBox.Visibility = Visibility.Hidden;
-                    DireccionLabel.Visibility = Visibility.Hidden;
+                    DireccionCampoTextBox.Visibility = Visibility.Collapsed;
+                    DireccionLabel.Visibility = Visibility.Collapsed;
                     EscudoLabel.Visibility = Visibility.Hidden;
-                    CorreoContactoLabel.Visibility = Visibility.Hidden;
-                    CorreoContactoTextBox.Visibility = Visibility.Hidden;
-                    SeleccionImagenEquipoButton.Visibility = Visibility.Hidden;
+                    CorreoContactoLabel.Visibility = Visibility.Collapsed;
+                    CorreoContactoTextBox.Visibility = Visibility.Collapsed;
+                    SeleccionImagenEquipoButton.Visibility = Visibility.Collapsed;
                     EliminarEquipoButton.IsEnabled = false;
                     AñadirEquipoButton.IsEnabled = true;
                     ModificarEquipoButton.IsEnabled = true;

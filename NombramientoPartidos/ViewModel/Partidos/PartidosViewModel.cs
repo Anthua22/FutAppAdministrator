@@ -292,7 +292,7 @@ namespace NombramientoPartidos.ViewModel.Partidos
             {
                 PartidoUso.EquipoLocal = EquipoLocal.IdEquipo;
                 PartidoUso.EquipoVisitante = EquipoVisitante.IdEquipo;
-            }else if(AccionAsignarmodificar == Accion.Editar || AccionAsignarmodificar == Accion.Borrar)
+            }else 
             {
                 PartidoUso.EquipoLocal = EquipoTemplate.EquipoLocal.IdEquipo;
                 PartidoUso.EquipoVisitante = EquipoTemplate.EquipoVisitante.IdEquipo;

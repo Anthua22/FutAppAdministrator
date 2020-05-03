@@ -9,13 +9,9 @@
 
     <UserControl.Resources>
 
-        <Style TargetType="Label">
-            <Setter Property="Margin" Value="5"/>
-        </Style>
+        
 
-        <Style TargetType="TextBox">
-            <Setter Property="Margin" Value="10"/>
-        </Style>
+       
 
         
     </UserControl.Resources>
@@ -46,9 +42,9 @@
             <GroupBox x:Name="CRUDGroupBox" Grid.Column="1" Margin="10px" Header="Añadir Equipo">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <DockPanel HorizontalAlignment="Center">
-                        <TextBlock Text="Los campos con * son obligatorios" FontSize="20" Foreground="Green" HorizontalAlignment="Center" Margin="0,30,0,0" DockPanel.Dock="Top" FontWeight="Bold"/>
+                        <TextBlock Text="Los campos con * son obligatorios" FontSize="20" Foreground="Green" HorizontalAlignment="Center" Margin="0,30,0,30" DockPanel.Dock="Top" FontWeight="Bold"/>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0" DockPanel.Dock="Bottom">
-                            <Button x:Name="AceptarCambiosButton" Content="Añadir Equipo" Margin="5" Width="120" Height="30" Command="ApplicationCommands.Save"/>
+                            <Button x:Name="AceptarCambiosButton" Content="Añadir Equipo" Margin="5" Width="150" Height="30" Command="ApplicationCommands.Save"/>
                         </StackPanel>
                         <StackPanel VerticalAlignment="Center">
                             <Grid>
@@ -73,27 +69,27 @@
                                 <ComboBox Grid.Column="1" Grid.Row="0" x:Name="CategoriasCRUDComboBox" Width="270" Margin="10,0,10,10" SelectionChanged="CategoriasCRUDComboBox_SelectionChanged"
                               ItemsSource="{Binding Categorias}"></ComboBox>
 
-                                <Label x:Name="SeleccionEquipoLabel" Grid.Column="0" Grid.Row="1" Content="Seleccione un Equipo" Visibility="Collapsed"/>
+                                <Label x:Name="SeleccionEquipoLabel" Grid.Column="0" Grid.Row="1" Content="Seleccione un Equipo" Visibility="Collapsed" VerticalAlignment="Center" />
                                 <ComboBox Grid.Column="1" Grid.Row="1" x:Name="EquiposComboBox" Width="270" Margin="10,0,10,10" Visibility="Collapsed"
-                              ItemsSource="{Binding ListaEquipos}" SelectedItem="{Binding Equipo, UpdateSourceTrigger=PropertyChanged}" ItemTemplate="{StaticResource EquiposTemplate}" IsEnabled="False" SelectionChanged="EquiposComboBox_SelectionChanged"></ComboBox>
+                              ItemsSource="{Binding ListaEquipos}" SelectedItem="{Binding Equipo, UpdateSourceTrigger=PropertyChanged}" ItemTemplate="{StaticResource EquiposTemplate}" IsEnabled="False" VerticalAlignment="Center" SelectionChanged="EquiposComboBox_SelectionChanged"></ComboBox>
 
-                                <Label Grid.Column="0"  Grid.Row="2" x:Name="NombreEquipoLabel" Content="Nombre del Equipo/Club:*"/>
-                                <TextBox Grid.Column="1" Grid.Row="2" x:Name="NombreEquipoTextBox" Width="270" Text="{Binding Equipo.Nombre, UpdateSourceTrigger=PropertyChanged}"/>
+                                <Label Grid.Column="0"  Grid.Row="2" x:Name="NombreEquipoLabel" Content="Nombre del Equipo/Club:*" VerticalAlignment="Center"/>
+                                <TextBox Grid.Column="1" Grid.Row="2" Margin="10" x:Name="NombreEquipoTextBox" Width="270" Text="{Binding Equipo.Nombre, UpdateSourceTrigger=PropertyChanged}"/>
 
-                                <Label Grid.Column="0" Grid.Row="3" x:Name="ProvinciaLabel" Content="Provincia donde reside:*"/>
+                                <Label Grid.Column="0" Grid.Row="3" x:Name="ProvinciaLabel" VerticalAlignment="Center" Content="Provincia donde reside:*"/>
                                 <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding Provincias}" SelectedItem="{Binding Equipo.Provincia, UpdateSourceTrigger=PropertyChanged}" x:Name="ProvinciaEquipoComboBox" Width="270" Margin="10" />
 
-                                <Label Grid.Row="4" Grid.Column="0" Content="Localidad" x:Name="LocalidadLabel"/>
-                                <TextBox Grid.Row="4" Grid.Column="1" x:Name="LocalidadTextBox" Text="{Binding Equipo.Localidad, UpdateSourceTrigger=PropertyChanged}" Width="270" TextAlignment="Left"/>
+                                <Label Grid.Row="4" Grid.Column="0" Content="Localidad" x:Name="LocalidadLabel" VerticalAlignment="Center"/>
+                                <TextBox Grid.Row="4" Grid.Column="1" Margin="10" x:Name="LocalidadTextBox" Text="{Binding Equipo.Localidad, UpdateSourceTrigger=PropertyChanged}" Width="270" TextAlignment="Left"/>
 
-                                <Label Grid.Column="0" Grid.Row="5" x:Name="DireccionLabel" Content="Dirección Campo:"/>
-                                <TextBox Grid.Column="1" Grid.Row="5" x:Name="DireccionCampoTextBox" Width="270" TextAlignment="Left" Text="{Binding Equipo.Direccion_Campo}"/>
+                                <Label Grid.Column="0" Grid.Row="5" x:Name="DireccionLabel" Content="Dirección Campo:" VerticalAlignment="Center"/>
+                                <TextBox Grid.Column="1" Grid.Row="5" Margin="10" x:Name="DireccionCampoTextBox" Width="270" TextAlignment="Left" Text="{Binding Equipo.Direccion_Campo}"/>
 
-                                <Label Grid.Row="6" Grid.Column="0" x:Name="CorreoContactoLabel" Content="Correo de Contacto"/>
-                                <TextBox x:Name="CorreoContactoTextBox" Grid.Row="6" Grid.Column="1" Width="270" Text="{Binding Equipo.Correo, UpdateSourceTrigger=PropertyChanged}"/>
+                                <Label Grid.Row="6" Grid.Column="0" x:Name="CorreoContactoLabel" Content="Correo de Contacto" VerticalAlignment="Center"/>
+                                <TextBox x:Name="CorreoContactoTextBox" Margin="10" Grid.Row="6" Grid.Column="1" Width="270" Text="{Binding Equipo.Correo, UpdateSourceTrigger=PropertyChanged}"/>
 
-                                <Label Grid.Column="0" Grid.Row="7" x:Name="EscudoLabel" Content="Escudo del Equipo:"/>
-                                <Button Grid.Column="1" Grid.Row="7" x:Name="SeleccionImagenEquipoButton" HorizontalAlignment="Left" Content="camera" FontFamily="{StaticResource FontAwesome}" Foreground="Green" FontSize="20" Width="40" Margin="15,0,0,0" Height="25" Click="SeleccionImagenEquipoButton_Click"/>
+                                <Label Grid.Column="0" Grid.Row="7" x:Name="EscudoLabel" Content="Escudo del Equipo:" VerticalAlignment="Center"/>
+                                <Button Grid.Column="1" Grid.Row="7" x:Name="SeleccionImagenEquipoButton" HorizontalAlignment="Left" Content="camera" FontFamily="{StaticResource FontAwesome}" Foreground="Green" FontSize="20" Width="55" Margin="15,0,0,0" Height="30" Click="SeleccionImagenEquipoButton_Click"/>
 
                                 <Image x:Name="ImagenEquipoImage" Grid.Column="2" Grid.RowSpan="4" Source="{Binding Equipo.Foto, UpdateSourceTrigger=PropertyChanged}"></Image>
 

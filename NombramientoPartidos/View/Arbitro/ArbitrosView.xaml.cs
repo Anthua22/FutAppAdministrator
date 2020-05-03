@@ -1,6 +1,8 @@
 ﻿using NombramientoPartidos.ViewModel;
 using System.Windows;
 using System.Windows.Controls;
+using MaterialDesignThemes;
+using MaterialDesignThemes.Wpf;
 
 namespace NombramientoPartidos.View
 {
@@ -21,15 +23,17 @@ namespace NombramientoPartidos.View
             if((DataContext as ArbitroViewModel).InsertarArbitroClick())
             {
                 MessageBox.Show("Nuevo Árbitro insertado", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                
             }
         }
 
-        private void ModificarArbitroButton_Click(object sender, RoutedEventArgs e)
+        private async void ModificarArbitroButton_Click(object sender, RoutedEventArgs e)
         {
 
             if((this.DataContext as ArbitroViewModel).EditarArbitroClick())
             {
                 MessageBox.Show("Arbitro Actualizado", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+              
             }
 
         }

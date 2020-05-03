@@ -4,62 +4,74 @@
              xmlns:local="clr-namespace:NombramientoPartidos"
              StartupUri="View/MainWindow.xaml">
     <Application.Resources>
-        <FontFamily x:Key="FontAwesome">/Assets/FontAwesome5Solid.otf#Font Awesome 5 Free Solid</FontFamily>
-        <DataTemplate x:Key="EquiposTemplate">
-            <StackPanel Orientation="Horizontal">
-                <Ellipse Height="50" Width="50">
-                    <Ellipse.Fill>
-                        <ImageBrush ImageSource="{Binding Foto}"/>
-                    </Ellipse.Fill>
-                </Ellipse>
-                <StackPanel VerticalAlignment="Center" Margin="10,0,0,0">
-                    <TextBlock Text="{Binding Nombre}" FontWeight="Bold"></TextBlock>
-                    <TextBlock Text="{Binding Categoria}" Foreground="Gray"></TextBlock>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <FontFamily x:Key="FontAwesome">/Assets/FontAwesome5Solid.otf#Font Awesome 5 Free Solid</FontFamily>
+            <DataTemplate x:Key="EquiposTemplate">
+                <StackPanel Orientation="Horizontal">
+                    <Ellipse Height="50" Width="50">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="{Binding Foto}"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <StackPanel VerticalAlignment="Center" Margin="10,0,0,0">
+                        <TextBlock Text="{Binding Nombre}" FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="{Binding Categoria}" Foreground="Gray"></TextBlock>
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
-        </DataTemplate>
-        <DataTemplate x:Key="ArbitrosTemplate">
-            <StackPanel Orientation="Horizontal">
-                <Ellipse Height="50" Width="50">
-                    <Ellipse.Fill>
-                        <ImageBrush ImageSource="{Binding Foto}"/>
-                    </Ellipse.Fill>
-                </Ellipse>
+            </DataTemplate>
+            <DataTemplate x:Key="ArbitrosTemplate">
+                <StackPanel Orientation="Horizontal">
+                    <Ellipse Height="50" Width="50">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="{Binding Foto}"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
 
-                <StackPanel VerticalAlignment="Center" Margin="10,0,0,0">
-                    <TextBlock Text="{Binding Nombre_Completo}" FontWeight="Bold"></TextBlock>
-                    <TextBlock Text="{Binding Dni}" Foreground="Gray"></TextBlock>
+                    <StackPanel VerticalAlignment="Center" Margin="10,0,0,0">
+                        <TextBlock Text="{Binding Nombre_Completo}" FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="{Binding Dni}" Foreground="Gray"></TextBlock>
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
-        </DataTemplate>
-        <DataTemplate x:Key="JugadoresTemplate">
-            <StackPanel Orientation="Horizontal">
-                <Ellipse Height="50" Width="50">
-                    <Ellipse.Fill>
-                        <ImageBrush ImageSource="{Binding Foto}"/>
-                    </Ellipse.Fill>
-                </Ellipse>
+            </DataTemplate>
+            <DataTemplate x:Key="JugadoresTemplate">
+                <StackPanel Orientation="Horizontal">
+                    <Ellipse Height="50" Width="50">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="{Binding Foto}"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
 
-                <StackPanel VerticalAlignment="Center" Margin="10,0,0,0">
-                    <TextBlock Text="{Binding Nombre_Completo}" FontWeight="Bold"></TextBlock>
-                    <TextBlock Text="{Binding Categoria}" Foreground="Gray"></TextBlock>
+                    <StackPanel VerticalAlignment="Center" Margin="10,0,0,0">
+                        <TextBlock Text="{Binding Nombre_Completo}" FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="{Binding Categoria}" Foreground="Gray"></TextBlock>
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
-        </DataTemplate>
-        <DataTemplate x:Key="StaffsTemplate">
-            <StackPanel Orientation="Horizontal">
-                <Ellipse Height="50" Width="50">
-                    <Ellipse.Fill>
-                        <ImageBrush ImageSource="{Binding Foto}"/>
-                    </Ellipse.Fill>
-                </Ellipse>
+            </DataTemplate>
+            <DataTemplate x:Key="StaffsTemplate">
+                <StackPanel Orientation="Horizontal">
+                    <Ellipse Height="50" Width="50">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="{Binding Foto}"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
 
-                <StackPanel VerticalAlignment="Center"  Margin="10,0,0,0">
-                    <TextBlock Text="{Binding Nombre_Completo}" FontWeight="Bold"></TextBlock>
-                    <TextBlock Text="{Binding Cargo}" Foreground="Gray"></TextBlock>
+                    <StackPanel VerticalAlignment="Center"  Margin="10,0,0,0">
+                        <TextBlock Text="{Binding Nombre_Completo}" FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="{Binding Cargo}" Foreground="Gray"></TextBlock>
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
-        </DataTemplate>
+            </DataTemplate>
+
+            
+        </ResourceDictionary>
+
+        
 
         
     </Application.Resources>

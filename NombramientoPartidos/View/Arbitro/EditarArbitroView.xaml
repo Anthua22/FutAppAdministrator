@@ -8,25 +8,15 @@
         mc:Ignorable="d"
         Title="Modificar Datos Árbitro" Height="500" Width="800" ResizeMode="NoResize" ShowInTaskbar="False">
     <Window.Resources>
-        <Style TargetType="{x:Type ComboBox}">
-            <Setter Property="Width" Value="250"/>
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            
-        </Style>
+       
 
         <Style TargetType="{x:Type TextBlock}">
             <Setter Property="VerticalAlignment" Value="Center"/>
            
         </Style>
-        <Style TargetType="{x:Type Button}">
-            <Setter Property="Width" Value="100"/>
-            <Setter Property="Margin" Value="0,0,5,0"/>
-        </Style>
+      
 
-        <Style TargetType="{x:Type TextBox}">
-            <Setter Property="Margin" Value="10"/>
-        </Style>
+        
         <Style TargetType="{x:Type Label}">
             <Setter Property="Margin" Value="10"/>
         </Style>
@@ -53,7 +43,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Elige la categoría"  VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
-            <ComboBox Grid.Row="0" Grid.Column="1" x:Name="CategoriaComboBox" ItemsSource="{Binding Categorias}" SelectionChanged="CategoriaComboBox_SelectionChanged" SelectedItem="{Binding Categoria}"></ComboBox>
+            <ComboBox Grid.Row="0" Grid.Column="1" x:Name="CategoriaComboBox" ItemsSource="{Binding Categorias}" SelectionChanged="CategoriaComboBox_SelectionChanged" Width="250" SelectedItem="{Binding Categoria}"></ComboBox>
             <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2" x:Name="FotoArbitro" Visibility="Hidden">
                 <Image x:Name="FotoArbitroImage" Source="{Binding ArbitroUpdate.Foto}" ToolTip="Imagen del árbitro seleccionado o del primer árbitro sino se ha seleccionado ninguno" Width="150" HorizontalAlignment="Left"></Image>
                 <Button Content="&#xf303;" Foreground="Green" FontFamily="{StaticResource FontAwesome}" Margin="5,0,10,0" Height="25" Width="50" Click="Button_Click"/>
@@ -61,14 +51,14 @@
             
 
             <TextBlock Grid.Row="1" Grid.Column="0" Text="Buscar por Nombre o Dni" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-            <TextBox Grid.Row="1" Grid.Column="1" x:Name="FiltroNombreTextBox" Width="250" Height="25" IsEnabled="False"/>
+            <TextBox Grid.Row="1" Grid.Column="1" x:Name="FiltroNombreTextBox" Width="250" Height="25" Margin="10" IsEnabled="False"/>
             <Button Grid.Row="1" Grid.Column="2" Width="100" Height="25" x:Name="FiltarButton" HorizontalAlignment="Left" Click="FiltarButton_Click" Content="Filtrar" IsEnabled="False"/>
 
         </Grid>
 
      
-        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,20">
-            <Button x:Name="AceptarButton" Command="comandos:ComandosPersonalizados.ComandoArbitro">Aceptar</Button>
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,20">
+            <Button x:Name="AceptarButton" Margin="0,0,10,0" Command="comandos:ComandosPersonalizados.ComandoArbitro">Aceptar</Button>
             <Button IsCancel="True">Cancelar</Button>
         </StackPanel>
         <DataGrid x:Name="ListaArbitrosDataGrid" ItemsSource="{Binding Vista.View}" Visibility="Hidden" SelectionMode="Single" SelectionUnit="FullRow" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="ListaArbitrosDataGrid_SelectionChanged" SelectedItem="{Binding ArbitroUpdate}">

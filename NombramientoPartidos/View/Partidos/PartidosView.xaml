@@ -88,7 +88,7 @@
                     <DockPanel HorizontalAlignment="Center">
 
                         <StackPanel VerticalAlignment="Center">
-                            <Grid Margin="0,5,0,5">
+                            <Grid Margin="0,20,0,5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="229"></ColumnDefinition>
                                     <ColumnDefinition Width="380"></ColumnDefinition>
