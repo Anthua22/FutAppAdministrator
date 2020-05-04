@@ -55,7 +55,7 @@ namespace NombramientoPartidos.View.JugadoresStaff
 
         private void Delete_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = (DataContext as BorrarJugadorViewModel).JugadorDelete.Nombre_Completo != null;
+            e.CanExecute = (DataContext as BorrarJugadorViewModel).JugadorDelete != null && (DataContext as BorrarJugadorViewModel).JugadorDelete.Nombre_Completo != null;
         }
 
         private void Delete_Execute(object sender, ExecutedRoutedEventArgs e)

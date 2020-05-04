@@ -9,14 +9,14 @@
         Title="Eliminar un Jugador" Height="450" Width="800" ResizeMode="NoResize" ShowInTaskbar="False">
 
     <Window.Resources>
-        <Style TargetType="{x:Type Button}">
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatLightBgButton}">
             <Setter Property="Width" Value="100"/>
             <Setter Property="Margin" Value="0,0,10,0"/>
         </Style>
         <Style TargetType="{x:Type Label}">
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
-        <Style TargetType="{x:Type ComboBox}">
+        <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
             <Setter Property="Height" Value="40"/>
             <Setter Property="Width" Value="360"/>
         </Style>
@@ -48,10 +48,10 @@
             <ComboBox x:Name="CategoriasComboBox" ItemsSource="{Binding Categorias}" Grid.Row="0" Grid.Column="1" SelectionChanged="CategoriasComboBox_SelectionChanged"/>
 
             <Label Content="Elige el equipo que pertenece el jugador" Grid.Row="1" Grid.Column="0"/>
-            <ComboBox x:Name="EquiposComboBox" ItemsSource="{Binding Equipos}" ItemTemplate="{StaticResource EquiposTemplate}" SelectedItem="{Binding EquipoJugador}" Height="55" Grid.Row="1" Grid.Column="1" IsEnabled="False" SelectionChanged="EquiposComboBox_SelectionChanged"/>
+            <ComboBox x:Name="EquiposComboBox" ItemsSource="{Binding Equipos}" ItemTemplate="{StaticResource EquiposTemplate}" SelectedItem="{Binding EquipoJugador}" Height="75" Grid.Row="1" Grid.Column="1" IsEnabled="False" SelectionChanged="EquiposComboBox_SelectionChanged"/>
 
             <Label Content="Elige el jugador a eliminar" Grid.Row="2" Grid.Column="0"/>
-            <ComboBox x:Name="JugadoresComboBox" ItemsSource="{Binding Jugadores}" ItemTemplate="{StaticResource JugadoresTemplate}" SelectedItem="{Binding JugadorDelete}" Height="55" Grid.Row="2" Grid.Column="1" IsEnabled="False"/>
+            <ComboBox x:Name="JugadoresComboBox" ItemsSource="{Binding Jugadores}" ItemTemplate="{StaticResource JugadoresTemplate}" SelectedItem="{Binding JugadorDelete}" Height="75" Grid.Row="2" Grid.Column="1" IsEnabled="False"/>
 
         </Grid>
     </DockPanel>

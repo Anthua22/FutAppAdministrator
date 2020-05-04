@@ -6,17 +6,17 @@
         xmlns:local="clr-namespace:NombramientoPartidos.View.JugadoresStaff"
         xmlns:comandos="clr-namespace:NombramientoPartidos.Utilidades"
         mc:Ignorable="d"
-        Title="Modificar datos de un Cuerpo Técnico" Height="650" Width="800">
+        Title="Modificar datos de un Cuerpo Técnico" Height="750" Width="800">
     <Window.Resources>
-        <Style TargetType="{x:Type Button}">
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFloatingActionDarkButton}">
             <Setter Property="Width" Value="100"/>
             <Setter Property="Margin" Value="0,0,5,0"/>
         </Style>
-        <Style TargetType="{x:Type TextBox}">
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
             <Setter Property="Margin" Value="0,0,0,5"/>
             <Setter Property="Height" Value="30"/>
         </Style>
-        <Style TargetType="{x:Type ComboBox}">
+        <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignComboBox}">
             <Setter Property="Margin" Value="0,0,0,5"/>
         </Style>
         <Style TargetType="{x:Type Label}">
@@ -70,7 +70,7 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
-                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="75"></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
@@ -81,7 +81,7 @@
                 <TextBox Text="{Binding StaffUpdate.Nombre_Completo}" Grid.Row="0" Grid.Column="1"/>
 
                 <Label Content="Equipo al que Pertenece:" Grid.Row="1" Grid.Column="0"/>
-                <ComboBox ItemsSource="{Binding Equipos}" SelectedItem="{Binding EquipoCambio}" x:Name="EquipoComboBox" Height="55" ItemTemplate="{StaticResource EquiposTemplate}" Grid.Row="1" Grid.Column="1" />
+                <ComboBox ItemsSource="{Binding Equipos}" SelectedItem="{Binding EquipoCambio}" x:Name="EquipoComboBox" Height="75" ItemTemplate="{StaticResource EquiposTemplate}" Grid.Row="1" Grid.Column="1" />
 
                 <Label Content="DNI o NIE:" Grid.Row="2" Grid.Column="0"/>
                 <TextBox MaxLength="9" Grid.Row="2" Grid.Column="1" Text="{Binding StaffUpdate.Dni, UpdateSourceTrigger=PropertyChanged}"/>

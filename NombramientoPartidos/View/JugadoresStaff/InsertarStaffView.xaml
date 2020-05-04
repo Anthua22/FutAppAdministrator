@@ -8,11 +8,11 @@
         mc:Ignorable="d"
         Title="Dar de alta un Cuerpo Técnico" Height="600" Width="800" ResizeMode="NoResize" ShowInTaskbar="False">
     <Window.Resources>
-        <Style TargetType="{x:Type ComboBox}">
+        <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignComboBox}">
             <Setter Property="Width" Value="300"/>
             <Setter Property="Margin" Value="0,0,0,10"/>
         </Style>
-        <Style TargetType="{x:Type Button}">
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatAccentBgButton}">
             <Setter Property="Margin" Value="20"/>
             <Setter Property="Width" Value="100"/>
         </Style>
@@ -20,7 +20,7 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Margin" Value="0,0,0,10"/>
         </Style>
-        <Style TargetType="{x:Type TextBox}">
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
             <Setter Property="Height" Value="25"/>
             <Setter Property="Width" Value="300"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -70,7 +70,7 @@
                     <ComboBox Name="CategoriasComboBox" ItemsSource="{Binding Categorias}" Grid.Column="1" Grid.Row="2"  SelectionChanged="CategoriasComboBox_SelectionChanged"/>
 
                     <Label Content="Equipo al que pertenece:" Grid.Row="3" Grid.Column="0"/>
-                    <ComboBox Name="EquiposComboBox" ItemsSource="{Binding Equipos}" ItemTemplate="{StaticResource EquiposTemplate}" Height="55" SelectedItem="{Binding EquipoStaff}" Grid.Column="1" Grid.Row="3" IsEnabled="False"/>
+                    <ComboBox Name="EquiposComboBox" ItemsSource="{Binding Equipos}" ItemTemplate="{StaticResource EquiposTemplate}" Height="75" SelectedItem="{Binding EquipoStaff}" Grid.Column="1" Grid.Row="3" IsEnabled="False"/>
 
                     <Label Content="Cargo" Grid.Row="4" Grid.Column="0"/>
                     <ComboBox ItemsSource="{Binding Cargos}" SelectedItem="{Binding StaffInsert.Cargo}" Grid.Row="4" Grid.Column="1" Margin="0,0,0,10"/>
@@ -79,7 +79,7 @@
                     <DatePicker x:Name="FechaNacimientoDatePicker" SelectedDate="{Binding FechaNacimiento}" Grid.Column="1" Grid.Row="5"/>
 
                     <Label Content="Foto" Grid.Row="6" Grid.Column="0"/>
-                    <Button x:Name="FotoButton" Content="camera" FontFamily="{StaticResource FontAwesome}" Click="FotoButton_Click" FontSize="18" Height="30" Width="50" HorizontalAlignment="Left" Foreground="Green" Margin="0" Grid.Column="1" Grid.Row="6"/>
+                    <Button x:Name="FotoButton" Content="camera" FontFamily="{StaticResource FontAwesome}" Click="FotoButton_Click" FontSize="18" Height="30" Width="50" HorizontalAlignment="Left" Foreground="Black" Margin="0" Grid.Column="1" Grid.Row="6"/>
 
                 </Grid>
                 <Image Grid.Column="1" Grid.Row="0" x:Name="ImagenJugador" Source="{Binding StaffInsert.Foto, UpdateSourceTrigger=PropertyChanged}" Margin="20"></Image>
