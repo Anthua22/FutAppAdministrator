@@ -89,5 +89,17 @@ namespace NombramientoPartidos.Properties {
                 this["ContainerAdministradores"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool GuardarContraseña {
+            get {
+                return ((bool)(this["GuardarContraseña"]));
+            }
+            set {
+                this["GuardarContraseña"] = value;
+            }
+        }
     }
 }

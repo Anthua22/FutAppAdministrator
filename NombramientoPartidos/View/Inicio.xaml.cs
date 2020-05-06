@@ -25,6 +25,7 @@ namespace NombramientoPartidos.View
         {
             InitializeComponent();
             AdministradorActual = administrador;
+            
         }
 
         private void CambioDatosCuenta(object sender, RoutedEventArgs e)
@@ -36,6 +37,11 @@ namespace NombramientoPartidos.View
                 MessageBox.Show("Datos Cambiados", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
             }
 
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            App.Current.Shutdown();
         }
     }
 }

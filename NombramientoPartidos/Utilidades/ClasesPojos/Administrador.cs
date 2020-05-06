@@ -1,9 +1,11 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.ComponentModel;
 
 namespace NombramientoPartidos.Utilidades.ClasesPojos
 {
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
+    [Serializable]
     public class Administrador: INotifyPropertyChanged
     {
         [JsonProperty(PropertyName = "dni")]
@@ -35,6 +37,12 @@ namespace NombramientoPartidos.Utilidades.ClasesPojos
             Pass = pass;
             Email = email;
             Nombre_Completo = nombre_completo;
+        }
+
+        public Administrador(string dni, string pass)
+        {
+            Dni = dni;
+            Pass = pass;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -10,6 +10,7 @@ namespace NombramientoPartidos
         public MainWindow()
         {
             this.DataContext = new MainWindowViewModel();
+
             InitializeComponent();
           
         }
@@ -17,8 +18,11 @@ namespace NombramientoPartidos
         {
             try
             {
-                if ((this.DataContext as MainWindowViewModel).Entrar(UsernameTextBlock.Text, PasswordPasswordBox.Password))
+                (DataContext as MainWindowViewModel).Contraseña = (bool)RecordarContraseñaCheckBox.IsChecked;
+                if ((this.DataContext as MainWindowViewModel).Entrar(PasswordPasswordBox.Password))
                 {
+                    
+                    (DataContext as MainWindowViewModel).GuardarContraseña();
                    
                     Inicio inicio = new Inicio((DataContext as MainWindowViewModel).AdministradorActual);
                     inicio.Show();
@@ -43,7 +47,7 @@ namespace NombramientoPartidos
 
         private void EntrarCommand_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
         {
-             try
+           /*  try
             {
                 if ((this.DataContext as MainWindowViewModel).Entrar(UsernameTextBlock.Text, PasswordPasswordBox.Password))
                 {
@@ -60,7 +64,17 @@ namespace NombramientoPartidos
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            }*/
+        }
+
+        private void Border_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            App.Current.Shutdown();
         }
     }
 }

@@ -23,5 +23,8 @@
     <Setting Name="ContainerAdministradores" Type="System.String" Scope="User">
       <Value Profile="(Default)">administradores</Value>
     </Setting>
+    <Setting Name="GuardarContraseña" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

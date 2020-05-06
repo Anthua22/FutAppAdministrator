@@ -41,6 +41,9 @@
     <ApplicationIcon>Assets\iconoapp.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dragablz, Version=0.0.3.203, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dragablz.0.0.3.203\lib\net45\Dragablz.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.2.4.1361, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.2.4\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -267,9 +270,6 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\fef.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\defecto.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -279,13 +279,16 @@
     <Resource Include="Assets\equipodefecto.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\settings.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\informes.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\iconoapp.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\federacion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\icono.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.4.2.1\build\Fody.targets" Condition="Exists('..\packages\Fody.4.2.1\build\Fody.targets')" />

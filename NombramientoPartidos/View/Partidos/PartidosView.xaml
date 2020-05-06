@@ -24,7 +24,7 @@
             <Setter Property="Height" Value="85"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Margin" Value="13,10"/>
-         
+            <Setter Property="Foreground" Value="Coral"/>
         </Style>
 
       
@@ -37,8 +37,8 @@
                 </Ellipse>
 
                 <StackPanel VerticalAlignment="Center"  Margin="10,0,0,0">
-                    <TextBlock Text="{Binding EquipoLocal.Nombre}" FontWeight="Bold"></TextBlock>
-                    <TextBlock Text="{Binding EquipoLocal.Categoria}" Foreground="Gray"></TextBlock>
+                    <TextBlock Text="{Binding EquipoLocal.Nombre}" FontWeight="Bold" Foreground="Coral"></TextBlock>
+                    <TextBlock Text="{Binding EquipoLocal.Categoria}" Foreground="Green"></TextBlock>
                 </StackPanel>
 
                 <TextBlock Text="VS"  VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15,0,15,0"/>
@@ -49,8 +49,8 @@
                 </Ellipse>
 
                 <StackPanel VerticalAlignment="Center"  Margin="10,0,0,0">
-                    <TextBlock Text="{Binding EquipoVisitante.Nombre}" FontWeight="Bold"></TextBlock>
-                    <TextBlock Text="{Binding EquipoVisitante.Categoria}" Foreground="Gray"></TextBlock>
+                    <TextBlock Text="{Binding EquipoVisitante.Nombre}" FontWeight="Bold" Foreground="Coral"></TextBlock>
+                    <TextBlock Text="{Binding EquipoVisitante.Categoria}" Foreground="Green"></TextBlock>
                 </StackPanel>
 
             </StackPanel>
@@ -120,7 +120,7 @@
                                 ItemsSource="{Binding Categorias}" VerticalAlignment="Center" Height="30" Foreground="Black"/>
 
                                 <Label Grid.Row="1" Grid.Column="0" x:Name="ElegirPartidoLabel" Content="Elija el Partido" Visibility="Collapsed"/>
-                                <ComboBox Grid.Row="1" Grid.Column="1" x:Name="PartidosComboBox" ItemsSource="{Binding PartidosTemplates}" Height="55" Margin="13,10" ItemTemplate="{StaticResource PartidosTemplate}" SelectedItem="{Binding EquipoTemplate}" Visibility="Collapsed" IsEnabled="False" SelectionChanged="PartidosComboBox_SelectionChanged"/>
+                                <ComboBox Grid.Row="1" Grid.Column="1" x:Name="PartidosComboBox" ItemsSource="{Binding PartidosTemplates}" Height="75" Margin="13,10" ItemTemplate="{StaticResource PartidosTemplate}" SelectedItem="{Binding EquipoTemplate}" Visibility="Collapsed" IsEnabled="False" SelectionChanged="PartidosComboBox_SelectionChanged"/>
 
                                 <Label Grid.Row="2" Grid.Column="0" Content="Jornada" x:Name="JornadaLabel"/>
                                 <ComboBox Grid.Row="2" Grid.Column="1" x:Name="JornadaComboBox" ItemsSource="{Binding Jornadas}" Foreground="Black" Width="50" HorizontalAlignment="Left" Margin="13,21" SelectedItem="{Binding PartidoUso.Jornada, UpdateSourceTrigger=PropertyChanged}"/>

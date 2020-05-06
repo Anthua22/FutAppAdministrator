@@ -8,30 +8,30 @@
         xmlns:equipoView ="clr-namespace:NombramientoPartidos.View.Equipo"
         xmlns:jugadoresStaffView="clr-namespace:NombramientoPartidos.View.JugadoresStaff"
         xmlns:partidos="clr-namespace:NombramientoPartidos.View.Partidos"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
         mc:Ignorable="d"
-        Title="Inicio" Height="650" Width="980" MinWidth="700" MinHeight="600" Background="AliceBlue">
+        Height="650" Width="1000" MinWidth="700" MinHeight="600"  AllowsTransparency="True" WindowStartupLocation="CenterScreen" WindowStyle="None" FontFamily="Constantia" FontSize="14">
    
     <Grid>
-        <DockPanel>
-            <ToolBarTray DockPanel.Dock="Top">
-                <ToolBar>
-                    <Button>
-                        <Image Source="/Assets/informes.png" ToolTip="Nueva Conversación" />
-                    </Button>
-                  
-                    <Separator></Separator>
-                    <Button Click="CambioDatosCuenta">
-                        <Image Source="/Assets/settings.ico" ToolTip="Configuración"/>
-                    </Button>
-                   
+        <Grid Height="60" VerticalAlignment="Top" Background="#FF383838">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="FutAppAdministrator" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" />
+                <Image Source="/Assets/icono.png" Margin="10,0,0,0"/>
+            </StackPanel>
+            
+            <Button HorizontalAlignment="Right" Background="{x:Null}" Foreground="White" BorderBrush="{x:Null}" x:Name="CloseButton" VerticalAlignment="Center" FontFamily="Constantia" Click="CloseButton_Click">
+                <materialDesign:PackIcon Kind="Power"></materialDesign:PackIcon> 
+            </Button>
+        </Grid>
 
-
-                </ToolBar>
-            </ToolBarTray>
-
-            <TabControl>
+        <Grid Margin="0,60,0,0">
+            <dragablz:TabablzControl>
+                <dragablz:TabablzControl.InterTabController>
+                    <dragablz:InterTabController/>
+                </dragablz:TabablzControl.InterTabController>
                 <TabItem Header="Arbitros">
-                    <arbitroView:Arbitros></arbitroView:Arbitros>    
+                    <arbitroView:Arbitros></arbitroView:Arbitros>
                 </TabItem>
                 <TabItem Header="Equipos">
                     <equipoView:EquiposView></equipoView:EquiposView>
@@ -42,8 +42,8 @@
                 <TabItem Header="Partidos">
                     <partidos:PartidosView></partidos:PartidosView>
                 </TabItem>
-            </TabControl>
-        </DockPanel>
-        
+            </dragablz:TabablzControl>
+        </Grid>
+ 
     </Grid>
 </Window>

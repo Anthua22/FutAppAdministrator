@@ -2,14 +2,17 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:NombramientoPartidos"
+             xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
              StartupUri="View/MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Orange.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Dragablz;component/Themes/materialdesign.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <FontFamily x:Key="FontAwesome">/Assets/FontAwesome5Solid.otf#Font Awesome 5 Free Solid</FontFamily>
             <DataTemplate x:Key="EquiposTemplate">
@@ -21,7 +24,7 @@
                     </Ellipse>
                     <StackPanel VerticalAlignment="Center" Margin="10,0,0,0">
                         <TextBlock Text="{Binding Nombre}" FontWeight="Bold"></TextBlock>
-                        <TextBlock Text="{Binding Categoria}" Foreground="Gray"></TextBlock>
+                        <TextBlock Text="{Binding Categoria}" Foreground="Green"></TextBlock>
                     </StackPanel>
                 </StackPanel>
             </DataTemplate>
@@ -68,7 +71,8 @@
                 </StackPanel>
             </DataTemplate>
 
-            
+            <Style TargetType="{x:Type dragablz:TabablzControl}" BasedOn="{StaticResource MaterialDesignTabablzControlStyle}"/>
+
         </ResourceDictionary>
 
         
