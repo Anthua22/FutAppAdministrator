@@ -14,7 +14,7 @@
         Height="650" Width="1000" MinWidth="700" MinHeight="600"  AllowsTransparency="True" WindowStartupLocation="CenterScreen" WindowStyle="None" FontFamily="Constantia" FontSize="14">
    
     <Grid>
-        <Grid Height="60" VerticalAlignment="Top" Background="#FF383838">
+        <Grid Height="60" VerticalAlignment="Top" Background="#FF383838" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock Text="FutAppAdministrator" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" />
                 <Image Source="/Assets/icono.png" Margin="10,0,0,0"/>
@@ -30,7 +30,7 @@
                 <dragablz:TabablzControl.InterTabController>
                     <dragablz:InterTabController/>
                 </dragablz:TabablzControl.InterTabController>
-                <TabItem Header="Arbitros">
+                <TabItem Header="Árbitros">
                     <arbitroView:Arbitros></arbitroView:Arbitros>
                 </TabItem>
                 <TabItem Header="Equipos">

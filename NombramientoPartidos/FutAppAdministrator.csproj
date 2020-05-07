@@ -101,6 +101,7 @@
     <Compile Include="Utilidades\ClasesPojos\Partido.cs" />
     <Compile Include="Utilidades\ClasesPojos\Staff.cs" />
     <Compile Include="Utilidades\ComandosPersonalizados.cs" />
+    <Compile Include="Utilidades\EncriptacionDescriptacion.cs" />
     <Compile Include="Utilidades\EquiposTemplate.cs" />
     <Compile Include="Utilidades\Excepciones.cs" />
     <Compile Include="Utilidades\Utils.cs" />
@@ -276,9 +277,6 @@
     <Resource Include="Assets\fondo.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\equipodefecto.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\informes.png" />
   </ItemGroup>
   <ItemGroup>
@@ -289,6 +287,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\icono.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\equipodefecto.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.4.2.1\build\Fody.targets" Condition="Exists('..\packages\Fody.4.2.1\build\Fody.targets')" />

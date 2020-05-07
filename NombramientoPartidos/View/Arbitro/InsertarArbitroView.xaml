@@ -6,14 +6,14 @@
         xmlns:local="clr-namespace:NombramientoPartidos.View"
         xmlns:comandos="clr-namespace:NombramientoPartidos.Utilidades"
         mc:Ignorable="d"
-        Title="Agregar un Arbitro" Height="500" Width="800" ResizeMode="NoResize" ShowInTaskbar="False">
+        Title="Agregar un Arbitro" Height="600" Width="800" ResizeMode="NoResize" ShowInTaskbar="False">
     <Window.Resources>
         
         <Style TargetType="{x:Type Label}">
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Margin" Value="0,0,0,10"/>
         </Style>
-        <Style TargetType="{x:Type TextBox}">
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
             <Setter Property="Height" Value="25"/>
             <Setter Property="Width" Value="400"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -28,12 +28,22 @@
     </Window.CommandBindings>
 
     <DockPanel>
-        <TextBlock Text="Los campos con * son obligatorios" DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="10" FontSize="16" Foreground="Green"/>
+         <Grid Height="60" VerticalAlignment="Top" Background="#FF383838" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+               
+                <TextBlock Text="Los campos con * son obligatorios" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22"  Foreground="White"/>
+            
+            </StackPanel>
+            
+            
+        </Grid>
+
+       
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="0,0,0,5">
             <Button Content="Aceptar" x:Name="AceptarButton" Margin="0,0,10,0" Command="comandos:ComandosPersonalizados.ComandoArbitro"/>
             <Button Content="Cancelar" x:Name="CancelarButton" IsCancel="True"/>
         </StackPanel>
-        <GroupBox Header="Inserta un Árbitro" Margin="10">
+        <Border BorderThickness="5" CornerRadius="5" BorderBrush="Orange" Margin="10,10,5,15">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="590"></ColumnDefinition>
@@ -108,12 +118,15 @@
                     </Grid>
                 </ScrollViewer>
                 <StackPanel Grid.Row="0" Grid.Column="1">
-                    <Image x:Name="ImagenArbitroImage" Width="150" Height="300" Source="{Binding ArbitroInsertar.Foto}" Margin="11,0"></Image>
+                    <Border BorderThickness="5" CornerRadius="5" BorderBrush="Black" Margin="10">
+                        <Image x:Name="ImagenArbitroImage" Width="150" Height="200" Source="{Binding ArbitroInsertar.Foto}"></Image>
+                    </Border>
+                    
                 </StackPanel>
 
             </Grid>
 
-
-        </GroupBox>
+        </Border>
+    
     </DockPanel>
 </Window>

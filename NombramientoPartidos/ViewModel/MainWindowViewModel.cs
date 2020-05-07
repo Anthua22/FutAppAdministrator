@@ -22,14 +22,15 @@ namespace NombramientoPartidos.ViewModel
 
         public Administrador PosibleAdministrador { get; set; }
 
-        private string Key { get; set; }
-        private string Path { get; set; }
+        private string ClavePrivada { get; set; }
+        private string ClavePublic { get; set; }
 
         public MainWindowViewModel()
         {
             AdministradorActual = new Administrador();
-            Key = "hAC8hMf3N5Zb/DZhFKi6Sg ==";
-            Path = "Datos.bin";
+            ClavePublic = "Archivo2334@";
+            User = "";
+            ClavePrivada = "Dfdf@FF4523.";
         }
 
         public bool Entrar(string pass)
@@ -53,18 +54,13 @@ namespace NombramientoPartidos.ViewModel
             if (Properties.Settings.Default.GuardarContraseña)
             {
 
-                if (File.Exists("Datos.bin"))
+                if (File.Exists("Datos.txt"))
                 {
-                    File.Delete("Datos.bin");
+                    File.Delete("Datos.txt");
                 }
 
-                using (Stream stream = new FileStream("Datos.bin", FileMode.Create, FileAccess.Write))
-                { 
-                    IFormatter formatter = new BinaryFormatter();
-                    formatter.Serialize(stream, PosibleAdministrador);
-
-                }
-              //  Encriptar();
+                string Datos = "usuraio="+PosibleAdministrador.Dni+','+"contraseña="+PosibleAdministrador.Pass;
+                EncriptacionDescriptacion.Encriptar(Datos, "Datos.txt",EncriptacionDescriptacion.EncodingPrivateKey(ClavePrivada), EncriptacionDescriptacion.EncodingPublicKey(ClavePublic));
                
                 
             }
@@ -72,12 +68,21 @@ namespace NombramientoPartidos.ViewModel
 
         public void ObtenerContraseña()
         {
-            IFormatter formatter = new BinaryFormatter();
-            using(Stream stream = new FileStream("Datos.bin",FileMode.Open, FileAccess.Read))
+            if (File.Exists("Datos.txt"))
             {
-                AdministradorActual = (Administrador)formatter.Deserialize(stream);
+                string datos= EncriptacionDescriptacion.Desincriptar("Datos.txt", EncriptacionDescriptacion.EncodingPrivateKey(ClavePrivada), EncriptacionDescriptacion.EncodingPublicKey(ClavePublic));
+
+                string[] credenciales = datos.Split(',');
+                string[] usuario = credenciales[0].Split('=');
+                string[] contraseña = credenciales[1].Split('=');
+                User = usuario[1];
+                Pass = contraseña[1]; 
+            
             }
+          
+            
         }
+      
 
 
 
@@ -87,47 +92,8 @@ namespace NombramientoPartidos.ViewModel
             return (User != null && Pass != null);
         }
 
-        private void Encriptar()
-        {
-            byte[] plainContent = File.ReadAllBytes(Path);
-            using(var Des = new DESCryptoServiceProvider())
-            {
-               int g = Des.BlockSize;
-                Des.IV = Encoding.UTF8.GetBytes(Key);
-                Des.Key = Encoding.UTF8.GetBytes(Key);
-                Des.Mode = CipherMode.CBC;
-                Des.Padding = PaddingMode.PKCS7;
+       
 
-                using(var menStream = new MemoryStream())
-                {
-                    CryptoStream cryptoStream = new CryptoStream(menStream, Des.CreateEncryptor(), CryptoStreamMode.Write);
-                    cryptoStream.Write(plainContent, 0, plainContent.Length);
-                    cryptoStream.FlushFinalBlock();
-                    File.WriteAllBytes(Path, menStream.ToArray());
-
-                }
-            }
-        }
-
-        private void Desincriptar()
-        {
-            byte[] encryp = File.ReadAllBytes(Path);
-            using(var Des = new DESCryptoServiceProvider())
-            {
-                Des.IV = Encoding.UTF8.GetBytes(Key);
-                Des.Key = Encoding.UTF8.GetBytes(Key);
-                Des.Mode = CipherMode.CBC;
-                Des.Padding = PaddingMode.PKCS7;
-
-                using(var menStream = new MemoryStream())
-                {
-                    CryptoStream cryptoStream = new CryptoStream(menStream, Des.CreateDecryptor(), CryptoStreamMode.Write);
-                    cryptoStream.Write(encryp, 0, encryp.Length);
-                    cryptoStream.FlushFinalBlock();
-                    File.WriteAllBytes(Path, menStream.ToArray());
-
-                }
-            }
-        }
+      
     }
 }

@@ -28,7 +28,16 @@
             Executed="Delete_Execute"/>
     </Window.CommandBindings>
     <DockPanel>
-        <TextBlock Text="Busca el Jugador a Eliminar" FontSize="18" DockPanel.Dock="Top" Foreground="Green"  HorizontalAlignment="Center" Margin="0,30,0,0"/>
+        <Grid Height="60" VerticalAlignment="Top" Background="#FF383838" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+                <TextBlock Text="Busca el Jugador a Eliminar" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22"  Foreground="White"/>
+
+            </StackPanel>
+
+
+        </Grid>
+     
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="0,0,0,20">
             <Button Content="Aceptar" Command="comandos:ComandosPersonalizados.ComandoJugador"/>
             <Button Content="Cancelar" IsCancel="True"/>

@@ -43,5 +43,10 @@ namespace NombramientoPartidos.View
         {
             App.Current.Shutdown();
         }
+
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
     }
 }

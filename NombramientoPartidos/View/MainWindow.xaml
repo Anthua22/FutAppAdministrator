@@ -63,16 +63,16 @@
             <StackPanel Margin="40,20,0,0">
                 <StackPanel Orientation="Horizontal">
                     <materialDesign:PackIcon Kind="Account" Foreground="{Binding ElementName=UsernameTextBox, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0,4"/>
-                    <TextBox x:Name="UsernameTextBox" Text="Y2808825X" Width="300" materialDesign:HintAssist.Hint="Usuario" materialDesign:HintAssist.IsFloating="True"/>
+                    <TextBox x:Name="UsernameTextBox" Text="{Binding User}" Width="300" materialDesign:HintAssist.Hint="Usuario" materialDesign:HintAssist.IsFloating="True"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,40,0,0">
                     <materialDesign:PackIcon Kind="Key" Foreground="{Binding ElementName=PasswordPasswordBox, Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0,4"/>
-                    <PasswordBox x:Name="PasswordPasswordBox" Password="Tonyecu14@"  Width="300" materialDesign:HintAssist.Hint="Contraseña" materialDesign:HintAssist.IsFloating="True"/>
+                    <PasswordBox x:Name="PasswordPasswordBox"  Width="300" materialDesign:HintAssist.Hint="Contraseña" materialDesign:HintAssist.IsFloating="True"/>
                 </StackPanel>
 
                 <CheckBox Content="Recordar Contraseña" x:Name="RecordarContraseñaCheckBox" Margin="0,30,0,0" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=GuardarContraseña, Mode=OneWay}"/>
 
-                <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Iniciar" Width="80" HorizontalAlignment="Right" Margin="0,30,70,0" Click="EntrarButton_Click"></Button>
+                <Button Style="{DynamicResource MaterialDesignRaisedAccentButton}" Content="Iniciar" Width="80" HorizontalAlignment="Right" Margin="0,30,70,0" Command="comandos:ComandosPersonalizados.Entrar"></Button>
 
               
             </StackPanel>

@@ -35,7 +35,7 @@ namespace NombramientoPartidos.ViewModel.Equipos
             {
                 Equipo = new Equipo()
                 {
-                    Foto = "/Assets/equipodefecto.jpg"
+                    Foto = "/Assets/equipodefecto.png"
                 };
             }
             Categorias = Utils.Categorias;
@@ -53,7 +53,7 @@ namespace NombramientoPartidos.ViewModel.Equipos
                     if (Equipo.Categoria != null)
                     {  
                         ValidacionesRegexp.ValidarEmail(Equipo.Correo);
-                        if (!Equipo.Foto.Equals("/Assets/equipodefecto.jpg") && !Equipo.Foto.Contains("http"))
+                        if (!Equipo.Foto.Equals("/Assets/equipodefecto.png") && !Equipo.Foto.Contains("http"))
                         {
                             string[] referenceblob = Equipo.Foto.Split('/');
                             Equipo.Foto = BlobStorage.GuardarImagen(Equipo.Foto, referenceblob[referenceblob.Length - 1], Equipo);
@@ -71,7 +71,7 @@ namespace NombramientoPartidos.ViewModel.Equipos
                     if (!string.IsNullOrWhiteSpace(Equipo.Nombre) && !string.IsNullOrWhiteSpace(Equipo.Provincia) && Equipo.Categoria != null)
                     { 
                         ValidacionesRegexp.ValidarEmail(Equipo.Correo);
-                        if (!Equipo.Foto.Equals("/Assets/equipodefecto.jpg") && !Equipo.Foto.Contains("http"))
+                        if (!Equipo.Foto.Equals("/Assets/equipodefecto.png") && !Equipo.Foto.Contains("http"))
                         {
                             string[] referenceblob = Equipo.Foto.Split('/');
                             BlobStorage.EliminarImagen(fotoantigua, Equipo);
@@ -91,7 +91,7 @@ namespace NombramientoPartidos.ViewModel.Equipos
                     {
                         CambiaEquipoDelte();
                         ApiRest.DeleteEquipo(Equipo.IdEquipo);
-                        if (!Equipo.Foto.Equals("/Assets/equipodefecto.jpg"))
+                        if (!Equipo.Foto.Equals("/Assets/equipodefecto.png"))
                         {
                             string[] referenceblob = Equipo.Foto.Split('/');
                             BlobStorage.EliminarImagen(referenceblob[referenceblob.Length - 1], Equipo);
@@ -121,7 +121,7 @@ namespace NombramientoPartidos.ViewModel.Equipos
         {
             Equipo = new Equipo()
             {
-                Foto = "/Assets/equipodefecto.jpg"
+                Foto = "/Assets/equipodefecto.png"
             };
             ListaEquipos = new ObservableCollection<Equipo>();
         }
@@ -131,7 +131,7 @@ namespace NombramientoPartidos.ViewModel.Equipos
             string ruta = Utils.ObtenerRutaFichero().Replace('\\','/');
             if (!string.IsNullOrWhiteSpace(ruta))
             {
-                if (!Equipo.Foto.Equals("/Assets/equipodefecto.jpg"))
+                if (!Equipo.Foto.Equals("/Assets/equipodefecto.png"))
                 {
                     string[] urlBlob = Equipo.Foto.Split('/');
 
