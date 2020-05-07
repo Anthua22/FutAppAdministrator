@@ -34,14 +34,14 @@ namespace NombramientoPartidos.View
 
             if((this.DataContext as ArbitroViewModel).EditarArbitroClick())
             {
-                //MessageBox.Show("Arbitro Actualizado", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
-                Mensaje = "Arbitro Actualizado";
+                MessageBox.Show("Arbitro Actualizado", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+               /* Mensaje = "Arbitro Actualizado";
                 StackPanel d = new StackPanel() { Height = 50 };
                 TextBlock f = new TextBlock() { Text = "Árbitro Actualizado" , Margin= new Thickness(10,5,10,0)};
                 Button button = new Button() { Content = "Aceptar", Width=80 };
                 d.Children.Add(f);
                 d.Children.Add(button);
-                DialogoError.ShowDialog(d);
+                DialogoError.ShowDialog(d);*/
             }
 
         }

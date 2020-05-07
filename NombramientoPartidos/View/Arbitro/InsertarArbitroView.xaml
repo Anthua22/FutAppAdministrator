@@ -40,8 +40,8 @@
 
        
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="0,0,0,5">
-            <Button Content="Aceptar" x:Name="AceptarButton" Margin="0,0,10,0" Command="comandos:ComandosPersonalizados.ComandoArbitro"/>
-            <Button Content="Cancelar" x:Name="CancelarButton" IsCancel="True"/>
+            <Button Content="check" FontFamily="{StaticResource FontAwesome}" Foreground="Green" x:Name="AceptarButton" Margin="0,0,10,0" Style="{StaticResource MaterialDesignFlatAccentBgButton}" Width="80" Command="comandos:ComandosPersonalizados.ComandoArbitro"/>
+            <Button Content="times" FontFamily="{StaticResource FontAwesome}" Foreground="Red" x:Name="CancelarButton" Style="{StaticResource MaterialDesignFlatAccentBgButton}" Width="80" IsCancel="True"/>
         </StackPanel>
         <Border BorderThickness="5" CornerRadius="5" BorderBrush="Orange" Margin="10,10,5,15">
             <Grid>
@@ -118,10 +118,7 @@
                     </Grid>
                 </ScrollViewer>
                 <StackPanel Grid.Row="0" Grid.Column="1">
-                    <Border BorderThickness="5" CornerRadius="5" BorderBrush="Black" Margin="10">
-                        <Image x:Name="ImagenArbitroImage" Width="150" Height="200" Source="{Binding ArbitroInsertar.Foto}"></Image>
-                    </Border>
-                    
+                    <Image x:Name="ImagenArbitroImage" Width="150" Height="200" Source="{Binding ArbitroInsertar.Foto}"></Image>
                 </StackPanel>
 
             </Grid>

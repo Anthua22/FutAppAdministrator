@@ -57,8 +57,8 @@
         </GroupBox>
 
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Margin="0,0,0,20" HorizontalAlignment="Center">
-            <Button Content="Aceptar" x:Name="AceptarButton" Command="comandos:ComandosPersonalizados.ComandoStaff"/>
-            <Button Content="Cancelar" IsCancel="True"/>
+             <Button Content="check" FontFamily="{StaticResource FontAwesome}" Foreground="Green" x:Name="AceptarButton" Margin="0,0,10,0"  FontSize="18" Width="80" Command="comandos:ComandosPersonalizados.ComandoStaff"/>
+             <Button Content="times" FontFamily="{StaticResource FontAwesome}" Foreground="Red" x:Name="CancelarButton"  Width="80" IsCancel="True" FontSize="18"/>
         </StackPanel>
 
         <Border x:Name="DatosStaffBorder" CornerRadius="5" BorderThickness="3" BorderBrush="Black" Margin="15,0,15,15" Padding="8" Visibility="Hidden">

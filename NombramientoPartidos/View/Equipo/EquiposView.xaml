@@ -98,7 +98,7 @@
                                     <Label Grid.Column="0" Grid.Row="7" x:Name="EscudoLabel" Content="Escudo del Equipo:" VerticalAlignment="Center" Margin="0,3"/>
                                     <Button Grid.Column="1" Grid.Row="7" x:Name="SeleccionImagenEquipoButton" HorizontalAlignment="Left" Content="camera" FontFamily="{StaticResource FontAwesome}" Foreground="Green" FontSize="20" Width="55" Margin="15,0,0,0" Height="30" Click="SeleccionImagenEquipoButton_Click"/>
 
-                                    <Image x:Name="ImagenEquipoImage" Grid.Column="3" Grid.RowSpan="2" Source="{Binding Equipo.Foto, UpdateSourceTrigger=PropertyChanged}" Height="Auto"></Image>
+                                    <Image x:Name="ImagenEquipoImage" Grid.Column="3" Grid.RowSpan="3"  Source="{Binding Equipo.Foto, UpdateSourceTrigger=PropertyChanged}" Height="Auto"></Image>
 
                                 </Grid>
                             </StackPanel>

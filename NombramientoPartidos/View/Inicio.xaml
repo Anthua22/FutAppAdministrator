@@ -12,12 +12,58 @@
         xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
         mc:Ignorable="d"
         Height="650" Width="1000" MinWidth="700" MinHeight="600"  AllowsTransparency="True" WindowStartupLocation="CenterScreen" WindowStyle="None" FontFamily="Constantia" FontSize="14">
-   
+
+    <Window.Resources>
+        <Style TargetType="{x:Type Border}" x:Key="BordeStack">
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Width" Value="170"/>
+            <Setter Property="Margin" Value="-141,10,0,0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Height" Value="180"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ThicknessAnimation Storyboard.TargetProperty="Margin" To="0" Duration="0:0:2"></ThicknessAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ThicknessAnimation Storyboard.TargetProperty="Margin" To="-141,10,0,0" Duration="0:0:2"></ThicknessAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
     <Grid>
         <Grid Height="60" VerticalAlignment="Top" Background="#FF383838" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+            <Border Style="{StaticResource BordeStack}" VerticalAlignment="Top" >
+                <StackPanel Orientation="Vertical">
+                    <Image Margin="3,2,0,0" Source="https://img2.freepng.es/20180628/zaz/kisspng-computer-icons-hamburger-button-menu-new-menu-5b34724be5a1f0.5796308115301637879406.jpg" Width="30" HorizontalAlignment="Right"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse Height="50" Width="50" HorizontalAlignment="Left">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="{Binding Foto}"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <TextBlock Text="Nombre" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    <TextBlock Text="Telefono"/>
+                    <TextBlock Text="Correo"/>
+                    <Button Content="Modificar Datos" Click="CambioDatosCuenta"/>
+                </StackPanel>
+            </Border>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock Text="FutAppAdministrator" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" />
                 <Image Source="/Assets/icono.png" Margin="10,0,0,0"/>
+
             </StackPanel>
             
             <Button HorizontalAlignment="Right" Background="{x:Null}" Foreground="White" BorderBrush="{x:Null}" x:Name="CloseButton" VerticalAlignment="Center" FontFamily="Constantia" Click="CloseButton_Click">

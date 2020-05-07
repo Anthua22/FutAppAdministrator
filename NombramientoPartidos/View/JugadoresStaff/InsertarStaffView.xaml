@@ -36,11 +36,11 @@
     </Window.CommandBindings>
     <DockPanel>
         <TextBlock Text="Rellene todos los campos" DockPanel.Dock="Top" HorizontalAlignment="Center" Foreground="Green" FontSize="18" Margin="0,20,0,0"/>
-        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center">
-            <Button Content="Aceptar" Command="comandos:ComandosPersonalizados.ComandoStaff"></Button>
-            <Button Content="Cancelar" IsCancel="True"></Button>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="0,0,0,10">
+              <Button Content="check" FontFamily="{StaticResource FontAwesome}" Foreground="Green" x:Name="AceptarButton" Margin="0,0,10,0" Style="{StaticResource MaterialDesignFlatAccentBgButton}" Width="80" Command="comandos:ComandosPersonalizados.ComandoStaff"></Button>
+            <Button Content="times" FontFamily="{StaticResource FontAwesome}" Foreground="Red" x:Name="CancelarButton" Style="{StaticResource MaterialDesignFlatAccentBgButton}" Width="80" IsCancel="True"/>
         </StackPanel>
-        <GroupBox Header="Añade una persona a un Cuerpo Técnico" Margin="10,10,10,0">
+        <GroupBox Header="Añade una persona a un Cuerpo Técnico" Margin="10,10,10,20">
             <Grid Margin="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="3*"></ColumnDefinition>

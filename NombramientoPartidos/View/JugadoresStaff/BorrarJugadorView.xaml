@@ -9,7 +9,7 @@
         Title="Eliminar un Jugador" Height="450" Width="800" ResizeMode="NoResize" ShowInTaskbar="False">
 
     <Window.Resources>
-        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatLightBgButton}">
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatButton}">
             <Setter Property="Width" Value="100"/>
             <Setter Property="Margin" Value="0,0,10,0"/>
         </Style>
