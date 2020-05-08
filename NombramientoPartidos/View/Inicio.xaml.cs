@@ -1,6 +1,7 @@
 ﻿using NombramientoPartidos.Utilidades.ClasesPojos;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,15 +19,17 @@ namespace NombramientoPartidos.View
     /// <summary>
     /// Lógica de interacción para Inicio.xaml
     /// </summary>
-    public partial class Inicio : Window
+    public partial class Inicio : Window, INotifyPropertyChanged
     {
-        private Administrador AdministradorActual { get; set; }
+        public Administrador AdministradorActual { get; set; }
         public Inicio(Administrador administrador)
         {
+          
             InitializeComponent();
             AdministradorActual = administrador;
-            
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         private void CambioDatosCuenta(object sender, RoutedEventArgs e)
         {

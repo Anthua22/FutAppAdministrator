@@ -43,23 +43,9 @@
 
     </Window.Resources>
     <Grid>
+        
         <Grid Height="60" VerticalAlignment="Top" Background="#FF383838" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
-            <Border Style="{StaticResource BordeStack}" VerticalAlignment="Top" >
-                <StackPanel Orientation="Vertical">
-                    <Image Margin="3,2,0,0" Source="https://img2.freepng.es/20180628/zaz/kisspng-computer-icons-hamburger-button-menu-new-menu-5b34724be5a1f0.5796308115301637879406.jpg" Width="30" HorizontalAlignment="Right"/>
-                    <StackPanel Orientation="Horizontal">
-                        <Ellipse Height="50" Width="50" HorizontalAlignment="Left">
-                            <Ellipse.Fill>
-                                <ImageBrush ImageSource="{Binding Foto}"/>
-                            </Ellipse.Fill>
-                        </Ellipse>
-                        <TextBlock Text="Nombre" Margin="10,0,0,0"/>
-                    </StackPanel>
-                    <TextBlock Text="Telefono"/>
-                    <TextBlock Text="Correo"/>
-                    <Button Content="Modificar Datos" Click="CambioDatosCuenta"/>
-                </StackPanel>
-            </Border>
+            
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock Text="FutAppAdministrator" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" />
                 <Image Source="/Assets/icono.png" Margin="10,0,0,0"/>
@@ -70,6 +56,7 @@
                 <materialDesign:PackIcon Kind="Power"></materialDesign:PackIcon> 
             </Button>
         </Grid>
+        
 
         <Grid Margin="0,60,0,0">
             <dragablz:TabablzControl>
@@ -90,6 +77,22 @@
                 </TabItem>
             </dragablz:TabablzControl>
         </Grid>
- 
+
+        <Border Style="{StaticResource BordeStack}" VerticalAlignment="Top" DataContext="{Binding RelativeSource={RelativeSource AncestorType=local:Inicio}, Path=DataContext.AdministradorActual}">
+            <StackPanel Orientation="Vertical">
+                <Image Margin="3,2,0,0" Source="https://img2.freepng.es/20180628/zaz/kisspng-computer-icons-hamburger-button-menu-new-menu-5b34724be5a1f0.5796308115301637879406.jpg" Width="30" HorizontalAlignment="Right"/>
+                <StackPanel Orientation="Horizontal">
+                    <Ellipse Height="50" Width="50" HorizontalAlignment="Left">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="{Binding Foto}"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=local:Inicio}, Path=DataContext.AdministradorActual.Nombre_Completo}" Margin="10,0,0,0" Foreground="Black"/>
+                </StackPanel>
+                <TextBlock Text="{Binding Telefono}"/>
+                <TextBlock Text="{Binding Email}"/>
+                <Button Content="Modificar Datos" Click="CambioDatosCuenta"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>
