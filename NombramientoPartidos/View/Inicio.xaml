@@ -91,7 +91,7 @@
                 </StackPanel>
                 <TextBlock Text="{Binding Telefono}"/>
                 <TextBlock Text="{Binding Email}"/>
-                <Button Content="Modificar Datos" Click="CambioDatosCuenta"/>
+                <Button Content="Modificar Datos" Click="CambioDatosCuenta" Width="126"/>
             </StackPanel>
         </Border>
     </Grid>

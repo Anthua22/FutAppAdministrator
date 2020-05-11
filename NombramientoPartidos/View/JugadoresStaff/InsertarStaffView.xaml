@@ -35,7 +35,14 @@
             Executed="InsertStaff_Executed"/>
     </Window.CommandBindings>
     <DockPanel>
-        <TextBlock Text="Rellene todos los campos" DockPanel.Dock="Top" HorizontalAlignment="Center" Foreground="Green" FontSize="18" Margin="0,20,0,0"/>
+               <Grid Height="60" VerticalAlignment="Top" Background="#FF383838" DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+                <TextBlock Text="Rellene todos los campos" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22"  Foreground="White"/>
+
+            </StackPanel>
+
+        </Grid>
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="0,0,0,10">
               <Button Content="check" FontFamily="{StaticResource FontAwesome}" Foreground="Green" x:Name="AceptarButton" Margin="0,0,10,0" Style="{StaticResource MaterialDesignFlatAccentBgButton}" Width="80" Command="comandos:ComandosPersonalizados.ComandoStaff"></Button>
             <Button Content="times" FontFamily="{StaticResource FontAwesome}" Foreground="Red" x:Name="CancelarButton" Style="{StaticResource MaterialDesignFlatAccentBgButton}" Width="80" IsCancel="True"/>
