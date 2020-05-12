@@ -45,7 +45,7 @@
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Elige la categoría"  VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
             <ComboBox Grid.Row="0" Grid.Column="1" x:Name="CategoriaComboBox" ItemsSource="{Binding Categorias}" SelectionChanged="CategoriaComboBox_SelectionChanged" Width="250" SelectedItem="{Binding Categoria}"></ComboBox>
             <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2" x:Name="FotoArbitro" Visibility="Hidden">
-                <Image x:Name="FotoArbitroImage" Source="{Binding ArbitroUpdate.Foto}" ToolTip="Imagen del árbitro seleccionado o del primer árbitro sino se ha seleccionado ninguno" Width="150" HorizontalAlignment="Left"></Image>
+                <Image x:Name="FotoArbitroImage" Source="{Binding ArbitroUpdate.Foto, UpdateSourceTrigger=PropertyChanged}" ToolTip="Imagen del árbitro seleccionado o del primer árbitro sino se ha seleccionado ninguno" Width="150" HorizontalAlignment="Left"></Image>
                 <Button Content="&#xf303;" Foreground="Green" FontFamily="{StaticResource FontAwesome}" Margin="5,0,10,0" Height="25" Width="50" Click="Button_Click"/>
             </StackPanel>
             

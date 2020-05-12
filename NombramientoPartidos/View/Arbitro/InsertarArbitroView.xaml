@@ -118,7 +118,7 @@
                     </Grid>
                 </ScrollViewer>
                 <StackPanel Grid.Row="0" Grid.Column="1">
-                    <Image x:Name="ImagenArbitroImage" Width="150" Height="200" Source="{Binding ArbitroInsertar.Foto}"></Image>
+                    <Image x:Name="ImagenArbitroImage" Width="150" Height="200" Source="{Binding ArbitroInsertar.Foto, UpdateSourceTrigger=PropertyChanged}"></Image>
                 </StackPanel>
 
             </Grid>

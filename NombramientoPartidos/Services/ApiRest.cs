@@ -15,12 +15,12 @@ namespace NombramientoPartidos.Services
 
         static ApiRest()
         {
-            Urlbase = "http://localhost/liga/";
+            Urlbase = "http://pdam13b.iesdoctorbalmis.info/liga/";
         }
 
         public static Administrador RescatarAdministrador(string dni)
         {
-            string url = Urlbase + "administradores/" + dni;
+            string url = Urlbase + "Administradores/" + dni;
             var json = new WebClient().DownloadString(url);
             Administrador x = JsonConvert.DeserializeObject<List<Administrador>>(json).First();
             return x;
@@ -28,7 +28,7 @@ namespace NombramientoPartidos.Services
 
         public static ObservableCollection<Arbitro> RescatarArbitros()
         {
-            string url = Urlbase+"arbitros/";
+            string url = Urlbase+"Arbitros/";
             var json = new WebClient().DownloadString(url);
             ObservableCollection<Arbitro> arbitros = new ObservableCollection<Arbitro>(JsonConvert.DeserializeObject<List<Arbitro>>(json));
             return arbitros;
@@ -36,7 +36,7 @@ namespace NombramientoPartidos.Services
 
         public static ObservableCollection<Equipo> RescatarEquipos()
         {
-            string url = Urlbase+"equipos/";
+            string url = Urlbase+"Equipos/";
             var json = new WebClient().DownloadString(url);
             ObservableCollection<Equipo> equipos = new ObservableCollection<Equipo>(JsonConvert.DeserializeObject<List<Equipo>>(json));
             return equipos;
@@ -44,7 +44,7 @@ namespace NombramientoPartidos.Services
 
         public static ObservableCollection<Jugador> RescatarJugadores()
         {
-            string url = Urlbase + "jugadores";
+            string url = Urlbase + "Jugadores";
             var json = new WebClient().DownloadString(url);
             ObservableCollection<Jugador> jugadores = new ObservableCollection<Jugador>(JsonConvert.DeserializeObject<List<Jugador>>(json));
             return jugadores;
@@ -52,7 +52,7 @@ namespace NombramientoPartidos.Services
 
         public static ObservableCollection<Staff> RescatarStaffs()
         {
-            string url = Urlbase + "staffs";
+            string url = Urlbase + "Staffs";
             var json = new WebClient().DownloadString(url);
             ObservableCollection<Staff> staffs = new ObservableCollection<Staff>(JsonConvert.DeserializeObject<List<Staff>>(json));
             return staffs;
@@ -60,7 +60,7 @@ namespace NombramientoPartidos.Services
 
         public static ObservableCollection<Partido> RescartarPartidos()
         {
-            string url = Urlbase + "partidos";
+            string url = Urlbase + "Partidos";
             var json = new WebClient().DownloadString(url);
             ObservableCollection<Partido> partidos = new ObservableCollection<Partido>(JsonConvert.DeserializeObject<List<Partido>>(json));
             return partidos;
@@ -69,7 +69,7 @@ namespace NombramientoPartidos.Services
         public static bool UpdateAdministrador(Administrador administrador)
         {
             var json = JsonConvert.SerializeObject(administrador);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "administradores/" + administrador.Dni);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "Administradores/" + administrador.Dni);
             request.Method = "PUT";
             request.ContentType = "application/json";
             using (var streamwriter = new StreamWriter(request.GetRequestStream()))
@@ -91,7 +91,7 @@ namespace NombramientoPartidos.Services
             if (Utils.ControlCampos(arbitro))
             {
                 var json = JsonConvert.SerializeObject(arbitro);
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase+"arbitros/" + arbitro.Id);
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase+"Arbitros/" + arbitro.Id);
                 request.Method = "PUT";
                 request.ContentType = "application/json";
                 using (var streamwriter = new StreamWriter(request.GetRequestStream()))
@@ -117,7 +117,7 @@ namespace NombramientoPartidos.Services
             if (Utils.ControlCampos(arbitro))
             {
                 var json = JsonConvert.SerializeObject(arbitro);
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase+"arbitros");
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase+"Arbitros");
                 request.Method = "POST";
                 request.ContentType = "application/json";
 
@@ -139,7 +139,7 @@ namespace NombramientoPartidos.Services
 
         public static void DeleteteArbitro(int id) 
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase+"arbitros/"+id);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase+"Arbitros/"+id);
             request.Method = "DELETE";
             request.Accept = "application/json";
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
@@ -153,7 +153,7 @@ namespace NombramientoPartidos.Services
         public static void InsertEquipo(Equipo equipo)
         {
             var json = JsonConvert.SerializeObject(equipo);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase+"equipos");
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase+"Equipos");
             request.Method = "POST";
             request.ContentType = "application/json";
 
@@ -173,7 +173,7 @@ namespace NombramientoPartidos.Services
         public static void UpdateEquipo(Equipo equipo)
         {
             var json = JsonConvert.SerializeObject(equipo);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase+"equipos/" + equipo.IdEquipo);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase+"Equipos/" + equipo.IdEquipo);
             request.Method = "PUT";
             request.ContentType = "application/json";
             using (var streamwriter = new StreamWriter(request.GetRequestStream()))
@@ -191,7 +191,7 @@ namespace NombramientoPartidos.Services
 
         public static void DeleteEquipo(int id)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase+"equipos/" + id);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase+"Equipos/" + id);
             request.Method = "DELETE";
             request.Accept = "application/json";
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
@@ -205,7 +205,7 @@ namespace NombramientoPartidos.Services
         public static bool InsertJugador(Jugador jugador)
         {
             var json = JsonConvert.SerializeObject(jugador);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "jugadores");
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "Jugadores");
             request.Method = "POST";
             request.ContentType = "application/json";
 
@@ -226,7 +226,7 @@ namespace NombramientoPartidos.Services
         public static bool UpdateJugador(Jugador jugador)
         {
             var json = JsonConvert.SerializeObject(jugador);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "jugadores/" + jugador.Id);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "Jugadores/" + jugador.Id);
             request.Method = "PUT";
             request.ContentType = "application/json";
             using (var streamwriter = new StreamWriter(request.GetRequestStream()))
@@ -249,7 +249,7 @@ namespace NombramientoPartidos.Services
 
         public static void DeleteteJugador(int id)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "jugadores/" + id);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "Jugadores/" + id);
             request.Method = "DELETE";
             request.Accept = "application/json";
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
@@ -263,7 +263,7 @@ namespace NombramientoPartidos.Services
         public static bool InsertStaff(Staff staff)
         {
             var json = JsonConvert.SerializeObject(staff);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "staffs");
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "Staffs");
             request.Method = "POST";
             request.ContentType = "application/json";
 
@@ -284,7 +284,7 @@ namespace NombramientoPartidos.Services
         public static bool UpdateStaff(Staff staff)
         {
             var json = JsonConvert.SerializeObject(staff);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "staffs/" + staff.Id);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "Staffs/" + staff.Id);
             request.Method = "PUT";
             request.ContentType = "application/json";
             using (var streamwriter = new StreamWriter(request.GetRequestStream()))
@@ -306,7 +306,7 @@ namespace NombramientoPartidos.Services
     
         public static void DeleteStaff(int id)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "staffs/" + id);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "Staffs/" + id);
             request.Method = "DELETE";
             request.Accept = "application/json";
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
@@ -319,7 +319,7 @@ namespace NombramientoPartidos.Services
         public static void InsertPartido(Partido partido)
         {
             var json = JsonConvert.SerializeObject(partido);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "partidos");
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "Partidos");
             request.Method = "POST";
             request.ContentType = "application/json";
 
@@ -340,7 +340,7 @@ namespace NombramientoPartidos.Services
         public static void UpdatePartido(Partido partido)
         {
             var json = JsonConvert.SerializeObject(partido);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "partidos/" + partido.IdPartido);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "Partidos/" + partido.IdPartido);
             request.Method = "PUT";
             request.ContentType = "application/json";
             using (var streamwriter = new StreamWriter(request.GetRequestStream()))
@@ -358,7 +358,7 @@ namespace NombramientoPartidos.Services
 
         public static void DeletePartido(int id)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "partidos/" + id);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "Partidos/" + id);
             request.Method = "DELETE";
             request.Accept = "application/json";
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
