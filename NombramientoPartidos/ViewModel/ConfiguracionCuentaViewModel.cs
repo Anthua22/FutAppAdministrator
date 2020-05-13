@@ -19,7 +19,7 @@ namespace NombramientoPartidos.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Administrador  AdministradorActual{ get; set; }
+        public Administrador AdministradorActual{ get; set; }
 
         public string ContraseñaNueva { get; set; }
 
@@ -31,7 +31,7 @@ namespace NombramientoPartidos.ViewModel
 
         public ConfiguracionCuentaViewModel(Administrador administrador)
         {
-            AdministradorActual = administrador;
+            this.AdministradorActual = administrador;
             Accion = AccionAdministrar.SinContraseñaCambiada;
         }
 

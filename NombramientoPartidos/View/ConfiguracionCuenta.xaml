@@ -5,19 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NombramientoPartidos.View"
         mc:Ignorable="d"
-        Title="Cambiar Datos" Height="350" Width="500" ResizeMode="NoResize" Icon="/Assets/settings.ico" ShowInTaskbar="False">
+        Title="ConfiguracionCuenta" Height="450" Width="500" ResizeMode="NoResize" ShowInTaskbar="False">
+
     <Window.Resources>
-      
+
         <Style TargetType="{x:Type TextBlock}">
             <Setter Property="VerticalAlignment" Value="Center"/>
-           
+
         </Style>
         <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignFlatButton}">
             <Setter Property="Width" Value="100"/>
             <Setter Property="Margin" Value="0,0,5,0"/>
         </Style>
 
-       
+
     </Window.Resources>
     <DockPanel>
         <StackPanel VerticalAlignment="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10" DockPanel.Dock="Bottom">
@@ -32,7 +33,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition Height="35"></RowDefinition>
-                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition ></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -46,8 +47,8 @@
 
             <TextBlock Text="Cambiar Contraseña" Grid.Row="2" Grid.Column="0"/>
             <CheckBox Grid.Row="2" Grid.Column="1" Margin="14,0,0,0" VerticalAlignment="Center" x:Name="CambioContraseñaCheckBox" Click="CheckBox_Checked"/>
-            
-            
+
+
             <TextBlock Grid.Column="0" Grid.Row="3" Text="Escriba la contraseña actual" x:Name="ContraseñaActualTextBlock" Height="16" VerticalAlignment="Center" Visibility="Collapsed"></TextBlock>
             <PasswordBox Grid.Row="3" Grid.Column="1" Width="250" Height="25"  x:Name="ContraseñaActualPassword" VerticalAlignment="Center" Margin="5" Visibility="Collapsed"/>
             <TextBlock Grid.Column="0" Grid.Row="4" Height="16"  x:Name="ContraseñaNuevaTextBlock" Text="Escriba la nueva contraseña" Visibility="Collapsed"></TextBlock>
@@ -57,6 +58,6 @@
 
 
         </Grid>
-       
+
     </DockPanel>
 </Window>

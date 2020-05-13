@@ -1,4 +1,5 @@
 ﻿using NombramientoPartidos.Utilidades.ClasesPojos;
+using NombramientoPartidos.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,27 +20,25 @@ namespace NombramientoPartidos.View
     /// <summary>
     /// Lógica de interacción para Inicio.xaml
     /// </summary>
-    public partial class Inicio : Window, INotifyPropertyChanged
+    public partial class Inicio : Window
     {
-        public Administrador AdministradorActual { get; set; }
         public Inicio(Administrador administrador)
         {
-          
+            DataContext = new InicioViewModel(administrador);
             InitializeComponent();
-            AdministradorActual = administrador;
+            
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangingEventHandler PropertyChanging;
 
         private void CambioDatosCuenta(object sender, RoutedEventArgs e)
         {
-            ConfiguracionCuenta configuracion = new ConfiguracionCuenta(AdministradorActual);
-            configuracion.Owner = this;
-            if(configuracion.ShowDialog() == true)
-            {
-                MessageBox.Show("Datos Cambiados", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
+            (DataContext as InicioViewModel).Configuracion = new ConfiguracionCuenta((DataContext as InicioViewModel).AdministradorActual);
 
+            if((DataContext as InicioViewModel).Configuracion.ShowDialog() == true)
+            {
+                MessageBox.Show("Datos modificados", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

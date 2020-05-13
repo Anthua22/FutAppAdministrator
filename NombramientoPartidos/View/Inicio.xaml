@@ -16,11 +16,12 @@
     <Window.Resources>
         <Style TargetType="{x:Type Border}" x:Key="BordeStack">
             <Setter Property="CornerRadius" Value="10"/>
-            <Setter Property="Width" Value="170"/>
-            <Setter Property="Margin" Value="-141,10,0,0"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Margin" Value="-173,10,0,0"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Height" Value="180"/>
+            <Setter Property="Opacity" Value="0.7"/>
+            <Setter Property="Background" Value="#CAFCFC"/>
+            <Setter Property="Height" Value="150"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Style.Triggers>
                 <EventTrigger RoutedEvent="MouseEnter">
@@ -33,7 +34,7 @@
                 <EventTrigger RoutedEvent="MouseLeave">
                     <BeginStoryboard>
                         <Storyboard>
-                            <ThicknessAnimation Storyboard.TargetProperty="Margin" To="-141,10,0,0" Duration="0:0:2"></ThicknessAnimation>
+                            <ThicknessAnimation Storyboard.TargetProperty="Margin" To="-173,10,0,0" Duration="0:0:2"></ThicknessAnimation>
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>
@@ -43,22 +44,26 @@
 
     </Window.Resources>
     <Grid>
-        
-        <Grid Height="60" VerticalAlignment="Top" Background="#FF383838" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="62*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Height="60" VerticalAlignment="Top" Background="#FF383838" MouseLeftButtonDown="Grid_MouseLeftButtonDown" Grid.RowSpan="2">
+
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock Text="FutAppAdministrator" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" />
                 <Image Source="/Assets/icono.png" Margin="10,0,0,0"/>
 
             </StackPanel>
-            
+
             <Button HorizontalAlignment="Right" Background="{x:Null}" Foreground="White" BorderBrush="{x:Null}" x:Name="CloseButton" VerticalAlignment="Center" FontFamily="Constantia" Click="CloseButton_Click">
-                <materialDesign:PackIcon Kind="Power"></materialDesign:PackIcon> 
+                <materialDesign:PackIcon Kind="Power"></materialDesign:PackIcon>
             </Button>
         </Grid>
-        
 
-        <Grid Margin="0,60,0,0">
+
+        <Grid Margin="0,30,0,0" Grid.Row="1">
             <dragablz:TabablzControl>
                 <dragablz:TabablzControl.InterTabController>
                     <dragablz:InterTabController/>
@@ -78,21 +83,35 @@
             </dragablz:TabablzControl>
         </Grid>
 
-        <Border Style="{StaticResource BordeStack}" VerticalAlignment="Top" DataContext="{Binding RelativeSource={RelativeSource AncestorType=local:Inicio}, Path=DataContext.AdministradorActual}">
-            <StackPanel Orientation="Vertical">
-                <Image Margin="3,2,0,0" Source="https://img2.freepng.es/20180628/zaz/kisspng-computer-icons-hamburger-button-menu-new-menu-5b34724be5a1f0.5796308115301637879406.jpg" Width="30" HorizontalAlignment="Right"/>
-                <StackPanel Orientation="Horizontal">
-                    <Ellipse Height="50" Width="50" HorizontalAlignment="Left">
-                        <Ellipse.Fill>
-                            <ImageBrush ImageSource="{Binding Foto}"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
-                    <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=local:Inicio}, Path=DataContext.AdministradorActual.Nombre_Completo}" Margin="10,0,0,0" Foreground="Black"/>
-                </StackPanel>
-                <TextBlock Text="{Binding Telefono}"/>
-                <TextBlock Text="{Binding Email}"/>
-                <Button Content="Modificar Datos" Click="CambioDatosCuenta" Width="126"/>
-            </StackPanel>
+        <Border Style="{StaticResource BordeStack}" VerticalAlignment="Top" x:Name="BordeInvisibleBorder" Grid.RowSpan="2">
+            <DockPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="1">
+                        <Image Margin="3,2,0,0" Source="/Assets/menu_button.png" Width="25" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Background="Transparent">
+                        <Ellipse Height="50" Width="50" HorizontalAlignment="Left">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="{Binding AdministradorActual.Foto}"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <StackPanel VerticalAlignment="Center" Margin="10,0,0,0">
+                            <TextBlock Text="{Binding AdministradorActual.Nombre_Completo}" Foreground="Black" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding AdministradorActual.Telefono}"/>
+                            <TextBlock Text="{Binding AdministradorActual.Email}"/>
+                        </StackPanel>
+
+                    </StackPanel>
+                    <Button Content="Cambiar Datos" Click="CambioDatosCuenta" Width="126" HorizontalAlignment="Center" Margin="0,15,0,10" Style="{StaticResource MaterialDesignFlatButton}" Foreground="#B04F03" VerticalAlignment="Bottom"/>
+                </Grid>
+            </DockPanel>
         </Border>
     </Grid>
 </Window>

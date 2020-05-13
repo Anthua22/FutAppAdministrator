@@ -21,7 +21,6 @@ namespace NombramientoPartidos.View
     /// </summary>
     public partial class ConfiguracionCuenta : Window
     {
-
         public ConfiguracionCuenta(Administrador administrador)
         {
 
@@ -36,15 +35,16 @@ namespace NombramientoPartidos.View
                 (DataContext as ConfiguracionCuentaViewModel).ContraseñaActual = ContraseñaActualPassword.Password;
                 (DataContext as ConfiguracionCuentaViewModel).ContraseñaConfirmar = ContraseñaConfirmarPassword.Password;
                 (DataContext as ConfiguracionCuentaViewModel).ContraseñaNueva = NuevaContraseñaPassword.Password;
-                if((DataContext as ConfiguracionCuentaViewModel).UpdateAdministrador())
+                if ((DataContext as ConfiguracionCuentaViewModel).UpdateAdministrador())
                 {
                     DialogResult = true;
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            
+
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
@@ -59,7 +59,7 @@ namespace NombramientoPartidos.View
                 NuevaContraseñaPassword.Visibility = Visibility.Visible;
                 (DataContext as ConfiguracionCuentaViewModel).Accion = AccionAdministrar.ContraseñaCambiada;
             }
-            else 
+            else
             {
                 ContraseñaActualTextBlock.Visibility = Visibility.Collapsed;
                 ContraseñaActualPassword.Visibility = Visibility.Collapsed;
