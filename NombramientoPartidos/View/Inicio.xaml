@@ -16,11 +16,10 @@
     <Window.Resources>
         <Style TargetType="{x:Type Border}" x:Key="BordeStack">
             <Setter Property="CornerRadius" Value="10"/>
-            <Setter Property="Width" Value="200"/>
-            <Setter Property="Margin" Value="-173,10,0,0"/>
+            <Setter Property="Width" Value="250"/>
+            <Setter Property="Margin" Value="-225,11,0,0"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Opacity" Value="0.7"/>
-            <Setter Property="Background" Value="#CAFCFC"/>
+            <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Height" Value="150"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Style.Triggers>
@@ -34,7 +33,7 @@
                 <EventTrigger RoutedEvent="MouseLeave">
                     <BeginStoryboard>
                         <Storyboard>
-                            <ThicknessAnimation Storyboard.TargetProperty="Margin" To="-173,10,0,0" Duration="0:0:2"></ThicknessAnimation>
+                            <ThicknessAnimation Storyboard.TargetProperty="Margin" To="-225,11,0,0" Duration="0:0:2"></ThicknessAnimation>
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>
@@ -92,24 +91,24 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Grid.Column="1">
-                        <Image Margin="3,2,0,0" Source="/Assets/menu_button.png" Width="25" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+                        <Image Margin="3,2,0,0" Source="/Assets/menu_button.png" Width="25" HorizontalAlignment="Right" VerticalAlignment="Center"/>
 
                     </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Background="Transparent">
+                    <StackPanel Orientation="Horizontal" Background="Transparent" VerticalAlignment="Top">
                         <Ellipse Height="50" Width="50" HorizontalAlignment="Left">
                             <Ellipse.Fill>
                                 <ImageBrush ImageSource="{Binding AdministradorActual.Foto}"/>
                             </Ellipse.Fill>
                         </Ellipse>
                         <StackPanel VerticalAlignment="Center" Margin="10,0,0,0">
-                            <TextBlock Text="{Binding AdministradorActual.Nombre_Completo}" Foreground="Black" FontWeight="Bold"/>
-                            <TextBlock Text="{Binding AdministradorActual.Telefono}"/>
-                            <TextBlock Text="{Binding AdministradorActual.Email}"/>
+                            <TextBlock Text="{Binding AdministradorActual.Nombre_Completo}" Foreground="White" FontWeight="Bold" FontSize="18"/>
+                            <TextBlock Text="{Binding AdministradorActual.Telefono}" Foreground="Beige" FontSize="16"/>
+                            <TextBlock Text="{Binding AdministradorActual.Email}" Foreground="Beige"/>
                         </StackPanel>
 
                     </StackPanel>
-                    <Button Content="Cambiar Datos" Click="CambioDatosCuenta" Width="126" HorizontalAlignment="Center" Margin="0,15,0,10" Style="{StaticResource MaterialDesignFlatButton}" Foreground="#B04F03" VerticalAlignment="Bottom"/>
+                    <Button Content="Cambiar Datos" Click="CambioDatosCuenta" Width="126" HorizontalAlignment="Center" Foreground="#284911" Margin="0,15,0,10"  VerticalAlignment="Center"/>
                 </Grid>
             </DockPanel>
         </Border>

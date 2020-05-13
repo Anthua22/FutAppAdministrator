@@ -34,8 +34,8 @@ namespace NombramientoPartidos.View
         private void CambioDatosCuenta(object sender, RoutedEventArgs e)
         {
             (DataContext as InicioViewModel).Configuracion = new ConfiguracionCuenta((DataContext as InicioViewModel).AdministradorActual);
-
-            if((DataContext as InicioViewModel).Configuracion.ShowDialog() == true)
+            (DataContext as InicioViewModel).Configuracion.Owner = this;
+            if ((DataContext as InicioViewModel).Configuracion.ShowDialog() == true)
             {
                 MessageBox.Show("Datos modificados", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
             }
