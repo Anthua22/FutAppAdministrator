@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using NombramientoPartidos.Utilidades;
 using NombramientoPartidos.Utilidades.ClasesPojos;
+using RestSharp;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -117,21 +118,15 @@ namespace NombramientoPartidos.Services
             if (Utils.ControlCampos(arbitro))
             {
                 var json = JsonConvert.SerializeObject(arbitro);
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase+"Arbitros");
-                request.Method = "POST";
-                request.ContentType = "application/json";
 
-                using (var streamwriter = new StreamWriter(request.GetRequestStream()))
-                {  
-                    streamwriter.Write(json);
-                    streamwriter.Flush();
-                }
 
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                if (!response.StatusCode.Equals(HttpStatusCode.Created))
-                {
-                    throw new CRUDException("Error al insertar el dato");
-                }
+                var client = new RestClient(Urlbase + "Arbitros");
+                client.Timeout = -1;
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Accept", "application/json");
+                request.AddHeader("Content-Type", "application/json");
+                request.AddParameter("application/json,application/json", json, ParameterType.RequestBody);
+                IRestResponse response = client.Execute(request);
                 return true;
             }
             return false;
@@ -148,26 +143,22 @@ namespace NombramientoPartidos.Services
                 throw new CRUDException("Error al borral el registro");
             }
 
+
         }
 
         public static void InsertEquipo(Equipo equipo)
         {
             var json = JsonConvert.SerializeObject(equipo);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase+"Equipos");
-            request.Method = "POST";
-            request.ContentType = "application/json";
+           
 
-            using (var streamwriter = new StreamWriter(request.GetRequestStream()))
-            {
-                streamwriter.Write(json);
-                streamwriter.Flush();
-            }
-
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            if (!response.StatusCode.Equals(HttpStatusCode.Created))
-            {
-                throw new CRUDException("Error al insertar el dato");
-            }
+            var client = new RestClient(Urlbase+"Equipos");
+            client.Timeout = -1;
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("Accept", "application/json");
+            request.AddHeader("Content-Type", "application/json");
+            request.AddParameter("application/json,application/json",json , ParameterType.RequestBody);
+            IRestResponse response = client.Execute(request);
+         
         }
 
         public static void UpdateEquipo(Equipo equipo)
@@ -205,21 +196,15 @@ namespace NombramientoPartidos.Services
         public static bool InsertJugador(Jugador jugador)
         {
             var json = JsonConvert.SerializeObject(jugador);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "Jugadores");
-            request.Method = "POST";
-            request.ContentType = "application/json";
 
-            using (var streamwriter = new StreamWriter(request.GetRequestStream()))
-            {
-                streamwriter.Write(json);
-                streamwriter.Flush();
-            }
 
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            if (!response.StatusCode.Equals(HttpStatusCode.Created))
-            {
-                throw new CRUDException("Error al insertar el dato");
-            }
+            var client = new RestClient(Urlbase + "Jugadores");
+            client.Timeout = -1;
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("Accept", "application/json");
+            request.AddHeader("Content-Type", "application/json");
+            request.AddParameter("application/json,application/json", json, ParameterType.RequestBody);
+            IRestResponse response = client.Execute(request);
             return true;
         }
 
@@ -263,21 +248,15 @@ namespace NombramientoPartidos.Services
         public static bool InsertStaff(Staff staff)
         {
             var json = JsonConvert.SerializeObject(staff);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "Staffs");
-            request.Method = "POST";
-            request.ContentType = "application/json";
 
-            using (var streamwriter = new StreamWriter(request.GetRequestStream()))
-            {
-                streamwriter.Write(json);
-                streamwriter.Flush();
-            }
 
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            if (!response.StatusCode.Equals(HttpStatusCode.Created))
-            {
-                throw new CRUDException("Error al insertar el dato");
-            }
+            var client = new RestClient(Urlbase + "Staffs");
+            client.Timeout = -1;
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("Accept", "application/json");
+            request.AddHeader("Content-Type", "application/json");
+            request.AddParameter("application/json,application/json", json, ParameterType.RequestBody);
+            IRestResponse response = client.Execute(request);
             return true;
         }
         
@@ -319,22 +298,16 @@ namespace NombramientoPartidos.Services
         public static void InsertPartido(Partido partido)
         {
             var json = JsonConvert.SerializeObject(partido);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Urlbase + "Partidos");
-            request.Method = "POST";
-            request.ContentType = "application/json";
 
-            using (var streamwriter = new StreamWriter(request.GetRequestStream()))
-            {
-                streamwriter.Write(json);
-                streamwriter.Flush();
-            }
 
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            if (!response.StatusCode.Equals(HttpStatusCode.Created))
-            {
-                throw new CRUDException("Error al insertar el dato");
-            }
-       
+            var client = new RestClient(Urlbase + "Partidos");
+            client.Timeout = -1;
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("Accept", "application/json");
+            request.AddHeader("Content-Type", "application/json");
+            request.AddParameter("application/json,application/json", json, ParameterType.RequestBody);
+            IRestResponse response = client.Execute(request);
+
         }
 
         public static void UpdatePartido(Partido partido)

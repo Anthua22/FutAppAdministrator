@@ -67,7 +67,7 @@ namespace NombramientoPartidos.View.Equipo
             }
             else
             {
-                e.CanExecute = !string.IsNullOrWhiteSpace((DataContext as EquiposViewModel).Equipo.Nombre);
+                e.CanExecute = !string.IsNullOrWhiteSpace((DataContext as EquiposViewModel).Equipo.Nombre) && (DataContext as EquiposViewModel).Equipo!=null;
             }
         }
 

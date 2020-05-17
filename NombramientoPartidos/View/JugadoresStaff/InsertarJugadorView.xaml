@@ -83,7 +83,7 @@
                     <Button x:Name="FotoButton" Content="camera" FontFamily="{StaticResource FontAwesome}" FontSize="18" Width="50" HorizontalAlignment="Left" Foreground="Green" Margin="0,5,0,6" Grid.Column="1" Grid.Row="5" Click="FotoButton_Click"/>
                 </Grid>
           
-                <Image x:Name="ImagenJugador" Source="{Binding JugadorInsertar.Foto, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="0"></Image>
+                <Image x:Name="ImagenJugador" Source="{Binding JugadorInsertar.Foto, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="0" Margin="20,0,0,0"></Image>
         
               
             </Grid>
