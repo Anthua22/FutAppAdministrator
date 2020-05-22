@@ -47,6 +47,9 @@ namespace NombramientoPartidos.Utilidades.ClasesPojos
         [JsonProperty(PropertyName = "resultado")]
         public string Resultado { get; set; }
 
+        [JsonProperty(PropertyName = "suspendido")] 
+        public int Suspendido { get; set; }
+
         [JsonProperty(PropertyName = "disputado")]
         public int Disputado { get; set; }
 
