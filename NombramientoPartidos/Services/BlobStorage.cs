@@ -7,6 +7,8 @@ namespace NombramientoPartidos.Services
 {
     public static class BlobStorage
     {
+
+        //
         private static readonly StorageCredentials credentials = new StorageCredentials(Properties.Settings.Default.AccountName, Properties.Settings.Default.KeyValue);
         private static readonly CloudStorageAccount storageacc = new CloudStorageAccount(credentials, true);
         private static readonly CloudBlobClient blobClient = storageacc.CreateCloudBlobClient();
@@ -20,6 +22,9 @@ namespace NombramientoPartidos.Services
 
         public static string GuardarImagen(string filename, string blobReference, object ob)
         {
+            //DEPENDIENDO DEL TIPO DE OBJETO QUE LE LLEGUE LO ALMACENARÁ EN UN BLOB O EN OTRO
+
+
             if(ob is Arbitro)
             {
                 CloudBlockBlob blockBlob = containerArbitros.GetBlockBlobReference(blobReference);
@@ -55,7 +60,6 @@ namespace NombramientoPartidos.Services
             if(ob is Arbitro)
             {
                 CloudBlockBlob blockBlob = containerArbitros.GetBlockBlobReference(blobReference);
-
                 if (blockBlob.Exists())
                 {
                     blockBlob.Delete();
@@ -64,7 +68,6 @@ namespace NombramientoPartidos.Services
             else if (ob is Jugador)
             {
                 CloudBlockBlob blockBlob = containerJugadores.GetBlockBlobReference(blobReference);
-
                 if (blockBlob.Exists())
                 {
                     blockBlob.Delete();
@@ -73,7 +76,6 @@ namespace NombramientoPartidos.Services
             else if (ob is Equipo)
             {
                 CloudBlockBlob blockBlob = containerEquipos.GetBlockBlobReference(blobReference);
-
                 if (blockBlob.Exists())
                 {
                     blockBlob.Delete();
@@ -82,7 +84,6 @@ namespace NombramientoPartidos.Services
             else if (ob is Staff)
             {
                 CloudBlockBlob blockBlob = containerStaffs.GetBlockBlobReference(blobReference);
-
                 if (blockBlob.Exists())
                 {
                     blockBlob.Delete();
@@ -91,7 +92,6 @@ namespace NombramientoPartidos.Services
             else if (ob is Administrador)
             {
                 CloudBlockBlob blockBlob = containerAdministradores.GetBlockBlobReference(blobReference);
-
                 if (blockBlob.Exists())
                 {
                     blockBlob.Delete();

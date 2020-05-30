@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="NombramientoPartidos.Utilidades.ComandosPersonalizados">
+    <Position X="0.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAEAAAAAAAAAgAAEAAAAAAAAACCAAAAAAA=</HashCode>
+      <FileName>Utilidades\ComandosPersonalizados.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NombramientoPartidos.Utilidades.EncriptacionDescriptacion">
+    <Position X="2.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAEAAAAAAAAAAAAAAAAAAAAAAAgAAAAAEAA=</HashCode>
+      <FileName>Utilidades\EncriptacionDescriptacion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NombramientoPartidos.Utilidades.EquiposTemplate">
+    <Position X="5.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAAgAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Utilidades\EquiposTemplate.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NombramientoPartidos.Utilidades.Utils">
+    <Position X="4.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAQAAAAACACAEgAAAiAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilidades\Utils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NombramientoPartidos.Utilidades.ValidacionesRegexp">
+    <Position X="7.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAQAAAAAQgAAQBAFAAAABEAAAAAABAAAIAAAAAAgAAA=</HashCode>
+      <FileName>Utilidades\ValidacionesRegexp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NombramientoPartidos.View.Partidos.PartidosView">
+    <Position X="24.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACCABAAACAABAQAAIAAAEEAQAABIAAgAEIAAAAAQCAA=</HashCode>
+      <FileName>View\Partidos\PartidosView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NombramientoPartidos.ViewModel.Partidos.PartidosViewModel">
+    <Position X="20.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAkISAgAoZBAAEgyiAAAIAIhNAAEBIAAAEAUIgaAEA=</HashCode>
+      <FileName>ViewModel\Partidos\PartidosViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NombramientoPartidos.ViewModel.ConfiguracionCuentaViewModel">
+    <Position X="2.5" Y="3.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAQAQAAAAgAAAAEAAAAIAAAQAAAQ=</HashCode>
+      <FileName>ViewModel\ConfiguracionCuentaViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NombramientoPartidos.View.ConfiguracionCuenta">
+    <Position X="0.5" Y="3.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\ConfiguracionCuenta.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NombramientoPartidos.View.Inicio">
+    <Position X="10.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAhAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\Inicio.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NombramientoPartidos.MainWindow">
+    <Position X="13.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAgAAGAAAAAEAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NombramientoPartidos.ViewModel.InicioViewModel">
+    <Position X="10.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAACAAAAAQAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\InicioViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NombramientoPartidos.ViewModel.MainWindowViewModel">
+    <Position X="13.75" Y="5.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AgABAAAAABUBAAIAAAAYAAAAgAAAAAIAAAAAAAAAAQA=</HashCode>
+      <FileName>ViewModel\MainWindowViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Enum Name="NombramientoPartidos.ViewModel.Partidos.AccionCategoria">
+    <Position X="22" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAgAAAAAAQAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\Partidos\PartidosViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="NombramientoPartidos.ViewModel.AccionAdministrar">
+    <Position X="2.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\ConfiguracionCuentaViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

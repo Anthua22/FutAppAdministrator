@@ -53,7 +53,8 @@ namespace NombramientoPartidos.ViewModel
         {
             if (Properties.Settings.Default.GuardarContraseña)
             {
-
+                //Se comprueba si el archivo existe y si existe se elimina, así siempre que se marque la casilla se guardará 
+                //las credenciales puesta consiguiendo así que diferentes usuarios puedan guardar su contraseña
                 if (File.Exists("Datos.txt"))
                 {
                     File.Delete("Datos.txt");

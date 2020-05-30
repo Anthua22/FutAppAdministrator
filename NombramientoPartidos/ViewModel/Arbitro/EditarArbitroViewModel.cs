@@ -36,7 +36,7 @@ namespace NombramientoPartidos.ViewModel
 
         public void RecuperandoInformacion(string filtro)
         {
-            this.filtro = filtro.ToLower();
+            this.filtro = filtro;
         }
 
         private void Vista_Filter(object sender, FilterEventArgs e)
@@ -96,7 +96,7 @@ namespace NombramientoPartidos.ViewModel
 
         public bool EditarCanExecute()
         {
-            return ArbitroUpdate.Categoria != null;
+            return ArbitroUpdate!=null && ArbitroUpdate.Categoria != null ;
         }
 
 

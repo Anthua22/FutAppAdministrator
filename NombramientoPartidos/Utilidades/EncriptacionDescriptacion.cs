@@ -10,6 +10,10 @@ namespace NombramientoPartidos.Utilidades
 {
     public static class EncriptacionDescriptacion
     {
+        //Para el uso de utilidades de encriptación use una líbrería ya predefinida en System
+
+        //Creo la clave privada
+        //Le pasaremos la clave de forma de cadena y obtendrá su valor en bytes
         public static byte[] EncodingPrivateKey(string privada)
         {
             byte[] key = UTF8Encoding.UTF8.GetBytes(privada);
@@ -18,6 +22,8 @@ namespace NombramientoPartidos.Utilidades
             return key;
         }
 
+        //Creo la clave pública
+        //Le pasaremos la clave de forma de cadena y obtendrá su valor en bytes
         public static byte[] EncodingPublicKey(string publica)
         {
             byte[] iv = UTF8Encoding.UTF8.GetBytes(publica);
@@ -33,6 +39,7 @@ namespace NombramientoPartidos.Utilidades
             //Creo el algoritmo
             Rijndael RijndaelAlg = Rijndael.Create();
 
+            //Aqui agrego la funcionalidad de encriptar
             CryptoStream cryptoStream = new CryptoStream(fileStream, RijndaelAlg.CreateEncryptor(key, iv), CryptoStreamMode.Write);
 
             StreamWriter streamWriter = new StreamWriter(cryptoStream);
@@ -52,6 +59,7 @@ namespace NombramientoPartidos.Utilidades
             //Creo el algoritmo
             Rijndael RijndaelAlg = Rijndael.Create();
 
+            //Aqui agrego la funcionalidad de desencriptar
             CryptoStream cryptoStream = new CryptoStream(fileStream, RijndaelAlg.CreateDecryptor(key, iv), CryptoStreamMode.Read);
 
             StreamReader streamReader = new StreamReader(cryptoStream);
