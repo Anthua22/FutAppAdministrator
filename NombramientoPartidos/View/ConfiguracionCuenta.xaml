@@ -21,7 +21,7 @@
 
     </Window.Resources>
     <DockPanel>
-        <StackPanel VerticalAlignment="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10" DockPanel.Dock="Bottom">
+        <StackPanel VerticalAlignment="Bottom" Orientation="Horizontal" HorizontalAlignment="Center"  Margin="0,0,0,10" DockPanel.Dock="Bottom">
             <Button x:Name="AceptarButton" Click="AceptarButton_Click">Aceptar</Button>
             <Button IsCancel="True">Cancelar</Button>
         </StackPanel>
